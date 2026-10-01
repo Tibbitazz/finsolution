@@ -1,5 +1,30 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — Gate G1 closed
+
+- Owner approved G1: ADR-0014 ACCEPTED; S1_INPUT_SPECIFICATION and S1_SYNTHETIC_FIXTURES STABLE; interaction model, resolution, propagation, fixtures, S1/S2 separation, RQ-43 … RQ-47.
+- G1 clarification made explicit: the precedence facts/feasibility → methodology → preferences decides implementability only. Declared values are never rewritten or substituted (ADR-0014 §5, spec §7.1, 07 §8). RQ-48 added (declared ordered alternatives, S2).
+- FX-18 added: valid declared preference preserved while methodologically inadmissible (no existing fixture tested this exactly; FX-17 has no user selection, FX-05 is data/universe ineligibility). FX-03 states declared retention explicitly.
+- RQ-01 RESOLVED. PROPOSED markers removed from 00, 06, 07.
+
+## 2026-10-01 — S1 refocused on the reusable input specification
+
+- S1 deliverable changed from collecting a personal profile to the reusable Investor Profile & Policy Statement input specification: research/S1_INPUT_SPECIFICATION.md (data classes A–E, field-specification schema, capability vs. activation, value origins, field inventory incl. new rebalancing configuration group, interaction model, Declared → Effective resolution, change propagation, extensibility) and research/S1_SYNTHETIC_FIXTURES.md (17 edge-case fixtures with stub facts and methods).
+- ADR-0014 amended (still PROPOSED for G1): data classes, Portfolio State separation, runtime-configuration status of user inputs, capability vs. activation, value origins, parameter authority, portability.
+- 06 §5: method contracts gain `required_profile_fields` and parameter authority (proposed, ADR-0014).
+- Roadmap: S1/S2 split by layer; S13b note on rebalancing configuration and the drift vs. signal distinction.
+- RQ-01 at gate; RQ-18 note; RQ-43 … RQ-47 added.
+- S1_QUESTIONNAIRE marked SUPERSEDED (kept as candidate-inventory history).
+- No personal data is committed. The owner's Section 1 answers remain local development data only.
+
+## 2026-10-01 — S1 started (branch `stage/s01-investor-context`)
+
+- ADR-0014 (PROPOSED, for G1): reusable engine with a private local user layer; declared vs. effective Policy Statement with conflict records; field metadata; raw preferences preserved with derivation records; privacy boundary; unsupported-jurisdiction rule.
+- D-S1-1 resolved by the owner: personal data stays local and git-ignored. `.gitignore` excludes `/local/`.
+- research/S1_QUESTIONNAIRE.md (renamed from S1_INVESTOR_INPUTS.md): public template with nature (F/P/R), interface type, need, and later use per question.
+- Amended: 00 scope and roles; 07 §8 (proposed); 08 S1, S2, S8; RQ-01 updated; RQ-39 … RQ-42 added.
+- Purpose limitation added to ADR-0014 (§8): every personal field declares its decision purpose, exhaustive permitted consumers, and necessity; fields without a purpose are not collected; no silent cross-purpose use. Reflected in RQ-40, RQ-41, 07 §8, and the questionnaire (Necessity and Purpose → permitted consumers columns). Question 1.4 reworded to consumption and liability currencies.
+
 ## 2026-10-01 — Gate G0 closed
 
 - Owner accepted ADR-0002, ADR-0003, ADR-0012, ADR-0013 (status lines updated;

@@ -26,7 +26,7 @@ methodological defaults: every method choice is a research question.
 
 | In scope | Out of scope (current system) | Not yet decided (research) |
 |---|---|---|
-| A Norwegian tax-resident investor | Individuell pensjonssparing (Norwegian pension product) — excluded by ADR-0008 | Investment universe, geography, allocation unit |
+| Local users (the owner and others) each running the engine with a private profile, tax-resident in a jurisdiction covered by the Tax Registry — initially Norway (ADR-0014) | Individuell pensjonssparing (Norwegian pension product) — excluded by ADR-0008 | Investment universe, geography, allocation unit |
 | Brokers **Nordnet** and **eToro**, via an extensible Broker Registry, neither preferred (ADR-0007) | Broker-routing optimisation (architecture must permit it later; ADR-0006) | Account wrappers in scope beyond the exclusion above (S3a) |
 | One or more accounts per investor; account capital as a **continuous** input (ADR-0007) | — | Execution mode (manual vs. API) per broker (S13f) |
 | Strategic allocation, tactical entry/exit, implementation, monitoring, learning | — | Every model: returns, signals, risk, construction, tactical, aggregation |
@@ -37,6 +37,7 @@ methodological defaults: every method choice is a research question.
 |---|---|---|
 | **Owner** (Oliver) | Sets objectives and preferences; decides every gate; approves ADRs, Policy Statement changes, and anything requiring human approval | Final |
 | **Research & architecture assistant** (Claude) | Literature and fact research, derivations, verification, option analysis with an honest recommendation, drafting documents and ADRs | Proposes; never accepts its own proposals |
+| **Local user** | Owns a private Investor Profile and Policy Statement; sets preferences within facts, methodology, and feasibility (ADR-0014) | Final over own preferences; none over facts, methodology, or gates |
 | **Developer** | Implements `ACCEPTED`/`STABLE` specifications; raises implementability and ambiguity issues | Decides software engineering details not covered by an ADR, provided no financial/methodological assumption is introduced |
 
 ## 4. Standard
