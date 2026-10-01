@@ -1,5 +1,13 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — S2 package prepared for G2 (branch `stage/s02-configuration-machinery`)
+
+- research/S2_CONFIGURATION_MACHINERY.md: O1 logical schema (immutable versions; typed values with unit/basis/period), O2 methodology-neutral constraint representation, O3 resolution algorithm with invariants, O4 interaction taxonomy and ordered alternatives, O5 dependency graph with incremental recomputation, O6 authority model, O7 calibration interface, O10 schema evolution, option-set governance.
+- research/S2_RISK_PREFERENCE_RESEARCH.md: risk ontology; theory of risk-aversion parameters; elicitation evidence and practice; claims tagged TH/EM/IP/AI with source-verification levels.
+- research/S2_SYNTHETIC_FIXTURES.md: FX2-01 … FX2-16.
+- research/S2_G2_DECISIONS.md: proposed decisions D2-01 … D2-14, separated from findings.
+- ADR-0015 … ADR-0018 PROPOSED. RQ-02 (02b/c), RQ-23, RQ-41, RQ-47, RQ-48 at gate; RQ-49 (regulatory status of distribution) and RQ-50 (elicitation validation) added.
+
 ## 2026-10-01 — Gate G1 closed
 
 - Owner approved G1: ADR-0014 ACCEPTED; S1_INPUT_SPECIFICATION and S1_SYNTHETIC_FIXTURES STABLE; interaction model, resolution, propagation, fixtures, S1/S2 separation, RQ-43 … RQ-47.

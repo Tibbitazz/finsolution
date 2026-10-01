@@ -1,0 +1,137 @@
+# S2 — Risk-preference ontology, risk-aversion parameters, and elicitation (research memo, O8/O9)
+
+**Document status:** DRAFT (S2, for G2) · **Resolves (proposed):** RQ-02b (representation), RQ-02c (theory and scaling) · **Defers:** RQ-02d (model mappings) to S11
+
+**Source-verification note.** Sources were checked on 2026-10-01. Each is
+tagged with what was verified:
+- **[V-full]** — the cited passage was read in the source.
+- **[V-abs]** — the abstract or official summary was read.
+- **[V-bib]** — only the bibliographic record was confirmed; the cited content is standard but its full text was not re-read here.
+
+Claim classes: **TH** established theory · **EM** empirical finding ·
+**IP** industry/regulatory practice · **AI** architectural inference for this engine.
+
+## 1. Ontology (proposed — ADR-0018)
+
+| Concept | Meaning | Class | Origin / provenance |
+|---|---|---|---|
+| **Stated risk preference** | What the user says they prefer (e.g. `INV.risk_category`, `INV.volatility_range`) | A | User; stored raw |
+| **Elicited risk preference/tolerance** | Information inferred from structured choices or questions | A (raw responses) + D (estimate) | Instrument `id@version`; estimation method with a derivation record |
+| **Risk capacity** | Financial ability to bear losses (horizon, liquidity needs, liabilities, income stability, outside wealth) | D | Capacity method `id@version` from A/A′ inputs |
+| **Risk requirement** | Risk potentially necessary to pursue a stated goal, given goal targets and current return estimates | D | Requirement method; inputs include a **belief snapshot** (the dependence runs one way only: requirement reads beliefs and never writes them) |
+| **Model risk-aversion parameter** | E.g. γ in a specific objective formulation | D | Calibration method (O7), model-specific, with units, basis, period |
+| **Portfolio risk controls** | Volatility target, drawdown constraint, risk budget, leverage limit | A (declared limits) or D (derived) → represented as O2 constraint objects | Field or method provenance |
+
+**Relationships:**
+- Stated, elicited, capacity, and requirement are **inputs**. Model parameters and risk controls are **outputs** of accepted calibration methods.
+- None is interchangeable with another.
+- Disagreements between inputs (e.g. requirement exceeds capacity; stated ≫ elicited) are **findings shown to the user**, not auto-resolved (§4).
+- Whether capacity acts as a hard cap is deferred to S11 (see G2 decision D2-10).
+
+## 2. What the risk-aversion parameter is, and why it does not transfer
+
+| # | Finding | Class | Source |
+|---|---|---|---|
+| 2.1 | The Arrow–Pratt measures: absolute risk aversion −u″(w)/u′(w); relative (proportional) risk aversion −w·u″(w)/u′(w); concepts of risks as a proportion of total assets and decreasing risk aversion | TH | Pratt (1964), *Econometrica* 32(1/2):122–136 [V-abs] |
+| 2.2 | Mean-variance desirability can be written as d = e − v/t, with t the investor's risk tolerance; choosing among candidate efficient mixes "in effect, reveals" risk tolerance | TH/IP | Sharpe, *Expected Utility Asset Allocation* (2006, rev. 2007), Stanford working paper [V-full: passages read] |
+| 2.3 | Mean-variance approximates expected utility well over short horizons; the approximation weakens as return dispersion grows | TH | Levy & Markowitz (1979), *AER* 69(3):308–317 [V-bib; content per secondary summaries — re-read before reliance] |
+| 2.4 | Under CRRA utility in continuous time with i.i.d. returns, the optimal risky share is (μ − r)/(γσ²), independent of horizon | TH | Merton (1969), *REStat* 51(3):247–257 [V-abs; formula standard] |
+| 2.5 | γ's numerical value depends on return units (percent vs. decimal changes the required γ by 100×). It is invariant to *consistent* annualisation of μ and Σ, but changes with inconsistent scaling | TH | This project, 07 §5 (VERIFIED-DERIVATION, numerical check) |
+| 2.6 | γ has no preference meaning in simple EPO (scale only) or in endogenous-γ anchored EPO (a normalisation), and does not exist in risk parity, minimum variance, or HRP | TH | 07 §5 (VERIFIED-DERIVATION) |
+| 2.7 | With beliefs fixed, a fixed γ maps to a risk level that changes whenever return/risk estimates change (Merton share under assumed inputs) | TH | 07 §5 |
+
+**AI 2.A — no universal category → γ mapping.** Because γ is
+formulation-, unit-, and frequency-specific (2.5–2.6), and elicited
+measures are method-dependent and better ordinal than cardinal (§3), a
+universal mapping such as Aggressive/Moderate/Conservative → γ ranges is not
+supported. Qualitative categories are recorded as **ordinal stated
+preferences** only.
+
+**AI 2.B — calibrate inside the consuming model.** If a model requires a
+parameter, it should be calibrated in that model's own units, frequency,
+and objective. Candidate approaches (competing; none adopted):
+- (a) **outcome-based choice:** the user chooses among candidate portfolios' projected outcome distributions generated by the same model, which reveals risk tolerance as in 2.2. Depends on a belief snapshot;
+- (b) **interpretable controls:** a declared volatility target or loss threshold with probability and horizon, translated by the model;
+- (c) **goal-threshold formulation:** risk per goal as the probability of failing a threshold, which has a mean-variance equivalence (Das et al. 2010, §4).
+
+Each approach requires a derivation record. Whether γ is held fixed or
+re-derived when beliefs change (2.7) is S11 (RQ-02 item 7).
+
+## 3. What can be inferred from user responses
+
+| # | Finding | Class | Source |
+|---|---|---|---|
+| 3.1 | Risk tolerance elicited from hypothetical income gambles is heterogeneous across individuals and essentially uncorrelated with the elasticity of intertemporal substitution | EM | Barsky, Juster, Kimball & Shapiro (1997), *QJE* 112(2):537–579 [V-abs] |
+| 3.2 | A general self-reported willingness-to-take-risks question (11-point scale) is a good predictor of actual risk-taking in a field experiment; risk attitudes vary with age, gender, parental education, height | EM | Dohmen et al. (2011), *JEEA* 9(3):522–550 [V-abs] |
+| 3.3 | In a multiple-price-list lottery task, risk aversion increases as payoffs are scaled up | EM | Holt & Laury (2002), *AER* 92(5):1644–1655 [V-abs] |
+| 3.4 | Elicitation choice depends on the question and population. Experiments are "best at identifying treatment effects and differences between individuals" but "may not be ideal for identifying levels of risk aversion"; elicited parameters have limited predictive power across domains | EM (review) | Charness, Gneezy & Imas (2013), *JEBO* 87:43–51 [V-full: passages read] |
+| 3.5 | Risk preference measured by different behavioural tasks is substantially inconsistent across methods; self-reports and frequency measures are more consistent | EM | Pedroni et al. (2017), *Nature Human Behaviour* 1(11):803–809 [V-bib + institute press summary]; Frey et al. (2017), *Science Advances* 3:e1701381 [V-bib via same summary] |
+| 3.6 | Standard questionnaire risk profiling typically explains less than 15% of the variation in risky-asset holdings between investors | IP/EM (review) | Klement (2015), *Investor Risk Profiling: An Overview*, CFA Institute Research Foundation [V-abs: publisher description] |
+| 3.7 | A 13-item financial risk-tolerance instrument was developed and validated in multiple stages | IP/EM | Grable & Lytton (1999), *Financial Services Review* 8(3):163–181 [V-abs] |
+
+**AI 3.A** — Elicited outputs are stored as **ordinal or interval
+indicators with their instrument version**, not as model parameters. They
+enter models only through a calibration method (O7).
+
+**AI 3.B** — Because stake size matters (3.3) and lab measures transfer
+poorly across domains (3.4), hypothetical small-stake tasks cannot be
+assumed to yield a portfolio-level γ.
+
+**AI 3.C** — Multiple sources (stated, elicited, past behaviour) are
+compared for consistency, and inconsistencies are shown to the user (§4,
+ESMA practice), not averaged silently.
+
+## 4. Practice and policy relevant to ordering and capacity
+
+| # | Finding | Class | Source |
+|---|---|---|---|
+| 4.1 | Suitability information separates the client's financial situation, "including their ability to bear losses", from investment objectives, "including their risk tolerance" | IP | ESMA35-43-3172, Guidelines on MiFID II suitability (2022; applicable 3 Oct 2023) [V-full] |
+| 4.2 | Firms should ensure information is reliable and consistent "without unduly relying on clients' self-assessment"; questionnaires may alert clients when responses "appear internally inconsistent" and suggest reconsidering; batteries of questions should be avoided | IP | ESMA35-43-3172, General guideline 4 (para. 44) and supporting guidance [V-full] |
+| 4.3 | A mental-accounting framework defines risk per account as the probability of failing to reach a threshold, lets attitudes to risk vary by account, and shows the aggregate allocation is mean-variance efficient (with short selling) | TH | Das, Markowitz, Scheid & Statman (2010), *JFQA* 45(2):311–334 [V-abs] |
+| 4.4 | Automation can be applied at different levels within each of four stages: information acquisition, information analysis, decision and action selection, action implementation | TH (human factors) | Parasuraman, Sheridan & Wickens (2000), *IEEE Trans. SMC-A* 30(3):286–297 [V-abs] |
+
+**AI 4.A (ordering)** — 4.3 supports treating different goals as separate
+accounts with their own risk attitudes (T2 separation) rather than ranking
+them. 4.2 supports user resolution of inconsistencies. Neither source
+justifies a system default ranking of valid objectives.
+
+**AI 4.B (capacity vs. tolerance)** — 4.1 is regulatory practice for firms.
+It is not binding on this engine as such (whether distributing the engine
+to other users raises regulatory questions is registered as RQ-49). It does
+support modelling capacity and tolerance as distinct objects.
+
+**AI 4.C (authority)** — 4.4 supports per-stage authority (O6) over one
+autonomy scale.
+
+**Important limitation.** ESMA's guidance applies to investment firms
+assessing clients. This engine is a local tool configured by its user. The
+guidance informs design; it does not determine engine rules.
+
+## 5. Elicitation (O9): candidate approaches; no instrument adopted
+
+| Candidate | Output type | Strengths | Weaknesses |
+|---|---|---|---|
+| General risk-willingness question (Dohmen et al. 2011) | Ordinal | Simple; predictive in field validation | Ordinal only; domain-general |
+| Hypothetical income gambles (Barsky et al. 1997) | Interval classes | Established survey use | Hypothetical; income domain |
+| Multiple price list (Holt & Laury 2002) | Interval on a utility parameter | Standard in experiments | Stake dependence; comprehension; cross-method inconsistency (3.5) |
+| Investment allocation task (Gneezy & Potters 1997, via 3.4) | Continuous | Financial framing | Stylised; limited transfer (3.4) |
+| Multi-item risk-tolerance scale (Grable & Lytton 1999) | Score | Validated psychometric instrument | Questionnaire limits (3.6) |
+| Outcome-distribution choice (Sharpe 2007, AI 2.B a) | Model-specific parameter | Model-consistent units | Depends on beliefs; must be generated by the consuming model |
+| Goal loss-threshold and probability (Das et al. 2010, AI 2.B c) | Constraint/parameter per goal | Interpretable; goal-based | Requires model translation |
+
+**Requirement on the architecture (mechanism):** an `Instrument` contract —
+`id@version`, items, response types, scoring rule, output type (ordinal /
+interval / parameter), validity evidence, applicable population — with
+responses stored raw (A) and scores as D.
+
+**Proposed G2 outcome:** no instrument adopted. `INV.choice_battery` (7.6)
+and the drawdown-reaction levels (7.3) stay conditional or pending. The
+candidate set above goes forward to S11 for validation (RQ-50). No
+proprietary battery is created.
+
+## 6. Competing approaches recorded (no unique answer in the literature)
+
+- Ordinal stated preference vs. model-calibrated parameters as the primary risk input.
+- Fixed γ (risk varies with opportunities) vs. fixed outcome target (re-derive γ when beliefs change) — S11.
+- Capacity as a hard cap vs. capacity as a finding requiring user resolution — S11.
+- Single elicitation method vs. multi-method consistency checks.
