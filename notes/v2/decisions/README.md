@@ -19,7 +19,7 @@ append-only after acceptance; changes are new ADRs that supersede old ones.
 | [ADR-0010](ADR-0010-risk-preference-vs-model-parameters.md) | Risk preference ≠ model parameters | ACCEPTED (separation) | G0 | S0 | 2026-10-01 | single global γ | calibration (RQ-02) |
 | [ADR-0011](ADR-0011-roadmap-v2.md) | Roadmap v2, S0–S18 | ACCEPTED | G0 | S0 | 2026-10-01 | legacy roadmaps | — |
 | [ADR-0012](ADR-0012-signal-and-scoring-architecture.md) | Signal & scoring architecture; score ≠ belief; rule R8; typed contracts | ACCEPTED | G0 | S0 | 2026-10-01 | — (extends 0004, 0005, 0011) | RQ-27 … RQ-37 |
-| [ADR-0014](ADR-0014-reusable-engine-local-user-layer.md) | Reusable engine; private local user layer; declared vs. effective Policy Statement; field metadata; privacy boundary | PROPOSED | G1 | S1 | — | — (extends 0006, 0010) | RQ-39 … RQ-42 |
+| [ADR-0014](ADR-0014-reusable-engine-local-user-layer.md) | Reusable engine; private local user layer; declared vs. effective Policy Statement; data classes; activation; value origins; purpose limitation; portability | PROPOSED | G1 | S1 | — | — (extends 0006, 0010, 0012) | RQ-39 … RQ-47 |
 | [ADR-0013](ADR-0013-clarify-beliefs-preferences-test.md) | Clarify ADR-0009 test: declared comparison universe | ACCEPTED | G0 | S0 | 2026-10-01 | — (clarifies 0009) | RQ-38 |
 
 **Basis of `ACCEPTED` entries dated 2026-10-01:** explicit owner instructions or

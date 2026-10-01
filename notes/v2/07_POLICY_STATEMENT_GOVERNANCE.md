@@ -161,4 +161,5 @@ Reusable engine (public)  →  public versioned facts + accepted methodology
 - Facts and rules are never editable as preferences.
 - A preference never makes an infeasible choice feasible. Conflicts are explained to the user, not silently resolved.
 - Raw preferences are preserved. Derived model parameters carry derivation records (method version, inputs, output).
+- Data classes (A, A′ Portfolio State, B, C, D, E), schema capability vs. UI activation, and value origins (user-entered, remembered, accepted proposal, technical default) are specified in research/S1_INPUT_SPECIFICATION.md.
 

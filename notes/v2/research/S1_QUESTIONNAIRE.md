@@ -1,6 +1,6 @@
 # S1 — Investor Profile questionnaire (public template)
 
-**Document status:** DRAFT (S1) · **Stage:** S1 → gate G1 · **Basis:** ADR-0014 (proposed), ADR-0010 · **Resolves:** RQ-01 (inputs), RQ-02a (what to elicit)
+**Document status:** SUPERSEDED by [S1_INPUT_SPECIFICATION.md](S1_INPUT_SPECIFICATION.md) (candidate field inventory retained for history; Q-numbers map to the specification) · **Stage:** S1 → gate G1 · **Basis:** ADR-0014 (proposed), ADR-0010 · **Resolves:** RQ-01 (inputs), RQ-02a (what to elicit)
 
 **This is a public template for any local user. It contains questions only.**
 Answers are personal and are stored only in the user's git-ignored local

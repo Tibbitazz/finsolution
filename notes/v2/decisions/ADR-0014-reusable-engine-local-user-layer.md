@@ -1,95 +1,110 @@
 # ADR-0014 — Reusable engine with a private local user layer; declared vs. effective Policy Statement
 
-- **Status:** PROPOSED (principles instructed by the owner on 2026-10-01; to be accepted at G1)
+- **Status:** PROPOSED (principles instructed and amendments approved in direction by the owner, 2026-10-01; formal acceptance at G1)
 - **Date proposed:** 2026-10-01 · **Date decided:** —
 - **Decided by:** — · **Gate:** G1 · **Stage:** S1
-- **Supersedes:** none · **Extends:** ADR-0006 (adds the local-workspace root and field metadata), ADR-0010 (derivation records); amends the 00_CHARTER scope/roles text — no accepted ADR body is modified
-- **Resolves:** D-S1-1 (where personal answers are stored); opens RQ-39 … RQ-42
+- **Supersedes:** none · **Extends:** ADR-0006 (local-workspace root, data classes, field metadata), ADR-0010 (derivation records), ADR-0012 typed contracts (`required_profile_fields`, parameter authority); amends the 00_CHARTER scope/roles text — no accepted ADR body is modified
+- **Resolves:** D-S1-1 (where personal answers are stored); opens RQ-39 … RQ-47
 
 ## Context
 The engine is a reusable application that several people (the owner,
-friends) run locally, each with a private profile. The owner's S1 answers
-are one local test configuration, not engine defaults. The repository is
-public.
+friends) run locally, each with a private profile. User inputs change over
+time and differ between users, so they are runtime configuration, not
+project decisions. The repository is public.
 
 ## Decision
 1. **Two layers.**
    - **System/public layer** (version-controlled, public): schemas and
      validation rules; available configuration options; methodological
      definitions; public facts registries (provenance, effective dates,
-     staleness per 03); research and evidence; deterministic methods.
+     staleness per 03); research and evidence; deterministic methods;
+     synthetic fixtures.
    - **Local user layer** (private, git-ignored, never pushed): Investor
-     Profile; goals and horizons; risk preferences; liquidity needs; accounts
-     and capital; universe preferences; instrument permissions; constraints
-     and exclusions; engagement preferences; all other user-specific Policy
-     Statement settings; user run history.
-2. **Hierarchy root (extends ADR-0006).**
-   Engine installation (system layer) → Local workspace → one or more User
-   Profiles → each with an Investor Profile and Policy Statement(s) →
-   Goal/Portfolio → Account. Nothing in one profile is visible to another
-   profile or to the public repository.
-3. **Declared vs. effective Policy Statement.**
-   - **Declared** = the user's inputs as entered, versioned and immutable
-     per version.
-   - **Effective** = Declared ∩ public facts (registries) ∩ accepted
-     methodology ∩ feasibility (Feasibility Engine, eligibility funnel).
-   - Every difference between them is reported as a **conflict record**:
-     field, user value, binding rule or fact and its source, consequence,
-     and the user's available actions. Neither side is silently overridden.
-   - Only the Effective Policy Statement drives the investment process.
-4. **Field metadata (schema requirement for S2).** Every field declares:
-   - **input nature**: factual investor input · user preference ·
-     preliminary/research-dependent preference;
-   - **editability**: user-editable · registry-sourced (read-only fact) ·
-     methodology-defined (read-only rule) · system-derived (read-only,
-     with derivation record);
-   - **input type**: dropdown · multi-select · numeric · range · toggle ·
-     repeating table · free text · system-derived display;
-   - **option source**: static · registry-driven · eligibility-driven;
-   - whether an advanced/custom value is permitted, and its validation;
-   - Policy Statement decision category (07 §3).
+     Profile; Declared Policy Statements; Portfolio State; user run history.
+2. **Hierarchy root (extends ADR-0006).** Engine installation (system layer)
+   → Local workspace → one or more User Profiles → each with an Investor
+   Profile and Policy Statement(s) → Goal/Portfolio → Account. Profiles are
+   isolated from each other and from the public repository.
+3. **Data classes.**
+   - **A** runtime user configuration.
+   - **A′** Portfolio State (holdings, cash, tax lots, account values) — separate from the Investor Profile and Policy Statement, with separate versioning.
+   - **B** public facts (registries).
+   - **C** methodological configuration (options only from admissible methods).
+   - **D** derived values.
+   - **E** synthetic test fixtures.
 
-   Every personal field offers "don't know" and "prefer not to say". No
-   personal field is pre-filled. User answers never populate system defaults.
-5. **Preferences cannot redefine facts or rules.** Tax rates, broker fees,
-   regulatory rules, formulas, and verified market facts are not editable as
-   preferences. They come only from registries or accepted methodology.
-6. **Raw preference preserved (extends ADR-0010).** A preference requiring
-   calibration is stored as given. Each derived model parameter carries a
-   derivation record: method id and version, inputs (including the raw
-   preference and the facts/estimates snapshot), output, timestamp. The
-   derivation is reproducible from the record.
-7. **Privacy boundary.** Personal data stays on the user's machine. Run
-   manifests shared or committed reference profile *hashes*, never contents.
-   Any flow of personal data to external services (e.g. hosted LLM
-   providers) is limited to fields whose declared purpose (§8) requires that service, and requires an explicit, minimised, user-approved policy (RQ-40);
-   until that is decided, none is assumed.
+   User inputs (A) are runtime configuration: editable at any time, every save is a new immutable version, and no ADR is needed to change them. Any value crossing a class boundary carries provenance (D values name their A/A′ field versions, B fact IDs and snapshot, C method ID and version).
+4. **Field metadata.** Every field declares the attributes of
+   S1_INPUT_SPECIFICATION §2, including: nature (factual / preference /
+   research-dependent); class; status; activation rule; purpose; exhaustive
+   consumers; privacy class (P0–P3); necessity; control; options and option
+   source (static / registry / eligibility / pending); custom permission;
+   validation; dependencies; propagation tags; allowed value origins; pending
+   research.
+
+   4a. **Schema capability ≠ UI activation.** The schema may represent a
+   field that the UI does not ask for. Activation comes only from a satisfied
+   field condition or from an accepted production method whose eligibility
+   contract lists the field in `required_profile_fields`. Fields are never
+   collected because they might be useful someday.
+
+   4b. **Value origins.** These are distinct and recorded:
+   - `user_entered`;
+   - `remembered` — the user's own saved value shown for editing; **not** a default;
+   - `accepted_proposal` — a clearly labelled derived proposal the user confirmed, with provenance;
+   - `technical_default` — allowed only for technical/methodological settings, never for personal facts or preferences;
+   - `imported` (A′), `registry` (B), `derived` (D).
+
+   No personal field is silently preselected. Every personal field offers
+   "don't know" and "prefer not to say". Real profiles never become system
+   defaults, fixtures, or research evidence.
+5. **Declared vs. effective Policy Statement.**
+   - **Declared** = the user's A inputs, versioned and immutable per version.
+   - **Effective** = the result of the resolution rules (S1_INPUT_SPECIFICATION §7.1). Precedence: B facts and hard feasibility > C admissibility > A preferences.
+   - Every difference produces a conflict record. Neither side is silently overridden, Effective is never edited directly, and only Effective drives the investment process.
+   - Downstream invalidation follows the **Effective** diff.
+   - Portfolio State changes never alter A values or preference-derived calibration.
+6. **Preferences cannot redefine facts or rules.** Tax rates, broker fees,
+   regulatory rules, formulas, and verified market facts come only from
+   registries or accepted methodology. Methodological options (C) come only
+   from admissible methods. A user-set method parameter is allowed only
+   where the admitting method's contract marks it user-settable, within the
+   stated bounds (parameter authority).
+7. **Raw preference preserved (extends ADR-0010).** Preferences requiring
+   calibration are stored as given. Derived parameters carry derivation
+   records reproducible from the record.
 8. **Purpose limitation for personal data.**
-   - Every personal-data field declares, in the schema:
-     (i) its **decision purpose** — why it is required;
-     (ii) its **permitted consumers** — an exhaustive list of engine components that may read it;
-     (iii) its **necessity** — required for an Effective Policy Statement, or optional.
-   - A field with no defined decision purpose is not collected.
-   - Information collected for one purpose must not silently affect unrelated decisions. A new consumer or purpose requires a schema change recorded in an ADR.
-   - Example: year of birth may inform horizon and goal validation, human-capital considerations, or risk capacity. It may never become an investment signal or alter market beliefs. This extends ADR-0009's beliefs ⊥ preferences separation to factual personal inputs.
-   - The rule applies to the S1 questionnaire and to all future profile fields; the Feasibility Engine and agents receive only the fields their declared purpose permits.
-9. **Jurisdiction scope.** Tax residence is a user input. Users resident in a
-   jurisdiction the Tax Registry does not cover are reported as unsupported
-   (a conflict record), not given Norwegian rules by default. Initial
-   coverage target: Norway (RQ-42).
+   - Every personal-data field declares its decision purpose, exhaustive permitted consumers, and necessity.
+   - A field with no decision purpose is not collected.
+   - Information collected for one purpose must not silently affect unrelated decisions. A new consumer or purpose requires an ADR.
+   - Example: year of birth may inform horizon and goal validation, human capital, or risk capacity, but never becomes an investment signal or alters market beliefs (extends ADR-0009 to factual personal inputs).
+   - The Feasibility Engine and agents receive only the fields their declared purpose permits.
+9. **Privacy boundary.** Personal data stays on the user's machine. Shared or
+   committed run manifests reference profile *hashes*, never contents.
+   Flows to external services (e.g. hosted LLM providers) are limited to
+   fields whose declared purpose requires that service, and require an
+   explicit, minimised, user-approved policy (RQ-40). Until that is decided,
+   none is assumed.
+10. **Jurisdiction scope.** Users resident in a jurisdiction the Tax Registry
+   does not cover are reported as unsupported (a conflict record), never
+   given another jurisdiction's rules by default (RQ-42).
+11. **Portability.** Profiles must not be assumed to exist only inside one
+   installation. A versioned export/import artefact is a required future
+   capability, subject to S8 privacy/security decisions (RQ-43).
 
 ## Alternatives considered
 | Option | For | Against |
 |---|---|---|
 | Single-owner design (implicit before) | Simpler | Hard-codes one person's answers; not reusable; privacy risk in a public repo |
-| Personal data in a private repository | Versioned | Excludes friends' local use; still centralises personal data |
+| Personal data in a private repository | Versioned | Excludes friends' local use; centralises personal data |
 | **Public system layer + private local workspaces** | Reusable; private by construction; facts shared and verifiable | Requires local storage, profile management, conflict reporting |
 
 ## Consequences
-- S1 outputs an Investor Profile *schema* plus one local test profile.
-- S2 must specify field metadata.
-- S8 must specify local storage, multi-profile handling, and the
-  conflict-explanation UI.
+- S1 delivers a reusable input specification, interaction model, resolution and propagation rules, and **synthetic** fixtures. No real profile is required for G1.
+- Any real profile is optional private development data and is never a fixture.
+- S2 formalises the schema, validation engine, ordering, and dependency graph.
+- Method contracts (06 §5) gain `required_profile_fields` and parameter-authority fields.
+- S8 specifies local storage, multi-profile handling, portability, and the conflict UI.
 - `.gitignore` excludes `/local/`.
 
 ## Revisit trigger

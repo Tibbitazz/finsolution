@@ -124,6 +124,8 @@ Additional fields for **signal / scoring methods**:
 | Robustness | Across markets, periods, sub-samples |
 | Interactions | Correlation with other signals; known conflicts (e.g. value vs. momentum) |
 | Permitted consumers | Which construction methods, agents, or tactical rules may consume it, and in which representation |
+| Required profile fields *(ADR-0014, proposed — all method types)* | Investor-profile fields the method needs; activates those fields in the UI only when the method is in production |
+| Parameter authority *(ADR-0014, proposed — all method types)* | Per exposed parameter: user-settable within stated bounds · system-derived · fixed |
 
 Additional fields for **tactical rules**: dependence on holding state;
 signal-time vs. execution-time assumption (e.g. a close-based signal filled

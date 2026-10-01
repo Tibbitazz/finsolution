@@ -1,5 +1,15 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — S1 refocused on the reusable input specification
+
+- S1 deliverable changed from collecting a personal profile to the reusable Investor Profile & Policy Statement input specification: research/S1_INPUT_SPECIFICATION.md (data classes A–E, field-specification schema, capability vs. activation, value origins, field inventory incl. new rebalancing configuration group, interaction model, Declared → Effective resolution, change propagation, extensibility) and research/S1_SYNTHETIC_FIXTURES.md (17 edge-case fixtures with stub facts and methods).
+- ADR-0014 amended (still PROPOSED for G1): data classes, Portfolio State separation, runtime-configuration status of user inputs, capability vs. activation, value origins, parameter authority, portability.
+- 06 §5: method contracts gain `required_profile_fields` and parameter authority (proposed, ADR-0014).
+- Roadmap: S1/S2 split by layer; S13b note on rebalancing configuration and the drift vs. signal distinction.
+- RQ-01 at gate; RQ-18 note; RQ-43 … RQ-47 added.
+- S1_QUESTIONNAIRE marked SUPERSEDED (kept as candidate-inventory history).
+- No personal data is committed. The owner's Section 1 answers remain local development data only.
+
 ## 2026-10-01 — S1 started (branch `stage/s01-investor-context`)
 
 - ADR-0014 (PROPOSED, for G1): reusable engine with a private local user layer; declared vs. effective Policy Statement with conflict records; field metadata; raw preferences preserved with derivation records; privacy boundary; unsupported-jurisdiction rule.

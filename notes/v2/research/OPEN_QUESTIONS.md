@@ -8,7 +8,7 @@ on the owner's own circumstances rather than on literature.
 
 | ID | Question | Stage → Gate | Status | Notes |
 |---|---|---|---|---|
-| RQ-01 | Investor Profile content: goals, priorities, horizons, cash flows, outside wealth, experience | S1 → G1 | IN-RESEARCH | Schema public (S1_QUESTIONNAIRE); answers are local per user (ADR-0014); the owner's profile is the first test case |
+| RQ-01 | Investor Profile & Policy Statement input specification | S1 → G1 | AT-GATE | S1_INPUT_SPECIFICATION + S1_SYNTHETIC_FIXTURES; no real profile required (ADR-0014) |
 | RQ-02 | Representation and calibration of risk preference (see below) | S1, S2, S11 → G1, G2, G11 | OPEN | ADR-0010 fixes only the separation |
 | RQ-03 | Norwegian account wrappers in scope (excl. individuell pensjonssparing) and their rules; taxation of shares, funds (incl. fund equity-share rules), interest; shielding deduction; wealth-tax treatment | S3a → G3 | OPEN | Primary sources only; legacy ASK claims are leads only |
 | RQ-04 | Kildeskatt: withholding on foreign dividends, treaty rates, credit against Norwegian tax, treatment inside wrappers, fund-level withholding in non-domestic funds/ETFs | S3a → G3 | OPEN | |
@@ -25,7 +25,7 @@ on the owner's own circumstances rather than on literature.
 | RQ-15 | Portfolio-construction method set and constraint handling | S11 → G11 | OPEN | |
 | RQ-16 | Whether multi-agent deliberation adds value; aggregation rules | S12 → G12 | OPEN | Deterministic control required |
 | RQ-17 | Role of tactical signals (timing-only / bounded tilt / overlay / risk scaling / integrated) and tactical methods | S13c–d → G13c–d | OPEN | Stage preserved; detail later |
-| RQ-18 | Rebalancing policy; cost, tax, FX model; asset-location rules | S13a–b → G13a–b | OPEN | |
+| RQ-18 | Rebalancing policy; cost, tax, FX model; asset-location rules | S13a–b → G13a–b | OPEN | Rebalancing configuration structure fixed in S1 (`REB.*`); methods and parameters in RQ-44 |
 | RQ-19 | Execution mode per broker (manual vs. API) | S13f → G13 | OPEN | Depends on RQ-06 |
 | RQ-20 | Investment-case report contents and approval workflow | S14 → G14 | OPEN | |
 | RQ-21 | Monitoring thresholds; eligibility hysteresis | S4, S16 → G4, G16 | OPEN | |
@@ -49,6 +49,11 @@ on the owner's own circumstances rather than on literature.
 | RQ-40 | Personal-data flow to external services (hosted LLM providers, data vendors): which fields, if any, may leave the machine; minimisation; local vs. hosted models; user consent | S8, S12 → G8, G12 | OPEN | None assumed until decided; only fields whose declared purpose requires an external component may be considered (ADR-0014 §8) |
 | RQ-41 | Field metadata (incl. purpose, permitted consumers, necessity — ADR-0014 §8) and predefined option sets (e.g. risk categories, leverage levels, exclusion lists): research basis, advanced/custom ranges, validation | S2 → G2 | OPEN | Options must not be defaults |
 | RQ-42 | Handling of users outside registry-covered jurisdictions; process for adding a jurisdiction | S3 → G3 | OPEN | Unsupported is reported, never defaulted to Norway |
+| RQ-43 | Configuration portability: versioned export/import of a user profile across installations; schema-version compatibility; encryption and privacy of the artefact | S8 → G8 | OPEN | ADR-0014 §11 |
+| RQ-44 | Rebalancing: taxonomy (drift-driven rebalancing vs. signal-driven target change), admissible approaches (calendar, band, hybrid, method-determined, custom), which parameters are user-settable vs. system-derived, trigger definitions, interaction with trade limits and cash flows | S13b → G13b | OPEN | Refines RQ-18; S1 fixes only the configuration structure |
+| RQ-45 | Role, if any, of self-reported investment experience vs. verified broker knowledge tests in eligibility, suitability, or UI | S3c → G3 | OPEN | Field `INV.investment_experience` inactive; remove if tests are the mechanism |
+| RQ-46 | Whether anticipated tax-residence change matters: multi-period or cross-jurisdiction tax-aware methods | S3a, S13a → G3, G13a | OPEN | Field `INV.residence_change_expected` inactive |
+| RQ-47 | Schema evolution: field versioning, retirement, migration of saved profiles | S2, S8 → G2, G8 | OPEN | Extensibility rules in S1 §8 |
 | RQ-38 | Comparison-universe invariance: compute relative scores over the policy-permitted universe or over a preference-independent reference universe, then filter | S5, S9c → G5, G9 | OPEN | ADR-0013 (proposed) makes the comparison universe an explicit input |
 
 ## RQ-02 — Risk preference: representation and calibration
