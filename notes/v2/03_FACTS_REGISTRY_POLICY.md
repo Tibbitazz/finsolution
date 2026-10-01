@@ -72,14 +72,17 @@ notes:          <free text>
    NOK 50,000") is a registry concept (ADR-0007).
 7. **Scope.** Initial brokers: Nordnet and eToro, neither preferred; adding a
    broker requires only new records, never an architecture change. The
-   Norwegian pension product *individuell pensjonssparing* is out of scope
-   (ADR-0008).
+   All pension saving and pension products, including *individuell
+   pensjonssparing*, are out of scope (ADR-0008, ADR-0020).
 
 ## 5. Current contents
 
-**None.** No fact has been verified in v2. The registry is populated in S3.
+Provisional registry v1 (verified 2026-10-01; for acceptance at G3): see
+[facts/README.md](facts/README.md) and [S3_FINDINGS.md](research/S3_FINDINGS.md).
+The record contract proposed in ADR-0019 (PROPOSED, G3) would replace the
+§3 schema above; until acceptance §3 remains the policy text.
 
 ## 6. Open items
 
 - Storage format and location (YAML files under `facts/` vs. a database) — S6b/S8.
-- Re-verification cadence per domain — S3 (RQ-24).
+- Re-verification cadence per domain — proposed in S3_REGISTRY_ARCHITECTURE §8 (RQ-24, at G3).

@@ -13,7 +13,7 @@ S2 Configuration architecture & Policy Statement schema ── G2 ────�
  │                                                                       │ BRANCH B (platform, developer)
  ├─► S3 External-facts research                                          ├─► S8 Platform architecture ── G8
  │     3a Norwegian tax & wrappers ∥ 3b Broker Registry (Nordnet, eToro)  │     → infra build: registries, Feasibility Engine,
- │     ∥ 3c instrument regulation ── G3 (owner selects accounts)         │       artifact DAG, Policy Statement editor, run registry
+ │     ∥ 3c instrument regulation ── G3 (registries; no account choice)  │       artifact DAG, Policy Statement editor, run registry
  │                                                                       │
  ├─► S4 Method Library & Eligibility framework ── G4                     │ BRANCH C (data engineering): after G5/G6
  │
@@ -64,7 +64,7 @@ Fields: **A** objective · **B** decisions · **C** research · **D** Policy Sta
 
 **S2 — Configuration machinery (underlying layer).** A: machine-readable governance implementing the S1 contract: formal schema language, validation engine, conflict-priority ordering, dependency graph, approval matrix, calibration machinery, schema versioning and migration (RQ-47). B: hierarchy (07 §2); category assignment; hard-constraint rule; precedence; conflict ordering (RQ-23); feasibility checks; approval matrix; artifact-dependency contract incl. broker/account nodes; **risk-preference object and its schema** (RQ-02b); **theory of risk-aversion parameters across formulations** (RQ-02c); *[ADR-0014]* field metadata for every Policy Statement field and the declared→effective resolution with conflict records; predefined option sets and their research basis (RQ-41). C: Policy Statement practice; portfolio-choice theory of risk aversion. D: defines all levels. E: all. F: S3–S8. G: research/S2_CONFIGURATION_MACHINERY.md, S2_RISK_PREFERENCE_RESEARCH.md, S2_SYNTHETIC_FIXTURES.md, S2_G2_DECISIONS.md; ADR-0015 … ADR-0018 (accepted at G2).
 
-**S3 — External-facts research.** A: authoritative facts on the implementation environment. B: 3a Norwegian tax and in-scope wrappers (excluding individuell pensjonssparing), kildeskatt and treaty credits, fund-level withholding, wealth tax treatment (RQ-03, RQ-04); 3b Broker Registry for Nordnet and eToro — costs, instruments, ownership/custody model, wrappers offered, FX, execution/API, data, tax reporting (RQ-06); 3c instrument regulation, e.g. retail availability rules, CFDs (RQ-05); fact re-verification cadences (RQ-24). C: primary sources only. D: populates registries; enables account choices. E: universe, costs, tax, execution, eligibility. F: S5, S6b, S7, S13. G: registries v1; **G3: owner selects account configuration**; what-if comparison specification.
+**S3 — External-facts research.** A: authoritative facts on the implementation environment. B: 3a Norwegian tax and in-scope wrappers (excluding individuell pensjonssparing), kildeskatt and treaty credits, fund-level withholding, wealth tax treatment (RQ-03, RQ-04); 3b Broker Registry for Nordnet and eToro — costs, instruments, ownership/custody model, wrappers offered, FX, execution/API, data, tax reporting (RQ-06); 3c instrument regulation, e.g. retail availability rules, CFDs (RQ-05); fact re-verification cadences (RQ-24). C: primary sources only. D: populates registries; enables account choices. E: universe, costs, tax, execution, eligibility. F: S5, S6b, S7, S13. G: registries v1 and their governance. **G3 approves the external-fact registries, not any user's account configuration** — broker, account, and wrapper choices are runtime user configuration (ADR-0014; consistency correction D3-a). Descriptive account-comparison specification (no ranking).
 
 **S4 — Method Library & Eligibility framework.** A: remove infeasible methods before any comparison. B: contract schema; funnel; reason codes; point-in-time evaluation; provisional policy; overrides; hysteresis (RQ-21). C: per method family as methods are registered. D: methodological level restricted to eligible menu. E: every method-consuming component. F: S5 (method requirements feed universe choice), S9–S13. G: eligibility-framework specification; candidate method inventory with contract status.
 
@@ -116,7 +116,7 @@ Fields: **A** objective · **B** decisions · **C** research · **D** Policy Sta
 | G0 | Charter, governance, roadmap | Owner |
 | G1 | Investor profile | Owner |
 | G2 | Policy Statement schema, precedence, risk-preference representation | Owner, on evidence |
-| G3 | Account configuration (brokers × wrappers) | Owner, on S3 evidence |
+| G3 | External-fact registries v1 and registry governance (not any user's account configuration) | Owner, on S3 evidence |
 | G4 | Eligibility framework, threshold policy, hysteresis | Owner, on evidence |
 | G5 | Universe and allocation unit | Owner, on evidence |
 | G6 | Data sources and registry design | Owner, on evidence |

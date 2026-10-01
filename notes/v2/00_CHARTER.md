@@ -26,7 +26,7 @@ methodological defaults: every method choice is a research question.
 
 | In scope | Out of scope (current system) | Not yet decided (research) |
 |---|---|---|
-| Local users (the owner and others) each running the engine with a private profile, tax-resident in a jurisdiction covered by the Tax Registry — initially Norway (ADR-0014) | Individuell pensjonssparing (Norwegian pension product) — excluded by ADR-0008 | Investment universe, geography, allocation unit |
+| Local users (the owner and others) each running the engine with a private profile, tax-resident in a jurisdiction covered by the Tax Registry — initially Norway (ADR-0014) | All pension saving and pension products (IPS, EPK, any pension wrapper; pension wealth) — excluded by ADR-0008 and ADR-0020 | Investment universe, geography, allocation unit |
 | Brokers **Nordnet** and **eToro**, via an extensible Broker Registry, neither preferred (ADR-0007) | Broker-routing optimisation (architecture must permit it later; ADR-0006) | Account wrappers in scope beyond the exclusion above (S3a) |
 | One or more accounts per investor; account capital as a **continuous** input (ADR-0007) | — | Execution mode (manual vs. API) per broker (S13f) |
 | Strategic allocation, tactical entry/exit, implementation, monitoring, learning | — | Every model: returns, signals, risk, construction, tactical, aggregation |

@@ -47,12 +47,12 @@ notes/v2/
 ├── CHANGELOG.md
 ├── decisions/                    ← ADRs (append-only) + register
 ├── research/                     ← open questions, research memos per stage
-└── facts/                        ← versioned external facts (empty until S3)
+└── facts/                        ← versioned external facts (registry v1 provisional, S3)
 ```
 
 ## Current position
 
 Stage **S0 (Charter & decision governance)** — closed at gate G0 (2026-10-01);
-all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). Next: **S3 — External-facts research**.
+all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). **S3 — External-facts research** package prepared for gate G3 (branch `stage/s03-external-facts`; ADR-0019 PROPOSED, ADR-0020 ACCEPTED).
 No methodological question has been resolved; all are recorded in
 [research/OPEN_QUESTIONS.md](research/OPEN_QUESTIONS.md).

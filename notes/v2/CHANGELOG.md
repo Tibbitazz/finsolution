@@ -1,5 +1,16 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — S3 package prepared for G3 (branch `stage/s03-external-facts`)
+
+- **Consistency correction (D3-a):** 08_ROADMAP previously described G3 as approving the user's account choice. G3 approves the external-fact registries only; no user's account configuration is a gate decision.
+- **D3-b:** ADR-0020 ACCEPTED (owner instruction). All pension saving and products are out of scope. 00, 03, and the S1 spec (`INV.outside_assets`) updated.
+- **D3-c, D3-d** recorded: logical record contract (YAML provisional); instrument-type level only.
+- research/S3_REGISTRY_ARCHITECTURE.md: record contract, point-in-time semantics, uncertainty, admissibility layers, W1–W9, instrument-type schema, RegRule/BrokerImplementation, re-check policy, jurisdiction process, option sources, comparison specification.
+- research/S3_FINDINGS.md and facts/*.yaml: registry v1 (72 records, verified 2026-10-01) for Norway tax and wrappers, US→NO withholding, EEA/NO regulation, Nordnet, eToro.
+- research/S3_SYNTHETIC_FIXTURES.md: FX3-01 … FX3-22.
+- research/S3_G3_PACKAGE.md: findings (A), proposed decisions D3-01 … D3-13 (B), gaps (C).
+- ADR-0019 PROPOSED. 02 and 03 annotated (not rewritten). RQ-03/04/05/06/24/42/45/46/49 at gate; RQ-49 reframed; RQ-51 added.
+
 ## 2026-10-01 — Gate G2 closed
 
 - Owner approved G2 with amendments; ADR-0015 … ADR-0018 ACCEPTED; S2 documents STABLE.
