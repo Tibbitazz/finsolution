@@ -1,5 +1,26 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — Gate G2 closed
+
+- Owner approved G2 with amendments; ADR-0015 … ADR-0018 ACCEPTED; S2 documents STABLE.
+- D2-01: units/basis/period preserved through derivations.
+- D2-04: structured finding-record architecture (ConflictRecord, TradeOffRecord, GoalRoutingRecord, FeasibilityFinding); T1 not resolved in S2; unattainable goals stay visible without modifying the goal.
+- D2-06: `supports_ordered_alternatives` metadata with semantic requirements; no closed whitelist; per-field enablement by later stages.
+- D2-07: eight grants are the S2 logical representation, refinable by S8/S13; invariant analytical ≠ decision ≠ execution authority.
+- D2-09: model parameters scoped to formulation/units/calibration context; never portable investor attributes.
+- D2-10: disagreements preserved and exposed; capacity-based hard constraints deferred to S11 (not restricted to informational).
+- Fixtures: FX2-03 amended; FX2-17 … FX2-20 added.
+- RQ-02 (02b/c), RQ-23, RQ-41 (governance), RQ-47 (policy), RQ-48 (mechanism) resolved. RQ-49 clarified as research only. RQ-02d/RQ-50 note the calibration-vs-selection distinction.
+- Research memo accepted with its verification limitations preserved (Pedroni et al., Levy & Markowitz caveats retained).
+
+## 2026-10-01 — S2 package prepared for G2 (branch `stage/s02-configuration-machinery`)
+
+- research/S2_CONFIGURATION_MACHINERY.md: O1 logical schema (immutable versions; typed values with unit/basis/period), O2 methodology-neutral constraint representation, O3 resolution algorithm with invariants, O4 interaction taxonomy and ordered alternatives, O5 dependency graph with incremental recomputation, O6 authority model, O7 calibration interface, O10 schema evolution, option-set governance.
+- research/S2_RISK_PREFERENCE_RESEARCH.md: risk ontology; theory of risk-aversion parameters; elicitation evidence and practice; claims tagged TH/EM/IP/AI with source-verification levels.
+- research/S2_SYNTHETIC_FIXTURES.md: FX2-01 … FX2-16.
+- research/S2_G2_DECISIONS.md: proposed decisions D2-01 … D2-14, separated from findings.
+- ADR-0015 … ADR-0018 PROPOSED. RQ-02 (02b/c), RQ-23, RQ-41, RQ-47, RQ-48 at gate; RQ-49 (regulatory status of distribution) and RQ-50 (elicitation validation) added.
+
 ## 2026-10-01 — Gate G1 closed
 
 - Owner approved G1: ADR-0014 ACCEPTED; S1_INPUT_SPECIFICATION and S1_SYNTHETIC_FIXTURES STABLE; interaction model, resolution, propagation, fixtures, S1/S2 separation, RQ-43 … RQ-47.
