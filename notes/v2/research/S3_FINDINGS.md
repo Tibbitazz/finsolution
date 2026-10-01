@@ -1,240 +1,294 @@
 # S3 — Research findings (external facts as of 2026-10-01)
 
-**Document status:** DRAFT (S3, for G3) · **Verified on:** 2026-10-01 · **Records:** [../facts/](../facts/) · **Architecture:** [S3_REGISTRY_ARCHITECTURE.md](S3_REGISTRY_ARCHITECTURE.md)
+**Document status:** DRAFT (S3, for G3; revised 2026-10-01 per owner corrections) · **Verified on:** 2026-10-01 · **Records:** [../facts/](../facts/) · **Architecture:** [S3_REGISTRY_ARCHITECTURE.md](S3_REGISTRY_ARCHITECTURE.md)
 
 **Nature of this document:**
 - It records externally sourced facts. It is **not tax, legal, or investment advice**.
-- Accepting it into registry v1 means accepting the facts on the stated evidence as of the stated date. A later change in the world produces a new effective-dated fact version, not an ADR.
 - Verification levels follow S3_REGISTRY_ARCHITECTURE §1: **V-full** (passage read) · **V-abs** (official summary, or a search summary of an official page — to be read in full) · **V-bib** (existence only).
+- **Scope exclusions:** pension saving (ADR-0020) and wealth tax (ADR-0021) are not researched or recorded.
+
+**What accepting these facts at G3 means:** each fact is accepted into
+registry v1 at its stated source, scope, verification level, valid-time
+coordinates, and knowledge-time coordinates, based on the evidence
+available on the verification date. Acceptance does not certify a fact
+forever. Later authoritative changes create new effective-dated facts and
+never rewrite historical ones.
 
 ## 1. Principal findings (summary)
 
-1. **Norwegian share-income taxation 2026:** ordinary income rate 22%, upward adjustment factor 1.72, so share income is taxed at 37.84%. The shielding rate for 2025 is 3.6%; the 2026 rate is not yet published.
-2. **Wealth tax 2026:**
-   - threshold NOK 1,900,000;
-   - combined rate 1.00% (municipal 0.35% + state 0.65%), rising to 1.10% above NOK 21.5 million;
-   - listed shares and the share component of funds valued at 80%.
+1. **Norwegian share-income taxation 2026:** ordinary income rate 22%, upward adjustment factor 1.72 (effective 37.84%). The shielding rate for 2025 is 3.6%; the 2026 rate is unpublished (`unavailable`). 2027 parameters are `unavailable`.
+2. **ASK — rules:** eligible holdings, tax-exempt dividends inside the account, withdrawal ordering and taxation, in-kind withdrawals not a realisation, losses only on closure, FX gains inside ASK outside the exemption. All verified against Skatte-ABC 2025/2026 A-10.
+3. **ASK — foreign withholding (corrected).**
+   - Withheld tax is deemed withdrawn and reduces input value (verified).
+   - **The credit rules for foreign withholding on dividends may apply on a taxable withdrawal** (verified, Skatte-ABC A-10-5.4.1). This is a conditional rule, not an unconditional entitlement.
+   - The calculation inside ASK, tracking of withheld tax, interaction with the input-value reduction, and how carry-forward applies to the gap between dividend year and withdrawal year are **not established**.
+4. **US dividend withholding is layered:** 30% statutory → 15% treaty → W-8BEN → Nordnet applies the treaty rate (conditional on local-market listing) → Norwegian credit capped. eToro's practice, reclaim, and fund-level withholding are unknown.
+5. **Exit tax (from 20 Nov 2024):** covers shares, fund units, and ASK; NOK 3 m basic deduction; 12-year rule (RQ-46).
+6. **PRIIPs chain:**
+   - Investment funds are PRIIPs.
+   - A seller or adviser must provide the KID before the retail investor is bound, also when the sale is solely on the customer's initiative.
+   - The KID must be in Norwegian, and no exemption is in force.
+   - Breach is sanctionable.
 
-   A commission report (NOU 2026:9) proposes removing valuation discounts. That is **proposed, not effective**.
-3. **2027 parameters are unavailable.** The 2027 budget proposition had not been published as of 2026-10-01.
-4. **ASK:**
-   - eligible holdings: EEA-domiciled listed shares, and EEA funds with a share component above 80%;
-   - tax-deferred; no interest on cash;
-   - losses deductible only on closing the account;
-   - **foreign withholding actually deducted is treated as taken out of the ASK, reducing the input value.** Whether a credit is available inside ASK is not established.
-5. **US dividend withholding is layered:**
-   - statutory 30%;
-   - treaty maximum 15% of gross (Norway–US treaty Art. 8(2) as amended);
-   - W-8BEN to claim it;
-   - Norwegian credit capped at Norwegian tax and at the treaty rate, with 5-year carry-forward;
-   - Nordnet applies treaty rates at source for US shares traded on their local market;
-   - eToro's practice is unverified.
-6. **Exit tax (from 20 Nov 2024)** covers shares, fund units, and ASK, with a NOK 3,000,000 basic deduction and a 12-year rule. This is relevant to RQ-46.
-7. **Product access:**
-   - The Norwegian PRIIPs law (in force 1 Oct 2024) requires a key information document in Norwegian before retail access.
-   - Retail CFD restrictions apply from 1 Aug 2018: leverage caps 30:1 to 2:1, 50% margin close-out, negative-balance protection.
-8. **RQ-45:** the appropriateness assessment is a firm obligation. The broker's assessment or test, not the engine user's self-reported experience, is what governs access.
-9. **RQ-49:** authoritative sources tie regulated investment services to provision **to third parties / clients on a business basis**, to **personal recommendations**, and to acting **on behalf of clients** or with **discretion**. No source examined addresses self-hosted, user-configured software directly. Boundaries and architectural consequences are recorded in §6 without a legal conclusion.
-10. **Brokers:**
-    - Nordnet: Norwegian branch of a Swedish bank; dual supervision; verified fees, FX spreads, and margin rate; API closed to new subscriptions.
-    - eToro: CySEC-regulated EU entity; real shares for unleveraged buys, CFDs otherwise; NOK conversion fees verified. Several capabilities are unknown, and the inactivity fee is conflicting.
+   The **conditional rule** "PRIIP without a Norwegian KID cannot lawfully be sold to Norwegian retail investors" is promoted to verified. **"US-domiciled ETFs are unavailable"** stays an interpretation, because "no Norwegian KID exists" is a per-instrument fact supported only by secondary sources.
+7. **RQ-45:** appropriateness is the firm's obligation; Nordnet implements tests. No legitimate engine consumer of self-reported experience has been established, but none has been ruled out. The field stays inactive (revised D3-07).
+8. **RQ-49:** authoritative statements are separated from inference. The closest authoritative analogue to "user-declared rules computed deterministically" is ESMA ¶36/¶38: filtering, and assisting a person's own choice. Both are non-binding and firm-oriented. **No source determines the question.** RQ-49 stays open, and capabilities are gated only where a genuine dependency exists (revised D3-08).
+9. **Brokers:** facts recorded with unknown kept distinct from verified-unsupported (§9). The eToro inactivity-fee conflict is unresolved after a second attempt (§8).
 
 ## 2. Norway — tax and account facts
 
 | Fact | Value | Effective | Source | Level | Status |
 |---|---|---|---|---|---|
-| Ordinary income tax rate | 22% | Income year 2026 | Skatteetaten, *Forskuddsutskrivingen 2026* (15 Dec 2025) | V-full | verified |
-| Upward adjustment factor, share income | 1.72 (effective rate 37.84%) | Income year 2026 | Forskuddsutskrivingen 2026; Skatteetaten rates page | V-full | verified |
-| Losses on shares | Deductible, also multiplied by 1.72 | 2026 | Skatteetaten rates page | V-full | verified |
-| Shielding rate, personal shareholders | 3.6% | Income year 2025 | Skatteetaten "Risk-free interest rate" page (method: 3-month T-bill average 4.1480% + 0.5 pp, after 22% tax) | V-full | verified |
-| Shielding rate 2026 | — | Income year 2026 | Not published as of 2026-10-01 | — | unavailable |
-| Mutual fund taxation | Share component > 80% at start of year → share treatment; < 20% → interest (22%); in between → proportional split; for gains, share component = average of acquisition and sale years; shielding applies to share part | In force at verification; start date not recorded | Skatteetaten "Taxation of units in mutual funds" | V-full | verified (effective_from unavailable) |
-| Interest income | Ordinary income, 22% | 2026 | Forskuddsutskrivingen 2026 (rate); fund page | V-full | verified |
-| Wealth tax threshold (individuals) | NOK 1,900,000 | Income year 2026 | Forskuddsutskrivingen 2026 | V-full | verified |
-| Wealth tax rates | Municipal 0.35%; state 0.65% (tranche 1), 0.75% above NOK 21.5 m; combined 1.00% / 1.10% | 2026 | Forskuddsutskrivingen 2026 | V-full | verified |
-| Valuation discount | Listed and unlisted shares, and the share component of securities funds, valued at 80% | 2026 | Forskuddsutskrivingen 2026; Skatteetaten valuation-discount page | V-full | verified |
-| Proposal: remove valuation discounts; lower wealth-tax rates; higher threshold; separate primary-residence deduction | — | Not effective | NOU 2026:9 hearing note (regjeringen.no) | V-abs (search summary) | **proposed** |
-| 2027 tax parameters | — | 2027 | Prop. 1 LS (2026–2027) not published as of 2026-10-01 | — | unavailable |
-| ASK — eligible holdings | Listed shares domiciled in the EEA; units in EEA-domiciled funds with share component > 80% at start of income year; no money-market funds | In force | Skatteetaten "Share savings account (ASK)" | V-full | verified |
-| ASK — cash | Allowed; no interest accrues | In force | Same | V-full | verified |
-| ASK — dividends | Not taxed on payout; taxed on withdrawal | In force (dividends deferred from 2019) | Same; search summary of Skatteetaten | V-full | verified |
-| ASK — withdrawals | Up to cost basis tax-free; excess taxed as share income (37.84% in 2025–2026) after shielding | 2025–2026 | Same | V-full | verified |
-| ASK — losses | Deductible only when the account is closed | In force | Same | V-full | verified |
-| ASK — foreign withholding | Actual withholding "must be considered taken out of ASK and the input value is reduced" | In force | Same | V-full | verified |
-| ASK — credit for foreign tax | — | — | Not stated on the page | — | **unavailable** |
-| ASK — accounts, transfers | Unlimited number of accounts; ASK→ASK transfers tax-neutral; transfers from ordinary account are a taxable realisation (FIFO) | In force | Same | V-full | verified |
-| Ordinary (taxable) account | Realisation-based taxation | In force | Skatteetaten tax-rules pages | V-full | verified |
-| Foreign holdings at foreign institutions | Not pre-filled; taxpayer must add them | In force | Skatteetaten "Foreign shares and other financial products" | V-full | verified |
-| Credit deduction for foreign tax (individuals) | Same income, same year, assessed and paid, similar tax; cannot exceed Norwegian tax on it; limited to treaty rate; carry forward up to 5 years | In force | Skatteetaten "Double taxation" | V-full | verified |
-| Exit tax | Shares, fund units (both components), **ASK**, among others; NOK 3,000,000 basic deduction on latent gain/loss; pay within 12 years unless moving back; options to pay immediately, by instalment, or defer with security | Relocations from 20 Nov 2024 | Skatteetaten "Exit tax" | V-full | verified |
-| Non-pension wrappers in scope | ASK; ordinary taxable account (e.g. Aksje- og fondskonto) | — | As above | V-full | verified |
+| Ordinary income tax rate | 22% | 2026 | Skatteetaten, *Forskuddsutskrivingen 2026* (15 Dec 2025) | V-full | verified |
+| Upward adjustment factor | 1.72 (effective 37.84%); losses symmetric | 2026 | Same; Skatteetaten rates page | V-full | verified |
+| Shielding rate | 3.6% | 2025 | Skatteetaten rate page | V-full | verified |
+| Shielding rate | — | 2026 | Not published as of 2026-10-01 | — | unavailable |
+| 2027 parameters | — | 2027 | Prop. 1 LS (2026–2027) not published | — | unavailable |
+| Fund taxation | > 80% share component → share treatment; < 20% → interest; otherwise proportional; average share component for gains; shielding on share part | In force (start date unrecorded, U12) | Skatteetaten fund page | V-full | verified |
+| ASK — eligible holdings | EEA-listed shares; EEA funds > 80% shares; no money-market funds; cash earns no interest | In force | Skatteetaten ASK page | V-full | verified |
+| ASK — dividends | Tax-exempt inside the account; taxed only through withdrawals; pre-2019 taxed dividends count as contributed capital | From 2019 | Skatte-ABC 2025/2026 A-10-5.4.1 | V-full | verified |
+| ASK — withdrawals | Contributions out first; excess over contributions + shielding taxable, × 1.72; in-kind withdrawals at market value, **not a realisation**, value becomes new input value outside ASK | In force | Skatte-ABC A-10-6.1 | V-full | verified |
+| ASK — foreign currency | Account funds cannot buy currency; FX gain/loss outside the ASK exemption, realised on conversion to NOK, withdrawal, or purchase of securities | In force | Skatte-ABC A-10-5.2 | V-full | verified |
+| ASK — losses | Deductible only on closure | In force | Skatteetaten ASK page; A-10-6.1 | V-full | verified |
+| ASK — transfers | Unlimited accounts; ASK→ASK tax-neutral (contributions and unused shielding follow pro rata); transfer in from ordinary account taxable (FIFO) | In force | ASK page; Skatte-ABC A-10-6.4 | V-full | verified |
+| ASK — foreign withholding | Deemed withdrawn; reduces input value | In force | Skatteetaten ASK page | V-full | verified |
+| ASK — credit | See §2.1 | | | | |
+| Ordinary account | Realisation-based; dividends taxed when received | In force | Skatteetaten | V-abs | verified (summary) |
+| Foreign holdings at foreign institutions | Not pre-filled | In force | Skatteetaten | V-full | verified |
+| Credit deduction (general) | Same income, same year, assessed and paid, similar tax; cap = Norwegian tax on that income; treaty-rate limit; 5-year carry-forward within category; claim in tax return (time limits sktl. § 16-25) | In force | Skatteetaten "Double taxation"; Skatte-ABC U-20-4.16, U-20-4.20 | V-full | verified |
+| Exit tax | Shares, fund units, ASK; NOK 3 m basic deduction; 12-year rule; payment options | From 20 Nov 2024 | Skatteetaten "Exit tax" | V-full | verified |
+
+**Removed from the S3 draft (ADR-0021, owner scope decision):** wealth-tax
+threshold, wealth-tax rates, valuation discounts, and the NOU 2026:9
+wealth-tax proposal. These were provisional records and never accepted, so
+no registry history is affected.
+
+### 2.1 ASK foreign-withholding credit — decomposition (corrected)
+
+The S3 draft was wrong to classify credit availability inside ASK as
+unknown. The corrected position:
+
+| # | Question | Finding | Source | Status |
+|---|---|---|---|---|
+| 1 | Can Norwegian credit rules apply in principle? | **Yes, may apply on a taxable withdrawal:** «Reglene om kreditfradrag for kildeskatt betalt i utlandet på mottatt utbytte kan komme til anvendelse ved skattepliktig uttak fra kontoen» | Skatte-ABC 2025/2026 A-10-5.4.1 | verified (V-full). "May apply" is conditional: entitlement in a case depends on the general credit conditions (row 3) |
+| 2 | When may the credit be claimed? | Trigger: a taxable withdrawal. General rule: in the tax return for the year the income is taxable in Norway. No source says a credit arises at dividend receipt (dividends are exempt then) | A-10-5.4.1; U-20-4.20 (general) | verified trigger; ASK-specific claim procedure not stated |
+| 3 | How is it calculated and limited? | General: capped at the Norwegian tax on the foreign income within the income category; treaty-rate limit. **How the "foreign income" portion of an ASK withdrawal is determined is not established** | Skatteetaten; U-20 (general) | general verified; ASK application **unavailable** (U4a) |
+| 4 | How is withholding tracked through the ASK? | The provider's account record must show, among other things, dividends received and taxable withdrawals in the year (FSFIN § 10-21-4). Foreign tax withheld is **not** among the listed items | Skatte-ABC A-10-12.4 | verified list; tracking of withheld tax **not stated** (U4b) |
+| 5 | Interaction with the input-value reduction | The reduction is verified. Its interaction with a later credit claim (e.g. whether the deemed withdrawal is itself part of a taxable withdrawal) is not established | ASK page | **unavailable** (U4c) |
+| 6 | Timing / carry-forward | General: unused credit carried forward up to 5 years within the category (sktl. § 16-22); timing differences handled by claiming in the year taxed abroad and carrying forward (U-20-4.7.3). Neither addresses the multi-year gap between withholding in the dividend year and an ASK withdrawal | U-20-4.7.3; U-20-4.16 | general verified; ASK application **not stated** (U4d) |
+| 7 | Broker information | Nordnet's credit guidance covers Aksje- og fondskonto only; Nordnet states it cannot help with corrections or refunds. Nothing ASK-specific found for either broker | Nordnet FAQ | **unavailable** (U4e) |
 
 ## 3. Foreign withholding (US source, Norwegian resident)
 
 | Layer | Finding | Source | Level | Status |
 |---|---|---|---|---|
-| W1 statutory | 30% on US-source FDAP income (incl. dividends) to foreign persons | IRS "NRA withholding" | V-full | verified |
-| W2 treaty | "shall not exceed 15 percent of the gross amount actually distributed" (Art. 8(2) as amended by protocol) | US–Norway Income and Property Tax Convention, IRS treaty text | V-full | verified |
-| W3 eligibility | W-8BEN to the withholding agent/payer before payment; valid until the last day of the third succeeding calendar year (absent change of circumstances); failure may lead to 30% | IRS Instructions for Form W-8BEN (Rev. 10/2021) | V-full | verified |
-| W4 relief at source | Treaty rate applied by the withholding agent on valid W-8BEN | Same (interpretation of mechanism) | V-full | **interpretation** |
-| W5 actually withheld — Nordnet | Applies treaty rates for Sweden, Finland, USA, Canada for customers tax-registered in NO/SE/DK/FI, "as long as the share is traded on its local market" | Nordnet FAQ (foreign dividends) | V-full | verified |
-| W5 actually withheld — eToro | — | Not found | — | **unavailable** |
-| W6 reclaim (US) | — | Not researched in primary sources | — | unavailable |
-| W7 Norwegian credit | See §2 (capped at Norwegian tax and the treaty rate; 5-year carry-forward) | Skatteetaten | V-full | verified |
-| W8 ASK | Withholding treated as a withdrawal reducing input value; credit availability not stated | Skatteetaten ASK page | V-full / — | verified / unavailable |
-| W9 fund level | — | No authoritative source located | — | **unavailable** (RQ-51) |
-
-**Consequence:**
-- Treaty rate (15%) and actually-withheld rate are separate facts. For Nordnet, the actually-withheld rate equals the treaty rate *only under the stated condition* (local-market listing).
-- Inside ASK, withholding reduces input value rather than producing a confirmed credit.
+| W1 statutory | 30% on US-source FDAP income to foreign persons | IRS "NRA withholding" | V-full | verified |
+| W2 treaty | ≤ 15% of the gross amount actually distributed (Art. 8(2) as amended) | US–Norway Convention (IRS text) | V-full | verified |
+| W3 eligibility | W-8BEN to the withholding agent; valid to end of third succeeding calendar year; failure may lead to 30% | IRS Instructions W-8BEN (10/2021) | V-full | verified |
+| W4 relief at source | Treaty rate applied by agent on valid W-8BEN | Same | V-full | interpretation |
+| W5 Nordnet | Treaty rates for SE, FI, US, CA when the share trades on its local market | Nordnet FAQ | V-full | verified |
+| W5 eToro | — | — | — | unavailable |
+| W6 reclaim | — | — | — | unavailable |
+| W7 credit | Cap = Norwegian tax on the income; treaty-rate limit; 5-year carry-forward | Skatteetaten; Skatte-ABC U-20-4.16 | V-full | verified |
+| W8 ASK | Input value reduced (verified); credit rules may apply on taxable withdrawal (verified); mechanics partly unestablished (§2.1) | Skatteetaten; Skatte-ABC A-10-5.4.1 | V-full | verified (components 3–7 partly unavailable) |
+| W9 fund level | — | — | — | unavailable (RQ-51) |
 
 ## 4. Regulation and product access
 
 | Rule | Finding | Source | Level | Status |
 |---|---|---|---|---|
-| PRIIPs (Norway) | PRIIPs law in force **1 Oct 2024**. Retail investors given access to a PRIIP must receive key information in good time before investing. Producers prepare it **in Norwegian**. Finanstilsynet supervises | Finanstilsynet PRIIPs page; Lovdata LOV-2024-06-21-40 | V-full | verified |
-| US-domiciled ETFs | Retail access requires a Norwegian KID; US-domiciled ETFs without one cannot be made available to retail investors | Inference from the PRIIPs requirement | — | **interpretation** (to confirm with a direct Finanstilsynet/ESMA statement) |
-| MiFID II definitions | Investment firm: person whose occupation or business is providing investment services on a professional basis; investment advice: personal recommendations on transactions in financial instruments; execution of orders on behalf of clients; portfolio management: discretionary, client-by-client under mandates | Directive 2014/65/EU Art. 4(1)(1), (4), (5), (8) | V-full (definitions) | verified |
-| MiFID II appropriateness / execution-only | Art. 25(3) (appropriateness based on knowledge and experience) and 25(4) (execution-only for non-complex instruments) | Directive 2014/65/EU | V-abs (the retrieved summary was unreliable on detail) | obligated party (the firm): verified (V-abs); exact conditions: **unavailable pending re-read** |
-| Personal recommendation | Presented as suitable for the person or based on their circumstances; not issued exclusively to the public | Delegated Regulation (EU) 2017/565 Art. 9 | V-abs | verified (summary) — re-read |
-| Norwegian implementation | Investment services list (§ 2-1); investment advice = personal recommendation to a customer (§ 2-3(4)); portfolio management = discretionary management of investors' portfolios on an individual basis (§ 2-3(3)); investment firm = provides investment services to third parties or performs investment activity on a business basis (§ 2-7) | Verdipapirhandelloven (LOV-2007-06-29-75), ch. 2 | V-full | verified |
-| CFD retail restrictions | Leverage caps 30:1 (major FX) / 20:1 / 10:1 / 5:1 (single equities) / 2:1 (crypto); 50% margin close-out per account; negative-balance protection; no incentives; standardised risk warning | ESMA final product-intervention measures (press release) | V-abs | verified (summary) |
-| CFD restrictions in Norway | Restrictions on marketing, distribution, and sale of CFDs to non-professional customers effective **1 Aug 2018**; binary options banned 2 Jul 2018; basis MiFIR and the Norwegian MiFIR regulation | Finanstilsynet news (2018) | V-full | verified |
-| Advice perimeter guidance | ESMA35-43-3861 (2023): personal-recommendation tests; generic advice is not investment advice unless part of the advice process (¶48); advice may be given through an interactive software system, e.g. robo-advice (¶84); filtering by itself is not automatically a recommendation (¶36); emphasis on one product can amount to one (¶62); the briefing "might also be used" to assess non-regulated persons (¶7); **not binding** (¶9) | ESMA supervisory briefing | V-full (passages) | verified |
+| MiFID II definitions | Investment firm; investment advice (personal recommendations to a client); execution on behalf of clients; portfolio management (discretionary, client-by-client, under mandates) | Dir. 2014/65/EU Art. 4(1)(1), (4), (5), (8) | V-full | verified; the "third parties" wording of 4(1)(1) to be re-quoted (U7) |
+| MiFID II appropriateness | Obligation of the firm; exact conditions unrecorded | Art. 25(3)–(4) | V-abs | verified (obligated party only) |
+| Personal recommendation | Presented as suitable or based on the person's circumstances; not exclusively to the public | Del. Reg. 2017/565 Art. 9 | V-abs | verified (summary) |
+| Norwegian implementation | §§ 2-1, 2-3(3)–(4), 2-7 | Vphl ch. 2 | V-full | verified |
+| CFD retail measures | Leverage caps 30:1 … 2:1; 50% margin close-out; negative-balance protection; no incentives; risk warning | ESMA | V-abs | verified (summary) |
+| CFD/binary in Norway | CFD restrictions from 1 Aug 2018; binary options banned from 2 Jul 2018 | Finanstilsynet (2018) | V-full | verified; current status re-check due |
+| ESMA advice briefing | Non-binding (¶9); usable for non-regulated persons (¶7); automated tools (¶24, ¶84); presentation test (¶16); emphasis by person or software (¶30, ¶62); filtering (¶36); assisting own choice (¶38); model portfolios (¶40–41); generic advice (¶48); disclaimers (¶64–65); public lists (¶81) | ESMA35-43-3861 | V-full | verified. **Correction:** the disclaimer point is ¶64–65, not ¶64 alone |
 
-## 5. RQ-45 — legal requirement vs. broker implementation
+### 4.1 PRIIPs chain for US-domiciled ETFs
+
+| Step | Finding | Source | Status |
+|---|---|---|---|
+| 1. Instrument is a PRIIP | PRIP = amount repayable fluctuates with reference values or assets not directly purchased by the retail investor (Art. 4(1)); PRIIP includes PRIP (Art. 4(3)); recital 6 lists **investment funds**; recital 7: directly held shares are not PRIIPs. An ETF is an investment fund regardless of domicile | Reg. (EU) 1286/2014 (as adopted; legislation.gov.uk archive) | verified (V-full; consolidated amendments not checked, U7b) |
+| 2. KID requirement applies | Manufacturer draws up and publishes the KID before the product is made available (Art. 5(1)); seller or adviser provides it before the retail investor is bound (Art. 13(1)); Art. 13(3) allows delivery after the transaction only for customer-initiated distance sales, which presupposes a KID exists. In Norway the requirement applies even when the sale is solely on the customer's own initiative (Finanstilsynet); the KID must be in Norwegian (PRIIPs-loven § 4); no exemption in the PRIIPs-forskriften | Reg. Art. 5, 13; Finanstilsynet; LOV-2024-06-21-40 § 4; FOR-2024-09-16-2162 | verified (V-full) |
+| 3. Compliant KID unavailable | That US issuers generally publish no Norwegian KID is reported by press and broker-review sources. No issuer or regulator source was found. This is a **per-instrument** fact | Secondary only | **interpretation** (U9); S6 instrument attribute `kid_available_no` |
+| 4. Consequence | Finanstilsynet may suspend or prohibit marketing (§ 6) and fine breaches of Art. 5(1) and 13(1) (§ 7). A seller cannot meet Art. 13(1) for a PRIIP with no Norwegian KID | PRIIPs-loven §§ 2, 6, 7 | verified (V-full) |
+
+**Result:**
+- **Promoted (verified):** *a PRIIP for which no Norwegian KID is available cannot lawfully be sold to a Norwegian retail investor.* This is a one-step application of mandatory provisions; no source sentence uses the word "prohibited".
+- **Not promoted (interpretation):** *US-domiciled ETFs are unavailable to Norwegian retail investors.* It depends on step 3 for each instrument.
+- **Not researched:** whether marketing rules for non-UCITS funds under the AIF law add a separate barrier (U9b).
+
+## 5. RQ-45 — self-reported experience vs. appropriateness (revised)
 
 | Layer | Finding | Level |
 |---|---|---|
-| 1. Law | MiFID II Art. 25(3) places the appropriateness assessment on the **firm**, for non-advised services in complex instruments | V-abs (re-read pending) |
-| 2. ESMA | ESMA has guidelines on appropriateness and execution-only (referenced in ESMA35-43-3861 ¶64); not separately read | V-bib |
-| 3. Finanstilsynet / Norway | MiFID II supplementary regulation has a section on suitability and appropriateness (Lovdata FOR-2017-12-20-2300, ch. 6, section 3); not read in full | V-bib |
-| 4. Nordnet | Knowledge tests for complex products (options, futures, warrants); short selling requires leverage and short-selling tests and is available on Aksje- og fondskonto only | V-abs |
-| 5. eToro | Appropriateness implementation not verified | — |
+| Law | Appropriateness assessment is an obligation of the firm (MiFID II Art. 25(3)) | V-abs |
+| ESMA / Norway | Guidelines and supplementary regulation exist; not read in full | V-bib |
+| Nordnet | Knowledge tests for complex products, leverage, short selling | V-abs |
+| eToro | Not verified | — |
 
-**Finding:** access is governed by the firm's assessment, performed by the
-broker. Self-reported experience in this engine has no legitimate
-eligibility consumer. Field `INV.investment_experience` (1.7) has no
-independent consumer identified (decision D3-07).
+**Finding (bounded):**
+- Regulatory and broker access is determined by the applicable rules and the broker's process, not by the engine.
+- Self-reported experience therefore **cannot independently grant product eligibility**, and the engine must not substitute its own assessment for a broker-required test.
+- This does **not** establish that experience has no legitimate downstream consumer; candidates such as explanation depth or warnings are unresearched.
+- Field 1.7 stays an inactive, conditional schema capability, not collected by default, pending completion of RQ-45 (D3-07 revised).
 
 ## 6. RQ-49 — regulatory boundaries of a self-directed investment application
 
-**Framing:** a general-purpose, self-directed application that individuals
-run locally with their own configuration and accounts. The question is not
-whether the developers provide services to friends.
+**Framing:** reusable software that individuals use at their own discretion
+for their own investments. The developers do not provide financial
+services to friends or family or manage portfolios on anyone's behalf.
+That framing does not by itself resolve every regulatory question.
 
-### 6.1 Authoritative statements (what sources establish)
+### 6.1 What authoritative sources establish
 
 | # | Statement | Source | Level |
 |---|---|---|---|
-| A1 | Investment firm status attaches to persons whose regular occupation or business is providing investment services (to third parties) or performing investment activities on a professional basis | MiFID II Art. 4(1)(1) | V-full; the "third parties" wording is to be re-quoted verbatim (U7) |
-| A2 | In Norway, an investment firm provides investment services **to third parties** or performs investment activity **on a business basis** | Vphl § 2-7(1) | V-full |
-| A3 | Investment advice = personal recommendations to a client/customer | MiFID II Art. 4(1)(4); vphl § 2-3(4) | V-full |
-| A4 | Personal recommendation = presented as suitable or based on the person's circumstances; not exclusively to the public | Del. Reg. 2017/565 Art. 9 | V-abs |
-| A5 | Generic advice is not investment advice unless part of the advice process | ESMA35-43-3861 ¶48 | V-full |
-| A6 | Advice can be provided through an automated or semi-automated client-facing system / interactive software (robo-advice) | ESMA35-43-3861 ¶24, ¶84 | V-full |
-| A7 | Portfolio management = discretionary management on a client-by-client basis under client mandates | MiFID II Art. 4(1)(8); vphl § 2-3(3) | V-full |
-| A8 | Reception/transmission and execution of orders are services when performed on behalf of clients | MiFID II Art. 4(1)(5); vphl § 2-1(1)(1)–(2) | V-full |
-| A9 | ESMA's briefing may be used to assess whether a non-regulated person engages in advice; it is not binding | ESMA35-43-3861 ¶7, ¶9 | V-full |
+| A1 | Investment-firm status attaches to providing investment services (to third parties) or performing investment activities on a professional basis | MiFID II Art. 4(1)(1) | V-full (re-quote U7) |
+| A2 | Norwegian investment firm: provides investment services to third parties or performs investment activity on a business basis | Vphl § 2-7 | V-full |
+| A3 | Investment advice = personal recommendations to a client | MiFID II 4(1)(4); vphl § 2-3(4) | V-full |
+| A4 | A personal recommendation is **made to a person** in their capacity as investor (¶25); it is presented as suitable or based on that person's circumstances, judged from a reasonable observer's view (¶16); not if issued exclusively to the public | Del. Reg. 2017/565 Art. 9; ESMA ¶16, ¶25 | V-abs / V-full |
+| A5 | Advice may be provided through automated or semi-automated client-facing tools | ESMA ¶24, ¶84 | V-full |
+| A6 | Letting a client filter information "does not automatically mean that a recommendation is being given by the firm" | ESMA ¶36 | V-full |
+| A7 | "A critical factor would be whether the process is limited to assisting the person to make their own choice of product which has particular features which the person regards as important"; if so, a personal recommendation is "unlikely" | ESMA ¶38 | V-full |
+| A8 | Model portfolios: case-by-case; profile → model portfolio positioned as the appropriate action can amount to advice | ESMA ¶40–41 | V-full |
+| A9 | Emphasis by a person **or software** that tends to influence selection can amount to a recommendation | ESMA ¶30, ¶62 | V-full |
+| A10 | Generic advice is not investment advice unless part of the advice process; public lists normally not advice | ESMA ¶48, ¶81 | V-full |
+| A11 | Disclaimers can be of some use but cannot prevent the qualification | ESMA ¶64–65 | V-full |
+| A12 | Portfolio management = discretionary, client-by-client, under mandates; execution/transmission = on behalf of clients | MiFID II 4(1)(5), (8); vphl §§ 2-1, 2-3(3) | V-full |
+| A13 | The ESMA briefing is non-binding, is addressed to supervisors and firms, and may be used to assess non-regulated persons | ESMA ¶7, ¶9 | V-full |
 
-**Not established by any source examined:** whether developing or
-distributing self-hosted software that computes outputs from the user's
-own configuration, for the user's own decisions, constitutes the
-developer/distributor providing investment advice, portfolio management,
-or order transmission. This is a **gap**, not a conclusion either way.
+### 6.2 Distinction A vs. B
 
-### 6.2 Capability → rule structure (architectural inference, labelled)
+- **A:** the application independently makes a personalised recommendation.
+- **B:** the user declares a Policy Statement, methodology, and permitted rules, and deterministic software calculates or implements the consequences of those instructions.
 
-| Capability (S3 brief #) | Relevant rule/source | Jurisdiction | Possible triggering condition | Possible consequence | Architectural implication (inference) | Status |
-|---|---|---|---|---|---|---|
-| Market, portfolio, generic analytics (1–3) | A5 | EEA/NO | — (generic) | None indicated | None | interpretation |
-| User-configured profile; personalised analysis; beliefs; risk; construction; candidate comparison; target portfolio; rebalancing calculations (4–12) | A1–A4, A6 | EEA/NO | A provider, acting as a business toward third parties, presents outputs as suitable or based on the person's circumstances | Could be characterised as investment advice by that provider (authorisation) | Keep provider role absent from the user's decision loop (local, self-configured, user-held data). Keep methodology transparent. Do not rely on disclaimers alone (ESMA ¶64, perimeter issues). **Professional legal review before broad public or commercial distribution of personalised-output features** | gap / interpretation |
-| Trade-list generation (13) | A3–A4 (recommendation to buy/sell a particular instrument) | EEA/NO | As above | As above | As above; trade lists remain user-confirmed (S2 authority model) | gap / interpretation |
-| Order staging, broker API connectivity, order submission (14–16) | A8 | EEA/NO | Orders received/transmitted or executed **on behalf of clients** by the provider | Investment service | **Local execution with user-held broker credentials**; no hosted order relay by the developers without legal review; broker performs execution | interpretation |
-| Rule-based automated rebalancing; signal-driven target changes; unattended execution (17–19) | A7, A8 | EEA/NO | Discretion exercised **for a client** under a mandate | Portfolio management | Keep authority grants (ADR-0017) user-held and revocable; unattended execution gated by S13 safeguards **and** legal review before enabling in distributed builds | gap / interpretation |
-
-### 6.3 Distinctions requested at S3 approval
-
-| Distinction | What sources establish | Open |
+| Question | What sources establish | What they do not establish |
 |---|---|---|
-| Developing software vs. providing a service | Services attach to provision to clients/third parties on a business basis (A1, A2) | Application to software distribution |
-| Distributing/licensing vs. personally advising | Same | Same |
-| Generic analytics vs. personalised outputs | A4, A5 | — |
-| User-configured deterministic calculations vs. recommendations | A4 (recommendation = presented as suitable / based on circumstances) | Whether self-configured computations by the user count as anyone's "recommendation" |
-| Personalised recommendations vs. portfolio management | A3 vs. A7 | — |
-| User-directed construction vs. discretionary decisions for a client | A7 | — |
-| Construction vs. trade generation | A4 (transactions in particular instruments) | — |
-| Trade generation vs. execution | A8 | — |
-| User-confirmed vs. unattended execution | Not addressed directly | Yes |
-| Broker functionality vs. application functionality | A8 (execution by the authorised broker) | Status of API tooling |
-| Local/self-hosted vs. externally hosted | Not addressed directly | Yes |
-| Private use vs. wider distribution | Not addressed directly | Yes |
+| Is there a recommendation "made to a person" by someone? | A4: a recommendation is made **by** a provider **to** a person. A13: the framework addresses firms and persons providing services | Whether the developer or distributor of user-configured software is the person "making" an output the user's own instructions determine |
+| Does user-directed processing differ from recommendation? | A6, A7: processes limited to assisting a person's own choice based on features the person regards as important are unlikely to be personal recommendations. These are the closest analogues to B | They concern **firms** offering filtering to **clients**; they do not address software the user runs locally, or optimisation that produces specific instruments and weights |
+| Can B slide into A? | A8, A9: positioning outputs as the appropriate action, or emphasis by software, can create a recommendation | Where the line falls for an optimiser whose objective and constraints the user chose |
+| Do disclaimers decide it? | A11: no | — |
 
-**Overall:** no regulatory status is inferred. The architecture keeps every
-capability representable. The S2 authority model and the local execution
-pattern preserve options. Professional legal review is the identified
-trigger before enabling personalised-output or execution capabilities in
-publicly distributed builds (decision D3-08).
+**Conclusion:** A and B are **neither established as legally equivalent
+nor as legally different.** The sources give relevant factors (who makes
+the output, presentation, emphasis, whether the process assists the user's
+own choice) but no determination for self-hosted, user-configured software.
+
+### 6.3 Capability register (owner's format)
+
+Format: `capability → evidence/regulatory status → unresolved issue → required dependency/safeguard → enablement status`.
+
+| Capability | Evidence / regulatory status | Unresolved issue | Required dependency / safeguard | Enablement status |
+|---|---|---|---|---|
+| Generic analytics | A10: generic, not advice | — | — | Enablable when built (no regulatory dependency identified) |
+| Personalised analytics (descriptive, of the user's own holdings) | Not a recommendation on its face (no instrument recommended) | Whether personalised descriptive outputs fall under A4 | Neutral presentation; no emphasis (A9) | Enablable when built |
+| Deterministic implementation of user-selected rules | Closest analogue A6/A7 (unlikely recommendation) | A vs. B (§6.2) | User-declared configuration recorded (S1/S2); neutral presentation; provenance of every rule to the user's declaration | Enablable for the user's own use; distribution posture open (RQ-49) |
+| Model portfolios | A8: case-by-case; positioning matters | Whether any are offered and how presented | Not positioned as "appropriate for you"; no profile → portfolio mapping presented as advice | Gated on design decision at S11/S14 (no regulatory finding forces exclusion) |
+| Personalised target portfolios | A vs. B unresolved | Whether an optimiser output computed from user-chosen objective and constraints is a personal recommendation by anyone | Methodology selected or admitted by the user (S2 authority model); transparent derivation; no "suitable for you" framing (A4, A11) | Gated: unresolved dependency at S11/S14; not removed |
+| Recommendations (application-originated, A) | A3–A5: if made to a client by a provider, investment advice | Whether any A-type output is intended | If intended: regulatory status must be resolved first | Gated: RQ-49 must be resolved for this capability before enablement |
+| Portfolio optimisation (method) | Computation; regulatory relevance arises only through presentation and use | As target portfolios | As target portfolios | As target portfolios |
+| Trade lists | A4 (transactions in particular instruments) if a recommendation | As target portfolios | User confirmation (ADR-0017 grant 5); derivation from the user's target and rules | Gated with target portfolios (S13e/S14) |
+| Order staging | Not addressed directly | Whether staging inside the user's own environment is reception of orders by anyone | User-held broker credentials; local execution path | Gated: S13 safeguards (ADR-0017); regulatory note at S13f |
+| User-confirmed execution | A12: execution/transmission is a service when **on behalf of clients** | Whether a locally run tool submitting the user's own orders via the user's own broker credentials acts "on behalf of" anyone | Local execution with user-held credentials; per-order confirmation; broker performs execution | Gated: S13 safeguards and broker API facts (RQ-19); RQ-49 note at S13f |
+| Rule-based automated execution | A12 (discretion for a client) | Whether user-authored rules executed automatically constitute discretion exercised for anyone | Authority grants scoped, limited, revocable (ADR-0017); S13 safeguards | Gated: S13 safeguards; RQ-49 resolution for distributed builds |
+| Unattended execution | Not addressed directly | As above, plus operational-risk safeguards | Grant 8 (ADR-0017); S13 safeguards; monitoring (S16) | Gated: S13 safeguards and S16 monitoring; RQ-49 resolution for distributed builds |
+
+**What this does and does not do:**
+- No capability is removed from the architecture, and the S2 authority model is unchanged.
+- No universal requirement for legal review is created.
+- Where RQ-49 is a genuine dependency (application-originated recommendations; and the posture for distributing execution and target-portfolio capabilities), the capability is gated until that dependency is resolved.
+- The owner may later choose professional legal review as a project-governance safeguard. It is not adopted here.
 
 ## 7. Nordnet registry summary (Norwegian retail, as of 2026-10-01)
 
 | Attribute | Finding | Source | Level | Status |
 |---|---|---|---|---|
-| Legal entity | Nordnet Bank NUF, Norwegian branch of Nordnet Bank AB | nordnet.no "Sikkerhet og garanti" | V-full | verified |
-| Supervision | Finansinspektionen (SE) and Finanstilsynet (NO) | Same | V-full | verified |
-| Deposit guarantee | Up to NOK 2,000,000 (Bankenes sikringsfond and Riksgälden); certain life-event deposits unlimited | Same | V-full | verified |
-| Investor protection | Up to SEK 250,000 (Swedish investor protection) | Same | V-full | verified |
-| Custody | Norwegian securities on Aksje- og fondskonto registered on the customer's own VPS account; foreign securities held with custodian(s) in Nordnet's name | Same | V-full | verified |
-| Account types (non-pension) | ASK; Aksje- og fondskonto | nordnet.no account pages | V-abs | verified (summary) |
-| ASK market scope | EU/EEA-listed only; no US/Canadian shares | nordnet.no ASK page (search summary); consistent with law | V-abs | verified (summary) |
-| Commission — Nordic markets | Mini 0.15% (min NOK 29); Normal 0.049% (min 79); Bonus 0.04% (min 69); VIP 0.035% (min 39) | nordnet.no price list | V-full | verified |
-| Commission — US/other | Mini 0.2% (min 49); Normal 0.1% (min 99); Bonus 0.09% (min 89); VIP 0.08% (min 79) | Same | V-full | verified |
-| FX | Automatic conversion 0.5% spread (0.25% per side); with currency account 0.15% (0.075% per side) | Same | V-full | verified |
-| Fund platform fees | Active equity funds 0.29%; Nordnet index funds 0.19%; external index funds 0.15% | Same | V-full | verified |
-| Margin lending (NOK) | 7.34% nominal / 7.59% effective; over-leverage rate 11.75% | Same | V-full | verified (supersedes legacy-unverified 7.32%) |
-| Short selling | Aksje- og fondskonto only; requires leverage and short-selling knowledge tests | nordnet.no FAQ (search summary) | V-abs | verified (summary) |
-| Complex-product tests | Required for complex securities (options, futures, warrants), citing MiFID II | nordnet.no (search summary) | V-abs | verified (summary) |
-| API | Nordnet External API "closed for new subscriptions", no reopening date; waitlist via customer service | nordnet.se FAQ | V-full (scope: Nordnet group API) | verified |
-| Tax reporting | Euronext VPS reports Norwegian funds and Oslo Børs shares; Nordnet reports foreign securities, ETFs, dividends, and wealth; options/forwards/futures self-reported | nordnet.no "Hvem rapporterer hva" | V-full | verified |
-| Withholding practice | §3 W5 | — | V-full | verified |
-| Fractional shares; order types; detailed exchange list | — | Not verified | — | **unknown** |
+| Legal entity / supervision | Nordnet Bank NUF, branch of Nordnet Bank AB; Finansinspektionen and Finanstilsynet | nordnet.no "Sikkerhet og garanti" | V-full | verified |
+| Deposit guarantee / investor protection | NOK 2,000,000 / SEK 250,000 | Same | V-full | verified |
+| Custody | Norwegian securities on customer's VPS account; foreign securities with custodians in Nordnet's name | Same | V-full | verified |
+| Account types (non-pension) | ASK; Aksje- og fondskonto | nordnet.no | V-abs | verified (summary) |
+| Commissions (Nordic; US/other), FX, fund platform fees, margin 7.34%/7.59% | As recorded | nordnet.no price list | V-full | verified |
+| Short selling | Aksje- og fondskonto only; tests required | nordnet.no FAQ | V-abs | verified (summary) |
+| Complex-product tests | Required | nordnet.no | V-abs | verified (summary) |
+| API | Closed for new subscriptions; **no reopening date announced** (verified absence, not unknown) | nordnet.se FAQ | V-full | verified |
+| Tax reporting | VPS: Norwegian funds and Oslo Børs shares; Nordnet: foreign securities, ETFs, dividends; self-reported: derivatives | nordnet.no | V-full | verified (wealth-value reporting omitted, ADR-0021) |
+| Fractional shares; order types | — | — | — | unavailable (unknown) |
 
 ## 8. eToro registry summary (EEA retail, as of 2026-10-01)
 
-| Attribute | Finding | Source | Level | Status |
-|---|---|---|---|---|
-| Legal entity (EU/EEA) | eToro (Europe) Ltd, CySEC licence 109/10 | etoro.com "Regulation and License" | V-full | verified |
-| Entity for Norwegian residents | Expected to be the EU/EEA entity; no Norway-specific statement found | Same | — | **interpretation** |
-| Investor compensation | Cyprus Investor Compensation Fund up to €20,000; local deposit guarantee up to €100,000 for deposits at EEA partner banks | Same | V-full | verified |
-| Crypto coverage by ICF | Not covered | Search summary of regulation page | V-abs | verified (summary) |
-| Ownership model | Unleveraged buy positions in stocks are real assets in a segregated omnibus account; short, leveraged, and certain other positions are CFDs | eToro help (search summary) | V-abs | verified (summary) |
-| Stock commission | $1 or $2 per open/close depending on country of residence and exchange; Norway-specific value not shown | etoro.com/trading/fees | V-full (rule) | verified (rule) / **unknown** (Norway value) |
-| ETF commission | Zero | Same | V-full | verified |
-| Stock CFDs | 0.15% per trade | Same | V-full | verified |
-| NOK conversion (USD account) | Card 1%; wallets 1600 pips; online banking 1600 pips; bank transfer 1%; Club-tier discounts | etoro.com/trading/fees/conversion | V-full | verified |
-| Withdrawal fee | $5 from USD account; free from local-currency accounts | etoro.com/trading/fees | V-full | verified |
-| Inactivity fee | Fee page shows "Free" (Club caveat); help/summary source states $10/month after 12 months without login | Two eToro sources | V-full / V-abs | **unresolved_conflicting** |
-| Norwegian wrapper (ASK) at eToro | No eToro source found | — | — | **unknown** (not false) |
-| API | Public API with personal keys (x-api-key, x-user-key) allowing actions on the user's own verified account; builder programme terms titled "BETA PRODUCT" | builders.etoro.com (search summary); terms PDF | V-abs / V-bib | verified (summary) |
-| API regional eligibility | — | Not verified | — | **unknown** |
-| Tax report | eToro provides a tax report for Norwegian residents (Club-tier eligibility; March release window) | eToro help (search summary) | V-abs | verified (summary) |
-| Reporting to Skatteetaten | Not confirmed by eToro. Skatteetaten states foreign institutions' holdings are not pre-filled (general rule) | Skatteetaten | V-full (general rule) | **interpretation** for eToro |
-| Withholding practice; appropriateness implementation; fractional shares; margin specifics | — | Not verified | — | **unknown** |
+| Attribute | Finding | Level | Status |
+|---|---|---|---|
+| Entity | eToro (Europe) Ltd, CySEC 109/10 | V-full | verified |
+| Entity for Norwegian residents | eToro (Europe) Ltd expected | — | interpretation |
+| Investor compensation | ICF €20,000; EEA deposit guarantee €100,000; crypto not covered | V-full / V-abs | verified |
+| Ownership model | Unleveraged buys = real assets (omnibus); short/leveraged = CFDs | V-abs | verified (summary) |
+| Commissions | Stocks $1/$2 rule (verified); **Norway amount: separate unknown record**; ETFs 0; stock CFDs 0.15% | V-full | verified / unknown |
+| NOK conversion; withdrawal fee | As recorded | V-full | verified |
+| Inactivity fee | **Unresolved conflict** (below) | — | unresolved_conflicting |
+| ASK | — | — | unknown (not "not offered") |
+| API | Personal keys, own account, beta (verified, V-abs); **regional eligibility: separate unknown record** | V-abs | verified / unknown |
+| Tax report for Norwegian residents | Provided (V-abs); **direct reporting to Skatteetaten: separate unknown record** | V-abs | verified / unknown |
+| Withholding practice; appropriateness; fractional shares | — | — | unknown |
 
-## 9. Unresolved facts and research gaps
+**Inactivity-fee conflict, second attempt (2026-10-01):**
 
-| # | Gap | Next step |
+| Candidate cause | Evidence | Assessment |
 |---|---|---|
-| U1 | Shielding rate 2026 | Record when published (January 2027) |
-| U2 | 2027 tax parameters | Record on publication of Prop. 1 LS (2026–2027) and Storting adoption |
-| U3 | NOU 2026:9 content (read directly) | Read the hearing note; keep `proposed` |
-| U4 | Credit for foreign withholding inside ASK | Skatte-ABC A-10 (current) direct read |
-| U5 | Fund-level withholding (W9) | RQ-51 |
-| U6 | US reclaim mechanism (W6) | IRS primary sources |
-| U7 | MiFID II Art. 25(3)/(4) exact text; Del. Reg. 2017/565 Art. 9 | Re-read EUR-Lex |
-| U8 | ESMA appropriateness guidelines; Norwegian MiFID II supplementary regulation ch. 6 §3 | Read directly |
-| U9 | Direct authority on US-domiciled ETF retail access under PRIIPs | Finanstilsynet/ESMA statement |
-| U10 | eToro: Norway-specific commission, entity applicability, ASK, withholding, appropriateness, API eligibility, inactivity-fee conflict | Read terms (eToro EU T&C, 2026 version) and help articles directly |
-| U11 | Nordnet: fractional shares, order types, exchange list; full read of the account, short-selling, and knowledge-test pages | Direct reads |
-| U12 | Fund taxation rule effective date | Skatte-ABC |
-| U13 | RQ-49: application of service definitions to self-hosted software distribution | Professional legal review (D3-08) |
+| Legal entity / jurisdiction | Fee page footer lists several eToro entities and states no applicable entity; it reads "Inactivity fee: Free" | Possible; not established |
+| Account type | No account-type distinction found on either source | Not supported by evidence |
+| eToro Club status | Fee page: Club members may get discounts or exemptions, but "Free" is stated without condition | Does not explain "Free" vs. $10 |
+| Effective date / stale documentation | The help article that carried the $10 claim now renders no body text (checked in a browser). Broker-review sites (secondary, leads only) report removal of the $10 fee during 2026, at least for UK clients | Most consistent with the leads, but not established from authoritative current material |
+
+**Result:** not resolved. Both records are preserved as linked
+`unresolved_conflicting` facts; neither is chosen (FX3-11).
+
+## 9. Unknown vs. verified-unsupported — audit
+
+Rule: **absence of evidence that a broker supports a feature is not
+evidence that it does not.**
+- A capability is recorded as *not offered* only where a source states it, e.g. Nordnet short selling not on ASK, Nordnet API closed to new subscriptions, eToro ICF not covering crypto.
+- Everything else without evidence is `unavailable` (unknown).
+
+**Audit of both broker registries:**
+- Every `false` or negative value cites a source statement.
+- Three eToro records previously labelled `verified` while hiding null sub-values were split into separate unknown records: the Norway commission amount, API regional eligibility, and direct reporting to Skatteetaten.
+- Nordnet's "reopening date: null" was re-expressed as a verified absence of an announced date.
+- A naming collision between verification status `unavailable` (unknown) and the broker admissibility value "unavailable" (not offered) was fixed: the broker layer now uses `offered · not_offered · unknown` (architecture §4).
+
+## 10. Unresolved items, classified by consequence
+
+**Classes:**
+- **A** — non-blocking.
+- **B** — capability-gating, with the capability gated and the stage by which it must be resolved.
+- **C** — G3-blocking.
+
+| # | Item | Class | If B: question → capability gated → resolve by |
+|---|---|---|---|
+| U1 | Shielding rate 2026 | B | 2026 rate → after-tax projections and tax-aware calculations for income year 2026 → S13a (record on publication, Jan 2027) |
+| U2 | 2027 tax parameters | B | 2027 parameters → tax calculations for 2027 → S13a (record on publication) |
+| U3 | NOU 2026:9 | — | **Withdrawn:** wealth tax out of scope (ADR-0021) |
+| U4a | ASK credit: calculation and limit inside ASK | B | Calculation → after-tax return modelling of foreign dividends in ASK, and ASK vs. ordinary-account comparison illustrations that include credit → S13a |
+| U4b | ASK: tracking of withheld tax | B | Tracking → per-account tax reporting aids for ASK → S13a (and S14 report) |
+| U4c | ASK: input-value interaction with credit | B | Interaction → ASK after-tax modelling → S13a |
+| U4d | ASK: carry-forward across dividend-year/withdrawal-year gap | B | Timing → multi-year ASK tax projections → S13a |
+| U4e | ASK: broker information for credit | B | Broker information → per-broker tax-reporting support claims in the comparison → S13a |
+| U5 | Fund-level withholding (RQ-51) | B | W9 → after-tax expected-return inputs for funds/ETFs → S6 (instrument attributes) / S13a |
+| U6 | US reclaim mechanism (W6) | A | — |
+| U7 | Verbatim MiFID II Art. 4(1)(1), 25(3)–(4); Del. Reg. 2017/565 Art. 9 | A | (re-read before any reliance; no G3 decision depends on the exact wording) |
+| U7b | PRIIPs consolidated amendments vs. articles read | A | — |
+| U7c | EU application dates (MiFID II, PRIIPs) | A | — |
+| U8 | ESMA appropriateness guidelines; Norwegian supplementary regulation ch. 6 §3 | A | — |
+| U9 | Per-instrument Norwegian KID availability (US ETFs) | B | KID availability → legal admissibility layer for third-country funds in the universe → S5/S6 (instrument attribute `kid_available_no`) |
+| U9b | AIF-law marketing barrier for non-UCITS funds | B | → same capability → S5/S6 |
+| U10 | eToro: Norway commission, entity applicability, ASK, withholding, appropriateness, API eligibility, direct reporting, inactivity conflict | B | eToro facts → feasibility, cost illustration, and execution for eToro configurations → S5 (availability), S13a (costs), S13f (API/execution) |
+| U11 | Nordnet: fractional shares, order types, exchange list; full reads of V-abs pages | B | → sizing/rounding and execution for Nordnet → S13e/S13f |
+| U12 | Fund taxation rule start date | A | — (current rule verified; history needed only for long backtests → S7 note) |
+| U13 | RQ-49 resolution | B | A vs. B and distribution posture → application-originated recommendations; distributed builds' target-portfolio, trade-list, and execution capabilities → S11/S14 (recommendation framing), S13f (execution) |
+| U14 | CFD/binary national measures: current status on Lovdata | A | — |
+
+**Class C: none.** No unresolved item undermines a fact or architectural
+decision that G3 depends on. The corrected ASK finding (U4) was the one
+candidate for C. It is resolved at the level G3 needs (applicability
+verified); the open mechanics are B.

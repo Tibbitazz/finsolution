@@ -1,7 +1,7 @@
 # Provisional registry records — Norway, individual taxation (non-pension).
 # Contract: research/S3_REGISTRY_ARCHITECTURE.md §1. Physical format is provisional (S6b/S8).
 # Each logical record = file_defaults merged with the record (record fields win).
-# Not tax advice. Pension taxation is out of scope (ADR-0020).
+# Not tax advice. Pension taxation (ADR-0020) and wealth tax (ADR-0021) are out of scope and must not be added.
 file_defaults:
   version: 1
   domain: tax
@@ -133,99 +133,6 @@ records:
       authority_type: tax_authority
     claim: ">80% shares → taxed as shares; <20% → interest; otherwise split proportionally."
 
-  - fact_id: no.tax.wealth_threshold
-    scope: {jurisdiction: NO, taxpayer: individual}
-    attribute: wealth_tax_basic_allowance
-    value: 1900000
-    unit: NOK
-    basis: per_taxpayer_net_wealth
-    period: income_year
-    legal_status: effective
-    verification_status: verified
-    verification_level: V-full
-    published_on: 2025-12-15
-    effective_from: 2026-01-01
-    effective_to: 2027-01-01
-    reverify_by: 2027-01-31
-    source:
-      citation: "Skatteetaten, Forskuddsutskrivingen 2026"
-      url: https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
-      section: wealth tax
-      retrieved_on: 2026-10-01
-      authority_type: tax_authority
-    claim: "Wealth tax basic allowance NOK 1,900,000 (individual), 2026."
-
-  - fact_id: no.tax.wealth_rates
-    scope: {jurisdiction: NO, taxpayer: individual}
-    attribute: wealth_tax_rates
-    value:
-      municipal: 0.35
-      state_tranche_1: 0.65
-      state_tranche_2: 0.75
-      state_tranche_2_from_nok: 21500000
-    unit: "%"
-    basis: percent_of_net_wealth_above_threshold
-    period: income_year
-    legal_status: effective
-    verification_status: verified
-    verification_level: V-full
-    published_on: 2025-12-15
-    effective_from: 2026-01-01
-    effective_to: 2027-01-01
-    reverify_by: 2027-01-31
-    source:
-      citation: "Skatteetaten, Forskuddsutskrivingen 2026"
-      url: https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
-      section: wealth tax
-      retrieved_on: 2026-10-01
-      authority_type: tax_authority
-    claim: "Municipal 0.35%; state 0.65%, 0.75% above NOK 21.5 m (combined 1.00% / 1.10%)."
-
-  - fact_id: no.tax.valuation_discount_shares
-    scope: {jurisdiction: NO, taxpayer: individual, instrument_type: [listed_share, unlisted_share, fund_share_component]}
-    attribute: wealth_valuation_percent
-    value: 80
-    unit: "%"
-    basis: percent_of_market_value
-    period: income_year
-    legal_status: effective
-    verification_status: verified
-    verification_level: V-full
-    published_on: 2025-12-15
-    effective_from: 2026-01-01
-    effective_to: 2027-01-01
-    reverify_by: 2027-01-31
-    source:
-      citation: "Skatteetaten, Forskuddsutskrivingen 2026"
-      url: https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
-      section: valuation discounts
-      retrieved_on: 2026-10-01
-      authority_type: tax_authority
-    claim: "Shares and the share component of securities funds valued at 80% for wealth tax, 2026."
-
-  - fact_id: no.tax.proposal.nou_2026_9_wealth_tax
-    scope: {jurisdiction: NO, taxpayer: individual}
-    attribute: proposed_wealth_tax_reform
-    value: "Remove valuation discounts; lower rates; higher threshold; separate primary-residence deduction (summary)"
-    unit: null
-    basis: null
-    period: null
-    legal_status: proposed
-    verification_status: verified
-    verification_level: V-abs
-    published_on: null        # hearing-note date not read directly (U3)
-    effective_from: null
-    effective_to: null
-    reverify_by: 2027-04-01
-    source:
-      citation: "Høringsnotat, NOU 2026:9 (regjeringen.no)"
-      url: https://www.regjeringen.no/contentassets/19e00462685a495b87e151d1744f59de/horingsnotat-nou-2026-9.pdf
-      section: null
-      retrieved_on: 2026-10-01
-      authority_type: secondary   # commission proposal, not law
-    claim: "A public commission has proposed these changes; none is enacted."
-    notes: "Never returned by Fact(t|k) (FX3-02)."
-
   - fact_id: no.tax.parameters_2027
     scope: {jurisdiction: NO, taxpayer: individual}
     attribute: annual_tax_parameters
@@ -245,7 +152,7 @@ records:
       section: null
       retrieved_on: 2026-10-01
       authority_type: statute
-    claim: "No 2027 parameters available; a 2027 proposal, once published, enters as legal_status=proposed."
+    claim: "No 2027 parameters available; a 2027 proposal, once published, enters as legal_status=proposed. Scope: income-tax parameters only (wealth tax excluded, ADR-0021)."
 
   - fact_id: no.tax.foreign_tax_credit
     scope: {jurisdiction: NO, taxpayer: individual}

@@ -170,7 +170,15 @@ records:
     layer: W8
     scope: {residence_country: NO, account_type: ASK}
     attribute: wrapper_treatment
-    value: "see no.wrapper.ask.foreign_withholding (verified) and no.wrapper.ask.foreign_tax_credit (unavailable)"
+    value:
+      withheld_tax_reduces_input_value: "no.wrapper.ask.foreign_withholding (verified)"
+      credit_rules_may_apply_on_taxable_withdrawal: "no.wrapper.ask.credit.applicability (verified)"
+      timing: "no.wrapper.ask.credit.timing (verified trigger; claim channel general rule)"
+      calculation_and_limit_inside_ask: "no.wrapper.ask.credit.calculation (unavailable)"
+      tracking: "no.wrapper.ask.credit.tracking (dividends recorded; withheld tax not stated)"
+      input_value_interaction: "no.wrapper.ask.credit.input_value_interaction (unavailable)"
+      carry_forward: "no.wrapper.ask.credit.carry_forward (general rule verified; ASK application not stated)"
+      broker_information: "no.wrapper.ask.credit.broker_information (unavailable)"
     unit: null
     basis: null
     period: null
@@ -178,13 +186,13 @@ records:
     verification_status: verified
     verification_level: V-full
     effective_from: null
-    reverify_by: 2027-10-01
+    reverify_by: 2027-01-31
     source:
-      citation: "Skatteetaten, Share savings account (ASK)"
-      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/shares-and-securities/about-shares-and-securities/share-savings-account-ask/
+      citation: "Skatteetaten ASK page; Skatte-ABC 2025/2026 A-10-5.4.1"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/a-10-aksjesparekonto/A-10.010/A-10.014/
       retrieved_on: 2026-10-01
       authority_type: tax_authority
-    claim: "Withholding inside ASK reduces input value; credit availability not stated."
+    claim: "Withholding inside ASK reduces input value; credit rules may apply on a taxable withdrawal; mechanics partly unestablished (see component records)."
 
   - fact_id: wht.w9.fund_level
     layer: W9

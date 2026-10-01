@@ -34,6 +34,108 @@ records:
       authority_type: regulator
     claim: "Retail investors given access to a PRIIP must receive key information in Norwegian in good time before investing; in force 1 Oct 2024."
 
+  # PRIIPs chain for third-country (e.g. US-domiciled) ETFs — owner request 2026-10-01.
+  # EU text read as originally adopted via the official UK archive (EUR-Lex blocked automated retrieval);
+  # later amendments (2016/2340, 2019/1156, 2021/2259) not checked against these articles → re-read consolidated text (U7b).
+  - fact_id: reg.eu.priips.scope_investment_funds
+    scope: {jurisdiction: EEA, client_category: retail}
+    attribute: priip_definition_covers_investment_funds
+    value: {prip_definition: "amount repayable subject to fluctuations because of exposure to reference values or to the performance of assets not directly purchased by the retail investor (Art. 4(1))", recital_6_examples: [investment_funds, life_insurance_with_investment_element, structured_products, structured_deposits], recital_7_not_priips: [directly_held_shares, sovereign_bonds]}
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null      # EU application date not read in S3 (U7c); Norwegian application per EEA incorporation
+    source:
+      citation: "Regulation (EU) No 1286/2014 (PRIIPs), Art. 4(1), 4(3); recitals 6–7 (as adopted)"
+      url: https://www.legislation.gov.uk/eur/2014/1286/contents/adopted
+      section: "Art. 4(1), 4(3); recitals 6, 7"
+      retrieved_on: 2026-10-01
+      authority_type: eu_legislation
+    claim: "Investment funds are PRIIPs; directly held shares are not."
+    notes: "Applies by legal form, regardless of domicile; an ETF is an investment fund. Edge forms (ETNs, grantor trusts) also fall under Art. 4(1) by definition but their classification is an S6 instrument matter."
+
+  - fact_id: reg.eu.priips.kid_obligations
+    scope: {jurisdiction: EEA, client_category: retail}
+    attribute: kid_obligations
+    value: {manufacturer: "draw up and publish KID before the PRIIP is made available to retail investors (Art. 5(1))", seller_or_adviser: "provide the KID in good time before the retail investor is bound (Art. 13(1))", after_transaction_derogation: "Art. 13(3): distance-means, customer-initiated — KID may follow without undue delay; presupposes a KID exists", manufacturer_obligations_continue_on_secondary_markets: "recital"}
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null      # EU application date not read in S3 (U7c); Norwegian application per EEA incorporation
+    source:
+      citation: "Regulation (EU) No 1286/2014, Art. 5(1), Art. 13(1), 13(3); recitals (as adopted)"
+      url: https://www.legislation.gov.uk/eur/2014/1286/contents/adopted
+      section: "Art. 5(1), 13(1), 13(3)"
+      retrieved_on: 2026-10-01
+      authority_type: eu_legislation
+    claim: "A person advising on or selling a PRIIP must provide the KID before the retail investor is bound."
+
+  - fact_id: reg.no.priips.own_initiative_and_language
+    scope: {jurisdiction: NO, client_category: retail, instrument_type: PRIIP}
+    attribute: kid_requirement_scope_norway
+    value: {applies_when_sale_solely_on_customer_initiative: true, language: Norwegian, language_exemption_in_force: false}
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: 2024-10-01
+    source:
+      citation: "Finanstilsynet, PRIIPs; PRIIPs-loven (LOV-2024-06-21-40) § 4; PRIIPs-forskriften (FOR-2024-09-16-2162)"
+      url: https://www.finanstilsynet.no/tema/priips/
+      section: "Finanstilsynet page; lov § 4; forskrift §§ 1–5"
+      retrieved_on: 2026-10-01
+      authority_type: regulator
+    claim: "Requirements apply «uavhengig av om salget skjer som følge av markedsføring, eller utelukkende på kundens eget initiativ»; KIDs distributed in Norway must be in Norwegian (§ 4)."
+    notes: "language_exemption_in_force: false — § 4 permits an exemption by regulation; the PRIIPs-forskriften (§§ 1–5) contains none. A later regulation would be a new fact version."
+
+  - fact_id: reg.no.priips.enforcement
+    scope: {jurisdiction: NO}
+    attribute: priips_enforcement
+    value: {regulation_applies_as_law: "§ 2", marketing_suspension_or_ban: "§ 6", administrative_fine_for_breach_of: ["Art. 5(1)", "Art. 13(1)", "Art. 13(3)-(4)", "others"], criminal_penalty: "§ 8 (not read)"}
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    enacted_on: 2024-06-21
+    effective_from: 2024-10-01
+    source:
+      citation: "PRIIPs-loven (LOV-2024-06-21-40) §§ 2, 6, 7"
+      url: https://lovdata.no/dokument/NL/lov/2024-06-21-40
+      section: "§§ 2, 6, 7"
+      retrieved_on: 2026-10-01
+      authority_type: statute
+    claim: "Finanstilsynet may suspend or prohibit marketing and impose fines for breaches including Art. 13(1)."
+
+  - fact_id: reg.no.priips.no_kid_no_retail_sale
+    scope: {jurisdiction: NO, client_category: retail, instrument_type: PRIIP}
+    attribute: retail_sale_without_norwegian_kid
+    value: not_permitted
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: 2024-10-01
+    conditions: {instrument_is_priip: true, norwegian_kid_available: false, client: retail}
+    source:
+      citation: "Derived directly from reg.eu.priips.kid_obligations, reg.no.priips.own_initiative_and_language, reg.no.priips.enforcement"
+      url: null
+      retrieved_on: 2026-10-01
+      authority_type: statute
+    claim: "Conditional rule: a person selling a PRIIP to a Norwegian retail investor must provide a Norwegian KID before the investor is bound, also on the customer's own initiative; where none exists the obligation cannot be met and breach is sanctionable."
+    provenance: "One-step application of mandatory provisions (Art. 13(1) + § 4 + Finanstilsynet scope statement). No source sentence states 'prohibited' in those words."
+
   - fact_id: reg.no.priips.us_etf_retail_access
     scope: {jurisdiction: NO, client_category: retail, instrument_type: etf, domicile: US}
     attribute: retail_access
@@ -46,12 +148,12 @@ records:
     verification_level: null
     effective_from: 2024-10-01
     source:
-      citation: "Derived from reg.no.priips.kid_requirement"
+      citation: "reg.no.priips.no_kid_no_retail_sale + premise that US-domiciled ETFs lack a Norwegian KID"
       url: null
       retrieved_on: 2026-10-01
       authority_type: null
-    claim: "US-domiciled ETFs without a Norwegian KID cannot be made available to retail investors."
-    provenance: "Interpretation: PRIIPs KID requirement + US issuers typically not producing a KID; confirm (U9)."
+    claim: "Categorical statement 'US-domiciled ETFs are unavailable to Norwegian retail investors' remains an interpretation."
+    provenance: "Chain steps 1, 2, 4 verified. Step 3 (no compliant Norwegian KID exists) is a per-instrument fact supported only by secondary sources (press, broker-review sites), not by issuers or regulators. Belongs to S6 as instrument attribute `kid_available_no` (U9). Not researched: whether AIF-law marketing rules for non-UCITS funds add a separate barrier (U9b)."
 
   - fact_id: reg.eu.mifid2.definitions
     scope: {jurisdiction: EEA}
@@ -67,7 +169,7 @@ records:
     legal_status: effective
     verification_status: verified
     verification_level: V-full
-    effective_from: 2018-01-03
+    effective_from: null      # EU application date not read in S3 (U7c); Norwegian application per EEA incorporation
     source:
       citation: "Directive 2014/65/EU (MiFID II), Art. 4(1)"
       url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32014L0065
@@ -87,7 +189,7 @@ records:
     legal_status: effective
     verification_status: verified
     verification_level: V-abs
-    effective_from: 2018-01-03
+    effective_from: null      # EU application date not read in S3 (U7c); Norwegian application per EEA incorporation
     reverify_by: 2027-01-31
     source:
       citation: "Directive 2014/65/EU, Art. 25(3)–(4)"
@@ -108,7 +210,7 @@ records:
     legal_status: effective
     verification_status: verified
     verification_level: V-abs
-    effective_from: 2018-01-03
+    effective_from: null      # EU application date not read in S3 (U7c); Norwegian application per EEA incorporation
     reverify_by: 2027-01-31
     source:
       citation: "Commission Delegated Regulation (EU) 2017/565, Art. 9"
@@ -188,13 +290,19 @@ records:
     scope: {jurisdiction: EEA}
     attribute: advice_perimeter_guidance
     value:
-      binding: false
-      generic_advice_not_investment_advice: "¶48"
-      filtering_not_automatically_recommendation: "¶36"
-      emphasis_may_constitute_recommendation: "¶62"
-      disclaimers_of_limited_effect: "¶64"
-      automated_tools_covered: "¶24, ¶84"
+      binding: false                                              # ¶9
       usable_for_non_regulated_persons: "¶7"
+      automated_client_facing_tools_covered: "¶24, ¶84"
+      presentation_test_reasonable_observer: "¶16"
+      recommendation_made_to_a_person: "¶25"
+      emphasis_may_constitute_recommendation: "¶30, ¶62 (person or software)"
+      implicit_presentation_as_suitable: "¶61"
+      filtering_not_automatically_recommendation: "¶36"
+      assisting_own_choice_unlikely_recommendation: "¶38"
+      model_portfolios_case_by_case: "¶40–41"
+      generic_advice_not_investment_advice: "¶48"
+      disclaimers_some_use_but_cannot_prevent_qualification: "¶64–65"
+      public_lists_normally_not_advice: "¶81"
     unit: null
     basis: null
     period: null
@@ -208,5 +316,5 @@ records:
       url: https://www.esma.europa.eu/sites/default/files/2023-07/ESMA35-43-3861_Supervisory_briefing_on_understanding_the_definition_of_advice_under_MiFID_II.pdf
       retrieved_on: 2026-10-01
       authority_type: eu_authority_guidance
-    claim: "Supervisory convergence guidance; paragraphs as indexed."
+    claim: "Supervisory convergence guidance; paragraph numbers re-verified against the PDF on 2026-10-01 (disclaimer point corrected from ¶64 to ¶64–65)."
     notes: "published_on month only (July 2023) — day not recorded; 01 is a placeholder for month precision."

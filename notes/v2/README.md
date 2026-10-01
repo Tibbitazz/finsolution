@@ -53,6 +53,6 @@ notes/v2/
 ## Current position
 
 Stage **S0 (Charter & decision governance)** — closed at gate G0 (2026-10-01);
-all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). **S3 — External-facts research** package prepared for gate G3 (branch `stage/s03-external-facts`; ADR-0019 PROPOSED, ADR-0020 ACCEPTED).
+all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). **S3 — External-facts research** package prepared for gate G3 (branch `stage/s03-external-facts`; ADR-0019 PROPOSED, ADR-0020 and ADR-0021 ACCEPTED). Status snapshot: [research/PROJECT_STATUS_2026-10-01.md](research/PROJECT_STATUS_2026-10-01.md).
 No methodological question has been resolved; all are recorded in
 [research/OPEN_QUESTIONS.md](research/OPEN_QUESTIONS.md).

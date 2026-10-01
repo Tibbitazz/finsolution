@@ -1,5 +1,20 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — S3 G3 package revision 2 (owner corrections at G3 review; G3 not closed)
+
+- **Wealth tax out of scope (ADR-0021, ACCEPTED, owner instruction):** 4 provisional wealth-tax records removed (never accepted, so no registry history affected); `TAX.wealth_tax_position` (S1 10.1) retired; jurisdiction-support domain removed (nine → eight); 00, 03, 08, RQ-03 amended. Total-wealth optimisation scope and outside wealth in risk capacity are unaffected.
+- **ASK withholding credit corrected:** Skatte-ABC 2025/2026 A-10-5.4.1 states the credit rules may apply on a taxable withdrawal. The draft's "credit availability unknown" was wrong. Decomposed into seven records (applicability, timing, calculation, tracking, input-value interaction, carry-forward, broker information); unestablished mechanics remain unknown. ASK withdrawal and FX rules added from Skatte-ABC.
+- **D3-07 revised:** field 1.7 not retired; inactive, not collected by default; never grants eligibility; never substitutes a broker test.
+- **D3-08 revised:** no universal legal-review prerequisite; capability register (capability → evidence → unresolved issue → dependency/safeguard → enablement status); RQ-49 remains open beyond G3; A vs. B analysis recorded.
+- **PRIIPs chain:** conditional rule (PRIIP without Norwegian KID → no retail sale) verified; "US ETFs unavailable" kept as interpretation; 5 regulation records added.
+- **ESMA citations re-verified** against the PDF; disclaimer point corrected to ¶64–65; ¶16, ¶25, ¶38, ¶40–41, ¶81 added.
+- **Unverified EU application dates** (MiFID II, PRIIPs) set to null (U7c).
+- **eToro inactivity fee:** second attempt; unresolved; both records kept.
+- **Unknown ≠ unsupported:** broker layer `offered · not_offered · unknown`; 3 hidden unknowns split into own records; Nordnet API reopening expressed as verified absence.
+- Unresolved items classified A/B/C (no class C). Meaning of registry acceptance stated in ADR-0019, architecture, facts README, and package.
+- Fixtures FX3-23 … FX3-26 added; FX3-02/05/06/13/18 revised.
+- research/PROJECT_STATUS_2026-10-01.md: S0–S18 status review.
+
 ## 2026-10-01 — S3 package prepared for G3 (branch `stage/s03-external-facts`)
 
 - **Consistency correction (D3-a):** 08_ROADMAP previously described G3 as approving the user's account choice. G3 approves the external-fact registries only; no user's account configuration is a gate decision.

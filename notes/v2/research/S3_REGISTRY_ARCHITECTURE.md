@@ -5,7 +5,7 @@
 **Scope.**
 - S3 establishes external facts and their provenance.
 - It chooses no user's account setup, makes no recommendation, and makes no later-stage methodological decision.
-- All pension saving is out of scope (ADR-0020).
+- All pension saving (ADR-0020) and wealth tax (ADR-0021) are out of scope: no registry domain, fact, field, calculation, or comparison dimension exists for them.
 - Instrument coverage is at instrument-type level only; individual instruments belong to S6.
 
 ---
@@ -74,6 +74,11 @@ Defaults:
 - New information creates a **new version**; history is never overwritten.
 - "Current" is **derived at query time** from t, k, and the intervals. It is never stored as a status, so it cannot go stale.
 
+**Meaning of accepting a registry version (e.g. v1 at G3):**
+- Each fact is accepted at its stated source, scope, verification level, valid-time coordinates, and knowledge-time coordinates, based on the evidence available on its verification date.
+- Acceptance does not certify a fact forever.
+- Later authoritative changes create new effective-dated facts. They never rewrite historical ones.
+
 **Mapping to the status names requested at S3 approval:**
 
 | Requested status | Representation |
@@ -100,15 +105,21 @@ Effective investable universe ⊆
 |---|---|---|---|
 | Legal/regulatory | S3 (B) | permitted · restricted (conditions) · prohibited · unknown | "Not offered to retail investors without a Norwegian KID (PRIIPs)" |
 | Wrapper | S3 (B) | permitted · prohibited · unknown | "ASK holds only EEA-domiciled listed shares and EEA equity funds" |
-| Broker | S3 (B) | available · unavailable · unknown | "Not available at the selected broker" |
+| Broker | S3 (B) | offered · not_offered · unknown | "Not offered at the selected broker (source: …)" vs. "Unknown whether offered" |
 | Methodological | S4/S9–S13 (C) | admissible · ineligible · pending | "No admissible method uses this instrument type" |
 | User | S1 (A) | permitted · denied · undecided | "Excluded by your Policy Statement" |
 
 Each layer returns its value **with its binding source**. The engine keeps
 all layer results, so "Legal = permitted, Wrapper = permitted, Broker =
-unavailable" yields a different explanation from "Legal = restricted" or
+not_offered" yields a different explanation from "Legal = restricted" or
 "Method = ineligible". S3 populates only the first three layers. Legal
 availability never implies that an instrument should be held.
+
+**Unknown is not unsupported.** `not_offered` (and `prohibited` in the
+legal and wrapper layers) requires a source statement establishing it.
+Absence of evidence yields `unknown`, which resolves to `pending` with a
+finding (§3), never to exclusion presented as a fact. The two produce
+different explanations (FX3-24).
 
 ## 5. Layered foreign-withholding representation
 
@@ -125,7 +136,7 @@ availability never implies that an instrument should be held.
 | W9 | Fund-level withholding | Withholding inside a fund (not suffered directly by the investor); investor-level relief, if any | Fund/residence-country sources |
 
 W2 and W5 are separate facts and are never assumed equal. Values are
-point-in-time facts per §2. Verified findings: S3_FINDINGS §3.
+point-in-time facts per §2. Verified findings: S3_FINDINGS §3 (W8 decomposition §2.1).
 
 ## 6. Instrument-type external-attribute schema (for S6 population)
 
@@ -169,9 +180,9 @@ law, and self-reported experience is never an eligibility rule (S3_FINDINGS §5)
 
 | Domain | Scheduled review | Event triggers |
 |---|---|---|
-| Annual tax parameters (rates, factors, thresholds, valuation discounts) | After budget proposal (October), after Storting adoption (December), at Skatteetaten advance-assessment publication (December); `reverify_by` = 31 Jan of the income year | Budget/proposition publication; Skatteetaten rate pages |
+| Annual income-tax parameters (rates, upward factor) | After budget proposal (October), after Storting adoption (December), at Skatteetaten advance-assessment publication (December); `reverify_by` = 31 Jan of the income year | Budget/proposition publication; Skatteetaten rate pages |
 | Shielding rate | When published (January after the income year) | Skatteetaten rate page |
-| Statutory rules (ASK, fund taxation, exit tax, credit) | Annually | Law amendments (Lovdata), propositions |
+| Statutory rules (ASK, fund taxation, exit tax, credit incl. ASK credit mechanics) | Annually; Skatte-ABC new edition (each income year) | Law amendments (Lovdata), propositions |
 | Treaty provisions | Every 2 years | Protocol signature or entry into force |
 | Regulatory rules and guidance (PRIIPs, MiFID, ESMA, Finanstilsynet) | Every 6 months | ESMA/Finanstilsynet publications |
 | Broker fee schedules | Quarterly | Broker price-list or terms change notices |
@@ -189,14 +200,15 @@ law, and self-reported experience is never an eligibility rule (S3_FINDINGS §5)
 A jurisdiction is **supported** at date t only when the following domains
 each have `verified` facts valid at t:
 - (1) income/gains/dividend/interest taxation for individuals;
-- (2) wealth taxation (or a verified "none");
-- (3) account/wrapper rules;
-- (4) withholding layers W7–W8 as residence country;
-- (5) treaty table entries needed for supported markets;
-- (6) regulation/product-access rules for retail investors;
-- (7) at least one supported broker entity serving residents;
-- (8) tax-reporting mechanics;
-- (9) exit-tax rules where they exist.
+- (2) account/wrapper rules;
+- (3) withholding layers W7–W8 as residence country;
+- (4) treaty table entries needed for supported markets;
+- (5) regulation/product-access rules for retail investors;
+- (6) at least one supported broker entity serving residents;
+- (7) tax-reporting mechanics;
+- (8) exit-tax rules where they exist.
+
+Wealth taxation is not a domain (ADR-0021).
 
 Process:
 1. Scope the domains.
@@ -212,12 +224,12 @@ generic rules.
 **Domain-level vs. fact-level coverage:**
 - Support is assessed per **domain**. A domain is covered when its core rules are verified.
 - Individual facts inside a covered domain may still be `unavailable` (e.g. a rate not yet published). They propagate as unknown under §3 and make only the dependent artefacts `pending`, not the whole jurisdiction.
-- Treaty coverage (5) is assessed per source country of the markets the user's configuration actually uses. A market whose treaty entry is missing has unknown withholding.
+- Treaty coverage (4) is assessed per source country of the markets the user's configuration actually uses. A market whose treaty entry is missing has unknown withholding.
 
 **Norway at 2026-10-01:**
-- Domains (1)–(4) and (6)–(9) are covered.
-- For (5), only US treaty entries are recorded, so withholding for other source countries is unknown until recorded.
-- Fact-level gaps: S3_FINDINGS §9.
+- Domains (1)–(3) and (5)–(8) are covered.
+- For (4), only US treaty entries are recorded, so withholding for other source countries is unknown until recorded.
+- Fact-level gaps: S3_FINDINGS §10.
 
 ## 10. Registry-driven option sources (contents per S3_FINDINGS)
 

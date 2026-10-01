@@ -1,6 +1,7 @@
 # Provisional registry records — Nordnet (Norwegian retail offering).
 # Contract: S3_REGISTRY_ARCHITECTURE.md §1. Unknown ≠ false: unknown capabilities have value null.
 # Commercial facts use legal_status published/announced/withdrawn. Pension accounts excluded (ADR-0020).
+# Capability semantics: a capability is `not offered` only where a source states it; absence of evidence → record `unavailable` (unknown).
 file_defaults:
   version: 1
   domain: broker
@@ -165,7 +166,7 @@ records:
 
   - fact_id: broker.nordnet.api
     attribute: api_availability
-    value: {exists: true, new_subscriptions: closed, reopening_date: null}
+    value: {exists: true, new_subscriptions: closed, reopening_date_announced: false}
     unit: null
     basis: null
     period: null
@@ -175,11 +176,11 @@ records:
       url: https://www.nordnet.se/faq/handel-vardepapper/handelsapplikationer/erbjuder-nordnet-api
       retrieved_on: 2026-10-01
       authority_type: broker_official
-    claim: "Nordnet External API closed for new subscriptions; no reopening date."
+    claim: "Nordnet External API closed for new subscriptions; the source states no reopening date (verified absence of an announced date, not an unknown)."
 
   - fact_id: broker.nordnet.tax_reporting
     attribute: tax_reporting_responsibility
-    value: {euronext_vps: [norwegian_funds, oslo_bors_shares], nordnet: [foreign_securities, etfs, dividends, wealth], self_reported: [options, forwards, futures]}
+    value: {euronext_vps: [norwegian_funds, oslo_bors_shares], nordnet: [foreign_securities, etfs, dividends], self_reported: [options, forwards, futures]}
     unit: null
     basis: null
     period: income_year
@@ -189,6 +190,7 @@ records:
       retrieved_on: 2026-10-01
       authority_type: broker_official
     claim: "Split of reporting responsibilities as listed."
+    notes: "Year-end wealth-value reporting omitted: wealth tax out of scope (ADR-0021)."
 
   - fact_id: broker.nordnet.fractional_shares
     attribute: fractional_trading

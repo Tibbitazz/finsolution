@@ -26,9 +26,10 @@ append-only after acceptance; changes are new ADRs that supersede old ones.
 | [ADR-0018](ADR-0018-risk-preference-ontology.md) | Risk-preference ontology, calibration interface, elicitation deferral | ACCEPTED | G2 | S2 | 2026-10-01 | — (extends 0010, 0014) | RQ-02d, RQ-50 |
 | [ADR-0019](ADR-0019-external-fact-registry.md) | External-fact registry: record contract, point-in-time semantics, layered admissibility, withholding layers, re-check, jurisdiction support, comparison | PROPOSED | G3 | S3 | — | — (extends 0003, 0006, 0015, 0016) | RQ-49 (legal review), RQ-51 |
 | [ADR-0020](ADR-0020-pension-saving-excluded.md) | All pension saving and pension products out of scope | ACCEPTED | — (owner instruction) | S3 | 2026-10-01 | — (extends 0008) | — |
+| [ADR-0021](ADR-0021-wealth-tax-excluded.md) | Wealth tax entirely out of scope; `TAX.wealth_tax_position` retired | ACCEPTED | — (owner instruction) | S3 | 2026-10-01 | — (extends 0006; analogous to 0020) | — |
 | [ADR-0013](ADR-0013-clarify-beliefs-preferences-test.md) | Clarify ADR-0009 test: declared comparison universe | ACCEPTED | G0 | S0 | 2026-10-01 | — (clarifies 0009) | RQ-38 |
 
 **Basis of `ACCEPTED` entries dated 2026-10-01:** explicit owner instructions or
 approvals given in the design session of that date; ADR-0002, ADR-0003,
-ADR-0012, and ADR-0013 were accepted at the G0 review of the same date; ADR-0014 at the G1 review; ADR-0015 … ADR-0018 at the G2 review (with owner amendments); ADR-0020 by explicit owner instruction in the S3 approval (D3-b). Extending or
+ADR-0012, and ADR-0013 were accepted at the G0 review of the same date; ADR-0014 at the G1 review; ADR-0015 … ADR-0018 at the G2 review (with owner amendments); ADR-0020 by explicit owner instruction in the S3 approval (D3-b); ADR-0021 by explicit owner instruction during the G3 review. Extending or
 clarifying ADRs never edit the body of the ADR they extend.

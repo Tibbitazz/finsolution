@@ -1,6 +1,6 @@
 # S1 — Investor Profile & Policy Statement Input Specification
 
-**Document status:** STABLE (accepted at G1, 2026-10-01) · **Basis:** ADR-0014, ADR-0006, ADR-0009, ADR-0010, ADR-0012, ADR-0013
+**Document status:** STABLE (accepted at G1, 2026-10-01; amended 2026-10-01 by owner instructions: ADR-0020 pension exclusion, ADR-0021 wealth-tax exclusion, field 1.7 clarification at G3 review) · **Basis:** ADR-0014, ADR-0006, ADR-0009, ADR-0010, ADR-0012, ADR-0013
 **Audience:** developer (UI/input contract) and reviewers. **Companion:** [S1_SYNTHETIC_FIXTURES.md](S1_SYNTHETIC_FIXTURES.md).
 
 This specification defines **what any local user can enter or change**, what
@@ -109,7 +109,7 @@ purpose grounds. Abbreviations:
 | `INV.consumption_currencies` (1.4) | A/F/core | always | Define currency risk relative to consumption and liabilities → currency-risk definition, hedging methods | P1 | R | multi-select (ISO list) + share % | no | shares sum to 100% | — | UNIV CAL PC REP | RQ-07 |
 | `INV.reporting_currency` (1.5) | A/P/core | always | Reporting and benchmark currency → reporting, performance measurement | P1 | R | dropdown (ISO list) · **derived proposal** = primary consumption currency, confirm required | no | one value | `INV.consumption_currencies` | REP MON | — |
 | `INV.trading_restrictions` (1.6) | A/F/core | always | Hard constraints on universe and timing → universe filter, Feasibility Engine | P3 | R | toggle + free text + optional issuer list | yes (text) | issuer IDs resolvable | — | EFF UNIV FEAS | — |
-| `INV.investment_experience` (1.7) | A/F/conditional | if method-requires (S3c establishes a legitimate role) | Possible suitability / complex-product access / UI behaviour → TBD by S3c; not collected until then | P1 | O | multi-select | no | — | — | FEAS | RQ-45 (remove if broker tests are the mechanism) |
+| `INV.investment_experience` (1.7) | A/F/conditional (inactive) | **inactive; not collected by default**; activates only if later research establishes a legitimate consumer (RQ-45) | No consumer established. **Never grants product eligibility**; actual eligibility is determined by applicable rules and the broker's process; the engine never substitutes its own assessment for a broker-required test | P1 | O | multi-select | no | — | — | FEAS | RQ-45 (open; owner kept the field at G3 review) |
 | `INV.complex_product_tests` (1.8) | A/F (user-attested)/core-dependent | if `POL.instrument_permissions` allows any instrument whose registry entry requires a test | Determine complex-instrument feasibility → Feasibility Engine | P2 | R (when active) | table: broker × product × {passed, not taken, don't know} · rows from B | no | broker/product must exist in B | `ACC.accounts`, `POL.instrument_permissions`, B test requirements | EFF FEAS ELIG | S3c |
 | `INV.risk_category` (7.1) | A/P/core | always | Raw risk preference → calibration layer (D), CRO thresholds, report | P1 | R | dropdown: Conservative · Moderate · Aggressive · Custom (described) — **stored raw; no γ** | yes (text) | — | — | CAL PC MON | RQ-02 |
 | `INV.max_one_year_decline` (7.2) | A/P/core | always | Loss tolerance → soft drawdown target, monitoring trigger, calibration | P1 | R | numeric % + derived NOK display (from A′) | yes | 0 < x ≤ 100 | — | CAL PC MON | RQ-02 |
@@ -185,7 +185,6 @@ implementation. Its interaction with each is resolved in S13b/S13c.
 | `ACC.accounts` (6.1 configuration) | A/F/core | always | Broker × wrapper × currency → registries lookup, feasibility, asset location, costs | P2 | R (≥1) | repeating table: broker (**B-opts**: Nordnet, eToro, Other-unsupported) · wrapper (**B-opts per broker × jurisdiction**) · currency · existing/planned | no | broker offers wrapper; jurisdiction supports wrapper | `INV.tax_residence` | EFF FEAS UNIV ELIG TAX IMPL | S3a/b |
 | `ACC.open_new_accounts` (6.3) | A/P/optional | always | Permission for what-if comparisons → what-if engine only | P1 | O | dropdown + text | yes | — | — | REP | — |
 | `ACC.currency_accounts` (6.4) | A/P/optional | if any configured broker offers currency accounts (B) | FX-cost option → costs, implementation | P1 | O | toggle | no | — | `ACC.accounts`, B | IMPL TAX | S3b |
-| `TAX.wealth_tax_position` (10.1) | A/F/conditional | if method-requires (tax-aware methods admitted) | Value of tax-aware decisions → tax methods only | P3 | O | dropdown band | no | — | `INV.tax_residence` | TAX PC | S13a |
 
 ### 5.5 Engagement and governance
 
@@ -213,6 +212,7 @@ implementation. Its interaction with each is resolved in S13b/S13c.
 | `DER.risk_capacity`, `DER.model_risk_parameters` | D | Calibration (RQ-02); raw `INV.risk_category` preserved |
 | `DER.rebalancing_effective_params` | D | From `REB.*` + admitting method + A′/B |
 | ~~hours per month~~ (9.1) | retired | No consumer; may be re-added under §8 if a purpose appears |
+| ~~`TAX.wealth_tax_position`~~ (10.1) | retired | Existed solely for wealth tax, which is out of scope (ADR-0021). ID never reused; never active, so no saved values |
 
 ## 6. Interaction model
 

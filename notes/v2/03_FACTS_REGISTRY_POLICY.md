@@ -13,7 +13,7 @@ change; the engine must know which version it used.
 
 | Registry | Contains | Determined by |
 |---|---|---|
-| Jurisdiction & Tax Rules | Taxation of gains, dividends, interest, wealth; withholding tax (kildeskatt) and treaty credits; reporting obligations | Law of the investor's tax residence (Norway) and applicable treaties |
+| Jurisdiction & Tax Rules | Taxation of gains, dividends, interest (wealth tax out of scope, ADR-0021); withholding tax (kildeskatt) and treaty credits; reporting obligations | Law of the investor's tax residence (Norway) and applicable treaties |
 | Wrapper | Account-type rules: eligibility, tax deferral, contributions/withdrawals | Law |
 | Instrument Master | Tax- and regulation-relevant instrument attributes: domicile, legal form, UCITS status, fund equity share, distribution policy, fund-level withholding, retail-availability requirements (e.g. key information documents) | Instrument documentation and law |
 | Broker | Wrappers offered, instrument catalogue, costs, FX, execution, data, legal/custody model, tax reporting | Broker documentation |
@@ -73,7 +73,8 @@ notes:          <free text>
 7. **Scope.** Initial brokers: Nordnet and eToro, neither preferred; adding a
    broker requires only new records, never an architecture change. The
    All pension saving and pension products, including *individuell
-   pensjonssparing*, are out of scope (ADR-0008, ADR-0020).
+   pensjonssparing*, are out of scope (ADR-0008, ADR-0020). Wealth tax is
+   out of scope (ADR-0021).
 
 ## 5. Current contents
 
