@@ -96,3 +96,35 @@ Not yet known (`OPEN`): finite-N performance relative to linear shrinkage;
 effects of heavy tails, volatility clustering, and non-stationarity; the
 effective T under EWMA/rolling windows; the economically meaningful margin.
 Research design and threshold calibration: S10 (RQ-14). **No threshold is set.**
+
+## 5. Typed contracts — signals, transformations, aggregations, mappings — `PROPOSED` (ADR-0012)
+
+One funnel and one Method Library serve all method types. Every contract
+shares the core fields of §3 plus: `method_type` ∈ {model, signal,
+transformation, aggregation, score→belief mapping, tactical rule} and
+`output_semantics` ∈ {characteristic, rank/score, expected-return estimate,
+constraint/attribute, tactical state}. Admissibility tests in step (3) are
+type-specific and pre-registered in S7.
+
+Additional fields for **signal / scoring methods**:
+
+| Field | Content |
+|---|---|
+| Economic rationale | Risk-based, behavioural, or structural mechanism; evidence status |
+| Academic evidence | Markets, periods, gross vs. net, long-short vs. long-only, replication status (each source `VERIFIED-SOURCE` before use) |
+| Exact definition | Formula, orientation (what "higher" means), lookback, skip and lag conventions (e.g. accounting-data lags) |
+| Data | Required fields; point-in-time availability; restatements; use of analyst estimates |
+| Eligible universe | Where the metric is defined/meaningful (e.g. book-based value for financials; earnings-based value for loss-makers) |
+| **Comparison universe** | The cross-section a relative score is computed against — mandatory (ADR-0013; RQ-30, RQ-38) |
+| Transformation | Raw / z-score / percentile rank / quantile / rank-weight; order of operations within composites (RQ-29, RQ-31) |
+| Outliers & missing data | Winsorise / trim / rank; exclude / impute / neutral |
+| Minimum cross-section | Minimum N overall and per group |
+| Horizon & decay | Signal half-life; compatibility with rebalancing cadence |
+| Turnover & cost | Expected turnover; cost under the selected account configuration |
+| Robustness | Across markets, periods, sub-samples |
+| Interactions | Correlation with other signals; known conflicts (e.g. value vs. momentum) |
+| Permitted consumers | Which construction methods, agents, or tactical rules may consume it, and in which representation |
+
+Additional fields for **tactical rules**: dependence on holding state;
+signal-time vs. execution-time assumption (e.g. a close-based signal filled
+at that close requires market-on-close execution); evaluation horizon.

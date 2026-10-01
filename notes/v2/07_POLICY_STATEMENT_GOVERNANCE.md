@@ -72,6 +72,12 @@ returns, covariances/correlations, volatilities, regime states, and signals.
 - **Enforcement:** a propagation test — perturb each preference field and
   assert that the hashes of all belief artefacts are unchanged (horizon
   excepted). This test is part of the deterministic test suite.
+- **Known gap (flagged 2026-10-01):** as worded, this test cannot hold when a
+  universe preference changes (Σ dimension, equilibrium returns, and
+  cross-sectional scores all depend on the asset set). The proposed
+  clarification — conditional invariance given a declared comparison
+  universe — is ADR-0013 (`PROPOSED`). The choice of comparison universe is
+  RQ-38.
 
 ## 5. Risk preference vs. model parameters (ADR-0010)
 

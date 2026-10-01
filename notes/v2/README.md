@@ -51,6 +51,7 @@ notes/v2/
 
 ## Current position
 
-Stage **S0 (Charter & decision governance)** — under owner review at gate G0.
+Stage **S0 (Charter & decision governance)** — under owner review at gate G0,
+including the proposed signal & scoring amendment (ADR-0012, ADR-0013).
 No methodological question has been resolved; all are recorded in
 [research/OPEN_QUESTIONS.md](research/OPEN_QUESTIONS.md).
