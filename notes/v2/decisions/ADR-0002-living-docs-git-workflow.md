@@ -1,8 +1,8 @@
 # ADR-0002 — Living, version-controlled documents with a gate-based Git workflow
 
-- **Status:** PROPOSED (owner preference stated 2026-10-01; workflow details to be accepted at G0)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G0 · **Stage:** S0
+- **Status:** ACCEPTED
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G0 approval, 2026-10-01) · **Gate:** G0 · **Stage:** S0
 - **Supersedes:** none · **Resolves:** none
 
 ## Context

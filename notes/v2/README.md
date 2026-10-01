@@ -35,6 +35,7 @@ raise it as a spec question — do not decide it in code.
 | 09 | [Legacy superseded](09_LEGACY_SUPERSEDED.md) | What the old material is, and what (if anything) carries forward |
 | — | [Decision register](decisions/README.md) | All ADRs and their status |
 | — | [Open research questions](research/OPEN_QUESTIONS.md) | Every unresolved question, assigned to a stage |
+| — | [REF-01 reference paper](research/REF-01_self-driving-portfolio.md) | Knowledge base of the architectural reference paper |
 | — | [Changelog](CHANGELOG.md) | Document-level change history |
 
 ## Layout
@@ -51,7 +52,7 @@ notes/v2/
 
 ## Current position
 
-Stage **S0 (Charter & decision governance)** — under owner review at gate G0,
-including the proposed signal & scoring amendment (ADR-0012, ADR-0013).
+Stage **S0 (Charter & decision governance)** — closed at gate G0 (2026-10-01);
+all S0 ADRs (0001–0013) accepted. Next: **S1 — Investor & jurisdiction context**.
 No methodological question has been resolved; all are recorded in
 [research/OPEN_QUESTIONS.md](research/OPEN_QUESTIONS.md).

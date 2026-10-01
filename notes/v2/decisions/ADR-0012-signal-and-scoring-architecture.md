@@ -1,8 +1,8 @@
 # ADR-0012 — Deterministic signal & scoring architecture: descriptor taxonomy, score ≠ belief, typed eligibility
 
-- **Status:** PROPOSED (to be decided at G0)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G0 (architecture); methods at G7/G9/G11/G12/G13d · **Stage:** S0
+- **Status:** ACCEPTED
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G0 approval, 2026-10-01) · **Gate:** G0 (architecture); methods at G7/G9/G11/G12/G13d · **Stage:** S0
 - **Supersedes:** none · **Extends:** ADR-0004 (adds rule R8), ADR-0005 (typed contracts), ADR-0011 (S9 restructure) — none of their bodies is modified
 - **Resolves:** none (opens RQ-27 … RQ-37)
 

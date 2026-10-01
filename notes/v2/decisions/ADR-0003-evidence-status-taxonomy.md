@@ -1,8 +1,8 @@
 # ADR-0003 — Separate evidence and status vocabularies
 
-- **Status:** PROPOSED (to be accepted at G0)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G0 · **Stage:** S0
+- **Status:** ACCEPTED
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G0 approval, 2026-10-01) · **Gate:** G0 · **Stage:** S0
 - **Supersedes:** legacy tag convention · **Resolves:** none
 
 ## Context

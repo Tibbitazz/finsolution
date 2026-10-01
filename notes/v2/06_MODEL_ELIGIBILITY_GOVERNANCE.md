@@ -97,7 +97,7 @@ effects of heavy tails, volatility clustering, and non-stationarity; the
 effective T under EWMA/rolling windows; the economically meaningful margin.
 Research design and threshold calibration: S10 (RQ-14). **No threshold is set.**
 
-## 5. Typed contracts — signals, transformations, aggregations, mappings — `PROPOSED` (ADR-0012)
+## 5. Typed contracts — signals, transformations, aggregations, mappings (ADR-0012)
 
 One funnel and one Method Library serve all method types. Every contract
 shares the core fields of §3 plus: `method_type` ∈ {model, signal,

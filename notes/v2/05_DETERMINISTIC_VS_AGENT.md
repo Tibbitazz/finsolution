@@ -1,6 +1,6 @@
 # 05 — Deterministic Code vs. Agent Responsibility
 
-**Document status:** STABLE (S0) for rules R1–R7; layer assignments are the accepted architecture, agent anatomy `PROPOSED` (S8) · **Decision basis:** ADR-0004
+**Document status:** STABLE (S0) for rules R1–R8 and §4; layer assignments are the accepted architecture, agent anatomy `PROPOSED` (S8) · **Decision basis:** ADR-0004
 
 ## 1. Binding rules
 
@@ -39,11 +39,11 @@ description (role, inputs, workflow, outputs), deterministic scripts it calls,
 shared skills (methodology documents + scripts), and a structured output
 contract (schema-validated JSON for machines + markdown for humans).
 
-## 4. Signals and scores — `PROPOSED` (ADR-0012), not to be implemented before G0
+## 4. Signals and scores (ADR-0012)
 
 - **Placement.** Within layer 3 (Research), a distinct deterministic **signal & scoring component** produces descriptors (cross-sectional scores, time-series states) from point-in-time data. Belief formation (expected returns, regime) is a separate, downstream step. Implementation/risk attributes are computed in layers 4 and 8, indexed asset × account or asset × portfolio.
 - **Score ≠ belief.** No score is used as μ, α, or an EPO signal without an `ACCEPTED` mapping (RQ-33).
 
-| # | Rule (proposed) |
+| # | Rule |
 |---|---|
 | R8 | **Evidence binding.** Agents' quantitative characterisations of assets must cite deterministic descriptors from their evidence packet (value, method and version, comparison universe, timestamps, provenance, staleness — schema RQ-34). Agents cannot compute, alter, or re-normalise descriptors. They may interpret them, compare them with other evidence, and challenge their applicability, in writing and logged. |

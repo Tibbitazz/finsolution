@@ -1,8 +1,8 @@
 # ADR-0013 — Clarify ADR-0009's enforcement test for relative (cross-sectional) quantities
 
-- **Status:** PROPOSED (to be decided at G0)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G0 · **Stage:** S0
+- **Status:** ACCEPTED
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G0 approval, 2026-10-01) · **Gate:** G0 · **Stage:** S0
 - **Supersedes:** none · **Clarifies:** ADR-0009 (principle unchanged; body not modified)
 - **Resolves:** none (opens RQ-38)
 

@@ -1,5 +1,17 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — Gate G0 closed
+
+- Owner accepted ADR-0002, ADR-0003, ADR-0012, ADR-0013 (status lines updated;
+  bodies unchanged). All S0 ADRs 0001–0013 now ACCEPTED.
+- PROPOSED markers removed from 05 §4, 06 §5, 07 §4, 08 (sections now binding).
+- Added research/REF-01_self-driving-portfolio.md: knowledge base of the
+  source-of-record version (21 Sep 2026), verified exhibit arithmetic, an
+  April-vs-September version-difference table, and version-independent
+  arguments from the legacy April-draft review, re-tagged and assigned to RQs.
+  The legacy review itself was not moved (it describes the April 1 draft and
+  assesses it against superseded ENGINE_V1); it remains untouched locally.
+
 ## 2026-10-01 — S0 amendment: signal & scoring research pre-registration (branch `stage/s0-governance`)
 
 Basis: owner-supplied Asness, Moskowitz & Pedersen (2013); Sørensen,
