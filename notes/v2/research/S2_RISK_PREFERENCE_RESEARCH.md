@@ -1,6 +1,6 @@
 # S2 — Risk-preference ontology, risk-aversion parameters, and elicitation (research memo, O8/O9)
 
-**Document status:** DRAFT (S2, for G2) · **Resolves (proposed):** RQ-02b (representation), RQ-02c (theory and scaling) · **Defers:** RQ-02d (model mappings) to S11
+**Document status:** STABLE (accepted at G2, 2026-10-01, as the S2 evidence base **with its verification limitations preserved**; sources marked [V-bib] or indirectly verified must not be cited at a stronger level until read directly — in particular Pedroni et al. 2017 and Levy & Markowitz 1979) · **Resolves (proposed):** RQ-02b (representation), RQ-02c (theory and scaling) · **Defers:** RQ-02d (model mappings) to S11
 
 **Source-verification note.** Sources were checked on 2026-10-01. Each is
 tagged with what was verified:
@@ -11,7 +11,7 @@ tagged with what was verified:
 Claim classes: **TH** established theory · **EM** empirical finding ·
 **IP** industry/regulatory practice · **AI** architectural inference for this engine.
 
-## 1. Ontology (proposed — ADR-0018)
+## 1. Ontology (ADR-0018, accepted)
 
 | Concept | Meaning | Class | Origin / provenance |
 |---|---|---|---|
@@ -25,8 +25,9 @@ Claim classes: **TH** established theory · **EM** empirical finding ·
 **Relationships:**
 - Stated, elicited, capacity, and requirement are **inputs**. Model parameters and risk controls are **outputs** of accepted calibration methods.
 - None is interchangeable with another.
-- Disagreements between inputs (e.g. requirement exceeds capacity; stated ≫ elicited) are **findings shown to the user**, not auto-resolved (§4).
-- Whether capacity acts as a hard cap is deferred to S11 (see G2 decision D2-10).
+- Disagreements between inputs (e.g. requirement exceeds capacity; stated ≫ elicited) are exposed as findings. **No object overwrites another**, and capacity is never converted into a preference.
+- Whether particular, objectively measurable capacity measures become hard portfolio constraints is deferred to S11; G2 does not restrict such disagreements to being informational only (D2-10).
+- Model parameters (e.g. γ) are meaningful only within a specified formulation, units, and calibration context. They are never stored as portable attributes of the investor.
 
 ## 2. What the risk-aversion parameter is, and why it does not transfer
 
@@ -56,6 +57,13 @@ and objective. Candidate approaches (competing; none adopted):
 
 Each approach requires a derivation record. Whether γ is held fixed or
 re-derived when beliefs change (2.7) is S11 (RQ-02 item 7).
+
+**AI 2.C — calibration vs. selection (for S11, RQ-02d/RQ-50).** Calibrating
+a model to the user (producing a parameter) is distinct from selecting a
+portfolio from an efficient opportunity set through an interpretable user
+choice (as in 2.2). The latter may avoid claiming that an economically
+precise γ has been measured. Both must remain available as distinct
+calibration-method types.
 
 ## 3. What can be inferred from user responses
 
@@ -124,7 +132,7 @@ guidance informs design; it does not determine engine rules.
 interval / parameter), validity evidence, applicable population — with
 responses stored raw (A) and scores as D.
 
-**Proposed G2 outcome:** no instrument adopted. `INV.choice_battery` (7.6)
+**G2 outcome (accepted):** no instrument adopted. `INV.choice_battery` (7.6)
 and the drawdown-reaction levels (7.3) stay conditional or pending. The
 candidate set above goes forward to S11 for validation (RQ-50). No
 proprietary battery is created.

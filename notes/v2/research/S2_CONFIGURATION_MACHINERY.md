@@ -1,7 +1,7 @@
 # S2 — Configuration machinery (logical specification)
 
-**Document status:** DRAFT (S2, for G2) · **Basis:** ADR-0004, ADR-0005, ADR-0006, ADR-0009, ADR-0012, ADR-0013, ADR-0014; S1_INPUT_SPECIFICATION
-**Proposed decisions:** ADR-0015 … ADR-0018 · **Decision list:** [S2_G2_DECISIONS.md](S2_G2_DECISIONS.md)
+**Document status:** STABLE (accepted at G2, 2026-10-01, with owner amendments to O4, O6, O7) · **Basis:** ADR-0004, ADR-0005, ADR-0006, ADR-0009, ADR-0012, ADR-0013, ADR-0014; S1_INPUT_SPECIFICATION
+**Decisions:** ADR-0015 … ADR-0018 (accepted) · **Decision list:** [S2_G2_DECISIONS.md](S2_G2_DECISIONS.md)
 **Companions:** [S2_RISK_PREFERENCE_RESEARCH.md](S2_RISK_PREFERENCE_RESEARCH.md), [S2_SYNTHETIC_FIXTURES.md](S2_SYNTHETIC_FIXTURES.md)
 
 **Scope rule.** This document specifies machinery capable of representing
@@ -18,7 +18,7 @@ technology are S8 decisions.
 
 | Entity | Key contents | Mutability |
 |---|---|---|
-| `FieldSpec` | The 19 attributes of S1 §2, plus `spec_version`, `allows_alternatives` (O4), `semantic_hash` (O10) | Immutable per version |
+| `FieldSpec` | The 19 attributes of S1 §2, plus `spec_version`, `supports_ordered_alternatives` (O4), `semantic_hash` (O10) | Immutable per version |
 | `OptionSet` / `OptionEntry` | See RQ-41 governance below | Entries change status only through governed events |
 | `Profile` | `profile_id`, schema line, created | Metadata only |
 | `DeclaredVersion` | `profile_id`, `version`, `parent`, `schema_version`, `field_values[]`, `created_at`, `content_hash` | **Immutable** |
@@ -26,7 +26,8 @@ technology are S8 decisions.
 | `StateSnapshot` (A′) | Per account: values, positions, lots, cash; import source; `content_hash` | Immutable per snapshot |
 | `FactsSnapshot` / `MethodRegistrySnapshot` | References to B and C versions | Immutable |
 | `EffectiveVersion` | Input hashes (Declared, State, Facts, Methods, resolver version); `resolution_records[]`; `content_hash` | Immutable |
-| `ResolutionRecord` | `field_id`, `declared_ref`, `effective_value`, `outcome`, `alternative_used` (rank or none), `findings[]` (O4) | Immutable |
+| `ResolutionRecord` | `field_id`, `declared_ref`, `effective_value`, `outcome`, `alternative_used` (rank or none), `finding_refs[]` (O4) | Immutable |
+| `FindingRecord` | Typed record (O4 record architecture): `finding_id`, `type`, `fields[]`, `goals[]`, `binding_sources[]`, `inputs` (`id@version`, incl. belief snapshot where relevant), `explanation`, `consequence`, `user_actions`, `status` (open / acknowledged / resolved / superseded), `first_seen_in` / `last_seen_in` (Effective versions) | Immutable per Effective version; lineage tracked across versions |
 | `DerivationRecord` | `output_id`, `method_id@version`, typed `inputs[]` (each `id@version` with class), `parameters`, `output` (with units), `timestamp`, `content_hash` | Immutable |
 | `AuthorityGrant` | See O6 | Versioned |
 | `ChangeEvent` | Class (A / A′ / B / C / D / schema / authority), refs, timestamp | Append-only log |
@@ -38,7 +39,7 @@ in place; change creates a new version linked to its parent.
 ### Typed values with explicit units
 
 Every numeric value carries **unit**, **basis**, and where relevant
-**period**, as data:
+**period**, as data. This metadata is preserved through every derivation: a `DerivationRecord` records input and output units, and every conversion step.
 - unit: e.g. NOK, %, count, years;
 - basis: decimal (0.05) vs. percent (5);
 - period: per year, per month, per trade.
@@ -105,11 +106,11 @@ accepted methods (C) through their own stages.
 1. **Validate** each active field (O1/O2 rules) → `incomplete` or invalid → finding type I0 (validation).
 2. **Activation**: compute the active set from field conditions and `required_profile_fields` of production methods; inactive → `not_applicable`.
 3. **For each active field, in dependency order** (O5 graph):
-   - a. Take the declared candidate list: the single value, or the ordered alternatives `[a₀, a₁, …]` if the FieldSpec allows them (O4).
+   - a. Take the declared candidate list: the single value, or the ordered alternatives `[a₀, a₁, …]` if the FieldSpec has `supports_ordered_alternatives = true` (O4).
    - b. For candidate `a_k`, evaluate facts (*f*), methodology (*m*), and feasibility (*s*, *f*) → `accepted` · `narrowed` · `blocked` · `pending`.
    - c. If `a₀` is `accepted` or `narrowed`, use it. If `blocked`/`pending` and a later declared alternative is `accepted`/`narrowed`, use the first such; record `alternative_used = k`. Otherwise the field is `blocked`/`pending`.
    - d. Emit findings (O4 taxonomy) with binding sources.
-4. **Cross-field analysis**: classify interactions per O4 (inconsistency / trade-off / multi-goal separation). Only I1–I3 produce conflict records; trade-offs produce notes.
+4. **Cross-field analysis**: classify interactions per O4 (inconsistency / trade-off / multi-goal separation). Every classified interaction produces a typed `FindingRecord` (O4 record architecture). Only I1–I3 records are conflicts.
 5. **Derive** D values with `DerivationRecord`s.
 6. **Assemble** the `EffectiveVersion`.
 
@@ -128,19 +129,31 @@ preserved declared value re-resolves without user re-entry.
 
 | Type | Definition | Engine response | Ordering? |
 |---|---|---|---|
-| **I1 Logical inconsistency** | Two declarations cannot simultaneously be true or implemented (e.g. "keep holding X" and "exclude X's issuer") | Conflict record; both values preserved; user resolves | **No automatic ordering** |
-| **I2 Hard-constraint conflict** | A preference conflicts with law, account, broker capability, or feasibility | `narrowed`/`blocked`; Declared preserved | Precedence of facts and feasibility (implementability only) |
-| **I3 Methodological conflict** | No admissible method for a requested option | `pending`/`blocked`; Declared preserved; declared alternatives may apply | Precedence of admissibility (implementability only) |
-| **T1 Competing objectives / trade-off** | Both declarations valid, implying different objectives (e.g. higher return target and lower volatility preference) | **Not a conflict.** A trade-off note is passed to construction and the report. Trade-offs are handled by the construction methodology (S11), not by the configuration layer | **None** |
-| **T2 Multi-goal separation** | Apparently conflicting requirements belong to different goals | No conflict. Requirements are attached to their goals; separate portfolio units if `GOL.portfolio_mapping` permits | **None needed** |
-| **F1 Objective infeasibility** | A declared objective cannot be attained within declared limits under current estimates (feasibility check on save) | Finding with the belief-snapshot reference; reported, not auto-resolved | None; user informed |
+| **I1 Logical inconsistency** | Two declarations cannot simultaneously be true or implemented (e.g. "keep holding X" and "exclude X's issuer") | `ConflictRecord`; both values preserved; user resolves | **No automatic ordering** |
+| **I2 Hard-constraint conflict** | A preference conflicts with law, account, broker capability, or feasibility | `ConflictRecord`; `narrowed`/`blocked`; Declared preserved | Precedence of facts and feasibility (implementability only) |
+| **I3 Methodological conflict** | No admissible method for a requested option | `ConflictRecord`; `pending`/`blocked`; Declared preserved; declared alternatives may apply | Precedence of admissibility (implementability only) |
+| **T1 Competing objectives / trade-off** | Both declarations valid, implying different objectives (e.g. higher return target and lower volatility preference) | **Not a conflict.** A `TradeOffRecord` is kept in structured state and the audit trail, passed to construction and the report. **S2 does not resolve trade-offs**; the construction methodology does (S11) | **None** |
+| **T2 Multi-goal separation** | Apparently conflicting requirements belong to different goals | No conflict. A `GoalRoutingRecord` (where routing is relevant) attaches requirements to their goals; separate portfolio units if `GOL.portfolio_mapping` permits | **None needed** |
+| **F1 Objective infeasibility** | A declared objective cannot be attained within declared limits under current estimates (feasibility check on save) | `FeasibilityFinding`, versioned and attributable (goal, limits, belief snapshot, method version); the goal is **never modified**; reported, not auto-resolved | None; user informed |
+
+### Record architecture
+
+| Interaction | Record type | Conflict? | Persistence |
+|---|---|---|---|
+| I1, I2, I3 | `ConflictRecord` | Yes | Versioned; lineage across Effective versions |
+| T1 | `TradeOffRecord` | No | Versioned; visible in state, report, audit trail |
+| T2 | `GoalRoutingRecord` (where relevant) | No | Versioned |
+| F1 | `FeasibilityFinding` | No | Versioned; attributable to its inputs; re-evaluated when inputs change; remains visible while it holds |
+
+All are `FindingRecord` subtypes (O1). None of them modifies the Declared
+Policy Statement.
 
 **Classifier rule.** Classification is deterministic from field semantics.
 When a pair cannot be classified with certainty (I1 vs. T1), it is
 presented as a *possible inconsistency* for the user to confirm. It is
 never silently ranked.
 
-**Ordering policy (proposed; research basis in S2_RISK_PREFERENCE_RESEARCH §4).**
+**Ordering policy (ADR-0016; research basis in S2_RISK_PREFERENCE_RESEARCH §4).**
 1. Separate by goal first (T2).
 2. Use explicit user priority where the user declared one (goal priority rank already exists; optional field-level priority).
 3. Otherwise ask the user to resolve.
@@ -148,9 +161,9 @@ never silently ranked.
 No system default ordering of valid objectives. A future default would
 require its own ADR with evidence.
 
-### Ordered alternatives (RQ-48)
+### Ordered alternatives (RQ-48) — mechanism only
 
-- A FieldSpec may set `allows_alternatives = true`. The value is then an
+- FieldSpec metadata `supports_ordered_alternatives` (true/false; default false for every field until set by that field's specification). When true, the value is an
   ordered list `[preferred, fallback₁, fallback₂, …]`. Each element must be
   independently valid.
 - **An empty fallback list means there is no user-authorised substitute.**
@@ -158,13 +171,13 @@ require its own ADR with evidence.
 - Fallback applies only when the preferred option is `blocked` or `pending`,
   not when it is `narrowed`.
 - The resolution record shows `alternative_used`. Declared stays unchanged.
-- **Field eligibility criterion** for `allows_alternatives` (all must hold):
+- **Semantic requirements** for setting `supports_ordered_alternatives = true` (all must hold, and are checked when the field's option set and methodology are specified):
   - single-choice field;
   - options sourced from B or C, so availability can change outside the user's control;
   - the substitutes are economically distinct choices the user can meaningfully rank.
-- **Candidate fields** (for G2): `REB.approach`, `POL.currency_hedging`,
-  `POL.benchmark`, `POL.allocation_unit`.
-- **Not eligible:** set-valued permissions (instruments, markets), numeric
+- **Which fields expose the mechanism is decided by the stage that researches each field's options and methodology**, not by G2. Candidate/example uses: `REB.approach` (S13b), `POL.currency_hedging` (S5), `POL.benchmark` (S7), `POL.allocation_unit` (S5). This is not a whitelist.
+- A field with `supports_ordered_alternatives = false` resolves only its single declared value; it can never use another option.
+- **Normally failing the requirements:** set-valued permissions (instruments, markets), numeric
   limits, personal facts.
 
 ## O5 — Dependency graph and incremental recomputation
@@ -205,6 +218,10 @@ treated as having an incomplete contract, which fails eligibility (06).
 The engine does not fall back to recomputing the whole graph.
 
 ## O6 — Authority model (analysis vs. execution)
+
+**Central invariant:** analytical authority ≠ decision authority ≠ execution authority. No execution-related authority becomes operational before the appropriate S13 safeguards and eligibility conditions exist.
+
+The eight dimensions below are the **S2 logical representation** (and the basis for the fixtures). S8 and S13 may refine, split, or consolidate them where implementation, broker capabilities, security, or regulatory research require, provided the central invariant is preserved.
 
 Authority is **grant-based**: no grant means no authority. Absence of a
 grant is not a default value. Dimensions follow the information-processing
@@ -248,6 +265,19 @@ A **calibration method** is a C method whose contract additionally declares:
 
 Every output is a D value with a `DerivationRecord`. **No calibration
 mapping is adopted in S2.** Model-specific mappings are S11 (RQ-02d).
+
+**Scope of model parameters.** A parameter such as γ has meaning only within
+its specified formulation, units, and calibration context. It is stored as a
+D value scoped to (model, formulation, calibration method `id@version`,
+input snapshot). It is never stored as a portable attribute of the investor
+or reused by another model.
+
+**Two distinct uses (for S11, RQ-02d/RQ-50):**
+- (a) *calibrating a model to the user*, which produces a parameter;
+- (b) *selecting a portfolio from an efficient opportunity set by an interpretable user choice*, e.g. choosing among projected outcome profiles. This may avoid pretending that an economically precise γ has been measured.
+
+The calibration interface supports both, and a selection-based method
+records the chosen option, the opportunity set, and its belief snapshot.
 
 ## O10 — Schema evolution and historical interpretability (RQ-47)
 

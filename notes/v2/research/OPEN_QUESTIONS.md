@@ -9,7 +9,7 @@ on the owner's own circumstances rather than on literature.
 | ID | Question | Stage → Gate | Status | Notes |
 |---|---|---|---|---|
 | RQ-01 | Investor Profile & Policy Statement input specification | S1 → G1 | RESOLVED (ADR-0014; S1_INPUT_SPECIFICATION) | S1_INPUT_SPECIFICATION + S1_SYNTHETIC_FIXTURES; no real profile required (ADR-0014) |
-| RQ-02 | Representation and calibration of risk preference (see below) | S1, S2, S11 → G1, G2, G11 | IN-RESEARCH | 02a resolved in S1; 02b/02c AT-GATE (ADR-0018, S2_RISK_PREFERENCE_RESEARCH); 02d → S11 |
+| RQ-02 | Representation and calibration of risk preference (see below) | S1, S2, S11 → G1, G2, G11 | IN-RESEARCH | 02a resolved in S1; 02b/02c RESOLVED (ADR-0018); 02d → S11, which must distinguish calibrating a model to the user from selecting a portfolio from an efficient opportunity set by interpretable choice (ADR-0018 §6) |
 | RQ-03 | Norwegian account wrappers in scope (excl. individuell pensjonssparing) and their rules; taxation of shares, funds (incl. fund equity-share rules), interest; shielding deduction; wealth-tax treatment | S3a → G3 | OPEN | Primary sources only; legacy ASK claims are leads only |
 | RQ-04 | Kildeskatt: withholding on foreign dividends, treaty rates, credit against Norwegian tax, treatment inside wrappers, fund-level withholding in non-domestic funds/ETFs | S3a → G3 | OPEN | |
 | RQ-05 | Instrument regulation for Norwegian retail investors: retail-availability rules (e.g. key information documents), CFDs, leveraged products | S3c → G3 | OPEN | |
@@ -30,7 +30,7 @@ on the owner's own circumstances rather than on literature.
 | RQ-20 | Investment-case report contents and approval workflow | S14 → G14 | OPEN | |
 | RQ-21 | Monitoring thresholds; eligibility hysteresis | S4, S16 → G4, G16 | OPEN | |
 | RQ-22 | Meta-agent permissions and materiality threshold | S17 → G17 | OPEN | |
-| RQ-23 | Conflict-priority ordering in the Policy Statement | S2 → G2 | AT-GATE | Refined into an interaction taxonomy (I1–I3, T1, T2, F1); ADR-0016 |
+| RQ-23 | Conflict-priority ordering in the Policy Statement | S2 → G2 | RESOLVED (ADR-0016) | Interaction taxonomy and record architecture; no system default ordering |
 | RQ-24 | Re-verification cadence per fact domain | S3 → G3 | OPEN | |
 | RQ-25 | Definition of the permanent simple control baseline | S7 → G7 | OPEN | |
 | RQ-26 | Statistical power for evaluating the agent layer at strategic horizons | S7, S15 → G7, G15 | OPEN | May be low; must be stated honestly |
@@ -47,16 +47,16 @@ on the owner's own circumstances rather than on literature.
 | RQ-37 | Signal-evaluation design: factor-portfolio tests (rank-weighted and quantile), predictive tests, net-of-cost evaluation under account configuration, pre-registered variant grid, multiple-testing control | S7 → G7 | OPEN | Must be fixed before any signal result is produced |
 | RQ-39 | Local workspace design: storage format and location, multiple profiles, encryption at rest, backup/export, separation of user run history | S8 → G8 | OPEN | ADR-0014 |
 | RQ-40 | Personal-data flow to external services (hosted LLM providers, data vendors): which fields, if any, may leave the machine; minimisation; local vs. hosted models; user consent | S8, S12 → G8, G12 | OPEN | None assumed until decided; only fields whose declared purpose requires an external component may be considered (ADR-0014 §8) |
-| RQ-41 | Field metadata (incl. purpose, permitted consumers, necessity — ADR-0014 §8) and predefined option sets (e.g. risk categories, leverage levels, exclusion lists): research basis, advanced/custom ranges, validation | S2 → G2 | AT-GATE (governance only; contents → S3–S5) | Options must not be defaults |
+| RQ-41 | Field metadata (incl. purpose, permitted consumers, necessity — ADR-0014 §8) and predefined option sets (e.g. risk categories, leverage levels, exclusion lists): research basis, advanced/custom ranges, validation | S2 → G2 | RESOLVED for governance (ADR-0015); contents → S3–S5 | Options must not be defaults |
 | RQ-42 | Handling of users outside registry-covered jurisdictions; process for adding a jurisdiction | S3 → G3 | OPEN | Unsupported is reported, never defaulted to Norway |
 | RQ-43 | Configuration portability: versioned export/import of a user profile across installations; schema-version compatibility; encryption and privacy of the artefact | S8 → G8 | OPEN | ADR-0014 §11 |
 | RQ-44 | Rebalancing: taxonomy (drift-driven rebalancing vs. signal-driven target change), admissible approaches (calendar, band, hybrid, method-determined, custom), which parameters are user-settable vs. system-derived, trigger definitions, interaction with trade limits and cash flows | S13b → G13b | OPEN | Refines RQ-18; S1 fixes only the configuration structure |
 | RQ-45 | Role, if any, of self-reported investment experience vs. verified broker knowledge tests in eligibility, suitability, or UI | S3c → G3 | OPEN | Field `INV.investment_experience` inactive; remove if tests are the mechanism |
 | RQ-46 | Whether anticipated tax-residence change matters: multi-period or cross-jurisdiction tax-aware methods | S3a, S13a → G3, G13a | OPEN | Field `INV.residence_change_expected` inactive |
-| RQ-47 | Schema evolution: field versioning, retirement, migration of saved profiles | S2, S8 → G2, G8 | AT-GATE (policy) | ADR-0015 O10; tooling → S8 |
-| RQ-48 | Declared ordered alternatives: whether and how fields may carry user-declared fallbacks used only when the first choice is blocked or pending | S2 → G2 | AT-GATE | Without declared alternatives, no substitution (S1 §7.1) |
-| RQ-49 | Regulatory status of distributing the engine to other users (investment advice/suitability obligations, if any, under Norwegian/EEA rules) | S3c → G3 | OPEN | Raised by ESMA suitability review (S2 research §4); legal research, not assumed |
-| RQ-50 | Validation of risk-elicitation candidates for calibration use | S11, S15 → G11, G15 | OPEN | ADR-0018; candidate list in S2_RISK_PREFERENCE_RESEARCH §5 |
+| RQ-47 | Schema evolution: field versioning, retirement, migration of saved profiles | S2, S8 → G2, G8 | RESOLVED for policy (ADR-0015); tooling → S8 | |
+| RQ-48 | Declared ordered alternatives: whether and how fields may carry user-declared fallbacks used only when the first choice is blocked or pending | S2 → G2 | RESOLVED as mechanism (ADR-0016); per-field enablement by each field\'s stage | Without declared alternatives, no substitution (S1 §7.1) |
+| RQ-49 | Regulatory status of distributing the engine to other users (investment advice/suitability obligations, if any, under Norwegian/EEA rules) | S3c → G3 | OPEN | A research question only — no regulatory status is implied. S3c investigates the boundary from intended functionality, distribution model, jurisdiction, and execution capabilities; regulatory status is not inferred from S2's use of ESMA guidance |
+| RQ-50 | Validation of risk-elicitation candidates for calibration use | S11, S15 → G11, G15 | OPEN | ADR-0018; candidate list in S2_RISK_PREFERENCE_RESEARCH §5; includes selection-from-opportunity-set approaches (ADR-0018 §6) |
 | RQ-38 | Comparison-universe invariance: compute relative scores over the policy-permitted universe or over a preference-independent reference universe, then filter | S5, S9c → G5, G9 | OPEN | ADR-0013 (proposed) makes the comparison universe an explicit input |
 
 ## RQ-02 — Risk preference: representation and calibration

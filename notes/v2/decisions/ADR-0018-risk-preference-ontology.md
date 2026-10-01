@@ -1,10 +1,10 @@
 # ADR-0018 — Risk-preference ontology, calibration interface, and elicitation deferral
 
-- **Status:** PROPOSED (for G2)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G2 · **Stage:** S2
+- **Status:** ACCEPTED (with owner amendments at G2)
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G2 approval, 2026-10-01) · **Gate:** G2 · **Stage:** S2
 - **Supersedes:** none · **Extends:** ADR-0010 (separation of preference and parameters), ADR-0014 §7 (derivation records)
-- **Resolves (proposed):** RQ-02b, RQ-02c · **Defers:** RQ-02d (S11), RQ-50
+- **Resolves:** RQ-02b, RQ-02c · **Defers:** RQ-02d (S11), RQ-50
 
 ## Context
 Risk concepts must not be collapsed, and no category → γ mapping may be
@@ -14,9 +14,10 @@ research/S2_RISK_PREFERENCE_RESEARCH.md.
 ## Decision
 1. **Ontology** (D2-09): stated preference · elicited preference/tolerance · risk capacity · risk requirement · model risk-aversion parameter · portfolio risk controls. They are distinct objects with provenance; none is interchangeable with another.
 2. **Calibration** only through calibration-method contracts (O7). These declare formulation, units, basis, period, return frequency, validity, belief dependence, and recalibration triggers, and every output carries a derivation record. No mapping is adopted in S2.
-3. **No universal category → γ mapping.** Qualitative categories are ordinal stated preferences. Calibration happens within the consuming model.
-4. **Disagreements** among inputs (e.g. requirement > capacity; stated vs. elicited) are findings for user resolution. Capacity as a hard cap is deferred to S11 (D2-10).
+3. **No universal category → γ mapping.** Qualitative categories are ordinal stated preferences. Calibration happens within the consuming model. **Model parameters such as γ have meaning only within a specified formulation, units, and calibration context, and are never stored as portable attributes of the investor.**
+4. **Disagreements** among inputs (e.g. requirement > capacity; stated vs. elicited): the distinct objects are preserved, the disagreement is exposed, no object overwrites another, and capacity is never converted into preference. Whether particular objectively measurable capacity measures become hard portfolio constraints is deferred to S11; G2 does not restrict disagreements to being informational only (D2-10, amended).
 5. **No elicitation instrument adopted** (D2-11). The `Instrument` contract is adopted; `INV.choice_battery` stays conditional; drawdown-reaction levels stay pending; candidate approaches go to S11 validation.
+6. **Calibration vs. selection (for S11, RQ-02d/RQ-50):** calibrating a model to the user is distinct from selecting a portfolio from an efficient opportunity set through an interpretable user choice. Both remain available as distinct calibration-method types.
 
 ## Alternatives considered
 | Option | For | Against |

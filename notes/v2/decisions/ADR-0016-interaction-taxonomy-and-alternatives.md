@@ -1,10 +1,10 @@
 # ADR-0016 — Interaction taxonomy, ordering policy, and declared ordered alternatives
 
-- **Status:** PROPOSED (for G2)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G2 · **Stage:** S2
+- **Status:** ACCEPTED (with owner amendments at G2)
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G2 approval, 2026-10-01) · **Gate:** G2 · **Stage:** S2
 - **Supersedes:** none · **Extends:** ADR-0014 §5
-- **Resolves (proposed):** RQ-23, RQ-48
+- **Resolves:** RQ-23, RQ-48
 
 ## Context
 Not every pair of user inputs pulling in different directions is a
@@ -16,18 +16,26 @@ inferred (G1 clarification).
    - I1 logical inconsistency;
    - I2 hard-constraint conflict;
    - I3 methodological conflict;
-   - T1 competing objectives (not a conflict; a trade-off note passed to construction);
+   - T1 competing objectives (not a conflict; a trade-off record passed to construction);
    - T2 multi-goal separation (not a conflict);
    - F1 objective infeasibility under current estimates (a finding).
 
-   Only I1–I3 create conflict records. Uncertain classifications are shown as possible inconsistencies.
+   Only I1–I3 are conflicts. Uncertain classifications are shown as possible inconsistencies.
+
+   **Record architecture (amended at G2):** every classified interaction produces a versioned, attributable `FindingRecord`:
+   - I1–I3 → `ConflictRecord`;
+   - T1 → `TradeOffRecord`;
+   - T2 → `GoalRoutingRecord` where relevant;
+   - F1 → `FeasibilityFinding`.
+
+   All remain visible in structured state and the audit trail. An unattainable objective stays visible without modifying the goal. T1 trade-offs are not resolved in S2.
 2. **Ordering** (D2-05): goal separation → explicit user priority → user resolution. No system default ordering of valid objectives without a future ADR and evidence.
-3. **Ordered alternatives** (D2-06):
-   - Enabled per field only where the field is single-choice, its options come from a registry or the eligibility funnel, and its substitutes are meaningfully rankable.
-   - An empty list means there is no substitute.
-   - Fallback applies only when the preferred option is blocked or pending.
-   - `alternative_used` is recorded.
-   - Enabled now for `REB.approach`, `POL.currency_hedging`, `POL.benchmark`, `POL.allocation_unit`.
+3. **Ordered alternatives — mechanism only (amended at G2)** (D2-06):
+   - Field metadata `supports_ordered_alternatives` (default false).
+   - Semantic requirements for enabling it: single-choice field; options come from a registry or the eligibility funnel; substitutes are meaningfully rankable.
+   - An empty list authorises no substitution. Fallback applies only when the preferred option is blocked or pending. `alternative_used` is recorded.
+   - A field without the capability never uses another option.
+   - **No closed whitelist:** which fields expose the mechanism is decided by the stage that researches each field's options and methodology. `REB.approach`, `POL.currency_hedging`, `POL.benchmark`, `POL.allocation_unit` are examples only.
 
 ## Alternatives considered
 | Option | For | Against |

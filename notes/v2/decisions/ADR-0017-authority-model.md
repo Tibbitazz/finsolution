@@ -1,17 +1,18 @@
 # ADR-0017 — Authority model: analysis separated from execution
 
-- **Status:** PROPOSED (for G2)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G2 · **Stage:** S2
+- **Status:** ACCEPTED (with owner amendments at G2)
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G2 approval, 2026-10-01) · **Gate:** G2 · **Stage:** S2
 - **Supersedes:** none · **Extends:** ADR-0004 (R4, human approval), S1 field `GOV.autonomy`
-- **Resolves (proposed):** structure of the approval matrix (S2 output O6)
+- **Resolves:** structure of the approval matrix (S2 output O6)
 
 ## Context
 A single "autonomy" field would conflate analytical discretion with
 permission to move money (owner instruction).
 
 ## Decision
-1. Eight separate, grant-based authority dimensions:
+0. **Central invariant:** analytical authority ≠ decision authority ≠ execution authority. No execution-related authority becomes operational before the appropriate S13 safeguards and eligibility conditions exist.
+1. A stage-separated model distinguishing information acquisition/analysis, proposal, decision/portfolio construction, trade generation/staging, order submission, and unattended execution. Its **S2 logical representation** is eight grant dimensions; S8/S13 may refine, split, or consolidate them where implementation, broker capabilities, security, or regulatory research require, provided the invariant holds:
    1. analyse;
    2. propose/recommend;
    3. construct candidate portfolios;
