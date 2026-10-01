@@ -1,6 +1,6 @@
 # S1 — Investor Profile & Policy Statement Input Specification
 
-**Document status:** DRAFT (S1, for G1) · **Basis:** ADR-0014 (proposed, amended), ADR-0006, ADR-0009, ADR-0010, ADR-0012, ADR-0013
+**Document status:** STABLE (accepted at G1, 2026-10-01) · **Basis:** ADR-0014, ADR-0006, ADR-0009, ADR-0010, ADR-0012, ADR-0013
 **Audience:** developer (UI/input contract) and reviewers. **Companion:** [S1_SYNTHETIC_FIXTURES.md](S1_SYNTHETIC_FIXTURES.md).
 
 This specification defines **what any local user can enter or change**, what
@@ -229,7 +229,7 @@ implementation. Its interaction with each is resolved in S13b/S13c.
    - The user sees a diff of Declared changes and of the resulting Effective changes.
    - Remembered values are shown as "your saved value (date)", never as defaults.
 7. **Derived proposals.** Shown with a "proposal" badge and a "how derived" link. Accept → stored as `accepted_proposal`. Reject → the user's value is stored and the proposal record kept.
-8. **Conflict panel.** Lists every conflict record (§7.2) with actions: change my input · accept the narrowed value · keep the input (it remains declared, not effective) · open the explanation.
+8. **Conflict panel.** Lists every conflict record (§7.2) with actions: change my input · declare the narrowed value as my new input (creates a new Declared version; never automatic) · keep my input (it stays declared, shown as not effective) · open the explanation.
 9. **Newly active fields.** When a method enters production and requires an inactive field, the user is notified: which method, why, necessity, privacy class. The field is optional to answer unless the method's contract makes it required for that method. If declined, the method is reported as ineligible for this profile; it is never run on imputed data.
 10. **Effective view.** A read-only view of the Effective Policy Statement with provenance for each value. It is never edited directly.
 
@@ -252,12 +252,22 @@ snapshot (B), method-registry snapshot (C).
 
 **Per-field outcome:** `accepted` · `narrowed` · `blocked` · `pending` · `not_applicable` · `incomplete`.
 
-**Class precedence fixed in S1:**
+**Declared is never rewritten (G1 clarification).** The precedence below
+decides only **what can be implemented** in the Effective Policy Statement.
+It is not a hierarchy of authority over the user's preferences.
+- The Declared Policy Statement is preserved exactly as declared.
+- Facts, legal or account constraints, feasibility, and methodology may give a preference the status blocked, narrowed, or pending in the Effective Policy Statement. They never replace the declared value.
+- The engine never substitutes another option. Example: `declared = band rebalancing` → `effective status = pending/blocked`, `reason = no admissible band-rebalancing method`. It does not switch to calendar.
+- An alternative is used only if the user has explicitly declared it. Whether fields support declared ordered alternatives is an S2 schema question (RQ-48).
+- If a required effective value is blocked or pending, processes that need it are reported as unavailable, not run on a substitute.
+- When the binding fact or method changes, the preserved declared value is re-resolved automatically without user re-entry.
+
+**Class precedence fixed in S1 (implementability only):**
 - B facts and hard feasibility > C admissibility > A preferences.
 - Conflicts *between* A fields are presented to the user. Automatic ordering among A fields is S2's job (RQ-23).
 
 **Never:**
-- silent override;
+- silent override, or rewriting or substituting a declared value;
 - editing Effective directly;
 - using a blocked value;
 - imputing missing values;

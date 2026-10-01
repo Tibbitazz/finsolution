@@ -8,7 +8,7 @@ on the owner's own circumstances rather than on literature.
 
 | ID | Question | Stage → Gate | Status | Notes |
 |---|---|---|---|---|
-| RQ-01 | Investor Profile & Policy Statement input specification | S1 → G1 | AT-GATE | S1_INPUT_SPECIFICATION + S1_SYNTHETIC_FIXTURES; no real profile required (ADR-0014) |
+| RQ-01 | Investor Profile & Policy Statement input specification | S1 → G1 | RESOLVED (ADR-0014; S1_INPUT_SPECIFICATION) | S1_INPUT_SPECIFICATION + S1_SYNTHETIC_FIXTURES; no real profile required (ADR-0014) |
 | RQ-02 | Representation and calibration of risk preference (see below) | S1, S2, S11 → G1, G2, G11 | OPEN | ADR-0010 fixes only the separation |
 | RQ-03 | Norwegian account wrappers in scope (excl. individuell pensjonssparing) and their rules; taxation of shares, funds (incl. fund equity-share rules), interest; shielding deduction; wealth-tax treatment | S3a → G3 | OPEN | Primary sources only; legacy ASK claims are leads only |
 | RQ-04 | Kildeskatt: withholding on foreign dividends, treaty rates, credit against Norwegian tax, treatment inside wrappers, fund-level withholding in non-domestic funds/ETFs | S3a → G3 | OPEN | |
@@ -54,6 +54,7 @@ on the owner's own circumstances rather than on literature.
 | RQ-45 | Role, if any, of self-reported investment experience vs. verified broker knowledge tests in eligibility, suitability, or UI | S3c → G3 | OPEN | Field `INV.investment_experience` inactive; remove if tests are the mechanism |
 | RQ-46 | Whether anticipated tax-residence change matters: multi-period or cross-jurisdiction tax-aware methods | S3a, S13a → G3, G13a | OPEN | Field `INV.residence_change_expected` inactive |
 | RQ-47 | Schema evolution: field versioning, retirement, migration of saved profiles | S2, S8 → G2, G8 | OPEN | Extensibility rules in S1 §8 |
+| RQ-48 | Declared ordered alternatives: whether and how fields may carry user-declared fallbacks used only when the first choice is blocked or pending | S2 → G2 | OPEN | Without declared alternatives, no substitution (S1 §7.1) |
 | RQ-38 | Comparison-universe invariance: compute relative scores over the policy-permitted universe or over a preference-independent reference universe, then filter | S5, S9c → G5, G9 | OPEN | ADR-0013 (proposed) makes the comparison universe an explicit input |
 
 ## RQ-02 — Risk preference: representation and calibration

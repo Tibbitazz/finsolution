@@ -1,8 +1,8 @@
 # ADR-0014 — Reusable engine with a private local user layer; declared vs. effective Policy Statement
 
-- **Status:** PROPOSED (principles instructed and amendments approved in direction by the owner, 2026-10-01; formal acceptance at G1)
-- **Date proposed:** 2026-10-01 · **Date decided:** —
-- **Decided by:** — · **Gate:** G1 · **Stage:** S1
+- **Status:** ACCEPTED
+- **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
+- **Decided by:** Owner (G1 approval, 2026-10-01) · **Gate:** G1 · **Stage:** S1
 - **Supersedes:** none · **Extends:** ADR-0006 (local-workspace root, data classes, field metadata), ADR-0010 (derivation records), ADR-0012 typed contracts (`required_profile_fields`, parameter authority); amends the 00_CHARTER scope/roles text — no accepted ADR body is modified
 - **Resolves:** D-S1-1 (where personal answers are stored); opens RQ-39 … RQ-47
 
@@ -61,6 +61,7 @@ project decisions. The repository is public.
 5. **Declared vs. effective Policy Statement.**
    - **Declared** = the user's A inputs, versioned and immutable per version.
    - **Effective** = the result of the resolution rules (S1_INPUT_SPECIFICATION §7.1). Precedence: B facts and hard feasibility > C admissibility > A preferences.
+   - **The precedence governs implementability only, not authority over preferences.** The Declared Policy Statement is preserved exactly. Facts, constraints, feasibility, and methodology may block, narrow, or make a preference pending in Effective; they never rewrite or substitute the declared value. Alternatives are used only if the user declared them.
    - Every difference produces a conflict record. Neither side is silently overridden, Effective is never edited directly, and only Effective drives the investment process.
    - Downstream invalidation follows the **Effective** diff.
    - Portfolio State changes never alter A values or preference-derived calibration.

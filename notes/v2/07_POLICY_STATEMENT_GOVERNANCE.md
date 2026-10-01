@@ -147,7 +147,7 @@ Every Policy Statement change is versioned, requires owner approval, and
 triggers recomputation of exactly the dependent artefacts (artifact
 dependency graph, S8). Agents cannot modify the Policy Statement.
 
-## 8. System layer vs. local user layer; declared vs. effective (ADR-0014, `PROPOSED` — not to be implemented before G1)
+## 8. System layer vs. local user layer; declared vs. effective (ADR-0014)
 
 ```
 Reusable engine (public)  →  public versioned facts + accepted methodology
@@ -159,6 +159,7 @@ Reusable engine (public)  →  public versioned facts + accepted methodology
 - The Policy Statement is per local user profile. Personal content never leaves the local workspace or enters the public repository.
 - Every field carries metadata: input nature (factual / preference / research-dependent), editability (user-editable / registry-sourced / methodology-defined / system-derived), input type, option source (static / registry-driven / eligibility-driven), whether an advanced value is allowed, its §3 category, and for personal data its decision purpose, exhaustive permitted consumers, and necessity (purpose limitation, ADR-0014 §8). Field specification is an S2 deliverable.
 - Facts and rules are never editable as preferences.
+- The Declared Policy Statement is never rewritten; the precedence of facts and feasibility, then methodology, then preferences decides implementability only.
 - A preference never makes an infeasible choice feasible. Conflicts are explained to the user, not silently resolved.
 - Raw preferences are preserved. Derived model parameters carry derivation records (method version, inputs, output).
 - Data classes (A, A′ Portfolio State, B, C, D, E), schema capability vs. UI activation, and value origins (user-entered, remembered, accepted proposal, technical default) are specified in research/S1_INPUT_SPECIFICATION.md.

@@ -1,5 +1,12 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — Gate G1 closed
+
+- Owner approved G1: ADR-0014 ACCEPTED; S1_INPUT_SPECIFICATION and S1_SYNTHETIC_FIXTURES STABLE; interaction model, resolution, propagation, fixtures, S1/S2 separation, RQ-43 … RQ-47.
+- G1 clarification made explicit: the precedence facts/feasibility → methodology → preferences decides implementability only. Declared values are never rewritten or substituted (ADR-0014 §5, spec §7.1, 07 §8). RQ-48 added (declared ordered alternatives, S2).
+- FX-18 added: valid declared preference preserved while methodologically inadmissible (no existing fixture tested this exactly; FX-17 has no user selection, FX-05 is data/universe ineligibility). FX-03 states declared retention explicitly.
+- RQ-01 RESOLVED. PROPOSED markers removed from 00, 06, 07.
+
 ## 2026-10-01 — S1 refocused on the reusable input specification
 
 - S1 deliverable changed from collecting a personal profile to the reusable Investor Profile & Policy Statement input specification: research/S1_INPUT_SPECIFICATION.md (data classes A–E, field-specification schema, capability vs. activation, value origins, field inventory incl. new rebalancing configuration group, interaction model, Declared → Effective resolution, change propagation, extensibility) and research/S1_SYNTHETIC_FIXTURES.md (17 edge-case fixtures with stub facts and methods).
