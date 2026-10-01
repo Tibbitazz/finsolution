@@ -13,7 +13,7 @@ change; the engine must know which version it used.
 
 | Registry | Contains | Determined by |
 |---|---|---|
-| Jurisdiction & Tax Rules | Taxation of gains, dividends, interest, wealth; withholding tax (kildeskatt) and treaty credits; reporting obligations | Law of the investor's tax residence (Norway) and applicable treaties |
+| Jurisdiction & Tax Rules | Taxation of gains, dividends, interest (wealth tax out of scope, ADR-0021); withholding tax (kildeskatt) and treaty credits; reporting obligations | Law of the investor's tax residence (Norway) and applicable treaties |
 | Wrapper | Account-type rules: eligibility, tax deferral, contributions/withdrawals | Law |
 | Instrument Master | Tax- and regulation-relevant instrument attributes: domicile, legal form, UCITS status, fund equity share, distribution policy, fund-level withholding, retail-availability requirements (e.g. key information documents) | Instrument documentation and law |
 | Broker | Wrappers offered, instrument catalogue, costs, FX, execution, data, legal/custody model, tax reporting | Broker documentation |
@@ -72,14 +72,19 @@ notes:          <free text>
    NOK 50,000") is a registry concept (ADR-0007).
 7. **Scope.** Initial brokers: Nordnet and eToro, neither preferred; adding a
    broker requires only new records, never an architecture change. The
-   Norwegian pension product *individuell pensjonssparing* is out of scope
-   (ADR-0008).
+   All pension saving and pension products, including *individuell
+   pensjonssparing*, are out of scope (ADR-0008, ADR-0020). Wealth tax is
+   out of scope (ADR-0021).
 
 ## 5. Current contents
 
-**None.** No fact has been verified in v2. The registry is populated in S3.
+Registry v1 (verified 2026-10-01; accepted at G3): see
+[facts/README.md](facts/README.md) and [S3_FINDINGS.md](research/S3_FINDINGS.md).
+The logical record contract of ADR-0019 (accepted at G3) supersedes the §3
+schema above; §3 is retained as history. Read it through the ADR-0019
+mapping.
 
 ## 6. Open items
 
 - Storage format and location (YAML files under `facts/` vs. a database) — S6b/S8.
-- Re-verification cadence per domain — S3 (RQ-24).
+- Re-verification cadence per domain — S3_REGISTRY_ARCHITECTURE §8 (RQ-24, resolved at G3).

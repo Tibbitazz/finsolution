@@ -56,3 +56,6 @@ Only the owner moves a decision to `ACCEPTED` or `REJECTED`.
 
 `VERIFIED` · `LEGACY-UNVERIFIED` · `ASSUMED` · `OPEN` · `EXPIRED` (past `reverify_by`).
 See [03](03_FACTS_REGISTRY_POLICY.md).
+*Extension (ADR-0019, accepted at G3):* separate `legal_status` and
+`verification_status` axes with a mapping from this vocabulary; see
+[ADR-0019](decisions/ADR-0019-external-fact-registry.md).

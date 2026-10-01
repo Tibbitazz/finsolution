@@ -1,0 +1,210 @@
+# Provisional registry records — layered withholding, US source → Norwegian resident individual.
+# Contract: S3_REGISTRY_ARCHITECTURE.md §1, layers §5. W2 (treaty) and W5 (actually withheld) are separate facts.
+file_defaults:
+  version: 1
+  domain: withholding
+  scope: {source_country: US, residence_country: NO, taxpayer: individual, income_type: dividend}
+  verified_on: 2026-10-01
+  recorded_at: 2026-10-01
+  effective_to: null
+  supersedes: null
+  superseded_by: null
+  conflicts_with: null
+  provenance: "S3 research, Claude-assisted, owner review at G3"
+
+records:
+  - fact_id: wht.us.w1.statutory
+    layer: W1
+    attribute: statutory_withholding_rate
+    value: 30
+    unit: "%"
+    basis: percent_of_gross
+    period: per_payment
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null
+    reverify_by: 2028-10-01
+    source:
+      citation: "IRS, NRA Withholding"
+      url: https://www.irs.gov/individuals/international-taxpayers/nra-withholding
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "30% withholding on US-source FDAP income paid to foreign persons, unless reduced."
+
+  - fact_id: wht.us_no.w2.treaty_dividend_rate
+    layer: W2
+    attribute: treaty_maximum_rate
+    value: 15
+    unit: "%"
+    basis: percent_of_gross_amount_actually_distributed
+    period: per_payment
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null       # protocol entry-into-force date not recorded
+    reverify_by: 2028-10-01
+    source:
+      citation: "Convention between the US and Norway (income and property), Art. 8(2) as amended by protocol"
+      url: https://www.irs.gov/pub/irs-trty/norway.pdf
+      section: Art. 8(2)
+      retrieved_on: 2026-10-01
+      authority_type: treaty
+    claim: "Dividend tax by the source state shall not exceed 15% of the gross amount actually distributed."
+
+  - fact_id: wht.us.w3.w8ben
+    layer: W3
+    attribute: documentation_requirement
+    value:
+      form: W-8BEN
+      given_to: withholding_agent_or_payer
+      validity: until_last_day_of_third_succeeding_calendar_year
+      on_failure: statutory_rate_may_apply
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null
+    reverify_by: 2028-10-01
+    source:
+      citation: "IRS, Instructions for Form W-8BEN (Rev. October 2021)"
+      url: https://www.irs.gov/instructions/iw8ben
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "W-8BEN to claim treaty benefits; valid to end of third succeeding calendar year absent change in circumstances."
+
+  - fact_id: wht.us.w4.relief_at_source
+    layer: W4
+    attribute: relief_at_source_mechanism
+    value: treaty_rate_applied_by_withholding_agent_on_valid_w8ben
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: interpretation
+    verification_level: V-full
+    effective_from: null
+    reverify_by: 2028-10-01
+    source:
+      citation: "IRS, Instructions for Form W-8BEN"
+      url: https://www.irs.gov/instructions/iw8ben
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Inferred mechanism: agent withholds at treaty rate when documentation is valid."
+
+  - fact_id: wht.us.w5.nordnet
+    layer: W5
+    scope: {source_country: US, residence_country: NO, entity: nordnet_bank_nuf, income_type: dividend}
+    attribute: rate_actually_applied
+    value: treaty_rate
+    unit: null
+    basis: null
+    period: per_payment
+    legal_status: published
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null
+    reverify_by: 2027-01-01
+    conditions: {customer_tax_registered_in: [NO, SE, DK, FI], share_traded_on_local_market: true}
+    source:
+      citation: "Nordnet FAQ, Hvordan beskattes utbytte fra utenlandske aksjer"
+      url: https://www.nordnet.no/faq/skatt-og-skattemelding/utbytte-og-kildeskatt/hvordan-beskattes-utbytte-fra-utenlandske-aksjer/aksje-og-fondskonto-and-aksjesparekonto
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Nordnet applies treaty rates for SE, FI, US and CA dividends when the share trades on its local market."
+
+  - fact_id: wht.us.w5.etoro
+    layer: W5
+    scope: {source_country: US, residence_country: NO, entity: etoro_europe_ltd, income_type: dividend}
+    attribute: rate_actually_applied
+    value: null
+    unit: null
+    basis: null
+    period: per_payment
+    legal_status: not_applicable
+    verification_status: unavailable
+    verification_level: null
+    effective_from: null
+    reverify_by: 2027-01-01
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "No eToro source located (U10)."
+
+  - fact_id: wht.us.w6.reclaim
+    layer: W6
+    attribute: reclaim_mechanism
+    value: null
+    unit: null
+    basis: null
+    period: null
+    legal_status: not_applicable
+    verification_status: unavailable
+    verification_level: null
+    effective_from: null
+    reverify_by: 2027-04-01
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: tax_authority}
+    claim: "Not researched in primary sources (U6)."
+
+  - fact_id: wht.no.w7.credit
+    layer: W7
+    scope: {residence_country: NO, taxpayer: individual}
+    attribute: domestic_credit
+    value: "see no.tax.foreign_tax_credit"
+    unit: null
+    basis: null
+    period: income_year
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null
+    reverify_by: 2027-10-01
+    source:
+      citation: "Skatteetaten, Double taxation"
+      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/abroad/double-taxation/
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Credit capped at Norwegian tax and the treaty rate; 5-year carry-forward."
+
+  - fact_id: wht.no.w8.ask
+    layer: W8
+    scope: {residence_country: NO, account_type: ASK}
+    attribute: wrapper_treatment
+    value:
+      withheld_tax_reduces_input_value: "no.wrapper.ask.foreign_withholding (verified)"
+      credit_rules_may_apply_on_taxable_withdrawal: "no.wrapper.ask.credit.applicability (verified)"
+      timing: "no.wrapper.ask.credit.timing (verified trigger; claim channel general rule)"
+      calculation_and_limit_inside_ask: "no.wrapper.ask.credit.calculation (unavailable)"
+      tracking: "no.wrapper.ask.credit.tracking (dividends recorded; withheld tax not stated)"
+      input_value_interaction: "no.wrapper.ask.credit.input_value_interaction (unavailable)"
+      carry_forward: "no.wrapper.ask.credit.carry_forward (general rule verified; ASK application not stated)"
+      broker_information: "no.wrapper.ask.credit.broker_information (unavailable)"
+    unit: null
+    basis: null
+    period: null
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null
+    reverify_by: 2027-01-31
+    source:
+      citation: "Skatteetaten ASK page; Skatte-ABC 2025/2026 A-10-5.4.1"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/a-10-aksjesparekonto/A-10.010/A-10.014/
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Withholding inside ASK reduces input value; credit rules may apply on a taxable withdrawal; mechanics partly unestablished (see component records)."
+
+  - fact_id: wht.w9.fund_level
+    layer: W9
+    attribute: fund_level_withholding_treatment
+    value: null
+    unit: null
+    basis: null
+    period: null
+    legal_status: not_applicable
+    verification_status: unavailable
+    verification_level: null
+    effective_from: null
+    reverify_by: 2027-04-01
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: null}
+    claim: "No authoritative source located (RQ-51)."

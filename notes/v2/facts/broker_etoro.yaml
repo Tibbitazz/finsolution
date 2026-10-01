@@ -1,0 +1,249 @@
+# Provisional registry records — eToro (EU/EEA entity).
+# Contract: S3_REGISTRY_ARCHITECTURE.md §1. Unknown ≠ false: unknown capabilities have value null.
+# Capability semantics: a capability is `not offered` only where a source states it; absence of evidence → record `unavailable` (unknown).
+file_defaults:
+  version: 1
+  domain: broker
+  scope: {entity: etoro_europe_ltd, jurisdiction: EEA, client_category: retail}
+  legal_status: published
+  verification_status: verified
+  verification_level: V-full
+  verified_on: 2026-10-01
+  recorded_at: 2026-10-01
+  effective_from: null
+  effective_to: null
+  reverify_by: 2027-01-01
+  supersedes: null
+  superseded_by: null
+  conflicts_with: null
+  provenance: "S3 research, Claude-assisted, owner review at G3"
+
+records:
+  - fact_id: broker.etoro.entity
+    attribute: legal_entity_and_supervision
+    value: {entity: "eToro (Europe) Ltd", supervisor: CySEC, licence: "109/10"}
+    unit: null
+    basis: null
+    period: null
+    source: &et_reg
+      citation: "eToro, Regulation and License"
+      url: https://www.etoro.com/customer-service/regulation-license/
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "EU/EEA clients served by eToro (Europe) Ltd, CySEC licence 109/10."
+
+  - fact_id: broker.etoro.entity_for_norway
+    scope: {entity: etoro_europe_ltd, jurisdiction: NO, client_category: retail}
+    attribute: serving_entity_for_norwegian_residents
+    value: etoro_europe_ltd
+    unit: null
+    basis: null
+    period: null
+    verification_status: interpretation
+    verification_level: null
+    source: *et_reg
+    claim: "Expected from EU/EEA scope; no Norway-specific statement found."
+
+  - fact_id: broker.etoro.investor_compensation
+    attribute: investor_compensation
+    value: {icf_eur: 20000, eea_partner_bank_deposit_guarantee_eur: 100000, crypto_covered: false}
+    unit: EUR
+    basis: per_client
+    period: null
+    source: *et_reg
+    claim: "Cyprus ICF up to €20,000; deposit guarantee up to €100,000 at EEA partner banks; crypto not covered (V-abs for crypto)."
+
+  - fact_id: broker.etoro.ownership_model
+    attribute: position_legal_form
+    value: {unleveraged_buy_stock_etf: real_asset_segregated_omnibus, short_or_leveraged: cfd}
+    unit: null
+    basis: null
+    period: null
+    verification_level: V-abs
+    source:
+      citation: "eToro, Underlying asset definition / CFD pages"
+      url: https://www.etoro.com/trading/underlying-asset-definition/
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Unleveraged buys are real assets; short and leveraged positions are CFDs."
+
+  - fact_id: broker.etoro.commission.stocks
+    attribute: stock_commission
+    value: {rule: "USD 1 or 2 per open/close by residence country and exchange"}
+    unit: USD
+    basis: per_order_side
+    period: per_trade
+    source: &et_fees
+      citation: "eToro, Fees"
+      url: https://www.etoro.com/trading/fees/
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Rule verified; the Norway-specific amount is a separate unknown record."
+
+  - fact_id: broker.etoro.commission.etfs
+    attribute: etf_commission
+    value: 0
+    unit: USD
+    basis: per_trade
+    period: per_trade
+    source: *et_fees
+    claim: "Zero commission on ETFs."
+
+  - fact_id: broker.etoro.commission.stock_cfd
+    attribute: stock_cfd_fee
+    value: 0.15
+    unit: "%"
+    basis: percent_of_trade_value
+    period: per_trade
+    source: *et_fees
+    claim: "Stock CFDs 0.15% per trade."
+
+  - fact_id: broker.etoro.fx.nok
+    attribute: nok_conversion_fee_into_usd_account
+    value: {card_pct: 1.0, e_wallets_pips: 1600, online_banking_pips: 1600, bank_transfer_pct: 1.0}
+    unit: mixed
+    basis: per_deposit_or_withdrawal
+    period: per_conversion
+    source:
+      citation: "eToro, Conversion fees"
+      url: https://www.etoro.com/trading/fees/conversion/
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "NOK conversion fees as listed; Club-tier discounts exist (not recorded)."
+
+  - fact_id: broker.etoro.withdrawal_fee
+    attribute: withdrawal_fee
+    value: {usd_account: 5, local_currency_account: 0}
+    unit: USD
+    basis: per_withdrawal
+    period: null
+    source: *et_fees
+    claim: "$5 from USD account; free from local-currency accounts."
+
+  - fact_id: broker.etoro.inactivity_fee.fee_page
+    attribute: inactivity_fee
+    value: "Free (Club caveat)"
+    unit: null
+    basis: null
+    period: null
+    verification_status: unresolved_conflicting
+    conflicts_with: [broker.etoro.inactivity_fee.help_article@1]
+    source: *et_fees
+    claim: "Fee page lists inactivity fee as free (with Club caveat)."
+
+  - fact_id: broker.etoro.inactivity_fee.help_article
+    attribute: inactivity_fee
+    value: {amount_usd_per_month: 10, after_months_without_login: 12}
+    unit: USD
+    basis: per_month
+    period: monthly
+    verification_status: unresolved_conflicting
+    verification_level: V-abs
+    conflicts_with: [broker.etoro.inactivity_fee.fee_page@1]
+    source:
+      citation: "eToro help, Which fees and commissions does eToro have?"
+      url: https://help.etoro.com/s/article/which-fees-and-commissions-does-etoro-have?language=en_GB
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "$10/month after 12 months without login."
+    notes: "Both source claims recorded side by side as separate records (a conflict is not a version change); neither returned as current until resolved (FX3-11). Re-check 2026-10-01: the help article now renders no body text (retrieval failed in a browser); the fee page (multi-entity footer, no entity or date stated) still says Free. Secondary sources (broker-review sites) report the $10 fee was removed during 2026, at least for UK clients — leads only, not authority. Candidate explanations: stale documentation / effective date (most consistent with leads), entity/jurisdiction (fee page states no entity). Not resolved."
+
+  - fact_id: broker.etoro.ask
+    scope: {entity: etoro_europe_ltd, jurisdiction: NO, account_type: ASK}
+    attribute: wrapper_offered
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "No eToro source found; unknown, not false (FX3-10)."
+
+  - fact_id: broker.etoro.api
+    attribute: api_availability
+    value: {exists: true, auth: personal_keys, scope: own_verified_account, programme_status: beta}
+    unit: null
+    basis: null
+    period: null
+    verification_level: V-abs
+    source:
+      citation: "eToro Builders, Get started / FAQ"
+      url: https://builders.etoro.com/get-started
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Public API with personal keys for one's own account; beta terms. Regional eligibility is a separate unknown record."
+
+  - fact_id: broker.etoro.tax_report_norway
+    scope: {entity: etoro_europe_ltd, jurisdiction: NO}
+    attribute: tax_report_provided
+    value: {provided: true}
+    unit: null
+    basis: null
+    period: income_year
+    verification_level: V-abs
+    source:
+      citation: "eToro help, Tax Report for Norwegian Residents"
+      url: https://help.etoro.com/s/article/Tax-Report-for-Norwegian-Residents?language=en_GB
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Tax report available for Norwegian residents. Direct reporting to Skatteetaten is a separate unknown record."
+
+  - fact_id: broker.etoro.appropriateness
+    attribute: appropriateness_implementation
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    implements: reg.eu.mifid2.appropriateness
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "Not verified (U10)."
+
+  - fact_id: broker.etoro.fractional_shares
+    attribute: fractional_trading
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "Not verified (U10)."
+
+  - fact_id: broker.etoro.commission.stocks.norway
+    scope: {entity: etoro_europe_ltd, jurisdiction: NO}
+    attribute: stock_commission_amount_for_norwegian_residents
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "Fee page states the rule but not the amount for Norwegian residents (U10)."
+
+  - fact_id: broker.etoro.api.regional_eligibility
+    scope: {entity: etoro_europe_ltd, jurisdiction: NO}
+    attribute: api_available_to_norwegian_residents
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "Not stated in sources read (U10)."
+
+  - fact_id: broker.etoro.tax_report_norway.direct_reporting
+    scope: {entity: etoro_europe_ltd, jurisdiction: NO}
+    attribute: direct_reporting_to_skatteetaten
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "Not stated by eToro; general rule: foreign institutions not pre-filled (no.tax.foreign_holdings_reporting) (U10)."

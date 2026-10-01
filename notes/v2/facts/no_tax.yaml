@@ -1,0 +1,226 @@
+# Provisional registry records — Norway, individual taxation (non-pension).
+# Contract: research/S3_REGISTRY_ARCHITECTURE.md §1. Physical format is provisional (S6b/S8).
+# Each logical record = file_defaults merged with the record (record fields win).
+# Not tax advice. Pension taxation (ADR-0020) and wealth tax (ADR-0021) are out of scope and must not be added.
+file_defaults:
+  version: 1
+  domain: tax
+  verified_on: 2026-10-01
+  recorded_at: 2026-10-01
+  supersedes: null
+  superseded_by: null
+  conditions: null
+  exceptions: null
+  conflicts_with: null
+  provenance: "S3 research, Claude-assisted, owner review at G3"
+
+records:
+  - fact_id: no.tax.ordinary_income_rate
+    scope: {jurisdiction: NO, taxpayer: individual}
+    attribute: ordinary_income_tax_rate
+    value: 22
+    unit: "%"
+    basis: percent_of_net_ordinary_income
+    period: income_year
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    published_on: 2025-12-15
+    effective_from: 2026-01-01
+    effective_to: 2027-01-01
+    reverify_by: 2027-01-31
+    source:
+      citation: "Skatteetaten, Forskuddsutskrivingen 2026"
+      url: https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
+      section: rates table
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Ordinary income tax rate for individuals, income year 2026: 22%."
+
+  - fact_id: no.tax.share_income_upward_factor
+    scope: {jurisdiction: NO, taxpayer: individual}
+    attribute: upward_adjustment_factor_share_income
+    value: 1.72
+    unit: factor
+    basis: multiplier_on_dividend_and_gain_above_shielding
+    period: income_year
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    published_on: 2025-12-15
+    effective_from: 2026-01-01
+    effective_to: 2027-01-01
+    reverify_by: 2027-01-31
+    exceptions: "Losses are multiplied by the same factor (symmetric)."
+    source:
+      citation: "Skatteetaten, Factor for upward adjustment of gain/loss or dividend on shares; Forskuddsutskrivingen 2026"
+      url: https://www.skatteetaten.no/en/rates/factor-for-upward-adjustment-of-gainloss-or-dividend-on-shares/
+      section: 2026 row
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Factor 1.72 for 2026; effective tax on share income 37.84% (22% x 1.72)."
+    notes: "37.84% is derived (D-class), not a separate fact."
+
+  - fact_id: no.tax.shielding_rate
+    scope: {jurisdiction: NO, taxpayer: individual_shareholder}
+    attribute: shielding_rate_after_tax
+    value: 3.6
+    unit: "%"
+    basis: percent_of_shielding_basis
+    period: income_year
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: 2025-01-01
+    effective_to: 2026-01-01
+    reverify_by: null
+    source:
+      citation: "Skatteetaten, Risk-free interest rate for shares and sole proprietorships"
+      url: https://www.skatteetaten.no/en/rates/risk-free-interest-rate-for-shares-and-sole-proprietorships/
+      section: 2025 row
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Shielding rate for personal shareholders, income year 2025: 3.6% (3-month T-bill average + 0.5 pp, after 22% tax)."
+
+  - fact_id: no.tax.shielding_rate
+    version: 2
+    scope: {jurisdiction: NO, taxpayer: individual_shareholder}
+    attribute: shielding_rate_after_tax
+    value: null
+    unit: "%"
+    basis: percent_of_shielding_basis
+    period: income_year
+    legal_status: effective
+    verification_status: unavailable
+    verification_level: null
+    effective_from: 2026-01-01
+    effective_to: 2027-01-01
+    reverify_by: 2027-01-31
+    source:
+      citation: "Skatteetaten rate page (2026 row absent)"
+      url: https://www.skatteetaten.no/en/rates/risk-free-interest-rate-for-shares-and-sole-proprietorships/
+      section: null
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Rate for income year 2026 is published after year-end; not available on 2026-10-01."
+    notes: "Never substitute the 2025 value (FX3-17)."
+
+  - fact_id: no.tax.fund_taxation_rule
+    scope: {jurisdiction: NO, taxpayer: individual, instrument_type: [mutual_fund, etf]}
+    attribute: fund_share_component_classification
+    value:
+      share_component_gt_80: share_treatment
+      share_component_lt_20: interest_treatment_22pct
+      otherwise: proportional_split
+      gain_share_component: average_of_acquisition_and_sale_years
+      shielding: applies_to_share_part_only
+      measured_at: start_of_income_year
+    unit: null
+    basis: share_component_percent
+    period: income_year
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null      # start date not recorded (U12); rule in force at verification
+    effective_to: null
+    reverify_by: 2027-10-01
+    exceptions: "Foreign funds not pre-filled: investor computes; whether an ETF counts as a 'securities fund' depends on its legal form (S6)."
+    source:
+      citation: "Skatteetaten, Taxation of units in mutual funds"
+      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/shares-and-securities/about-shares-and-securities/taxation-of-units-in-mutual-funds/
+      section: share component; gains and losses
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: ">80% shares → taxed as shares; <20% → interest; otherwise split proportionally."
+
+  - fact_id: no.tax.parameters_2027
+    scope: {jurisdiction: NO, taxpayer: individual}
+    attribute: annual_tax_parameters
+    value: null
+    unit: null
+    basis: null
+    period: income_year
+    legal_status: effective
+    verification_status: unavailable
+    verification_level: null
+    effective_from: 2027-01-01
+    effective_to: 2028-01-01
+    reverify_by: 2026-10-31
+    source:
+      citation: "Prop. 1 LS (2026–2027) — not published as of retrieval"
+      url: null
+      section: null
+      retrieved_on: 2026-10-01
+      authority_type: statute
+    claim: "No 2027 parameters available; a 2027 proposal, once published, enters as legal_status=proposed. Scope: income-tax parameters only (wealth tax excluded, ADR-0021)."
+
+  - fact_id: no.tax.foreign_tax_credit
+    scope: {jurisdiction: NO, taxpayer: individual}
+    attribute: credit_deduction_foreign_tax
+    value:
+      conditions: [same_income, same_income_year, assessed_and_paid, similar_tax]
+      cap: norwegian_tax_on_the_foreign_income
+      treaty_rate_limit: true
+      carry_forward_years: 5
+    unit: null
+    basis: null
+    period: income_year
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null
+    effective_to: null
+    reverify_by: 2027-10-01
+    source:
+      citation: "Skatteetaten, Double taxation"
+      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/abroad/double-taxation/
+      section: credit deduction
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Credit limited to the Norwegian tax on the income and to the treaty rate; unused credit carried forward up to 5 years."
+
+  - fact_id: no.tax.foreign_holdings_reporting
+    scope: {jurisdiction: NO, taxpayer: individual}
+    attribute: prefill_of_foreign_institution_holdings
+    value: false
+    unit: boolean
+    basis: null
+    period: income_year
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: null
+    effective_to: null
+    reverify_by: 2027-10-01
+    source:
+      citation: "Skatteetaten, Foreign shares and other financial products"
+      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/shares-and-securities/about-shares-and-securities/foreign-shares-and-other-financial-products/
+      section: null
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Holdings at foreign institutions are not pre-filled; the taxpayer must add them."
+
+  - fact_id: no.tax.exit_tax
+    scope: {jurisdiction: NO, taxpayer: individual_emigrating}
+    attribute: exit_tax_rule
+    value:
+      covered: [shares, fund_units_share_and_interest_components, ask, other_financial_instruments]
+      basic_deduction_nok: 3000000
+      lapse_years: 12
+      payment_options: [immediate, instalments, deferral_with_security]
+    unit: null
+    basis: latent_gain_or_loss
+    period: event_relocation
+    legal_status: effective
+    verification_status: verified
+    verification_level: V-full
+    effective_from: 2024-11-20
+    effective_to: null
+    reverify_by: 2027-10-01
+    source:
+      citation: "Skatteetaten, Exit tax"
+      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/abroad/exit-tax/
+      section: null
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Exit tax on latent gains for relocations from 20 Nov 2024; NOK 3 m basic deduction; 12-year rule."

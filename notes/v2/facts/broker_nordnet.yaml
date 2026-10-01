@@ -1,0 +1,215 @@
+# Provisional registry records — Nordnet (Norwegian retail offering).
+# Contract: S3_REGISTRY_ARCHITECTURE.md §1. Unknown ≠ false: unknown capabilities have value null.
+# Commercial facts use legal_status published/announced/withdrawn. Pension accounts excluded (ADR-0020).
+# Capability semantics: a capability is `not offered` only where a source states it; absence of evidence → record `unavailable` (unknown).
+file_defaults:
+  version: 1
+  domain: broker
+  scope: {entity: nordnet_bank_nuf, jurisdiction: NO, client_category: retail}
+  legal_status: published
+  verification_status: verified
+  verification_level: V-full
+  verified_on: 2026-10-01
+  recorded_at: 2026-10-01
+  effective_from: null
+  effective_to: null
+  reverify_by: 2027-01-01
+  supersedes: null
+  superseded_by: null
+  conflicts_with: null
+  provenance: "S3 research, Claude-assisted, owner review at G3"
+
+records:
+  - fact_id: broker.nordnet.entity
+    attribute: legal_entity_and_supervision
+    value: {entity: "Nordnet Bank NUF", parent: "Nordnet Bank AB", supervisors: [Finansinspektionen_SE, Finanstilsynet_NO]}
+    unit: null
+    basis: null
+    period: null
+    source: &nn_security
+      citation: "Nordnet, Sikkerhet og garanti"
+      url: https://www.nordnet.no/info/sikkerhet-og-garanti
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Norwegian branch of Nordnet Bank AB, supervised by Finansinspektionen and Finanstilsynet."
+
+  - fact_id: broker.nordnet.deposit_guarantee
+    attribute: deposit_guarantee
+    value: 2000000
+    unit: NOK
+    basis: per_depositor
+    period: null
+    source: *nn_security
+    claim: "Deposits covered up to NOK 2,000,000."
+
+  - fact_id: broker.nordnet.investor_protection
+    attribute: investor_compensation
+    value: 250000
+    unit: SEK
+    basis: per_investor
+    period: null
+    source: *nn_security
+    claim: "Swedish investor protection up to SEK 250,000."
+
+  - fact_id: broker.nordnet.custody
+    attribute: custody_model
+    value: {norwegian_securities: customer_own_vps_account, foreign_securities: custodian_in_nordnet_name}
+    unit: null
+    basis: null
+    period: null
+    source: *nn_security
+    claim: "Norwegian securities on Aksje- og fondskonto are registered on the customer's VPS account; foreign securities held with custodians in Nordnet's name."
+
+  - fact_id: broker.nordnet.account_types
+    attribute: wrappers_offered_non_pension
+    value: [ASK, ordinary_taxable_aksje_og_fondskonto]
+    unit: null
+    basis: null
+    period: null
+    verification_level: V-abs
+    source:
+      citation: "Nordnet, Kontoer"
+      url: https://www.nordnet.no/tjenester/kontoer
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Nordnet offers ASK and Aksje- og fondskonto (pension accounts not recorded, ADR-0020)."
+
+  - fact_id: broker.nordnet.commission.nordic
+    scope: {entity: nordnet_bank_nuf, jurisdiction: NO, market: nordic}
+    attribute: commission_schedule
+    value:
+      mini:   {rate_pct: 0.15,  min_nok: 29}
+      normal: {rate_pct: 0.049, min_nok: 79}
+      bonus:  {rate_pct: 0.04,  min_nok: 69}
+      vip:    {rate_pct: 0.035, min_nok: 39}
+    unit: mixed
+    basis: percent_of_trade_value_with_minimum
+    period: per_trade
+    source: &nn_prices
+      citation: "Nordnet, Prisliste"
+      url: https://www.nordnet.no/kundeservice/prisliste
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Nordic-market commission by price class."
+    notes: "Price-class eligibility rules not recorded."
+
+  - fact_id: broker.nordnet.commission.us_other
+    scope: {entity: nordnet_bank_nuf, jurisdiction: NO, market: us_and_other}
+    attribute: commission_schedule
+    value:
+      mini:   {rate_pct: 0.2,  min_nok: 49}
+      normal: {rate_pct: 0.1,  min_nok: 99}
+      bonus:  {rate_pct: 0.09, min_nok: 89}
+      vip:    {rate_pct: 0.08, min_nok: 79}
+    unit: mixed
+    basis: percent_of_trade_value_with_minimum
+    period: per_trade
+    source: *nn_prices
+    claim: "US/other-market commission by price class."
+
+  - fact_id: broker.nordnet.fx
+    attribute: fx_conversion_charge
+    value: {automatic: {spread_pct: 0.5, per_side_pct: 0.25}, with_currency_account: {spread_pct: 0.15, per_side_pct: 0.075}}
+    unit: "%"
+    basis: percent_of_converted_amount
+    period: per_conversion
+    source: *nn_prices
+    claim: "Automatic FX 0.5% spread (0.25% per side); with currency account 0.15% (0.075% per side)."
+
+  - fact_id: broker.nordnet.fund_platform_fee
+    attribute: fund_platform_fee
+    value: {active_equity_funds: 0.29, nordnet_index_funds: 0.19, external_index_funds: 0.15}
+    unit: "%"
+    basis: percent_per_year_of_holding
+    period: annual
+    source: *nn_prices
+    claim: "Platform fees by fund category."
+
+  - fact_id: broker.nordnet.margin_rate_nok
+    attribute: margin_lending_rate
+    value: {nominal: 7.34, effective: 7.59, over_leverage: 11.75}
+    unit: "%"
+    basis: percent_per_year
+    period: annual
+    supersedes: "legacy ENGINE_V1 value 7.32% (legacy_unverified, never registered in v2)"
+    source: *nn_prices
+    claim: "NOK margin rate 7.34% nominal / 7.59% effective."
+
+  - fact_id: broker.nordnet.short_selling
+    attribute: short_selling_access
+    value: {available: true, accounts: [aksje_og_fondskonto], requires: [leverage_test, short_selling_test]}
+    unit: null
+    basis: null
+    period: null
+    verification_level: V-abs
+    source:
+      citation: "Nordnet FAQ, Hvordan søker jeg om shorthandel"
+      url: https://www.nordnet.no/faq/handel/shorthandel/hvordan-soker-jeg-om-shorthandel-pa-min-aksje-og-fondskonto
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Short selling only on Aksje- og fondskonto, after knowledge tests."
+
+  - fact_id: broker.nordnet.complex_product_tests
+    attribute: appropriateness_implementation
+    value: {knowledge_tests_for: [options, futures, warrants, leverage, short_selling], legal_basis_cited: MiFID_II}
+    unit: null
+    basis: null
+    period: null
+    verification_level: V-abs
+    source:
+      citation: "Nordnet blog, Økt investorbeskyttelse via kunnskapstester"
+      url: https://www.nordnet.no/blogg/okt-investorbeskyttelse-via-kunnskapstester/
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Knowledge tests required before trading complex products (BrokerImplementation of reg.eu.mifid2.appropriateness)."
+    implements: reg.eu.mifid2.appropriateness
+
+  - fact_id: broker.nordnet.api
+    attribute: api_availability
+    value: {exists: true, new_subscriptions: closed, reopening_date_announced: false}
+    unit: null
+    basis: null
+    period: null
+    scope: {entity: nordnet_group, jurisdiction: [SE, NO, DK, FI]}
+    source:
+      citation: "Nordnet FAQ (SE), Erbjuder Nordnet API?"
+      url: https://www.nordnet.se/faq/handel-vardepapper/handelsapplikationer/erbjuder-nordnet-api
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Nordnet External API closed for new subscriptions; the source states no reopening date (verified absence of an announced date, not an unknown)."
+
+  - fact_id: broker.nordnet.tax_reporting
+    attribute: tax_reporting_responsibility
+    value: {euronext_vps: [norwegian_funds, oslo_bors_shares], nordnet: [foreign_securities, etfs, dividends], self_reported: [options, forwards, futures]}
+    unit: null
+    basis: null
+    period: income_year
+    source:
+      citation: "Nordnet FAQ, Hvem rapporterer hva"
+      url: https://www.nordnet.no/faq/skatt-og-skattemelding/skatt-pa-aksje-og-fondskonto/hvem-rapporterer-hva
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Split of reporting responsibilities as listed."
+    notes: "Year-end wealth-value reporting omitted: wealth tax out of scope (ADR-0021)."
+
+  - fact_id: broker.nordnet.fractional_shares
+    attribute: fractional_trading
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "Not verified (U11)."
+
+  - fact_id: broker.nordnet.order_types
+    attribute: order_types
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: broker_official}
+    claim: "Not verified (U11)."

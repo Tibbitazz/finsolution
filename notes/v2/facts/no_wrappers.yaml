@@ -1,0 +1,260 @@
+# Provisional registry records — Norway, non-pension account wrappers.
+# Contract: research/S3_REGISTRY_ARCHITECTURE.md §1. Physical format provisional (S6b/S8).
+# Pension wrappers (IPS, EPK, others) are excluded (ADR-0020) and must not be added.
+file_defaults:
+  version: 1
+  domain: wrapper
+  scope: {jurisdiction: NO, taxpayer: individual}
+  legal_status: effective
+  verification_status: verified
+  verification_level: V-full
+  verified_on: 2026-10-01
+  recorded_at: 2026-10-01
+  effective_to: null
+  reverify_by: 2027-10-01
+  supersedes: null
+  superseded_by: null
+  conflicts_with: null
+  source:
+    citation: "Skatteetaten, Share savings account (ASK)"
+    url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/shares-and-securities/about-shares-and-securities/share-savings-account-ask/
+    retrieved_on: 2026-10-01
+    authority_type: tax_authority
+  provenance: "S3 research, Claude-assisted, owner review at G3"
+
+records:
+  - fact_id: no.wrapper.ask.eligible_holdings
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: eligible_instrument_types
+    value:
+      permitted:
+        - {instrument_type: listed_share, condition: "issuer domiciled in EEA"}
+        - {instrument_type: securities_fund_unit, condition: "fund domiciled in EEA; share component > 80% at start of income year"}
+        - {instrument_type: cash, condition: "no interest accrues"}
+      prohibited: [money_market_fund, bond, non_eea_share, derivative]
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    claim: "ASK may hold EEA-listed shares and EEA equity funds (>80% shares); no money-market funds; cash earns no interest."
+    notes: "'prohibited' lists types not in the permitted set; derivative/bond listed by exclusion (interpretation of the permitted-only rule)."
+
+  - fact_id: no.wrapper.ask.dividend_timing
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: dividend_taxation_timing
+    value: on_withdrawal_in_excess_of_cost_basis
+    unit: null
+    basis: null
+    period: null
+    effective_from: 2019-01-01
+    claim: "Dividends inside ASK are not taxed on payout; taxed only when withdrawals exceed the input value."
+    notes: "Confirmed by Skatte-ABC 2025/2026 A-10-5.4.1: dividends on ASK holdings are tax-exempt (sktl. § 10-21 third paragraph); amounts relating to dividends distributed in 2018 or earlier and taxed under the then rules count as contributed capital."
+
+  - fact_id: no.wrapper.ask.withdrawal_rule
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: withdrawal_taxation
+    value:
+      ordering: contributions_withdrawn_first
+      taxable: withdrawal_exceeding_contributions_plus_shielding
+      upward_factor_applies: true
+      in_kind_withdrawal_valuation: market_value_at_transfer
+      in_kind_withdrawal_is_realisation: false
+      new_input_value_outside_ask: withdrawal_value
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    source:
+      citation: "Skatte-ABC 2025/2026, A-10 Aksjesparekonto, A-10-6.1"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/a-10-aksjesparekonto/A-10.020/A-10.021/
+      section: "A-10-6.1"
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Contributions are withdrawn first; withdrawals exceeding contributions plus shielding are taxable and multiplied by the upward factor; withdrawn securities are valued at market value, are not a realisation, and take that value as new input value outside ASK (sktl. § 10-21)."
+
+  - fact_id: no.wrapper.ask.losses
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: loss_deductibility
+    value: only_on_account_closure
+    unit: null
+    basis: null
+    period: null
+    effective_from: null
+    claim: "Losses are deductible only when the account is closed."
+
+  - fact_id: no.wrapper.ask.foreign_withholding
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: treatment_of_foreign_withholding
+    value: treated_as_withdrawal_reducing_input_value
+    unit: null
+    basis: null
+    period: null
+    effective_from: null
+    claim: "Foreign tax actually withheld is considered taken out of the ASK, reducing the input value."
+
+  # ASK foreign-withholding credit, decomposed (owner correction 2026-10-01).
+  # "May apply" is recorded as a conditional rule, never as an unconditional entitlement.
+  - fact_id: no.wrapper.ask.credit.applicability
+    scope: {jurisdiction: NO, account_type: ASK, income_type: foreign_dividend}
+    attribute: credit_rules_applicability
+    value: may_apply_on_taxable_withdrawal
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    reverify_by: 2027-01-31
+    conditions: {event: taxable_withdrawal_from_ask}
+    source:
+      citation: "Skatte-ABC 2025/2026, A-10 Aksjesparekonto, A-10-5.4.1"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/a-10-aksjesparekonto/A-10.010/A-10.014/
+      section: "A-10-5.4.1"
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "«Reglene om kreditfradrag for kildeskatt betalt i utlandet på mottatt utbytte kan komme til anvendelse ved skattepliktig uttak fra kontoen.»"
+    notes: "Supersedes the S3 draft record no.wrapper.ask.foreign_tax_credit (unavailable), which was wrong to treat applicability as unknown. 'kan komme til anvendelse' = may apply; entitlement in a given case depends on the general credit conditions (no.tax.foreign_tax_credit)."
+
+  - fact_id: no.wrapper.ask.credit.timing
+    scope: {jurisdiction: NO, account_type: ASK, income_type: foreign_dividend}
+    attribute: when_credit_may_be_claimed
+    value: {trigger: taxable_withdrawal, at_dividend_receipt: not_stated, claim_channel_general_rule: tax_return}
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    reverify_by: 2027-01-31
+    verification_status: verified
+    source:
+      citation: "Skatte-ABC 2025/2026, A-10 Aksjesparekonto, A-10-5.4.1; U-20-4.20"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/a-10-aksjesparekonto/A-10.010/A-10.014/
+      section: "A-10-5.4.1; U-20-4.20"
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Trigger is a taxable withdrawal (A-10-5.4.1). General rule: credit claimed in the tax return for the year the income is taxable in Norway (U-20-4.20). No source applies U-20-4.20 to ASK specifically."
+    notes: "at_dividend_receipt: not_stated — the source does not say a credit arises when the dividend is received; dividends inside ASK are tax-exempt at receipt (A-10-5.4.1). U-20-4.20 source: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/u-20-utland--unngaelse-av-dobbeltbeskatning/U-20.029/U-20.075/"
+
+  - fact_id: no.wrapper.ask.credit.calculation
+    scope: {jurisdiction: NO, account_type: ASK, income_type: foreign_dividend}
+    attribute: credit_calculation_and_limit_inside_ask
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    effective_from: null
+    reverify_by: 2027-01-31
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: tax_authority}
+    claim: "General cap and treaty-rate limit are verified (no.tax.foreign_tax_credit). How the 'foreign income' share of an ASK withdrawal is determined for the cap is not established by any source read (U4a)."
+
+  - fact_id: no.wrapper.ask.credit.tracking
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: tracking_of_withheld_tax_through_ask
+    value: {provider_must_record_dividends_received: true, provider_must_record_foreign_tax_withheld: not_stated}
+    unit: null
+    basis: null
+    period: null
+    effective_from: null
+    reverify_by: 2027-01-31
+    source:
+      citation: "Skatte-ABC 2025/2026, A-10 Aksjesparekonto, A-10-12.4 (FSFIN § 10-21-4)"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/a-10-aksjesparekonto/A-10.033/A-10.037/
+      section: "A-10-12.4 (FSFIN § 10-21-4)"
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "The account record must at all times show, among other items, «mottatt utbytte» and «skattepliktig uttak på kontoen i løpet av inntektsåret»; foreign tax withheld is not in the listed items."
+    notes: "not_stated ≠ false: the list does not mention withheld tax; whether providers track it is unknown (U4b)."
+
+  - fact_id: no.wrapper.ask.credit.input_value_interaction
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: interaction_with_input_value_reduction
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    effective_from: null
+    reverify_by: 2027-01-31
+    source: {citation: null, url: null, retrieved_on: 2026-10-01, authority_type: tax_authority}
+    claim: "Verified separately: withheld tax is deemed withdrawn and reduces input value (no.wrapper.ask.foreign_withholding). How that deemed withdrawal interacts with a later credit claim is not established (U4c)."
+
+  - fact_id: no.wrapper.ask.credit.carry_forward
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: carry_forward_and_timing_differences
+    value: {general_carry_forward_years: 5, general_timing_difference_rule: true, application_to_ask_gap_between_withholding_and_withdrawal: not_stated}
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    reverify_by: 2027-01-31
+    source:
+      citation: "Skatte-ABC 2025/2026, U-20 Utland – unngåelse av dobbeltbeskatning, U-20-4.7.3; U-20-4.16"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/u-20-utland--unngaelse-av-dobbeltbeskatning/U-20.029/U-20.068/
+      section: "U-20-4.7.3; U-20-4.16"
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Unused credit may be carried forward up to five years within the same income category (sktl. § 16-22); timing differences between Norway and abroad are handled by claiming in the year taxed abroad and carrying forward (U-20-4.7.3). Neither passage addresses ASK."
+    notes: "The multi-year gap between withholding (dividend year) and ASK withdrawal is not addressed (U4d)."
+
+  - fact_id: no.wrapper.ask.credit.broker_information
+    scope: {jurisdiction: NO, account_type: ASK, entity: [nordnet_bank_nuf, etoro_europe_ltd]}
+    attribute: broker_information_for_ask_credit
+    value: null
+    unit: null
+    basis: null
+    period: null
+    verification_status: unavailable
+    verification_level: null
+    effective_from: null
+    reverify_by: 2027-01-01
+    source:
+      citation: "Nordnet FAQ pages on kildeskatt (ASK not addressed)"
+      url: https://www.nordnet.no/faq/skatt-og-skattemelding/skatt-pa-aksje-og-fondskonto/kontroller-rapporter-mottatt-utbytte-for-aksjer-og-fond-krev-fradag-for-kildeskatt
+      retrieved_on: 2026-10-01
+      authority_type: broker_official
+    claim: "Nordnet's credit guidance covers Aksje- og fondskonto only; Nordnet states it cannot help with corrections or refunds. No ASK-specific broker information found for either broker (U4e)."
+
+  - fact_id: no.wrapper.ask.accounts_and_transfers
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: account_count_and_transfers
+    value:
+      max_accounts: unlimited
+      ask_to_ask_transfer: tax_neutral
+      transfer_in_from_ordinary_account: taxable_realisation_fifo
+    unit: null
+    basis: null
+    period: null
+    effective_from: null
+    claim: "Any number of ASKs; ASK-to-ASK transfers tax-neutral; moving holdings in from an ordinary account is a taxable realisation (FIFO)."
+
+  - fact_id: no.wrapper.ordinary_account
+    scope: {jurisdiction: NO, account_type: ordinary_taxable}
+    attribute: taxation_model
+    value: realisation_based_dividends_taxed_on_receipt
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    source:
+      citation: "Skatteetaten, Shares and securities (tax rules pages)"
+      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/shares-and-securities/
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Gains taxed on realisation; dividends taxed in the year received (share income above shielding)."
+    verification_level: V-abs
+
+  - fact_id: no.wrapper.ask.foreign_currency
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: foreign_currency_inside_ask
+    value: {may_buy_currency_with_account_funds: false, may_receive_currency: [deposit, sale_proceeds], fx_gain_loss_exempt_under_ask: false, fx_realisation_events: [conversion_to_nok, withdrawal, use_to_buy_securities]}
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    source:
+      citation: "Skatte-ABC 2025/2026, A-10 Aksjesparekonto, A-10-5.2"
+      url: https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/a-10-aksjesparekonto/A-10.010/A-10.012/
+      section: "A-10-5.2"
+      retrieved_on: 2026-10-01
+      authority_type: tax_authority
+    claim: "Account funds cannot be used to buy foreign currency; FX gains/losses on currency held in ASK are outside the ASK exemption and are realised on conversion to NOK, withdrawal, or use to buy securities."
