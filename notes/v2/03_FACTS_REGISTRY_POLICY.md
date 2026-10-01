@@ -78,12 +78,13 @@ notes:          <free text>
 
 ## 5. Current contents
 
-Provisional registry v1 (verified 2026-10-01; for acceptance at G3): see
+Registry v1 (verified 2026-10-01; accepted at G3): see
 [facts/README.md](facts/README.md) and [S3_FINDINGS.md](research/S3_FINDINGS.md).
-The record contract proposed in ADR-0019 (PROPOSED, G3) would replace the
-§3 schema above; until acceptance §3 remains the policy text.
+The logical record contract of ADR-0019 (accepted at G3) supersedes the §3
+schema above; §3 is retained as history. Read it through the ADR-0019
+mapping.
 
 ## 6. Open items
 
 - Storage format and location (YAML files under `facts/` vs. a database) — S6b/S8.
-- Re-verification cadence per domain — proposed in S3_REGISTRY_ARCHITECTURE §8 (RQ-24, at G3).
+- Re-verification cadence per domain — S3_REGISTRY_ARCHITECTURE §8 (RQ-24, resolved at G3).

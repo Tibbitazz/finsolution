@@ -1,6 +1,6 @@
 # S3 — Gate G3 package
 
-**Document status:** DRAFT (for G3 review; revision 2, 2026-10-01, incorporating the owner's G3-review corrections) · **Branch:** `stage/s03-external-facts`
+**Document status:** STABLE — **G3 approved 2026-10-01** (revision 2 plus the owner's final G3 amendments) · **Branch:** `stage/s03-external-facts`
 
 **Approval semantics:**
 - **Part A** contains external facts, accepted into registry v1 on stated evidence. They are not preferences.
@@ -12,7 +12,7 @@
 - [S3_FINDINGS.md](S3_FINDINGS.md)
 - [../facts/](../facts/)
 - [S3_SYNTHETIC_FIXTURES.md](S3_SYNTHETIC_FIXTURES.md)
-- [ADR-0019](../decisions/ADR-0019-external-fact-registry.md) (PROPOSED)
+- [ADR-0019](../decisions/ADR-0019-external-fact-registry.md) (ACCEPTED at G3)
 - [ADR-0020](../decisions/ADR-0020-pension-saving-excluded.md) and [ADR-0021](../decisions/ADR-0021-wealth-tax-excluded.md) (ACCEPTED, owner instructions)
 
 **Meaning of accepting registry v1:**
@@ -34,7 +34,7 @@
 | RQ-49 | §6 | A1–A13 authoritative statements; A vs. B unresolved; capability register |
 | Nordnet / eToro | §7–§8 | Unknown ≠ unsupported audit (§9); eToro inactivity conflict unresolved after second attempt |
 
-Registry v1 contains **83 records** (62 verified, 3 interpretation, 2
+Registry v1 contains **82 records** (62 verified, 2 interpretation, 2
 unresolved_conflicting, 16 unavailable). All pass the contract check.
 
 ## Part B — Decisions
@@ -49,7 +49,7 @@ unresolved_conflicting, 16 unavailable). All pass the contract check.
 | D3-d | Instrument-type level only | Architecture §6 |
 | D3-e | **Wealth tax excluded entirely**; `TAX.wealth_tax_position` retired; S3 wealth-tax records removed; jurisdiction domain removed | ADR-0021 |
 
-**For approval (final table):**
+**Approved at G3 (owner, 2026-10-01), all thirteen, with the final amendments below:**
 
 | ID | Proposed decision | ADR / location |
 |---|---|---|
@@ -63,8 +63,8 @@ unresolved_conflicting, 16 unavailable). All pass the contract check.
 | D3-08 *(revised per owner)* | **No universal legal-review prerequisite.** RQ-49 stays open. The full S2 authority model and the capability spectrum from analytics to unattended execution are preserved. Capabilities are recorded in the register `capability → evidence/regulatory status → unresolved issue → required dependency/safeguard → enablement status` (S3_FINDINGS §6.3). A capability is gated only where a genuine unresolved dependency prevents responsible implementation, and is never removed from the architecture because of a gate. Professional legal review is **not** adopted as a project rule; the owner may adopt it later as a governance safeguard | S3_FINDINGS §6.3; FX3-26 |
 | D3-09 | Registry-driven option sources; descriptive comparison (no score, rank, weights, default cost sort; no wealth-tax dimension) | ADR-0019 §11–12 |
 | D3-10 | RQ-46: `INV.residence_change_expected` stays conditional/inactive; activates only if S13a admits a method needing it; exit-tax facts recorded | — |
-| D3-11 | Accept registry v1 (83 records) at recorded statuses, with the meaning of acceptance stated above. V-abs facts must be read in full before reliance in a hard constraint | ADR-0019 §13 |
-| D3-12 | Fixtures FX3-01 … FX3-16 (required) and FX3-17 … FX3-26 (extras, incl. wealth-tax exclusion, unknown vs. not offered, experience never grants eligibility, gated capability retained) | Fixtures |
+| D3-11 | Accept registry v1 (82 records) at recorded statuses, with the meaning of acceptance stated above. V-abs facts must be read in full before reliance in a hard constraint | ADR-0019 §13 |
+| D3-12 | Fixtures FX3-01 … FX3-16 (required) and FX3-17 … FX3-28 (extras; FX3-27, FX3-28 added with the final amendments; incl. wealth-tax exclusion, unknown vs. not offered, experience never grants eligibility, gated capability retained) | Fixtures |
 | D3-13 | RQ dispositions on acceptance: RQ-03, 04, 05, 06, 24, 42, 46 → RESOLVED (facts as registry v1; structure by ADR-0019). **RQ-45 and RQ-49 remain open** with bounded findings. RQ-51 added | OPEN_QUESTIONS |
 
 ### Final statuses
@@ -78,7 +78,7 @@ unresolved_conflicting, 16 unavailable). All pass the contract check.
 
 **US ETFs / PRIIPs:**
 - Verified: a PRIIP without a Norwegian KID cannot lawfully be sold to Norwegian retail investors. This is a one-step application of Art. 13(1), PRIIPs-loven § 4, and Finanstilsynet's "also on the customer's own initiative".
-- Interpretation: "US-domiciled ETFs are unavailable". Step 3 (no Norwegian KID exists) is per-instrument and supported only by secondary sources; it moves to S6 as `kid_available_no`.
+- Interpretation: "US-domiciled ETFs are unavailable". Step 3 (no Norwegian KID exists) is per-instrument and supported only by secondary sources; it moves to S6 as `kid_norwegian_compliant_available`.
 
 **eToro inactivity fee:** unresolved. Both records are kept and linked. The leads point to stale documentation or a 2026 change, but these are secondary sources.
 
@@ -129,10 +129,25 @@ Full table: S3_FINDINGS §10.
 
 No accepted ADR body was changed. Nothing under `local/` is tracked.
 
-## Owner decisions still required before G3 can close
+## G3 approval record (2026-10-01)
 
-1. Approve D3-01 … D3-13 as revised, or amend them.
-2. Confirm the **PRIIPs promotion**: should the conditional rule be `verified` as a one-step application of mandatory provisions, or kept as `interpretation` because no source states "prohibited" in those words?
-3. Confirm the **A/B/C classification**, especially U4 (ASK credit mechanics) as B → S13a rather than C.
-4. Confirm the **RQ-49 gating assignments** in S3_FINDINGS §6.3 (which capabilities are enablable vs. gated, and the stages).
-5. Confirm **Norway as "supported"** with treaty coverage limited to US-source income. Other source countries' withholding stays unknown until recorded.
+Owner approved D3-01 … D3-13 with these final amendments, all applied before merge:
+
+| # | Amendment | Applied in |
+|---|---|---|
+| 1 | ASK credit: "may apply on taxable withdrawal" verified; mechanics Class B → S13a; no inference meanwhile | S3_FINDINGS §2.1, §10; CB-03 … CB-07 |
+| 2 | Wealth tax excluded; ADR-0021 and retirement of `TAX.wealth_tax_position` approved | ADR-0021 |
+| 3 | D3-07 as revised | S1 spec 1.7; CB-15 |
+| 4 | D3-08 as revised (no universal legal-review rule) | S3_FINDINGS §6.3 |
+| 5 | RQ-49 open; capability-specific gating approved in principle; deterministic user-selected rules not automatically recommendations | S3_FINDINGS §6.3; CB-12 … CB-14 |
+| 6 | PRIIPs: narrow conditional rule verified; no universal US-ETF rule; per-instrument attributes to S6 | `reg.no.priips.no_kid_no_retail_sale`; US-ETF record removed; architecture §6; FX3-27 |
+| 7 | eToro inactivity conflict unresolved; cost input unknown where it matters | S3_FINDINGS §8; architecture §11; CB-10 |
+| 8 | Unknown ≠ verified not_offered survives into S5/S6 and the Feasibility Engine | Carried invariants (OPEN_QUESTIONS) |
+| 9 | A/B/C approved; Class B must surface at the responsible gate | Carried gating register; 08 §3 gate entry rule |
+| 10 | Norway support domain-specific; operation-level support checks | ADR-0019 §10; architecture §9; FX3-28 |
+| 11 | D3-01 … D3-13 approved (D3-04 with corrected ASK; D3-05 with conditional PRIIPs and S6 deferral; D3-06 domain-specific) | This package; ADR-0019 ACCEPTED |
+| 12 | Project-status review kept as a dated snapshot | PROJECT_STATUS_2026-10-01 (header note only) |
+| 13 | Scope-exclusion register | 10_SCOPE_EXCLUSIONS.md |
+| 14 | Parallel development track after G3; S18 redefined | ADR-0022; 08_ROADMAP |
+
+Fixtures: FX3-01 … FX3-28 (FX3-27 and FX3-28 added for amendments 6 and 10).

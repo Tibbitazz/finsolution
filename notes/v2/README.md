@@ -33,6 +33,7 @@ raise it as a spec question — do not decide it in code.
 | 07 | [Policy Statement governance](07_POLICY_STATEMENT_GOVERNANCE.md) | The governing investor-policy object; beliefs vs. preferences |
 | 08 | [Roadmap](08_ROADMAP.md) | Stages S0–S18, dependency chain, decision gates |
 | 09 | [Legacy superseded](09_LEGACY_SUPERSEDED.md) | What the old material is, and what (if anything) carries forward |
+| 10 | [Scope-exclusion register](10_SCOPE_EXCLUSIONS.md) | What is excluded (current scope) vs. prohibited by invariant vs. deferred |
 | — | [Decision register](decisions/README.md) | All ADRs and their status |
 | — | [Open research questions](research/OPEN_QUESTIONS.md) | Every unresolved question, assigned to a stage |
 | — | [REF-01 reference paper](research/REF-01_self-driving-portfolio.md) | Knowledge base of the architectural reference paper |
@@ -43,16 +44,16 @@ raise it as a spec question — do not decide it in code.
 ```
 notes/v2/
 ├── README.md                     ← this index
-├── 00_CHARTER.md … 09_LEGACY_SUPERSEDED.md
+├── 00_CHARTER.md … 10_SCOPE_EXCLUSIONS.md
 ├── CHANGELOG.md
 ├── decisions/                    ← ADRs (append-only) + register
 ├── research/                     ← open questions, research memos per stage
-└── facts/                        ← versioned external facts (registry v1 provisional, S3)
+└── facts/                        ← versioned external facts (registry v1, accepted at G3)
 ```
 
 ## Current position
 
 Stage **S0 (Charter & decision governance)** — closed at gate G0 (2026-10-01);
-all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). **S3 — External-facts research** package prepared for gate G3 (branch `stage/s03-external-facts`; ADR-0019 PROPOSED, ADR-0020 and ADR-0021 ACCEPTED). Status snapshot: [research/PROJECT_STATUS_2026-10-01.md](research/PROJECT_STATUS_2026-10-01.md).
-No methodological question has been resolved; all are recorded in
+all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). **S3 — External-facts research** closed at gate G3 (2026-10-01; ADR-0019 … ADR-0022 accepted). From G3 the project runs two tracks (ADR-0022): **Track A** (methodology, next S4) and **Track B** (platform and development, next S8). Status snapshot (dated): [research/PROJECT_STATUS_2026-10-01.md](research/PROJECT_STATUS_2026-10-01.md).
+No investment-methodology question has been resolved; the architecture through S3 selects no investment method. All are recorded in
 [research/OPEN_QUESTIONS.md](research/OPEN_QUESTIONS.md).

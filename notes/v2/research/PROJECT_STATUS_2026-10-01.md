@@ -1,6 +1,6 @@
 # Project status review — S0 to S18 (snapshot 2026-10-01)
 
-**Document status:** SNAPSHOT (informational; not a specification) · **Sources:**
+**Document status:** SNAPSHOT dated 2026-10-01 (informational; not a specification; not rewritten later). *Post-snapshot note: G3 closed the same day and ADR-0022 introduced parallel Track A/Track B; see 08_ROADMAP for the current plan.* · **Sources:**
 - [08_ROADMAP](../08_ROADMAP.md)
 - [decision register](../decisions/README.md)
 - [OPEN_QUESTIONS](OPEN_QUESTIONS.md)
@@ -38,7 +38,7 @@
 | **S4** Method Library & Eligibility | Remove infeasible methods before comparison | G2 (contracts, graph), G3 (facts as feasibility inputs) | Contract schema completion; reason codes; provisional policy; hysteresis (RQ-21); descriptor taxonomy (RQ-27) | G4: eligibility framework spec; candidate method inventory with contract status |
 | **S5** Feasible universe & allocation unit | What we allocate across | G3 (legal, wrapper, broker layers), S4, S6a | Universe, geography, allocation unit, currency policy (RQ-07); comparison universe (RQ-38); third-country fund access (U9) | G5: universe spec; allocation hierarchy; instrument-master scope |
 | **S6a** Data feasibility | Can the data support the universe and methods? | S5 (iterates with it) | Vendor coverage (RQ-08) | Input to G5 |
-| **S6b** Data architecture & registries | Point-in-time data and registry storage | S5, S6a, ADR-0019 | Vendors, survivorship, FX/risk-free sources, leakage controls, registry storage (RQ-08); instrument attributes incl. `kid_available_no` and fund-level withholding (RQ-51) | G6: data contracts, quality checks, registry storage design |
+| **S6b** Data architecture & registries | Point-in-time data and registry storage | S5, S6a, ADR-0019 | Vendors, survivorship, FX/risk-free sources, leakage controls, registry storage (RQ-08); instrument attributes incl. `kid_norwegian_compliant_available` and fund-level withholding (RQ-51) | G6: data contracts, quality checks, registry storage design |
 | **S7** Evaluation & backtest protocol | Fix how methods are judged before results | S6b | Walk-forward design, holdout, benchmark, multiple testing (RQ-09); control baseline (RQ-25); statistical power (RQ-26); signal-evaluation design (RQ-37) | G7: pre-registered protocol and harness spec |
 | **S8** Platform architecture (branch B) | Method-agnostic platform | G2 (can run in parallel) | Stack, agent anatomy, LLM pinning (RQ-10); local workspace and encryption (RQ-39); personal-data flow to external services (RQ-40); portability (RQ-43); evidence packets (RQ-34); asset-state abstraction (RQ-36); implementing `Fact(t \| k)` | G8: architecture and stack ADR |
 | **S9** Beliefs & signals | Expected returns, regime, cross-sectional descriptors, score → belief mapping | S4, S5, S6, S7 | Regimes (RQ-11); CMAs and LLM judge (RQ-12); signals (RQ-13, RQ-27 … 31); aggregation architecture (RQ-32); score → use mapping (RQ-33) | G9: method specs with typed contracts; mapping specs |

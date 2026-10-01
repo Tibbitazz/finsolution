@@ -1,11 +1,11 @@
 # Facts registries
 
-**Document status:** PROVISIONAL (S3, for G3) · Policy: [03_FACTS_REGISTRY_POLICY.md](../03_FACTS_REGISTRY_POLICY.md) · Contract: [S3_REGISTRY_ARCHITECTURE.md §1](../research/S3_REGISTRY_ARCHITECTURE.md) · Evidence: [S3_FINDINGS.md](../research/S3_FINDINGS.md)
+**Document status:** ACCEPTED as registry v1 (G3, 2026-10-01); physical format provisional (S6b/S8) · Policy: [03_FACTS_REGISTRY_POLICY.md](../03_FACTS_REGISTRY_POLICY.md) · Contract: [S3_REGISTRY_ARCHITECTURE.md §1](../research/S3_REGISTRY_ARCHITECTURE.md) · Evidence: [S3_FINDINGS.md](../research/S3_FINDINGS.md)
 
 These are provisional registry records verified on 2026-10-01. They are
 public, independently verifiable facts (class B). No personal data belongs
 here. Pension saving (ADR-0020) and wealth tax (ADR-0021) are out of scope
-and must not be added. 83 records.
+and must not be added. 82 records.
 
 | File | Domain | Content |
 |---|---|---|

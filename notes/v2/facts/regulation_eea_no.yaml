@@ -34,7 +34,7 @@ records:
       authority_type: regulator
     claim: "Retail investors given access to a PRIIP must receive key information in Norwegian in good time before investing; in force 1 Oct 2024."
 
-  # PRIIPs chain for third-country (e.g. US-domiciled) ETFs — owner request 2026-10-01.
+  # PRIIPs rules (G3, 2026-10-01). No universal statement about any domicile or product category is encoded here.
   # EU text read as originally adopted via the official UK archive (EUR-Lex blocked automated retrieval);
   # later amendments (2016/2340, 2019/1156, 2021/2259) not checked against these articles → re-read consolidated text (U7b).
   - fact_id: reg.eu.priips.scope_investment_funds
@@ -118,8 +118,8 @@ records:
 
   - fact_id: reg.no.priips.no_kid_no_retail_sale
     scope: {jurisdiction: NO, client_category: retail, instrument_type: PRIIP}
-    attribute: retail_sale_without_norwegian_kid
-    value: not_permitted
+    attribute: retail_access_without_required_kid
+    value: retail_access_prevented_through_the_offering_or_sale_channel
     unit: null
     basis: null
     period: null
@@ -127,33 +127,14 @@ records:
     verification_status: verified
     verification_level: V-full
     effective_from: 2024-10-01
-    conditions: {instrument_is_priip: true, norwegian_kid_available: false, client: retail}
+    conditions: {product_within_priips_regime: true, compliant_norwegian_kid_required_before_making_available_or_selling: true, required_kid_available: false, client: retail}
     source:
       citation: "Derived directly from reg.eu.priips.kid_obligations, reg.no.priips.own_initiative_and_language, reg.no.priips.enforcement"
       url: null
       retrieved_on: 2026-10-01
       authority_type: statute
-    claim: "Conditional rule: a person selling a PRIIP to a Norwegian retail investor must provide a Norwegian KID before the investor is bound, also on the customer's own initiative; where none exists the obligation cannot be met and breach is sanctionable."
-    provenance: "One-step application of mandatory provisions (Art. 13(1) + § 4 + Finanstilsynet scope statement). No source sentence states 'prohibited' in those words."
-
-  - fact_id: reg.no.priips.us_etf_retail_access
-    scope: {jurisdiction: NO, client_category: retail, instrument_type: etf, domicile: US}
-    attribute: retail_access
-    value: restricted_without_norwegian_kid
-    unit: null
-    basis: null
-    period: null
-    legal_status: effective
-    verification_status: interpretation
-    verification_level: null
-    effective_from: 2024-10-01
-    source:
-      citation: "reg.no.priips.no_kid_no_retail_sale + premise that US-domiciled ETFs lack a Norwegian KID"
-      url: null
-      retrieved_on: 2026-10-01
-      authority_type: null
-    claim: "Categorical statement 'US-domiciled ETFs are unavailable to Norwegian retail investors' remains an interpretation."
-    provenance: "Chain steps 1, 2, 4 verified. Step 3 (no compliant Norwegian KID exists) is a per-instrument fact supported only by secondary sources (press, broker-review sites), not by issuers or regulators. Belongs to S6 as instrument attribute `kid_available_no` (U9). Not researched: whether AIF-law marketing rules for non-UCITS funds add a separate barrier (U9b)."
+    claim: "Where a product falls within the applicable PRIIPs regime and a compliant Norwegian-language KID must be provided before it is made available or sold to a Norwegian retail investor, absence of the required KID prevents that retail access through the relevant offering or sale channel."
+    provenance: "One-step application of mandatory provisions (Art. 13(1); PRIIPs-loven § 4; Finanstilsynet: also on the customer's own initiative). Approved at G3 in this narrow form. No instrument, domicile, or product category is classified by this rule; per-instrument attributes are S6 (kid_norwegian_compliant_available etc.). A domicile such as US does not by itself imply ineligibility."
 
   - fact_id: reg.eu.mifid2.definitions
     scope: {jurisdiction: EEA}

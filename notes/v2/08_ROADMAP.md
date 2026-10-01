@@ -1,55 +1,69 @@
 # 08 — Roadmap (v2)
 
-**Document status:** STABLE (S0) · **Decision basis:** ADR-0011 · Supersedes every legacy roadmap.
+**Document status:** STABLE (S0; amended at G3 closure 2026-10-01 for parallel tracks) · **Decision basis:** ADR-0011, ADR-0022 · Supersedes every legacy roadmap.
 
-## 1. Dependency chain
+## 1. Dependency chain — two coordinated tracks after G3 (ADR-0022)
 
 ```
-S0 Charter & governance ── G0
+S0 Charter & governance ── G0 ✓
  │
-S1 Investor & jurisdiction context ── G1
+S1 Input specification ── G1 ✓
  │
-S2 Configuration architecture & Policy Statement schema ── G2 ─────────┐
- │                                                                       │ BRANCH B (platform, developer)
- ├─► S3 External-facts research                                          ├─► S8 Platform architecture ── G8
- │     3a Norwegian tax & wrappers ∥ 3b Broker Registry (Nordnet, eToro)  │     → infra build: registries, Feasibility Engine,
- │     ∥ 3c instrument regulation ── G3 (registries; no account choice)  │       artifact DAG, Policy Statement editor, run registry
- │                                                                       │
- ├─► S4 Method Library & Eligibility framework ── G4                     │ BRANCH C (data engineering): after G5/G6
+S2 Configuration machinery ── G2 ✓
  │
-S5 Feasible universe & allocation unit ⇄ S6a data feasibility ── G5
+S3 External-facts registries ── G3 ✓ (registries; no account choice)
  │
-S6b Data architecture & registries ── G6
- │
-S7 Evaluation & backtest protocol ── G7  (pre-registered)
- │
- ├── S9 Beliefs & signals: 9a regime ∥ 9b CMAs ∥ 9c cross-sectional scores → 9d score→belief mapping & aggregation ── G9   [Δ ADR-0012]
- └── S10 Risk model (incl. RMT/high-dimensional eligibility study) ── G10
- │
-S11 Portfolio-construction method set (incl. risk-preference parameterisation) ── G11
- │
-S12 Deliberation & aggregation ── G12
- │
-S13 Implementation & tactical
- │    13a account-aware cost/tax/FX & asset-location rules ── G13a
- │    13b rebalancing baseline ── G13b
- │    13c tactical ROLE ── G13c        13d tactical specialist agents ── G13d (later)
- │    13e per-account sizing & trade lists → 13f per-broker execution protocol
- │
-S14 Investment-case report & approval workflow ── G14
- │
-S15 Full-system validation ── G15 (go / no-go)
- │
-S16 Monitoring ∥ S17 Learning & controlled improvement ── G17
- │
-S18 Developer handoff (build increments)
+ ├──────────────── TRACK A — research / investment methodology ────────────────┐
+ │                                                                             │
+ │  S4 Method Library & Eligibility ── G4                                      │
+ │   │                                                                         │
+ │  S5 Universe & allocation unit ⇄ S6a data feasibility ── G5                 │
+ │   │                                                                         │
+ │  S6b Data architecture & registries ── G6                                   │
+ │   │                                                                         │
+ │  S7 Evaluation & backtest protocol ── G7 (pre-registered)                   │
+ │   │                                                                         │
+ │   ├── S9 Beliefs & signals (9a–9d) ── G9                                    │
+ │   └── S10 Risk model (incl. RMT eligibility study) ── G10                   │
+ │   │                                                                         │
+ │  S11 Portfolio construction (incl. risk calibration) ── G11                 │
+ │   │                                                                         │
+ │  S12 Deliberation & aggregation ── G12                                      │
+ │   │                                                                         │
+ │  S13 Implementation & tactical (13a–13f) ── G13a–d                          │
+ │   │                                                                         │
+ │  S14 Investment-case report & approval ── G14                               │
+ │   │                                                                         │
+ │  S15 Full-system validation ── G15 (go / no-go)                             │
+ │   │                                                                         │
+ │  S16 Monitoring ∥ S17 Learning ── G17                                       │
+ │                                                                             │
+ └──────────────── TRACK B — software / platform development ─────────────────┤
+    S8 Platform architecture & developer start ── G8 (begins after G3)        │
+     │  then continuous build of the local application foundation             │
+     │  consuming each accepted Track-A contract as its gate closes:          │
+     │  G4 → method registry & eligibility engine · G5/G6 → universe,         │
+     │  instrument & data contracts · G7 → evaluation harness · G9–G12 →      │
+     │  belief/risk/construction/aggregation modules · G13 → cost/tax/FX/     │
+     │  rebalancing/tactical/execution modules · G14 → report & approval UI   │
+     │                                                                        │
+    S18 Final developer handoff / completion ◄─────────────────────────────────┘
+       (final documentation, accepted contracts, installation/release
+        material, remaining integration) — not the first developer involvement
 ```
 
-**Why this order.** Preferences → feasible set → data → evaluation standard →
+**Track coordination rules (ADR-0022):**
+- **Track B never decides methodology.** It implements typed interfaces and stubs where Track A has not yet accepted a method. Track A never dictates frontend/backend technology unless a method requirement makes it necessary.
+- **Progressive delivery.** Each Track-A gate delivers a software contract (S8 plan §"progressive implementation contract"). Track B integrates it without restructuring the core.
+- **Feedback.** Developer findings (ambiguities, impossible contracts, missing data types, security or performance constraints, required schema changes) return through the change-control process defined at G8. Material changes go back through ADR, schema, or gate. They are never resolved silently in code.
+
+**Why this order (Track A).** Preferences → feasible set → data → evaluation standard →
 beliefs → choices → aggregation → implementation → oversight → learning.
-Three deliberate placements: the evaluation protocol (S7) precedes every
+Track B runs in parallel from G3 because S0–S3 already specify the
+method-agnostic framework (profiles, Policy Statement, resolution,
+registries, authority). Three deliberate placements: the evaluation protocol (S7) precedes every
 model choice so it cannot be chosen to flatter results; the platform (S8) is
-a parallel branch because contracts and registries are method-agnostic; the
+a parallel track because contracts and registries are method-agnostic; the
 tactical layer (S13c–d) follows the target portfolio and the rebalancing
 baseline because every tactical role is defined relative to them. S5 and S6a
 iterate: universe choice needs data feasibility and vice versa.
@@ -74,7 +88,7 @@ Fields: **A** objective · **B** decisions · **C** research · **D** Policy Sta
 
 **S7 — Evaluation & backtest protocol (pre-registered).** A: fix how methods are judged before results. B: walk-forward design; holdout; costs/taxes from the account configuration; point-in-time eligibility; deterministic-only mode; prospective evaluation of the agent layer; benchmark; simple control baseline (RQ-25); multiple-testing controls; materiality margins; statistical power (RQ-26) (RQ-09); *[ADR-0012]* signal-evaluation design and the pre-registered variant grid (transformations × comparison universes × composite weights × windows) with multiple-testing control, and type-specific admissibility tests for signals, transformations, aggregations, and mappings (RQ-37). C: data-snooping and backtest-overfitting literature; prospective evaluation. D: benchmark, evaluation horizon. E: all gates. F: S9–S15. G: protocol and harness specification.
 
-**S8 — Platform architecture (branch B, from G2).** A: method-agnostic platform. B: layers; boundary rules; artifact DAG; contracts; registries service; Feasibility Engine; agent anatomy; LLM provider and pinning; provenance; sandboxing; UI (Policy Statement editor incl. risk-preference interface, exclusion reports, what-if runs); technology stack and any reuse of legacy R code (RQ-10); *[ADR-0014]* local workspace and multi-profile storage, privacy boundary, personal-data flow to external services such as hosted LLMs (RQ-39, RQ-40), and a conflict-explanation UI; *[ADR-0012]* the deterministic signal & scoring component, the descriptor and evidence-packet schema (RQ-34), and whether an asset-state abstraction is adopted (RQ-36). C: agent frameworks; LLM non-determinism. D: approval implementation. E: all. F: infrastructure build. G: architecture specification; stack ADR.
+**S8 — Platform architecture & developer start (Track B, begins after G3; ADR-0022).** A: method-agnostic platform and the start of production-oriented construction of the local application foundation; developer-readiness matrix; core-framework vs. method-module boundary; progressive implementation contract for G4–G14; developer feedback and change control. Must not select investment methods. B: layers; boundary rules; artifact DAG; contracts; registries service; Feasibility Engine; agent anatomy; LLM provider and pinning; provenance; sandboxing; UI (Policy Statement editor incl. risk-preference interface, exclusion reports, what-if runs); technology stack and any reuse of legacy R code (RQ-10); *[ADR-0014]* local workspace and multi-profile storage, privacy boundary, personal-data flow to external services such as hosted LLMs (RQ-39, RQ-40), and a conflict-explanation UI; *[ADR-0012]* the deterministic signal & scoring component, the descriptor and evidence-packet schema (RQ-34), and whether an asset-state abstraction is adopted (RQ-36). C: agent frameworks; LLM non-determinism. D: approval implementation. E: all. F: infrastructure build. G: architecture specification; stack ADR.
 
 **S9 — Beliefs & signals.** *[Restructured — ADR-0012]*
 - **A:** expected returns, state, and deterministic cross-sectional descriptors.
@@ -107,7 +121,7 @@ Fields: **A** objective · **B** decisions · **C** research · **D** Policy Sta
 
 **S17 — Learning & controlled improvement.** A: improve without silent drift. B: forecast evaluation; change proposals; shadow testing; materiality threshold; rollback; read-only files; threshold changes require evidence and approval (RQ-22). G: model-governance specification.
 
-**S18 — Developer handoff.** A: buildable sequence. B: thin vertical slices; first slice = Policy Statement editor, registries, Feasibility Engine with exclusion report, one deterministic path to a report. G: build plan mapped to accepted specifications.
+**S18 — Final developer handoff / completion.** A: completion of the build begun in Track B after G3/G8: final documentation, accepted contracts, installation/release material, remaining integration. Not the first developer involvement (ADR-0022). B: thin vertical slices; first slice = Policy Statement editor, registries, Feasibility Engine with exclusion report, one deterministic path to a report. G: build plan mapped to accepted specifications.
 
 ## 3. Decision gates
 
@@ -116,13 +130,19 @@ Fields: **A** objective · **B** decisions · **C** research · **D** Policy Sta
 | G0 | Charter, governance, roadmap | Owner |
 | G1 | Investor profile | Owner |
 | G2 | Policy Statement schema, precedence, risk-preference representation | Owner, on evidence |
-| G3 | External-fact registries v1 and registry governance (not any user's account configuration) | Owner, on S3 evidence |
+| G3 ✓ | External-fact registries v1 and registry governance (not any user's account configuration) — closed 2026-10-01 | Owner, on S3 evidence |
 | G4 | Eligibility framework, threshold policy, hysteresis | Owner, on evidence |
 | G5 | Universe and allocation unit | Owner, on evidence |
 | G6 | Data sources and registry design | Owner, on evidence |
 | G7 | Evaluation protocol, benchmark, control, margins — fixed before results | Owner |
-| G8 | Architecture and stack | Owner with developer |
+| G8 | Platform architecture, stack, developer-readiness matrix, core/module boundary, change control | Owner with developer |
 | G9–G12 | Beliefs & signals (incl. score definitions, comparison universe, score→belief mapping, aggregation architecture); risk model incl. RMT region; PC set incl. risk calibration and signal consumption; aggregation | Owner, evidence-gated |
 | G13a–d | Costs/tax/location; rebalancing; tactical role; tactical methods | Owner, evidence-gated |
 | G14–G15 | Report specification; go/no-go | Owner |
 | G17 | Learning permissions | Owner |
+
+**Gate entry rule (from G3):** every gate package lists each item in the
+carried gating register ([OPEN_QUESTIONS](research/OPEN_QUESTIONS.md))
+whose owner stage is that gate's stage, with its disposition. A capability
+gated by an open item stays disabled, but remains architecturally supported,
+until the item is resolved at a gate.

@@ -1,6 +1,6 @@
 # S3 — Research findings (external facts as of 2026-10-01)
 
-**Document status:** DRAFT (S3, for G3; revised 2026-10-01 per owner corrections) · **Verified on:** 2026-10-01 · **Records:** [../facts/](../facts/) · **Architecture:** [S3_REGISTRY_ARCHITECTURE.md](S3_REGISTRY_ARCHITECTURE.md)
+**Document status:** STABLE (accepted at G3, 2026-10-01, with the owner's final G3 amendments) · **Verified on:** 2026-10-01 · **Records:** [../facts/](../facts/) · **Architecture:** [S3_REGISTRY_ARCHITECTURE.md](S3_REGISTRY_ARCHITECTURE.md)
 
 **Nature of this document:**
 - It records externally sourced facts. It is **not tax, legal, or investment advice**.
@@ -30,7 +30,7 @@ never rewrite historical ones.
    - The KID must be in Norwegian, and no exemption is in force.
    - Breach is sanctionable.
 
-   The **conditional rule** "PRIIP without a Norwegian KID cannot lawfully be sold to Norwegian retail investors" is promoted to verified. **"US-domiciled ETFs are unavailable"** stays an interpretation, because "no Norwegian KID exists" is a per-instrument fact supported only by secondary sources.
+   **Verified, in narrow form (approved at G3):** where a product falls within the PRIIPs regime and a compliant Norwegian-language KID must be provided before it is made available or sold to a Norwegian retail investor, absence of the required KID prevents that retail access through the relevant offering/sale channel. **No universal statement about US-domiciled ETFs is encoded.** Eligibility is derived per instrument from S6 attributes.
 7. **RQ-45:** appropriateness is the firm's obligation; Nordnet implements tests. No legitimate engine consumer of self-reported experience has been established, but none has been ruled out. The field stays inactive (revised D3-07).
 8. **RQ-49:** authoritative statements are separated from inference. The closest authoritative analogue to "user-declared rules computed deterministically" is ESMA ¶36/¶38: filtering, and assisting a person's own choice. Both are non-binding and firm-oriented. **No source determines the question.** RQ-49 stays open, and capabilities are gated only where a genuine dependency exists (revised D3-08).
 9. **Brokers:** facts recorded with unknown kept distinct from verified-unsupported (§9). The eToro inactivity-fee conflict is unresolved after a second attempt (§8).
@@ -111,12 +111,12 @@ unknown. The corrected position:
 |---|---|---|---|
 | 1. Instrument is a PRIIP | PRIP = amount repayable fluctuates with reference values or assets not directly purchased by the retail investor (Art. 4(1)); PRIIP includes PRIP (Art. 4(3)); recital 6 lists **investment funds**; recital 7: directly held shares are not PRIIPs. An ETF is an investment fund regardless of domicile | Reg. (EU) 1286/2014 (as adopted; legislation.gov.uk archive) | verified (V-full; consolidated amendments not checked, U7b) |
 | 2. KID requirement applies | Manufacturer draws up and publishes the KID before the product is made available (Art. 5(1)); seller or adviser provides it before the retail investor is bound (Art. 13(1)); Art. 13(3) allows delivery after the transaction only for customer-initiated distance sales, which presupposes a KID exists. In Norway the requirement applies even when the sale is solely on the customer's own initiative (Finanstilsynet); the KID must be in Norwegian (PRIIPs-loven § 4); no exemption in the PRIIPs-forskriften | Reg. Art. 5, 13; Finanstilsynet; LOV-2024-06-21-40 § 4; FOR-2024-09-16-2162 | verified (V-full) |
-| 3. Compliant KID unavailable | That US issuers generally publish no Norwegian KID is reported by press and broker-review sources. No issuer or regulator source was found. This is a **per-instrument** fact | Secondary only | **interpretation** (U9); S6 instrument attribute `kid_available_no` |
+| 3. Compliant KID unavailable | That US issuers generally publish no Norwegian KID is reported by press and broker-review sources. No issuer or regulator source was found. This is a **per-instrument** fact | Secondary only | **interpretation** (U9); S6 instrument attribute `kid_norwegian_compliant_available` |
 | 4. Consequence | Finanstilsynet may suspend or prohibit marketing (§ 6) and fine breaches of Art. 5(1) and 13(1) (§ 7). A seller cannot meet Art. 13(1) for a PRIIP with no Norwegian KID | PRIIPs-loven §§ 2, 6, 7 | verified (V-full) |
 
 **Result:**
-- **Promoted (verified):** *a PRIIP for which no Norwegian KID is available cannot lawfully be sold to a Norwegian retail investor.* This is a one-step application of mandatory provisions; no source sentence uses the word "prohibited".
-- **Not promoted (interpretation):** *US-domiciled ETFs are unavailable to Norwegian retail investors.* It depends on step 3 for each instrument.
+- **Promoted (verified, narrow form):** where a product falls within the applicable PRIIPs regime and a compliant Norwegian-language KID must be provided before it is made available or sold to a Norwegian retail investor, absence of the required KID prevents that retail access through the relevant offering/sale channel (`reg.no.priips.no_kid_no_retail_sale`).
+- **Not encoded:** any universal statement such as "US-domiciled ETFs are unavailable to Norwegian retail investors". The former interpretation record was removed at G3. Domicile does not imply ineligibility; eligibility is derived from per-instrument S6 attributes (product classification, PRIIPs applicability, KID availability, compliant Norwegian KID availability, UCITS/AIF/other status, marketing/access status, broker availability), giving retail eligibility as a derived value (FX3-27).
 - **Not researched:** whether marketing rules for non-UCITS funds under the AIF law add a separate barrier (U9b).
 
 ## 5. RQ-45 — self-reported experience vs. appropriateness (revised)
@@ -184,16 +184,16 @@ Format: `capability → evidence/regulatory status → unresolved issue → requ
 |---|---|---|---|---|
 | Generic analytics | A10: generic, not advice | — | — | Enablable when built (no regulatory dependency identified) |
 | Personalised analytics (descriptive, of the user's own holdings) | Not a recommendation on its face (no instrument recommended) | Whether personalised descriptive outputs fall under A4 | Neutral presentation; no emphasis (A9) | Enablable when built |
-| Deterministic implementation of user-selected rules | Closest analogue A6/A7 (unlikely recommendation) | A vs. B (§6.2) | User-declared configuration recorded (S1/S2); neutral presentation; provenance of every rule to the user's declaration | Enablable for the user's own use; distribution posture open (RQ-49) |
-| Model portfolios | A8: case-by-case; positioning matters | Whether any are offered and how presented | Not positioned as "appropriate for you"; no profile → portfolio mapping presented as advice | Gated on design decision at S11/S14 (no regulatory finding forces exclusion) |
-| Personalised target portfolios | A vs. B unresolved | Whether an optimiser output computed from user-chosen objective and constraints is a personal recommendation by anyone | Methodology selected or admitted by the user (S2 authority model); transparent derivation; no "suitable for you" framing (A4, A11) | Gated: unresolved dependency at S11/S14; not removed |
-| Recommendations (application-originated, A) | A3–A5: if made to a client by a provider, investment advice | Whether any A-type output is intended | If intended: regulatory status must be resolved first | Gated: RQ-49 must be resolved for this capability before enablement |
+| Deterministic implementation of user-selected rules | Closest analogue A6/A7 (unlikely recommendation) | A vs. B (§6.2), kept open until the relevant later stage | User-declared configuration recorded (S1/S2); neutral presentation; provenance of every rule to the user's declaration | **Not automatically classified as a recommendation**; enablable for the user's own use; characterisation revisited at the stage where each output type is specified |
+| Model portfolios | A8: case-by-case; positioning matters | How output is generated and presented | Not positioned as "appropriate for you" | Architecturally supported; enablement **revisited at S11/S14** on exactly how output is generated and presented |
+| Personalised target portfolios | A vs. B unresolved | Whether an optimiser output computed from user-chosen objective and constraints is a personal recommendation by anyone | Methodology selected or admitted by the user (S2 authority model); transparent derivation; no "suitable for you" framing (A4, A11) | Architecturally supported; enablement **revisited at S11/S14** on generation and presentation |
+| Application-originated personalised recommendations (A) | A3–A5: if made to a client by a provider, investment advice | Whether and how A-type output is offered | RQ-49 resolution for this capability | Architecturally supported, **disabled until resolved by S11/S14** |
 | Portfolio optimisation (method) | Computation; regulatory relevance arises only through presentation and use | As target portfolios | As target portfolios | As target portfolios |
-| Trade lists | A4 (transactions in particular instruments) if a recommendation | As target portfolios | User confirmation (ADR-0017 grant 5); derivation from the user's target and rules | Gated with target portfolios (S13e/S14) |
+| Trade lists | A4 (transactions in particular instruments) if a recommendation | As target portfolios | User confirmation (ADR-0017 grant 5); derivation from the user's target and rules | Architecturally supported; enablement **revisited at S11/S14** (contract at S13e) |
 | Order staging | Not addressed directly | Whether staging inside the user's own environment is reception of orders by anyone | User-held broker credentials; local execution path | Gated: S13 safeguards (ADR-0017); regulatory note at S13f |
-| User-confirmed execution | A12: execution/transmission is a service when **on behalf of clients** | Whether a locally run tool submitting the user's own orders via the user's own broker credentials acts "on behalf of" anyone | Local execution with user-held credentials; per-order confirmation; broker performs execution | Gated: S13 safeguards and broker API facts (RQ-19); RQ-49 note at S13f |
-| Rule-based automated execution | A12 (discretion for a client) | Whether user-authored rules executed automatically constitute discretion exercised for anyone | Authority grants scoped, limited, revocable (ADR-0017); S13 safeguards | Gated: S13 safeguards; RQ-49 resolution for distributed builds |
-| Unattended execution | Not addressed directly | As above, plus operational-risk safeguards | Grant 8 (ADR-0017); S13 safeguards; monitoring (S16) | Gated: S13 safeguards and S16 monitoring; RQ-49 resolution for distributed builds |
+| User-confirmed execution | A12: execution/transmission is a service when **on behalf of clients** | Whether a locally run tool submitting the user's own orders via the user's own broker credentials acts "on behalf of" anyone | Local execution with user-held credentials; per-order confirmation; broker performs execution | Architecturally supported; disabled until S13 safeguards and broker API facts exist; distributed-build posture **resolved by S13f** |
+| Rule-based automated execution | A12 (discretion for a client) | Whether user-authored rules executed automatically constitute discretion exercised for anyone | Authority grants scoped, limited, revocable (ADR-0017); S13 safeguards | Architecturally supported; **disabled until resolved by S13f** with S13 safeguards |
+| Unattended execution | Not addressed directly | As above, plus operational-risk safeguards | Grant 8 (ADR-0017); S13 safeguards; monitoring (S16) | Architecturally supported; **disabled until resolved by S13f** with S13 safeguards and S16 monitoring |
 
 **What this does and does not do:**
 - No capability is removed from the architecture, and the S2 authority model is unchanged.
@@ -242,7 +242,9 @@ Format: `capability → evidence/regulatory status → unresolved issue → requ
 | Effective date / stale documentation | The help article that carried the $10 claim now renders no body text (checked in a browser). Broker-review sites (secondary, leads only) report removal of the $10 fee during 2026, at least for UK clients | Most consistent with the leads, but not established from authoritative current material |
 
 **Result:** not resolved. Both records are preserved as linked
-`unresolved_conflicting` facts; neither is chosen (FX3-11).
+`unresolved_conflicting` facts; neither is chosen (FX3-11). The
+inactivity-fee cost input is `unknown` wherever the conflict matters. It is
+re-verified when cost modelling requires it (Class B, U10 → S13a).
 
 ## 9. Unknown vs. verified-unsupported — audit
 
@@ -269,7 +271,7 @@ evidence that it does not.**
 | U1 | Shielding rate 2026 | B | 2026 rate → after-tax projections and tax-aware calculations for income year 2026 → S13a (record on publication, Jan 2027) |
 | U2 | 2027 tax parameters | B | 2027 parameters → tax calculations for 2027 → S13a (record on publication) |
 | U3 | NOU 2026:9 | — | **Withdrawn:** wealth tax out of scope (ADR-0021) |
-| U4a | ASK credit: calculation and limit inside ASK | B | Calculation → after-tax return modelling of foreign dividends in ASK, and ASK vs. ordinary-account comparison illustrations that include credit → S13a |
+| U4a | ASK credit: calculation and limit inside ASK | B | Calculation → detailed ASK after-tax modelling and tax functionality (incl. comparison illustrations with credit) → resolve before S13a enables it; do not infer meanwhile |
 | U4b | ASK: tracking of withheld tax | B | Tracking → per-account tax reporting aids for ASK → S13a (and S14 report) |
 | U4c | ASK: input-value interaction with credit | B | Interaction → ASK after-tax modelling → S13a |
 | U4d | ASK: carry-forward across dividend-year/withdrawal-year gap | B | Timing → multi-year ASK tax projections → S13a |
@@ -280,12 +282,12 @@ evidence that it does not.**
 | U7b | PRIIPs consolidated amendments vs. articles read | A | — |
 | U7c | EU application dates (MiFID II, PRIIPs) | A | — |
 | U8 | ESMA appropriateness guidelines; Norwegian supplementary regulation ch. 6 §3 | A | — |
-| U9 | Per-instrument Norwegian KID availability (US ETFs) | B | KID availability → legal admissibility layer for third-country funds in the universe → S5/S6 (instrument attribute `kid_available_no`) |
+| U9 | Per-instrument PRIIPs/KID attributes | B | Instrument attributes (PRIIPs applicability, compliant Norwegian KID availability, fund regime, marketing status) → legal admissibility of individual instruments in the universe → S5/S6 |
 | U9b | AIF-law marketing barrier for non-UCITS funds | B | → same capability → S5/S6 |
 | U10 | eToro: Norway commission, entity applicability, ASK, withholding, appropriateness, API eligibility, direct reporting, inactivity conflict | B | eToro facts → feasibility, cost illustration, and execution for eToro configurations → S5 (availability), S13a (costs), S13f (API/execution) |
 | U11 | Nordnet: fractional shares, order types, exchange list; full reads of V-abs pages | B | → sizing/rounding and execution for Nordnet → S13e/S13f |
 | U12 | Fund taxation rule start date | A | — (current rule verified; history needed only for long backtests → S7 note) |
-| U13 | RQ-49 resolution | B | A vs. B and distribution posture → application-originated recommendations; distributed builds' target-portfolio, trade-list, and execution capabilities → S11/S14 (recommendation framing), S13f (execution) |
+| U13 | RQ-49 resolution, per capability | B | Application-originated recommendations → S11/S14; target/model portfolios and trade lists → revisited S11/S14; distributed, rule-based, and unattended execution → S13f. Generic and descriptive analytics not gated. No single application-wide conclusion |
 | U14 | CFD/binary national measures: current status on Lovdata | A | — |
 
 **Class C: none.** No unresolved item undermines a fact or architectural

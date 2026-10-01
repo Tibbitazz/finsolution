@@ -1,5 +1,17 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — Gate G3 closed
+
+- Owner approved G3 with final amendments: ADR-0019 ACCEPTED; ADR-0020 and ADR-0021 retained; ADR-0022 ACCEPTED (parallel development track after G3; S18 = final handoff/completion).
+- Registry v1 accepted: 82 records. The US-ETF interpretation record was removed; the PRIIPs conditional rule was reformulated narrowly; per-instrument attributes deferred to S6.
+- Domain-specific jurisdiction support and operation-level support checks (ADR-0019 §10; architecture §9).
+- RQ-49 capability gating approved in principle; deterministic user-selected rules not automatically recommendations.
+- RQ-03/04/05/06/24/42 resolved; RQ-46 resolved for S3; RQ-45, RQ-49, RQ-51 open.
+- Carried gating register CB-01 … CB-16 with gate entry rule (08 §3); carried invariants (unknown ≠ not_offered; domain-specific support; derived eligibility).
+- 10_SCOPE_EXCLUSIONS.md established (E / I / D kinds).
+- 08_ROADMAP: Track A / Track B diagram; S8 and S18 redefined.
+- Fixtures FX3-27, FX3-28 added. S3 documents STABLE.
+
 ## 2026-10-01 — S3 G3 package revision 2 (owner corrections at G3 review; G3 not closed)
 
 - **Wealth tax out of scope (ADR-0021, ACCEPTED, owner instruction):** 4 provisional wealth-tax records removed (never accepted, so no registry history affected); `TAX.wealth_tax_position` (S1 10.1) retired; jurisdiction-support domain removed (nine → eight); 00, 03, 08, RQ-03 amended. Total-wealth optimisation scope and outside wealth in risk capacity are unaffected.
