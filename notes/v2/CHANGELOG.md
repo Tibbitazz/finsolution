@@ -6,6 +6,7 @@
 - D-S1-1 resolved by the owner: personal data stays local and git-ignored. `.gitignore` excludes `/local/`.
 - research/S1_QUESTIONNAIRE.md (renamed from S1_INVESTOR_INPUTS.md): public template with nature (F/P/R), interface type, need, and later use per question.
 - Amended: 00 scope and roles; 07 §8 (proposed); 08 S1, S2, S8; RQ-01 updated; RQ-39 … RQ-42 added.
+- Purpose limitation added to ADR-0014 (§8): every personal field declares its decision purpose, exhaustive permitted consumers, and necessity; fields without a purpose are not collected; no silent cross-purpose use. Reflected in RQ-40, RQ-41, 07 §8, and the questionnaire (Necessity and Purpose → permitted consumers columns). Question 1.4 reworded to consumption and liability currencies.
 
 ## 2026-10-01 — Gate G0 closed
 

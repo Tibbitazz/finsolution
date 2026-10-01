@@ -62,9 +62,18 @@ public.
 7. **Privacy boundary.** Personal data stays on the user's machine. Run
    manifests shared or committed reference profile *hashes*, never contents.
    Any flow of personal data to external services (e.g. hosted LLM
-   providers) requires an explicit, minimised, user-approved policy (RQ-40);
+   providers) is limited to fields whose declared purpose (§8) requires that service, and requires an explicit, minimised, user-approved policy (RQ-40);
    until that is decided, none is assumed.
-8. **Jurisdiction scope.** Tax residence is a user input. Users resident in a
+8. **Purpose limitation for personal data.**
+   - Every personal-data field declares, in the schema:
+     (i) its **decision purpose** — why it is required;
+     (ii) its **permitted consumers** — an exhaustive list of engine components that may read it;
+     (iii) its **necessity** — required for an Effective Policy Statement, or optional.
+   - A field with no defined decision purpose is not collected.
+   - Information collected for one purpose must not silently affect unrelated decisions. A new consumer or purpose requires a schema change recorded in an ADR.
+   - Example: year of birth may inform horizon and goal validation, human-capital considerations, or risk capacity. It may never become an investment signal or alter market beliefs. This extends ADR-0009's beliefs ⊥ preferences separation to factual personal inputs.
+   - The rule applies to the S1 questionnaire and to all future profile fields; the Feasibility Engine and agents receive only the fields their declared purpose permits.
+9. **Jurisdiction scope.** Tax residence is a user input. Users resident in a
    jurisdiction the Tax Registry does not cover are reported as unsupported
    (a conflict record), not given Norwegian rules by default. Initial
    coverage target: Norway (RQ-42).

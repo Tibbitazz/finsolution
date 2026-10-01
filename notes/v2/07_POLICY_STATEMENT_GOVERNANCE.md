@@ -157,7 +157,7 @@ Reusable engine (public)  →  public versioned facts + accepted methodology
 ```
 
 - The Policy Statement is per local user profile. Personal content never leaves the local workspace or enters the public repository.
-- Every field carries metadata: input nature (factual / preference / research-dependent), editability (user-editable / registry-sourced / methodology-defined / system-derived), input type, option source (static / registry-driven / eligibility-driven), whether an advanced value is allowed, and its §3 category. Field specification is an S2 deliverable.
+- Every field carries metadata: input nature (factual / preference / research-dependent), editability (user-editable / registry-sourced / methodology-defined / system-derived), input type, option source (static / registry-driven / eligibility-driven), whether an advanced value is allowed, its §3 category, and for personal data its decision purpose, exhaustive permitted consumers, and necessity (purpose limitation, ADR-0014 §8). Field specification is an S2 deliverable.
 - Facts and rules are never editable as preferences.
 - A preference never makes an infeasible choice feasible. Conflicts are explained to the user, not silently resolved.
 - Raw preferences are preserved. Derived model parameters carry derivation records (method version, inputs, output).
