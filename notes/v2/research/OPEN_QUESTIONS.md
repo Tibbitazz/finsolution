@@ -8,7 +8,7 @@ on the owner's own circumstances rather than on literature.
 
 | ID | Question | Stage → Gate | Status | Notes |
 |---|---|---|---|---|
-| RQ-01 | Investor goals, priorities, horizons, cash flows, outside wealth, experience | S1 → G1 | OPEN | Owner input |
+| RQ-01 | Investor Profile content: goals, priorities, horizons, cash flows, outside wealth, experience | S1 → G1 | IN-RESEARCH | Schema public (S1_QUESTIONNAIRE); answers are local per user (ADR-0014); the owner's profile is the first test case |
 | RQ-02 | Representation and calibration of risk preference (see below) | S1, S2, S11 → G1, G2, G11 | OPEN | ADR-0010 fixes only the separation |
 | RQ-03 | Norwegian account wrappers in scope (excl. individuell pensjonssparing) and their rules; taxation of shares, funds (incl. fund equity-share rules), interest; shielding deduction; wealth-tax treatment | S3a → G3 | OPEN | Primary sources only; legacy ASK claims are leads only |
 | RQ-04 | Kildeskatt: withholding on foreign dividends, treaty rates, credit against Norwegian tax, treatment inside wrappers, fund-level withholding in non-domestic funds/ETFs | S3a → G3 | OPEN | |
@@ -45,6 +45,10 @@ on the owner's own circumstances rather than on literature.
 | RQ-35 | Time-series tactical signal candidates (mean reversion incl. 5-day z-score scale-in rule, trend, moving-average state, breakout, volatility state, RSI, …); asset state vs. position-dependent policy; signal-time vs. execution-time assumptions | S13d → G13d | OPEN | Registered only; nothing approved; the screenshot rule has no evidence attached |
 | RQ-36 | Asset-state abstraction (structured descriptor vector consumed selectively) vs. simpler alternatives; correct indexing (asset, asset × account, asset × portfolio) | S8, S9d → G8, G9 | OPEN | Candidate only |
 | RQ-37 | Signal-evaluation design: factor-portfolio tests (rank-weighted and quantile), predictive tests, net-of-cost evaluation under account configuration, pre-registered variant grid, multiple-testing control | S7 → G7 | OPEN | Must be fixed before any signal result is produced |
+| RQ-39 | Local workspace design: storage format and location, multiple profiles, encryption at rest, backup/export, separation of user run history | S8 → G8 | OPEN | ADR-0014 |
+| RQ-40 | Personal-data flow to external services (hosted LLM providers, data vendors): which fields, if any, may leave the machine; minimisation; local vs. hosted models; user consent | S8, S12 → G8, G12 | OPEN | None assumed until decided |
+| RQ-41 | Field metadata and predefined option sets (e.g. risk categories, leverage levels, exclusion lists): research basis, advanced/custom ranges, validation | S2 → G2 | OPEN | Options must not be defaults |
+| RQ-42 | Handling of users outside registry-covered jurisdictions; process for adding a jurisdiction | S3 → G3 | OPEN | Unsupported is reported, never defaulted to Norway |
 | RQ-38 | Comparison-universe invariance: compute relative scores over the policy-permitted universe or over a preference-independent reference universe, then filter | S5, S9c → G5, G9 | OPEN | ADR-0013 (proposed) makes the comparison universe an explicit input |
 
 ## RQ-02 — Risk preference: representation and calibration

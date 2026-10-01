@@ -1,0 +1,6 @@
+# Local user layer — personal financial data. Never commit (ADR-0014).
+/local/
+*.local.*
+*.local
+# OS noise
+.DS_Store

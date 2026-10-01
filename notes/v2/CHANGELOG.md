@@ -1,5 +1,12 @@
 # Changelog — notes/v2
 
+## 2026-10-01 — S1 started (branch `stage/s01-investor-context`)
+
+- ADR-0014 (PROPOSED, for G1): reusable engine with a private local user layer; declared vs. effective Policy Statement with conflict records; field metadata; raw preferences preserved with derivation records; privacy boundary; unsupported-jurisdiction rule.
+- D-S1-1 resolved by the owner: personal data stays local and git-ignored. `.gitignore` excludes `/local/`.
+- research/S1_QUESTIONNAIRE.md (renamed from S1_INVESTOR_INPUTS.md): public template with nature (F/P/R), interface type, need, and later use per question.
+- Amended: 00 scope and roles; 07 §8 (proposed); 08 S1, S2, S8; RQ-01 updated; RQ-39 … RQ-42 added.
+
 ## 2026-10-01 — Gate G0 closed
 
 - Owner accepted ADR-0002, ADR-0003, ADR-0012, ADR-0013 (status lines updated;
