@@ -84,9 +84,9 @@ Paths are given relative to these roots. Local files are not copied into the rep
 | PC-D2 | Max drawdown-constrained | Chekhlov, Uryasev & Zabarankin (2005), *IJTAF* 8(1):13–58 | MISSING — LOCATED (open working version) | [SSRN 544742](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=544742); a UPenn-hosted PDF titled "Portfolio Optimization with Drawdown Constraints" ([link](https://www.cis.upenn.edu/~mkearns/finread/drawdown.pdf)) is probably an earlier version (IDENTITY UNCONFIRMED) |
 | PC-D3 | Tail-risk parity | Boudt, Carl & Peterson (2013), *J. Risk* 15(3):39–68 | MISSING — LOCATED (open working version) | [SSRN 1885293](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1885293) |
 | PC-D3 (supporting) | — | Boudt, Peterson & Croux (2008), modified ES | MISSING | Not yet located |
-| PC-D4 | TPA two-factor | Ang, Brandt & Denison (2014), report to the Norwegian Ministry of Finance (20 Jan 2014) | MISSING — LOCATED (open, official) | [regjeringen.no PDF](https://www.regjeringen.no/contentassets/8a415dfc9935480dbf891923c9ac848b/Evaluation_GPFG.pdf) |
+| PC-D4 | TPA two-factor | Ang, Brandt & Denison (2014), report to the Norwegian Ministry of Finance (20 Jan 2014) | MISSING — LOCATED (open, official; **URL corrected 2026-10-02, candidates not yet fetched**) | **Correction:** the previously listed `regjeringen.no/contentassets/8a415dfc…/Evaluation_GPFG.pdf` serves Bauer, Christiansen & Døskeland (2022), not ABD 2014. Candidate URLs (all unverified): (a) BCD 2022 bibliography: `https://www.regjeringen.no/globalassets/upload/fin/statens-pensjonsfond/eksterne-rapporter-og-brev/2014/angbrandtdenison_2014.pdf`; (b) NBIM news page of 22 Sep 2014: `http://www.regjeringen.no/pages/1934920/AngBrandtDenison_2014.pdf`; (c) web search 2026-10-02: `https://kudos.dfo.no/documents/11206/files/11277.pdf` (title match in search result only). Owner reported ABD 2014 could not be located (2026-10-02) |
 | PC-D4 (also cited in ANG text) | — | Gilmore & Simonian (2025), *JPM* 51(10):40–48 | MISSING — LOCATED (paywalled) | [PM Research](https://www.pm-research.com/content/iijpormgmt/51/10/40) |
-| PC-D4 | — | AQR, "Total Portfolio Approach — A Quant Lens" (2026) | SECONDARY | RPT/Portfolio Optimization/Total Portfolio Approach.pdf — **not a substitute for ABD 2014** |
+| PC-D4 | — | AQR Portfolio Solutions Group (Hecht, Heffernan, Ilmanen, Maloney, McQuinn & Sachdev), "Total Portfolio Approach: A Quant Lens," *AQR Alternative Thinking* 2026 Issue 2 (22 pp.) | SECONDARY (practitioner) — **read in full 2026-10-02** | RPT/Portfolio Optimization/Total Portfolio Approach.pdf; owner-supplied copy `AQR Alternative Thinking - Total Portfolio Approach.pdf` (md5 16bf8f961f21). **Not a substitute for ABD 2014 as ANG's cited source.** Usable as a *specification lead* for a TPA-family candidate: "no single definition of TPA" (p. 3); two-factor stock/bond regression and appraisal ratio AR = α/σ_ε (p. 6); unconstrained results SR²_max = SR²_current + AR² and allocation ∝ AR/σ_ε (p. 6 fn. 11–12; verified numerically 2026-10-02); explicitly assumes leverage and shorting (p. 7). Cites ABD 2014 only for "TPA and its application to funding and benchmarking investments" (p. 3 fn. 2). Primary for the appraisal-ratio mathematics: Treynor & Black (1973), *Journal of Business* 46(1) (per AQR reference list; not yet obtained) |
 | PC-E1 (example) | Researcher — max entropy | Bera & Park (2008), *Econometric Reviews* 27(4–6):484–512, doi 10.1080/07474930801960394 | MISSING — LOCATED (paywalled) | [RePEc](https://ideas.repec.org/a/taf/emetrv/v27y2008i4-6p484-512.html) |
 | PC-E2 | Adversarial diversifier | ANG §3.3 only (no external source) | AVAILABLE (ANG) | — |
 
@@ -155,12 +155,30 @@ Paths are given relative to these roots. Local files are not copied into the rep
 | Thesis artefacts: Oversikt EPO Thesis.pdf, Plots V54 merged.pdf, Thesis Idea.pdf, Earlier Thesis Papers.zip | RPT | Leads only. Any UEPO/SEPO/DEPO content is excluded (L) |
 | REF-01 memo (S0) | notes/v2/research | Prior reading of the same ANG version; S4.1 rebuilds from the paper |
 
+## 10. Accountability, implementation and short-horizon sources (added 2026-10-02; NBIM/trading-layer review)
+
+Identity verified against each document's own text, not its filename. These support ADR-0026 (PROPOSED) and the S4.2b / S4.15b work. They are not PC-method sources.
+
+| Source | Status | Location | Supports (scope) |
+|---|---|---|---|
+| Bauer, Christiansen & Døskeland (2022), *A Review of the Active Management of Norway's Government Pension Fund Global*, report to the Ministry of Finance (3 Jan 2022), 117 pp. | AVAILABLE (read in full) | Owner download `Evaluation_GPFG.pdf` (md5 b80c7593ae88); to be filed in RPT | Institutional/accountability evidence: mandates, mapping performance to units, "container" categories, rebalancing decided by the Ministry, implementation as a value source, statistical power |
+| Sharpe (1981), "Decentralized Investment Management," *JF* 36(2), 217–234 | AVAILABLE (relevant sections read) | Owner zip `Finsol S4 papers.zip` | Diversification of judgement vs style (pp. 220, 232–233); eq. (22a), p. 230 (mean–variance case) |
+| van Binsbergen, Brandt & Koijen (2008), "Optimal Decentralized Investment Management," *JF* 63(4), 1849–1895 | AVAILABLE (abstract, structure, conclusions) | Owner zip | Delegation misalignments; benchmark design as mitigation |
+| Sensoy (2009), "Performance Evaluation and Self-Designated Benchmark Indexes in the Mutual Fund Industry," *JFE* 92(1), 25–39 | AVAILABLE (abstract) | Owner zip | Self-designated benchmarks can be strategically mismatched even when specified in advance |
+| Perold (1988), "The Implementation Shortfall: Paper versus Reality," *JPM* Spring 1988, pp. 4–9 (scanned) | AVAILABLE (read in full) | Owner zip | Shortfall = execution cost + opportunity cost (App. B); paper portfolio at decision-time mid; pace of trading |
+| Perold & Sharpe (1988), "Dynamic Strategies for Asset Allocation," *FAJ* 44(1), 16–27 | AVAILABLE (abstract, conclusion) | Owner zip | Rebalancing rules embody investor risk tolerance and path exposure (p. 26) |
+| Jegadeesh (1990), "Evidence of Predictable Behavior of Security Returns," *JF* 45(3), 881–898 | AVAILABLE (abstract, cost passage) | Owner zip | Short-horizon reversal family located (monthly, individual stocks) |
+| Lehmann (1990), "Fads, Martingales, and Market Efficiency," *QJE* 105(1), 1–28 | AVAILABLE (abstract, cost passage) | Owner zip | Short-horizon reversal family located (weekly, individual stocks); closing-price data limitation (fn. 16) |
+| Wermers (2011), "Performance Measurement of Mutual Funds, Hedge Funds, and Institutional Accounts," *ARFE* 3(1), 537–574 | SECONDARY via BCD App. C (p. 98) | — | Benchmark properties as restated by BCD; primary optional |
+| *Misidentified file:* "Active Management in Mostly Efficient Markets.pdf" | IDENTITY ≠ REQUESTED | Owner zip | Is Jones & Wermers (2011), *FAJ* 67(6), 29–45 — not Wermers (2011) *ARFE*; supports no current claim |
+| *Misidentified file:* "NBIM_September_22_2014.pdf" (image-only) | IDENTITY ≠ REQUESTED | Owner zip | NBIM news page and CEO speech (22 Sep 2014); neither ABD 2014 nor NBIM (2014) "Benchmark Design for an Active Investment Process" |
+
 ## 9. Summary counts (primaries needed for the ANG fixed methods + EPO)
 
 | Class | Count | Items |
 |---|---|---|
 | AVAILABLE | 8 | DGU 2009, Sharpe 1964, Moreira–Muir 2017, Markowitz 1952, Black–Litterman 1992, Sortino–van der Meer 1991, PBL 2021 (two versions), ANG |
-| MISSING — LOCATED, open | 7 | Maillard–Roncalli–Teïletche, López de Prado, Varadi (mirror), Chekhlov–Uryasev–Zabarankin (working paper), Boudt–Carl–Peterson (working paper), Ang–Brandt–Denison (official), He–Litterman (supporting) |
+| MISSING — LOCATED, open | 7 | Maillard–Roncalli–Teïletche, López de Prado, Varadi (mirror), Chekhlov–Uryasev–Zabarankin (working paper), Boudt–Carl–Peterson (working paper), Ang–Brandt–Denison (official; URL corrected 2026-10-02, candidates unverified), He–Litterman (supporting) |
 | MISSING — LOCATED, paywalled or book | 7 | Kirby–Ostdiek, Goldfarb–Iyengar, Michaud 1998 (book), Clarke–de Silva–Thorley, Choueifaty–Coignard, Rockafellar–Uryasev 2000, Gilmore–Simonian |
 | UNUSABLE/CORRUPT | 1 | EPO empirical-study PDF |
 

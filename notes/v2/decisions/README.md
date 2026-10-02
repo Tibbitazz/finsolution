@@ -31,6 +31,7 @@ append-only after acceptance; changes are new ADRs that supersede old ones.
 | [ADR-0023](ADR-0023-ang-architectural-baseline.md) | ANG as architectural baseline; role ≠ runtime; Method ≠ Agent; extensible roster; adopted vs. illustrative | ACCEPTED | — (owner, S4 plan) | S4 | 2026-10-02 | — (clarifies 05 §2, ADR-0004) | — |
 | [ADR-0024](ADR-0024-s4-method-governance.md) | Research lane; revision rules; parameter-authority classes; allocation domains; dual contracts; EPO hierarchy; verification area | ACCEPTED | — (owner, S4 plan) | S4 | 2026-10-02 | — (extends 0005, 0012, 0015, 0023) | — |
 | [ADR-0025](ADR-0025-methodological-admission-vs-empirical-evaluation.md) | Methodological admission ≠ empirical evaluation (redefines ADMISSIBLE) | PROPOSED | owner confirmation | S4 | — | in part ADR-0005; 06 §1(3); 02 §D | — |
+| [ADR-0026](ADR-0026-agent-mandates-and-implementation-authority.md) | Agent Mandate and Decision Record objects; investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution; escalation; evidence rights; no containers | PROPOSED | owner check, then G4 | S4 | — | — (extends 0023; annotates 0012 §7, 05 §2 layer 8, 08 S13d) | — |
 | [ADR-0013](ADR-0013-clarify-beliefs-preferences-test.md) | Clarify ADR-0009 test: declared comparison universe | ACCEPTED | G0 | S0 | 2026-10-01 | — (clarifies 0009) | RQ-38 |
 
 **Basis of `ACCEPTED` entries dated 2026-10-01:** explicit owner instructions or

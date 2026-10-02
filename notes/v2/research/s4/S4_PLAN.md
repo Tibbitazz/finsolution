@@ -1,6 +1,6 @@
 # S4 plan — Method Library & Eligibility (ANG baseline)
 
-**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024 (accepted); ADR-0025 (proposed).
+**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024 (accepted); ADR-0025, ADR-0026 (proposed). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8).
 **Basis:** owner instruction of 2026-10-02; full re-read of ANG (version 21 Sep 2026, 40 pp, read in full by text extraction; Exhibits 1, 2, 4 and 5 extracted as images and inspected); accepted S0–S3 (G0–G3).
 **Page numbers:** printed page numbers of the paper (PDF page − 1).
 
@@ -27,10 +27,19 @@
 4. **Momentum roles open until S4.8/S4.9:** possible objects are signal · signal-conditioned universe · direction/exposure rule · expected-return mapping · standalone strategy · tactical overlay.
 5. **Portfolio Map broadened** (§J).
 6. **PC roster versioned and extensible.** Reference baseline is ANG's 21; the initial S4 baseline is 23 (+ Simple EPO, Anchored EPO).
-7. **Method / Method Contract / Agent Role / Agent Instance / Portfolio Proposal** kept distinct.
+7. **Method / Method Contract / Agent Role / Agent Instance / Portfolio Proposal** kept distinct; extended by ADR-0026 (PROPOSED) with **Agent Mandate** and **Decision Record**.
 8. **Separation of stages:** method output → proposal → CRO → peer assessment → revision → CIO kept separate in contracts; the peer vote is not a weighting algorithm.
 9. **No ANG rankings or ensemble weights** as priors or defaults.
 10. **Dual (machine + agent-readable) Method Contracts.**
+11. **Accountability layer (owner D-A … D-E, 2026-10-02; ADR-0026 PROPOSED).**
+    - The NBIM review (Bauer, Christiansen & Døskeland 2022) is used as an accountability framework *around* ANG.
+    - Investment decision ≠ deterministic rebalancing determination ≠ hybrid Trader discretion ≠ deterministic execution.
+    - The approved decision carries the implementation parameters.
+    - No standalone Technical Agent in v0.
+    - Traceability ≠ attribution; no container categories.
+    - Work items: S4.2b, S4.15b and the field additions in S4.3, S4.16–S4.22.
+12. **Source authority and selectivity** (§E.1–E.2). S4 becomes more selective as research progresses, not merely larger.
+13. **TPA source assessment.** ABD 2014 is not yet obtained. AQR (2026) cannot replace it as ANG's cited source, but can serve as a specification lead for a separately labelled TPA-family candidate, under conditions ([S4_0_ACQUISITION_CHECKLIST.md](S4_0_ACQUISITION_CHECKLIST.md), Addendum A.3).
 
 ---
 
@@ -150,13 +159,15 @@ Format: `ANG baseline → proposed adaptation → reason → architectural conse
 | B-12 | Peer review (intra + inter), Borda, metric blend, diversity rule, top-5 revise | Preserved as the S12 baseline protocol; revisions limited to ADR-0024 §2 categories with parameter-authority classes; mechanics are S12 research questions | R1 | S4.17 metadata requirements | U (structure) / A (revision) |
 | B-13 | CIO: 7 ensembles + single-method choice; LLM-as-judge | Preserved as the S12 baseline; ensemble choice = bounded choice among code-computed ensembles (R1); final approval by the user | R1, B-3 | S4.18 inventory | U/A |
 | B-14 | Board memo vs. 60/40 | Investment-case report (S14) vs. the user's comparison benchmark (pending) | Individual context | Comparison benchmark ≠ anchor (§G S4.10) | A |
-| B-15 | Rebalancing: quarterly + drift triggers | REB.* configuration and S13b research | No default | — | D |
+| B-15 | Rebalancing: quarterly + drift triggers in the CIO board memo | The rebalancing **rule** is part of the approved portfolio decision (proposed by the CIO, approved by the investor). Its **determination** is a deterministic service (ADR-0026 §5.1–5.2). Methods and parameters in S13b (RQ-44) | Rule ownership: ANG p. 14; BCD p. 14 fn. 5; Perold & Sharpe 1988 p. 26. Deterministic determination is an architecture decision | REB.* rule version carried by the approved decision | D (methods) / A (ownership) |
 | B-16 | Meta agent self-modifies code and prompts below the materiality threshold | S17 (RQ-22). Method-Library or contract changes always go through the gate; sub-threshold scope defined at S17 | Reproducibility, ADR-0022 change control | Partial tension, flagged for S17 | A/D |
 | B-17 | Single institutional portfolio, pre-tax, no accounts | PC layer works at total-portfolio level on the admissible universe; account eligibility, asset location and tax in S13a | Multi-account, tax-aware individual | Decision at S11/S13: PC-level vs. account-level constraints. S4 contracts must allow both | A |
 | B-18 | Frontier LLMs plus web search are integral | Agent layer is the baseline architecture. Deterministic-only mode is the R2 control and privacy fallback. Personal data reaches an LLM only with RQ-40 consent | Privacy (ADR-0014) | S8 must support both modes. **Correction to my 2026-10-01 S8 proposal**, which called deterministic-only the default | A |
 | B-19 | Agents favoured covariance-based methods in March 2026 | **Not adopted as evidence** | ANG's own caveat; S7 governs evidence | — | N |
 | B-20 | Workflow manager | Orchestration component | — | S8 | U |
 | B-21 | Heterogeneous LLMs to mitigate correlated errors | Registered for S8/S12 (RQ-10) | — | — | D |
+| B-22 | Weights "are then implemented through trading" (p. 5); no trading role | **Extension:** hybrid Trader/Implementation role with a deterministic Execution service; conditional tactical mandate (RQ-17); escalation edge back to the investment process (ADR-0026 §5–7) | Individual investor needs an accountable implementation function | Mandates and Decision Records for downstream roles (S4.2b, S4.15b) | G (extension) |
+| B-23 | Governance through IPS, CRO, review, board memo | **Accountability layer around ANG:** an Agent Mandate per role; controls set in advance by S7; trace keys; no container categories (ADR-0026) | BCD 2022 institutional evidence; ANG unchanged | `S4_ACCOUNTABILITY.md` | G |
 
 ### B.1 Conflicts identified (must be resolved explicitly)
 
@@ -171,6 +182,9 @@ Format: `ANG baseline → proposed adaptation → reason → architectural conse
 | C-7 | My 2026-10-01 S8 proposal: "whether to use an LLM at all … default offline deterministic only" | Proposal only (not accepted) | Replaced by B-18 |
 | C-8 | My 2026-10-01 S4 proposal treated S4 as a flat method inventory | Proposal only | Replaced by this plan |
 
+| C-9 (ADR-0026 PROPOSED) | 05 §2 layer 8, "tactical judgement only if RQ-17 allows", could be read to forbid any implementation judgement | 05 (accepted G0) | Annotation: refers to deviation from w*; implementation judgement inside the mandate is governed by RQ-53 / S13 |
+| C-10 (ADR-0026 PROPOSED) | ADR-0012 §7 can be read as placing all time-series evidence in S13d, conflicting with ANG's AC-level technical signals; 08 S13d presumes several "specialist agents" | ADR-0012; 08 | Read by use (beliefs/regime → S9; timing/tactics → S13d); the S13d list is a function inventory |
+
 No conflict found with accepted S1–S3 content. The registries, Policy Statement and authority model are compatible with ANG's IPS-centred governance.
 
 ---
@@ -181,7 +195,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 - **PC method / EPO variant:** NOT STARTED → SOURCE LOCATED → SOURCE REVIEWED → MATHEMATICS EXTRACTED → NOTATION RECONCILED → DEPENDENCIES IDENTIFIED → CONTRACT DEFINED → COMPUTATION VERIFIED → FIXTURES DEFINED → S4 COMPLETE
 - **Signal (XSMOM, TSMOM):** NOT STARTED → SOURCE LOCATED → SOURCE REVIEWED → CONSTRUCTION EXTRACTED → PLACEMENT DETERMINED → PC-COMPATIBILITY DETERMINED → CONTRACT DEFINED → COMPUTATION VERIFIED → FIXTURES DEFINED → INVENTORY COMPLETE (detail → S9)
 - **Upstream method (CMA, regime, covariance):** NOT STARTED → SOURCE LOCATED → IDENTIFIED → DEPENDENCIES MAPPED → HANDED TO S9/S10
-- **Agent role (Macro, AC, Cov, PC, CRO, Reviewer, CIO, Researcher, AdvDiv, Meta):** NOT STARTED → ANG EXTRACTED → ADAPTATION DECIDED → INFORMATION CONTRACT DEFINED → HANDED TO S8/S12/S17
+- **Agent role (Macro, AC, Cov, PC, CRO, Reviewer, CIO, Researcher, AdvDiv, Monitoring, Meta; extensions: Trader/Implementation, conditional Tactical; services: Rebalancing determination, Execution):** NOT STARTED → ANG EXTRACTED (or EXTENSION RECORDED) → ADAPTATION DECIDED → **MANDATE STUB DEFINED** → INFORMATION CONTRACT DEFINED → HANDED TO S8/S12/S13/S17
 - **Ensemble / deliberation method:** NOT STARTED → ANG EXTRACTED → DEPENDENCIES MAPPED → REGISTERED FOR S12
 - **Architectural item (taxonomy, anchors, benchmarks, diagnostics, Portfolio Map):** NOT STARTED → DRAFTED → REVIEWED → ACCEPTED AT G4
 
@@ -191,6 +205,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.0 | Source and artefact inventory | DONE — awaiting owner review |
 | S4.1 | Full ANG architectural reconstruction | NOT STARTED (this proposal's §A is a draft input) |
 | S4.2 | ANG adaptation map + ANG-baseline ADR | NOT STARTED (§B is a draft input) |
+| S4.2b | Accountability layer (ADR-0026) | DRAFTED 2026-10-02 — `S4_ACCOUNTABILITY.md`; completes with S4.2 |
 | S4.3 | Method taxonomy | NOT STARTED |
 | S4.4 | ANG PC source map | NOT STARTED (§D draft) |
 | S4.5 | Heuristic portfolios (5) | NOT STARTED |
@@ -204,6 +219,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.13 | Risk/covariance dependency inventory | NOT STARTED |
 | S4.14 | Agentic PC roles (Researcher, Adversarial Diversifier) | NOT STARTED |
 | S4.15 | Upstream CMA/signal inventory | NOT STARTED |
+| S4.15b | Downstream method inventory (inventory only) | DRAFTED 2026-10-02 — `S4_DOWNSTREAM_INVENTORY.md` |
 | S4.16 | CRO diagnostic requirements | NOT STARTED |
 | S4.17 | PC deliberation requirements | NOT STARTED |
 | S4.18 | CIO ensemble inventory | NOT STARTED |
@@ -270,6 +286,34 @@ Each must answer the six questions in the owner's instruction (philosophy, overl
 ## E. Source/paper checklist
 
 Superseded by the S4.0 output [S4_0_SOURCE_INVENTORY.md](S4_0_SOURCE_INVENTORY.md), which uses the status classes AVAILABLE / MISSING (LOCATED) / IDENTITY UNCONFIRMED / UNUSABLE/CORRUPT / SECONDARY.
+
+### E.1 Source authority (amendment 12)
+No source type automatically establishes an investment method.
+
+| Source class | Authority |
+|---|---|
+| ANG | Baseline agent architecture (ADR-0023) |
+| Accepted project ADRs | Governance |
+| Peer-reviewed / primary methodological literature | Methodological evidence |
+| BCD 2022 / NBIM material | Institutional and accountability evidence, where applicable |
+| Legacy ENGINE_V1 / thesis material | Research lead only (ADR-0001) |
+| Practitioner material | Candidate / research lead |
+| Social-media material | Hypothesis generation only |
+| Owner suggestions | Requirements or research questions **only when explicitly adopted as such**; never empirical evidence |
+
+**Claim labels:**
+- `VERIFIED-SOURCE`, with the scope stated and never wider than the source;
+- `VERIFIED-SECONDARY`;
+- `VERIFIED-DERIVATION`;
+- `INFERENCE`, i.e. architectural reasoning;
+- `HYPOTHESIS`, needing empirical analysis;
+- `UNVERIFIED`.
+
+ADRs additionally mark statements as [SRC] / [AD] / [GR] / [DEF] (ADR-0026).
+
+### E.2 Selectivity (amendment 12)
+- An inventory item leaves through `REMOVED` (evidence or reasoning does not justify it), `RELOCATED` (wrong layer or stage) or `MERGED` (duplicates an existing method), each with a recorded reason.
+- A method is removed when the evidence does not justify it, regardless of who proposed it.
 
 ---
 
@@ -352,7 +396,8 @@ Columns: **Entry** · **Work** · **Sources** · **Computation** · **Output** �
 | S4.0 Inventory | Plan approved; OD-1 … OD-7 decided | Locate every paper, prior methodology document, code and object; extract zips; confirm identities; list missing primaries and how to obtain them | §E; local roots; ENGINE_V1 (legacy) | None | `S4_SOURCE_INVENTORY.md` (path, identity, version, status) | Every §E row has a status; missing list has an acquisition route | — |
 | S4.1 ANG reconstruction | S4.0 | Canonical architecture map: roles, order, data flows, CMA, covariance, PC, CRO, review, voting, revision, CIO, Researcher, AdvDiv, meta, IPS governance, determinism boundaries, limitations, inconsistencies | ANG (full) | None | `S4_ANG_BASELINE.md` (from §A, page-cited) | Owner review | **SYNC-1** (with S4.2) |
 | S4.2 Adaptation map | S4.1 | Adopted / generalized / adapted / deferred / N/A per element; resolve C-1 … C-8; draft ANG-baseline ADR | ANG; S0–S3 | None | `S4_ANG_ADAPTATION.md`; ADR (PROPOSED, decided at G4 or earlier if owner prefers) | Every ANG element classified; conflicts resolved or escalated | **SYNC-1** |
-| S4.3 Taxonomy | S4.2 | Canonical object types: CMA/belief, signals, risk/covariance, PC families A–E, anchors, benchmarks, constraints, CRO diagnostics, deliberation, CIO ensembles, rebalancing, implementation; method vs. configuration vs. parameter; identity/versioning | ANG; 06; ADR-0012 | None | `S4_TAXONOMY.md` | Every inventory item has one type | **SYNC-2** |
+| S4.3 Taxonomy | S4.2 | Canonical object types: CMA/belief, signals, risk/covariance, PC families A–E, anchors, benchmarks, constraints, CRO diagnostics, deliberation, CIO ensembles, rebalancing, implementation; **plus (ADR-0026): evidence packet/descriptor (horizon, admitted uses), Agent Mandate, Decision Record, decision state (no-trade concepts), rebalancing rule, implementation method, timing-evidence method, tactical policy (conditional)**; method vs. configuration vs. parameter; identity/versioning | ANG; 06; ADR-0012 | None | `S4_TAXONOMY.md` | Every inventory item has one type | **SYNC-2** |
+| S4.2b Accountability | S4.2 (draft exists) | Role taxonomy incl. extensions; Agent Mandate schema; mandate stub per role; responsibility matrix v0; escalation model; no-trade concepts; traceability chain (definitions only) | ANG; BCD 2022; Sharpe 1981; vBBK 2008; Sensoy 2009; Perold 1988; Perold & Sharpe 1988 | None | `S4_ACCOUNTABILITY.md` | Every role has a mandate stub; no container role; extensions marked | **SYNC-1** |
 | S4.4 PC source map | S4.3 | Final §D with sources per method; ANG-vs-source differences listed | §D sources | None | `S4_PC_SOURCE_MAP.md` | Every PC method at SOURCE LOCATED or a documented acquisition gap | — |
 | S4.5 Heuristics | S4.4 | A1–A5 mathematics; specify volatility targeting's base portfolio | DGU 2009; Sharpe 1964; KO 2012; MM 2017 | Reference implementations; invariants (weights sum to 1, positivity, scale invariance); synthetic Σ | Equation Register entries; method records | MATHEMATICS EXTRACTED → COMPUTATION VERIFIED | — |
 | S4.6 MVO foundation | S4.4 | Objective, frontier, tangency, constraints, risk-free treatment, estimation-error problem | Markowitz 1952; Tobin 1958; Sharpe 1964; Michaud 1989; Jorion 1986 | Closed forms vs. numerical solver; frontier tracing; condition-number sensitivity on synthetic data | Register; `S4_MVO_FOUNDATION.md` | Closed form = solver within tolerance | — |
@@ -361,17 +406,18 @@ Columns: **Entry** · **Work** · **Sources** · **Computation** · **Output** �
 | S4.9 Signal × PC | S4.5–S4.8 | Determine the methodological objects supported by the literature (signal · signal-conditioned universe · direction/exposure rule · expected-return mapping · standalone strategy · tactical overlay); ANG's AC-level technical signals (A.1 step 4) are one placement, not a conclusion; per pair: 1/N, 1/σ, MVO, Simple EPO, Anchored EPO, others; allowed constructions only where the literature supports them; momentum-score → μ mapping registered as an S9d methodology | As S4.8; PBL 2021 (signal use) | Toy examples showing each construction is well-defined; unit checks | `S4_SIGNAL_PC_COMPATIBILITY.md` (matrix: valid / invalid / requires mapping) | No combination without semantics | **SYNC-3** (with S4.10) |
 | S4.10 Anchor & benchmark | S4.7 | Distinguish PC method · anchor method · benchmark · benchmark weights · comparison benchmark; valid anchor contract (1/N, 1/σ, benchmark weights, other source-supported); when anchor = comparison benchmark | PBL 2021; BL 1992 | Anchored EPO with each anchor on synthetic data; anchor-invariance tests | `S4_ANCHOR_BENCHMARK.md` | Contract stated; no index hard-coded | **SYNC-3** |
 | S4.11 Risk-structured | S4.4 | C1–C5 | CdST 2006; MRT 2010; LdP 2016; C&C 2008; Varadi 2012 | ERC convergence; HRP determinism; equivalences (e.g. MD vs. GMV when correlations are equal) | Register; method records | Verified | — |
-| S4.12 Non-traditional | S4.4 | D1–D4; placement of mean–downside risk; TPA specification gap analysis | R&U 2000/02; CUZ 2005; BCP 2013; ABD 2014 | LP formulations on synthetic scenarios; CVaR → GMV under normality checks | Register; method records; TPA gap memo | Verified or explicit gap | — |
+| S4.12 Non-traditional | S4.4 | D1–D4; placement of mean–downside risk; TPA specification gap analysis (**ABD 2014 not yet obtained; AQR 2026 as a specification lead under Addendum A.3 conditions; closed forms assume leverage/shorting, so a constrained version must be specified**) | R&U 2000/02; CUZ 2005; BCP 2013; ABD 2014; AQR 2026 (secondary); Treynor & Black 1973 (to obtain); Gilmore & Simonian 2025 | LP formulations on synthetic scenarios; CVaR → GMV under normality checks | Register; method records; TPA gap memo | Verified or explicit gap | — |
 | S4.13 Risk inventory | S4.5–S4.12 | Per PC method: required risk representation (Σ, σ, semicovariance, scenarios, paths, factors); estimator candidates (shrinkage, GARCH/GJR, DCC/cDCC, RMT) registered only | LW 2003/04/17; Laloux; BBP 2017; Bollerslev; Engle; Aielli | None (S10 owns selection) | `S4_RISK_DEPENDENCIES.md` | Every method's risk input typed | → S10 |
 | S4.14 Agentic PC | S4.7, S4.11 | Researcher: research lane DISCOVERED → RESEARCH CANDIDATE → SPECIFIED → VERIFIED → ADMISSIBILITY REVIEW → ADMITTED (ADR-0024 §1). AdvDiv: complete formulation (budget, bounds, Sharpe definition, solver for maximising a convex function, determinism) | ANG §3.3; Bera & Park 2008 | AdvDiv reference solver; verify orthogonality and Sharpe floor; multiple-optima check | `S4_AGENTIC_PC.md` | Contracts defined; open choices listed | — |
 | S4.15 Upstream inventory | S4.3 | ANG CMA methods (7 candidates incl. auto-blend), confidence scores, judge, regime, covariance role, our momentum; split S4 inventory / S9 / S10 | ANG; GK 2002; Gordon 1959; CS 1998; Merton 1980 | None | `S4_UPSTREAM_INVENTORY.md` | Dependency structure fixed | → S9, S10 |
-| S4.16 CRO diagnostics | S4.5–S4.14 | Diagnostic contract every candidate must expose (ANG list + IPS/PS compliance, estimation sensitivity, CMA use, distance to other proposals) | ANG §3.4; diagnostics literature | Reference diagnostics on synthetic portfolios | `S4_CRO_CONTRACT.md` | Every PC output can populate it | **SYNC-4** |
-| S4.17 Deliberation reqs | S4.16 | Metadata reviewers need (objective, assumptions, inputs, risks, sensitivity, CMA use, PS compliance, differences); ANG review/vote/revise protocol registered | ANG §3.4 | None | `S4_DELIBERATION_REQUIREMENTS.md` | Metadata schema complete | **SYNC-4** → S12 |
-| S4.18 CIO inventory | S4.16 | 7 ensembles + single-method choice; inputs, dependencies, evaluation needs; explicit separation of PC method evaluation / peer ranking / CIO combination | ANG §3.5, §4.5 | None | `S4_CIO_INVENTORY.md` | Registered, not approved | **SYNC-4** → S12, S7 |
+| S4.15b Downstream inventory | S4.3 | Families T1–T12; ML-specification disposition (owner D-D); z-score as a T3 lead with family removal criteria; **inventory only, no mathematical review** | Located sources only | None | `S4_DOWNSTREAM_INVENTORY.md` | Every family has a source status and a stage | → S13, S7 |
+| S4.16 CRO diagnostics | S4.5–S4.14 | Diagnostic contract every candidate must expose (ANG list + IPS/PS compliance, estimation sensitivity, CMA use, distance to other proposals); **trace keys; interim-risk-limit fields for implementation (ADR-0026 §5)** | ANG §3.4; diagnostics literature | Reference diagnostics on synthetic portfolios | `S4_CRO_CONTRACT.md` | Every PC output can populate it | **SYNC-4** |
+| S4.17 Deliberation reqs | S4.16 | Metadata reviewers need (objective, assumptions, inputs, risks, sensitivity, CMA use, PS compliance, differences); **evidence cited with consumer use (ADR-0026 §8)**; ANG review/vote/revise protocol registered | ANG §3.4 | None | `S4_DELIBERATION_REQUIREMENTS.md` | Metadata schema complete | **SYNC-4** → S12 |
+| S4.18 CIO inventory | S4.16 | 7 ensembles + single-method choice; inputs, dependencies, evaluation needs; explicit separation of PC method evaluation / peer ranking / CIO combination; **per ensemble: linear vs non-linear decomposability (ADR-0026 M-1); approved-decision fields incl. rebalancing rule and implementation parameters** | ANG §3.5, §4.5 | None | `S4_CIO_INVENTORY.md` | Registered, not approved | **SYNC-4** → S12, S7 |
 | S4.19 Equation reconciliation | S4.5–S4.14 | Verify every equation against its primary source; canonical notation; dimensions and units | All | Dimension and unit checks | `S4_EQUATION_REGISTER.md` (complete) | All entries reconciled | — |
-| S4.20 Typed contracts | S4.19 | Heterogeneous contracts by family (μ-free heuristic; μ+Σ; Σ-only; distribution/path/factor; agentic); **dual contract** (machine + agent-readable, ADR-0024 §5); **parameter classes** (fixed / system-estimated / user-authorized / agent-selectable / sensitivity-only); **allocation domains**; Method ≠ Agent Role ≠ Proposal objects; reads, required PS fields, outputs, units, data needs, failure modes, deterministic class | 06 §5; ADR-0012/0015/0019 | Schema validation of every method record | `S4_METHOD_CONTRACTS.md` + machine-readable schema | Every method has a valid contract | **SYNC-5** |
+| S4.20 Typed contracts | S4.19 | Heterogeneous contracts by family (μ-free heuristic; μ+Σ; Σ-only; distribution/path/factor; agentic); **dual contract** (machine + agent-readable, ADR-0024 §5); **descriptor contract fields: horizon, admitted uses per consumer role, consumer log; trace keys emitted/consumed; machine-readable Agent Mandate schema (ADR-0026 §3)**; **parameter classes** (fixed / system-estimated / user-authorized / agent-selectable / sensitivity-only); **allocation domains**; Method ≠ Agent Role ≠ Proposal objects; reads, required PS fields, outputs, units, data needs, failure modes, deterministic class | 06 §5; ADR-0012/0015/0019 | Schema validation of every method record | `S4_METHOD_CONTRACTS.md` + machine-readable schema | Every method has a valid contract | **SYNC-5** |
 | S4.21 Eligibility framework | S4.20 | Funnel predicates; **methodological admission criteria** (source, clear mathematics, deterministic implementability, verified reproduction, explicit inputs/assumptions, defined role; ADR-0025) kept separate from the empirical-evaluation axis (S7); point-in-time context; reason codes; exclusion report; threshold policy (no invented values); hysteresis framework; overrides; research-lane states | 06; ADR-0005 | Predicate tests on fixtures | `S4_ELIGIBILITY_FRAMEWORK.md` | No winner selected | — |
-| S4.22 Dependency graph | S4.20 | Method / data / signal / risk / benchmark / constraint / fact-domain dependencies; deterministic / agent / human assignment per node | All S4 outputs | Graph validation (acyclic, declared reads) | `S4_DEPENDENCY_GRAPH.md` | Complete | — |
+| S4.22 Dependency graph | S4.20 | Method / data / signal / risk / benchmark / constraint / fact-domain dependencies; deterministic / agent / human assignment per node; **role/mandate nodes and the Decision-Record lineage (ADR-0026 §9)** | All S4 outputs | Graph validation (acyclic, declared reads) | `S4_DEPENDENCY_GRAPH.md` | Complete | — |
 | S4.23 Verification | S4.19–S4.22 | Implementation verification only: reproduce source examples, limits, equivalences, stability, constraints | Register | Full verification suite (synthetic Σ, μ, scenarios) | `S4_VERIFICATION_REPORT.md` + code (OD-5) | All methods at COMPUTATION VERIFIED or documented exception | — |
 | S4.24 Fixtures | S4.23 | Fixtures and invariants able to detect wrong implementations | Register | Run against reference code | `S4_SYNTHETIC_FIXTURES.md` | Each method has ≥ 1 discriminating fixture | — |
 | S4.25 Portfolio Map reqs | S4.20 | Metadata every method must expose (§J) | — | None | Requirements register | Complete | → S7, S11, S12, S8 |
@@ -384,11 +430,11 @@ Columns: **Entry** · **Work** · **Sources** · **Computation** · **Output** �
 
 | Sync | After | Developer receives | Developer can then |
 |---|---|---|---|
-| SYNC-1 | S4.1/S4.2 | Canonical ANG pipeline, agent roles, authority boundaries, adaptation map | Shape module boundaries and orchestration so the roles stay separable (no monolithic "investment AI") |
+| SYNC-1 | S4.1/S4.2/S4.2b | Canonical ANG pipeline, agent roles, authority boundaries, adaptation map; **Agent Mandate concept, downstream extensions and services, Decision Records (interface only)** | Shape module boundaries and orchestration so the roles stay separable (no monolithic "investment AI") |
 | SYNC-2 | S4.3 | Taxonomy of module types (CMA, signal, risk, PC A–E, anchor, benchmark, diagnostics, deliberation, ensemble) | Design registry types and plugin categories |
 | SYNC-3 | S4.9/S4.10 | Signal → belief → PC relationships; anchor/benchmark objects | Model data flows and the benchmark/anchor entities |
 | SYNC-4 | S4.16–S4.18 | PC → CRO → deliberation → CIO information flow and metadata | Design evidence-packet storage, review records, run structure |
-| SYNC-5 | S4.20 | Formal typed Method Contracts + schema + reference implementations as oracles | Implement the real Method Registry and method host |
+| SYNC-5 | S4.20 | Formal typed Method Contracts + schema + reference implementations as oracles; **machine-readable mandate schema; descriptor and trace-key fields (interface only)** | Implement the real Method Registry and method host |
 | SYNC-6 | G4 | Accepted Method Library baseline v1 | Integrate the baseline methods behind contracts |
 
 ---
@@ -473,6 +519,11 @@ S4:  S4.0 ─ S4.1/4.2 (SYNC-1) ─ S4.3 (SYNC-2) ─ S4.4–4.10 (SYNC-3) ─ �
     - Does any contract force all methods through a μ interface?
     - Does the user still approve as the "board"?
     - **Overall: does the Method Library still support ANG's agentic architecture, or has it become an optimizer-selection application?**
+19. **Mandates:** every roster role, including downstream extensions and services, has a mandate stub with all ADR-0026 §3 fields present (values may be "deferred to Sxx").
+20. **Evidence semantics:** every evidence/descriptor type declares horizon and admitted uses; the consumer-log requirement is in the contract.
+21. **No-container audit passes:** every active decision type maps to mandate, role, method/evidence, authority, target, constraints, timing, data, rationale, cost and outcome.
+22. **Implementation invariants** (ADR-0026 §5) are reflected in contracts: no field lets an implementation role change w*, the rebalancing rule, the window or the limits.
+23. **Source-status table** complete, in groups: verified and available / identified but not available / unnecessary or overstated.
 
 ---
 

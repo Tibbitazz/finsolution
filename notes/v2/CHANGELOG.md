@@ -1,5 +1,28 @@
 # Changelog — notes/v2
 
+## 2026-10-02 — S4 closure preparation: accountability layer and source closure (owner approval of T-0 … T-8; branch `stage/s04-method-library`)
+
+- **ADR-0026 PROPOSED:** Agent Mandate and Decision Record objects (extends ADR-0023 §5); investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution; escalation; evidence rights; no container categories. Every statement is labelled [SRC] / [AD] / [GR] / [DEF]; embedded mathematical claims M-1 … M-4 are listed with their conditions. Annotates the reading of ADR-0012 §7, 05 §2 layer 8 and 08 S13d (no body edits). Final acceptance after the owner's mathematical/authority check.
+- research/s4/S4_ACCOUNTABILITY.md (S4.2b draft): mandate schema; role taxonomy incl. extensions and services; mandate stubs; responsibility matrix v0; escalation; no-trade concepts (provisional); traceability chain and P0–P5 ladder (definitions only).
+- research/s4/S4_DOWNSTREAM_INVENTORY.md (S4.15b draft, inventory only): families T1–T12. The ML trading specification is rejected as a system (owner D-D), with retained components relocated. The z-score rule is a research lead within T3, with family removal criteria declared in advance.
+- S4.0 corrections:
+  - the ABD 2014 URL was wrong (it served BCD 2022) in the inventory and checklist; corrected candidates listed, none fetched;
+  - BCD 2022 and the owner-supplied papers registered with verified identities (§10; checklist Addendum A);
+  - two supplied files misidentified (Jones & Wermers 2011; NBIM news page 2014);
+  - AQR (2026) TPA paper read in full: it cannot replace ABD 2014 as ANG's cited source, but can serve as a conditional specification lead for a separately labelled TPA-family candidate (Addendum A.3).
+- S4_PLAN.md:
+  - amendments 11–13;
+  - §E.1 source authority and §E.2 selectivity exit states;
+  - B-15 updated; B-22/B-23 added; C-9/C-10 added;
+  - role ladder with MANDATE STUB DEFINED;
+  - S4.2b and S4.15b steps;
+  - field additions in S4.3, S4.12, S4.16–S4.18, S4.20, S4.22;
+  - SYNC-1/5 additions;
+  - G4 criteria 19–23.
+- OPEN_QUESTIONS: RQ-52, RQ-53, RQ-54 added; RQ-17 annotated (cross-layer evidence reuse must be traceable); RQ-35 reworded family-first.
+- ANG_ISSUES_REGISTER: ANG-22 updated (TPA under-specified; ABD not obtained); ANG-23 added (technical signals under-specified).
+- No methodology review, equation extraction or method ranking has begun. Nothing pushed.
+
 ## 2026-10-02 — S4 plan approved in principle; S4.0 completed (branch `stage/s04-method-library`)
 
 - research/s4/S4_PLAN.md: S4 plan (ANG baseline) with owner decisions OD-1 … OD-7 and corrections 1–10.
