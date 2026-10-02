@@ -28,9 +28,12 @@ append-only after acceptance; changes are new ADRs that supersede old ones.
 | [ADR-0020](ADR-0020-pension-saving-excluded.md) | All pension saving and pension products out of scope | ACCEPTED | — (owner instruction) | S3 | 2026-10-01 | — (extends 0008) | — |
 | [ADR-0021](ADR-0021-wealth-tax-excluded.md) | Wealth tax entirely out of scope; `TAX.wealth_tax_position` retired | ACCEPTED | — (owner instruction) | S3 | 2026-10-01 | — (extends 0006; analogous to 0020) | — |
 | [ADR-0022](ADR-0022-parallel-development-track.md) | Parallel software-development track after G3; S18 = final handoff/completion | ACCEPTED | G3 (owner instruction) | S3 → S4/S8 | 2026-10-01 | — (amends 0011) | S8 plan |
+| [ADR-0023](ADR-0023-ang-architectural-baseline.md) | ANG as architectural baseline; role ≠ runtime; Method ≠ Agent; extensible roster; adopted vs. illustrative | ACCEPTED | — (owner, S4 plan) | S4 | 2026-10-02 | — (clarifies 05 §2, ADR-0004) | — |
+| [ADR-0024](ADR-0024-s4-method-governance.md) | Research lane; revision rules; parameter-authority classes; allocation domains; dual contracts; EPO hierarchy; verification area | ACCEPTED | — (owner, S4 plan) | S4 | 2026-10-02 | — (extends 0005, 0012, 0015, 0023) | — |
+| [ADR-0025](ADR-0025-methodological-admission-vs-empirical-evaluation.md) | Methodological admission ≠ empirical evaluation (redefines ADMISSIBLE) | PROPOSED | owner confirmation | S4 | — | in part ADR-0005; 06 §1(3); 02 §D | — |
 | [ADR-0013](ADR-0013-clarify-beliefs-preferences-test.md) | Clarify ADR-0009 test: declared comparison universe | ACCEPTED | G0 | S0 | 2026-10-01 | — (clarifies 0009) | RQ-38 |
 
 **Basis of `ACCEPTED` entries dated 2026-10-01:** explicit owner instructions or
 approvals given in the design session of that date; ADR-0002, ADR-0003,
-ADR-0012, and ADR-0013 were accepted at the G0 review of the same date; ADR-0014 at the G1 review; ADR-0015 … ADR-0018 at the G2 review (with owner amendments); ADR-0020 by explicit owner instruction in the S3 approval (D3-b); ADR-0021 by explicit owner instruction during the G3 review; ADR-0019 at the G3 review (with owner amendments); ADR-0022 by explicit owner instruction at G3 closure. Extending or
+ADR-0012, and ADR-0013 were accepted at the G0 review of the same date; ADR-0014 at the G1 review; ADR-0015 … ADR-0018 at the G2 review (with owner amendments); ADR-0020 by explicit owner instruction in the S3 approval (D3-b); ADR-0021 by explicit owner instruction during the G3 review; ADR-0019 at the G3 review (with owner amendments); ADR-0022 by explicit owner instruction at G3 closure; ADR-0023 and ADR-0024 by owner decision on the S4 plan (2026-10-02). Extending or
 clarifying ADRs never edit the body of the ADR they extend.

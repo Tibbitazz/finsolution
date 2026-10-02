@@ -1,5 +1,15 @@
 # Changelog — notes/v2
 
+## 2026-10-02 — S4 plan approved in principle; S4.0 completed (branch `stage/s04-method-library`)
+
+- research/s4/S4_PLAN.md: S4 plan (ANG baseline) with owner decisions OD-1 … OD-7 and corrections 1–10.
+- ADR-0023 ACCEPTED (ANG architectural baseline; role ≠ runtime; R2 preserved; Method ≠ Agent; extensible roster; adopted vs. illustrative; no ANG priors).
+- ADR-0024 ACCEPTED (research lane; revision rules; parameter-authority classes; allocation domains; dual contracts; EPO hierarchy; verification area).
+- ADR-0025 PROPOSED: OD-4 conflicts with accepted 06 §1(3) / 02 §D definitions of ADMISSIBLE; proposes separate admission and evaluation axes.
+- S4.0 outputs: research/s4/S4_0_SOURCE_INVENTORY.md; research/s4/ANG_ISSUES_REGISTER.md (ANG-01 … ANG-22); research/s4/verification/README.md.
+- 10_SCOPE_EXCLUSIONS: X-20 (UEPO/SEPO/DEPO), X-21 (ANG rankings/weights as priors), X-22 (LLM weight edits / opportunistic tuning).
+- RQ-16 note; 08 S4 entry updated. No mathematical review or method ranking has begun.
+
 ## 2026-10-01 — Gate G3 closed
 
 - Owner approved G3 with final amendments: ADR-0019 ACCEPTED; ADR-0020 and ADR-0021 retained; ADR-0022 ACCEPTED (parallel development track after G3; S18 = final handoff/completion).

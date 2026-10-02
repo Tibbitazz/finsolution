@@ -54,6 +54,6 @@ notes/v2/
 ## Current position
 
 Stage **S0 (Charter & decision governance)** — closed at gate G0 (2026-10-01);
-all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). **S3 — External-facts research** closed at gate G3 (2026-10-01; ADR-0019 … ADR-0022 accepted). From G3 the project runs two tracks (ADR-0022): **Track A** (methodology, next S4) and **Track B** (platform and development, next S8). Status snapshot (dated): [research/PROJECT_STATUS_2026-10-01.md](research/PROJECT_STATUS_2026-10-01.md).
+all S0 ADRs (0001–0013) accepted. **S1 — Investor Profile & Policy Statement input specification** closed at gate G1 (2026-10-01; ADR-0014 accepted). **S2 — Configuration machinery** closed at gate G2 (2026-10-01; ADR-0015 … ADR-0018 accepted). **S3 — External-facts research** closed at gate G3 (2026-10-01; ADR-0019 … ADR-0022 accepted). From G3 the project runs two tracks (ADR-0022): **Track A** (methodology, next S4) and **Track B** (platform and development, next S8). Status snapshot (dated): [research/PROJECT_STATUS_2026-10-01.md](research/PROJECT_STATUS_2026-10-01.md). **S4** (Track A) in progress: S4.0 complete, awaiting review (branch `stage/s04-method-library`).
 No investment-methodology question has been resolved; the architecture through S3 selects no investment method. All are recorded in
 [research/OPEN_QUESTIONS.md](research/OPEN_QUESTIONS.md).

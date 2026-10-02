@@ -23,7 +23,7 @@ on the owner's own circumstances rather than on literature.
 | RQ-13 | Return signals (cross-sectional, time-series, valuation, etc.) | S9c → G9 | OPEN | Refined into RQ-27 … RQ-33 (ADR-0012, proposed) |
 | RQ-14 | Risk-model estimators; RMT/high-dimensional eligibility region in (N, T_eff) | S10 → G10 | OPEN | Framework in 06 §4; no threshold set |
 | RQ-15 | Portfolio-construction method set and constraint handling | S11 → G11 | OPEN | |
-| RQ-16 | Whether multi-agent deliberation adds value; aggregation rules | S12 → G12 | OPEN | Deterministic control required |
+| RQ-16 | Whether multi-agent deliberation adds value; aggregation rules | S12 → G12 | OPEN | Deterministic control required; ADR-0023: deliberation and CIO roles are architectural baseline; RQ-16 concerns runtime enablement and evidential weight only |
 | RQ-17 | Role of tactical signals (timing-only / bounded tilt / overlay / risk scaling / integrated) and tactical methods | S13c–d → G13c–d | OPEN | Stage preserved; detail later |
 | RQ-18 | Rebalancing policy; cost, tax, FX model; asset-location rules | S13a–b → G13a–b | OPEN | Rebalancing configuration structure fixed in S1 (`REB.*`); methods and parameters in RQ-44 |
 | RQ-19 | Execution mode per broker (manual vs. API) | S13f → G13 | OPEN | Depends on RQ-06 |

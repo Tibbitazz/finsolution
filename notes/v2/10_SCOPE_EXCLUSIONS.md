@@ -34,6 +34,9 @@ are designed to be impossible.
 | X-16 | Methods that do not declare their reads and dependencies participating in production | I | ADR-0015 (D2-08) | Ineligible by construction |
 | X-17 | Execution-related authority before S13 safeguards | D | ADR-0017 | Architecturally supported; disabled until safeguards |
 | X-18 | Individual-security master | D | D3-d | S6 |
+| X-20 | UEPO, SEPO, DEPO (and aliases) | E | ADR-0024 §7 | Excluded unless the owner explicitly reopens them |
+| X-21 | ANG's illustrative rankings (Exhibit 7), ensemble weights (Exhibit 8) and parameters as priors, quality scores or defaults | I | ADR-0023 §8–9 | Research objects only |
+| X-22 | LLM-edited portfolio weights; opportunistic parameter tuning in revisions | I | ADR-0024 §2; 05 R1 | — |
 | X-19 | Hard-coded investment methodology (any specific model, γ, volatility target, benchmark, band, rebalancing approach, factor weights, score mapping, tactical rule, routing logic) before its gate | D | ADR-0022, ADR-0001 (P1) | Typed interfaces until accepted |
 
 **Rule:** a later stage that touches an E or I item must cite this register.
