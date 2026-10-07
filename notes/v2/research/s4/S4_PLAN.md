@@ -1,6 +1,6 @@
 # S4 plan — Method Library & Eligibility (ANG baseline)
 
-**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024, ADR-0025 (accepted; ADR-0025 on 2026-10-07); ADR-0026 (proposed). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`).
+**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024, ADR-0025 (accepted; ADR-0025 on 2026-10-07); ADR-0026 (proposed). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`; amendment 18: look-ahead contamination and agent-homogeneity literature; `S4_LIT_LOOKAHEAD_2026-10-07.md`).
 **Basis:** owner instruction of 2026-10-02; full re-read of ANG (version 21 Sep 2026, 40 pp, read in full by text extraction; Exhibits 1, 2, 4 and 5 extracted as images and inspected); accepted S0–S3 (G0–G3).
 **Page numbers:** printed page numbers of the paper (PDF page − 1).
 
@@ -59,6 +59,12 @@
     - Open choices O-1 … O-10 are declared parameters; V0 = exact source (reproduction oracle); V1 = corrected variant proposed.
     - Not a μ mapping (ADR-0012 §3); no master composite; no roster change (roster v0 = 23 confirmed by the owner).
     - Work: S4.20 contract stub, S4.24 fixture, S7 grid, S6 data, S9c → G9.
+18. **Look-ahead contamination and agent homogeneity (owner upload, 2026-10-07).** [S4_LIT_LOOKAHEAD_2026-10-07.md](S4_LIT_LOOKAHEAD_2026-10-07.md) reviews four papers (one duplicate removed).
+    - **Correction:** cutoff-based evidence shows inflated in-sample accuracy; the "unknown sign" statement is limited to named-vs-anonymised designs.
+    - Index-level recall is near-total, so historical evidence on asset-class agent judgements carries essentially no weight. R2, DR-5 and forward testing are reinforced; deterministic layers are unaffected.
+    - Candidate clean-window rule for learning (a model upgrade resets it).
+    - Diagnostics X-1 … X-5 for S7; DR-9 and DR-10 for S8.
+    - Pointers: RQ-10/22/26/55/56 and S4.0 §12.
 
 ---
 
@@ -477,7 +483,7 @@ S4:  S4.0 ─ S4.1/4.2 (SYNC-1) ─ S4.3 (SYNC-2) ─ S4.4–4.10 (SYNC-3) ─ �
   - both agent mode and deterministic-only mode must be supported (B-18);
   - role composability (Macro, CMA/AC, Covariance/Risk, PC, CRO, Review/Deliberation, CIO, Researcher, Meta);
   - the S0–S3 foundation and the readiness matrix (2026-10-01);
-  - **registered for S8, interface only, not accepted (amendment 15):** DR-1 as-of gate with look-ahead test; DR-2 learning capture from the first slice (Forecast/Outcome Records, versioned agent memory in the run manifest); DR-3 repeat-run and seeded-fault harness; DR-4 R8 lint; DR-5 mode stamp; DR-6 multi-provider models with per-role assignment; DR-7 permanent instrument identifiers and user-supplied vendor credentials; DR-8 price class and currency-account flags in the cost model ([S4_INPUTS_2026-10-07.md](S4_INPUTS_2026-10-07.md) §8).
+  - **registered for S8, interface only, not accepted (amendment 15):** DR-1 as-of gate with look-ahead test; DR-2 learning capture from the first slice (Forecast/Outcome Records, versioned agent memory in the run manifest); DR-3 repeat-run and seeded-fault harness; DR-4 R8 lint; DR-5 mode stamp; DR-6 multi-provider models with per-role assignment; DR-7 permanent instrument identifiers and user-supplied vendor credentials; DR-8 price class and currency-account flags in the cost model ([S4_INPUTS_2026-10-07.md](S4_INPUTS_2026-10-07.md) §8); **(amendment 18)** DR-9 model provenance (version, training cutoff, fine-tune date) on every agent output and Forecast Record; DR-10 contamination-diagnostic capability (log-probabilities or repeated sampling) ([S4_LIT_LOOKAHEAD_2026-10-07.md](S4_LIT_LOOKAHEAD_2026-10-07.md) §3).
 - **G8a** fixes architecture, stack, data boundaries and change control, ideally around SYNC-2 so module types are known.
 - **Foundation implementation** starts after G8a. The real Method Registry follows SYNC-5.
 

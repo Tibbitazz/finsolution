@@ -1,5 +1,29 @@
 # Changelog — notes/v2
 
+## 2026-10-07 — Look-ahead contamination and agent-homogeneity literature; handoff refresh (owner approval of plan C; branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_LIT_LOOKAHEAD_2026-10-07.md` (DRAFT), with paper-by-paper verdicts:
+  - Henning et al. **v3** (PARTIAL; newest version, read online);
+  - Liang 2026 (PARTIAL);
+  - Gao, Jiang & Yan 2026 **v2** plus the authors' procedure file (FITS; read as data, never executed);
+  - Didisheim, Fraschini & Somoza 2025 (FITS);
+  - the 'Sentiment Analysis 2' upload is a duplicate of Glasserman & Lin.
+- **Correction:** the bias-direction statement. Cutoff-based evidence shows inflated in-sample accuracy; 'unknown sign' is limited to named-vs-anonymised designs. Also corrected: S4_INPUTS §3.6 (index-level agents are the worst case for outcome recall). All numbers were re-checked against the texts; P3's 2023 mean LAP is 0.016.
+- **New candidates:**
+  - a clean-window learning rule (a model upgrade resets it);
+  - diagnostics X-1 … X-5;
+  - developer requirements DR-9 (model provenance) and DR-10 (log-probabilities or repeated sampling). Interface only; not accepted.
+- **Pointers:**
+  - RQ-10/22/26/55/56 annotated;
+  - S4.0 §12 added and the G&L scope noted;
+  - S4_PLAN amendment 18 and §I DR line.
+- **HANDOFF refreshed:**
+  - commits and decisions;
+  - §4.6 scoring and new §4.7 contamination;
+  - §6 open decisions, including the ADR-0026 check and its pending corrections C-1 … C-6;
+  - sources; key results; tooling note.
+- Nothing pushed.
+
 ## 2026-10-07 — Sørensen/Storebrand scoring recorded as the reference specification (owner instruction; branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_SCORING_SORENSEN.md` (DRAFT).

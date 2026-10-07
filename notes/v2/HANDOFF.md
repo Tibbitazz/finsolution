@@ -65,7 +65,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 ### 2.4 Tooling (this Mac)
 - No `gh` CLI; PRs are made via a compare URL in the browser.
 - No `pdftoppm`; for PDFs use `pypdf` plus single-page split plus `sips`; NFKC-normalise text before searching.
-- System Python 3.9.6 (numpy/scipy/pypdf available).
+- System Python 3.9.6. numpy, scipy and pypdf are in the user site-packages, which `python3 -I` hides: append `~/Library/Python/3.9/lib/python/site-packages` to `sys.path` explicitly.
+- Direct downloads (curl) may be blocked by the permission system. The two retrievals permitted on 2026-10-07 used a web-fetch tool, which returns summaries and archives nothing.
 - Commit messages end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 - Session scratchpads do not persist; durable reviews go into `research/` on approval.
 
@@ -85,21 +86,24 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `7118821` | ABD 2014 recorded; TPA task restated; owner decision D-5 (AQR as TPA weight-specification source); ADR-0026 ABD citations |
 | `8601950` | Lecture and sandbox inputs; learning first; correlated agent errors; RQ-55, RQ-56; CB-17 … CB-19 proposed |
 | `63b2378` | Third-party implementation review (technicalities, mathematics, IPS constraints) |
-| (this file) | Combined working handoff |
+| `f441bcb` | Combined working handoff (this file) |
+| `231c71d` | ADR-0025 ACCEPTED (D-1); 06/02 annotated; D-2, D-3, D-4 recorded; CB-17 … CB-19 adoption at G4 confirmed; `.Rhistory` ignored |
+| `ebc8529` | Sørensen/Storebrand scoring recorded as the owner-designated reference specification (`S4_SCORING_SORENSEN.md`); roster v0 = 23 confirmed |
+| (latest) | Look-ahead and agent-homogeneity literature (`S4_LIT_LOOKAHEAD_2026-10-07.md`); DR-9, DR-10; correction of the bias-direction statement; this refresh |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
-- **0025** (admission ≠ evaluation): PROPOSED, decision D-1 open.
-- **0026** (Agent Mandate and Decision Record; investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution): PROPOSED, awaiting the owner's mathematical/authority check. ABD citations were added before acceptance.
+- **0025** (admission ≠ evaluation): **ACCEPTED 2026-10-07** (owner decision D-1). 06 §1/§2 and 02 §D are annotated; ADR-0005 is superseded in part.
+- **0026** (Agent Mandate and Decision Record; investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution): PROPOSED. The owner is verifying it, using the review given on 2026-10-07. ABD citations were added before acceptance.
 
 ### 3.3 Where things are (`notes/v2/`)
 - **Governance:** 00–10; `decisions/`; `facts/` (registry v1, 82 records).
-- **Open questions and the carried gating register:** `research/OPEN_QUESTIONS.md` (RQ-01 … RQ-56; CB-01 … CB-16 in force; CB-17 … CB-19 proposed).
+- **Open questions and the carried gating register:** `research/OPEN_QUESTIONS.md` (RQ-01 … RQ-56; CB-01 … CB-16 in force; CB-17 … CB-19 to be adopted at G4, owner-confirmed).
 - **S4 (`research/s4/`):**
 
 | File | Content |
 |---|---|
-| `S4_PLAN.md` | Plan, amendments 1–16, G4 criteria 1–24 |
+| `S4_PLAN.md` | Plan, amendments 1–18, G4 criteria 1–24 |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
 | `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-27; ABD-1 … ABD-5 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
@@ -107,6 +111,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_INPUTS_2026-10-07.md` | Lecture, sandbox lessons, learning, correlated errors, derivations D1–D10, developer requirements DR-1 … DR-8 |
 | `S4_GITHUB_IMPL_REVIEW.md` | Third-party code: verdicts, mathematics, IPS constraints, invariants I-1 … I-9 |
 | `S4_SCORING_SORENSEN.md` | Owner-designated Sørensen/Storebrand value and momentum scores: specification, verified properties P-1 … P-5, open choices O-1 … O-10 |
+| `S4_LIT_LOOKAHEAD_2026-10-07.md` | Look-ahead contamination and agent homogeneity: four papers (one duplicate removed), bias-direction correction, clean-window rule, diagnostics X-1 … X-5, DR-9, DR-10 |
 
 ---
 
@@ -186,6 +191,16 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 - **XSMOM/TSMOM:** deterministic signal scripts (AC evidence; μ only through an accepted S9d mapping; TSMOM also usable as Trader timing evidence, logged).
 - **Simple/Anchored EPO:** family-B PC agents with the standard anatomy.
 - **TPA family:** our own funded, reference-relative, constrained specification plus a distinctness test (S4.12).
+- **Sørensen/Storebrand scores** (owner-designated, 2026-10-07):
+  - deterministic S9c descriptors SCORE-VAL and SCORE-MOM in the individual-security domain;
+  - V0 = the exact source method (reproduction oracle); V1 = a corrected variant, proposed;
+  - weights only through an accepted RQ-33 mapping, e.g. Anchored EPO with a rank signal (PBL p. 133).
+
+### 4.7 Look-ahead contamination (`S4_LIT_LOOKAHEAD_2026-10-07.md`)
+- **Direction:** cutoff-based evidence shows **inflated** in-sample accuracy. The earlier "unknown sign" applies only to named-vs-anonymised designs.
+- **Size:** index-level recall is near-total (S&P 500 monthly correlation 1.00). Historical evidence on asset-class agent judgements therefore carries essentially no weight. R2, the mode stamp and forward testing carry evaluation; deterministic layers are unaffected.
+- **Learning:** outcomes count only after the producing model's training cutoff, and a model upgrade resets the window (candidate rule; DR-9).
+- **Diagnostics:** X-1 … X-5 (LAP test, q-trimming, rewording dispersion, cross-version comparison, forecast-rationality battery). Platform requirement DR-10 (log-probabilities or repeated sampling).
 
 ---
 
@@ -194,8 +209,8 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. S4.2b and S4.15b drafted. Inputs recorded (amendments 14–16). **S4.1 onward not started** |
-| S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-8 registered as interface items; G8a not held |
+| S4 | S4.0 done. S4.2b and S4.15b drafted. Inputs recorded (amendments 14–18). **S4.1 onward not started** |
+| S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
 | S5–S18 | Not started (08_ROADMAP) |
 
 **Recommended order:**
@@ -222,18 +237,18 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 
 | # | Decision | Recommendation | Where |
 |---|---|---|---|
-| 1 | **D-1:** accept ADR-0025 (admission ≠ evaluation) | Accept | decisions/ADR-0025 |
-| 2 | **ADR-0026:** mathematical/authority check, then accept. Include the candidate fields F20 (verifiability) and F21 (learning signals) and the RQ-52 "verification horizon"? | Accept, with F20/F21 as candidate fields for S4.20 | ADR-0026; S4_ACCOUNTABILITY |
-| 3 | **D-2:** Michaud resampled-frontier IP check | Check before implementing PC-B4 | S4.0 §3 |
-| 4 | **D-3:** accept SSRN working versions (journal governs) | Accept | S4.0 §9 |
-| 5 | **D-4:** download permissions | Owner supplies papers, as now | — |
-| 6 | **CB-17 … CB-19:** adopt into the carried register at the next gate; record Nordnet price-class and FX facts as registry records (03) | Adopt; draft registry records at G4 | OPEN_QUESTIONS |
-| 7 | **Push** `stage/s04-method-library` (no PR) so Track B sees SYNC-1 material | Push after reviewing this file | 01 §3 |
-| 8 | **S8 start:** circulate the Developer Architecture Brief (S4 plan §I) with DR-1 … DR-8 as interface-only items | After the push | S4 plan §H–§I |
-| 9 | **Sandbox keys:** regenerate/revoke the EODHD and Tiingo keys | Do | sandbox D7 |
-| 10 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
+| 1 | **ADR-0026:** the owner verifies it, then accepts or amends it. Session review of 2026-10-07: every quote, page and M-1 … M-4 checked against the sources. Six editorial corrections are pending: C-1 ANG p. 28 → p. 29 (§8.7); C-2 ADR-0025 now ACCEPTED (§5.8); C-3 M-2 wording on Sharpe's alpha case (p. 231); C-4 BCD's Tinbergen paraphrase in the Alternatives table; C-5 'front-run' → ABD's 'adverse selection'; C-6 cite or drop van Binsbergen–Brandt–Koijen. Optional additions S-1 … S-4: ABD p. 66; ANG pp. 27–28; post-cutoff evidence for discretion; BCD p. 20 | Accept after C-1 … C-6, with F20/F21 kept as S4.20 candidates | ADR-0026; S4_ACCOUNTABILITY |
+| 2 | **Push** `stage/s04-method-library` (no PR) so Track B sees SYNC-1 material | After decision 1 (owner: push depends on it) | 01 §3 |
+| 3 | **S8 start:** circulate the Developer Architecture Brief (S4 plan §I) with DR-1 … DR-10 as interface-only items | After the push | S4 plan §H–§I |
+| 4 | **Sandbox keys:** regenerate/revoke the EODHD and Tiingo keys | Do (owner action) | sandbox D7 |
+| 5 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
+| 6 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
 
 **Resolved on 2026-10-07:**
+- D-1 (ADR-0025 accepted), D-2 (Michaud IP check before PC-B4), D-3 (SSRN working versions), D-4 (unchanged; two retrievals permitted);
+- CB-17 … CB-19 adoption at G4;
+- roster v0 = 23 (ANG v2 Exhibit 3 + EPO) confirmed;
+- Sørensen/Storebrand designated as the reference scoring specification;
 - ABD edits (all five) and D-5;
 - CB option (a);
 - RQ-55 and RQ-56 as new questions;
@@ -256,8 +271,8 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 
 | Verdict | Sources |
 |---|---|
-| **FITS** | ANG v2 (architecture only); Sharpe 1981 (narrow: diversification of judgement); Sensoy 2009 (narrow: controls set in advance); Perold 1988 (shortfall identity); Perold & Sharpe 1988 (rebalancing rule reflects risk tolerance); Nordnet price list 2026-10-07 (facts) |
-| **PARTIAL** | Q Group lecture Oct 2026 (secondary; learning design, candidate cards, skills, verifiability); BCD 2022 (accountability); **ABD 2014** (funding/benchmarking TPA; rebalancing rule upstream; implementation leeway; verification horizons); **AQR 2026** (TPA weight mechanics per D-5; assumes leverage/shorting); van Binsbergen–Brandt–Koijen 2008; Jegadeesh 1990 and Lehmann 1990 (individual-stock reversal only); Glasserman & Lin 2023 (bias direction unknown); correlated-error literature (Kim et al. 2025; Kleinberg & Raghavan 2021; Panickssery et al. 2024; Liang et al. 2024); **third-party GitHub code** (patterns and verified pieces only); ML specification (candidates only); z-score screenshot (lead) |
+| **FITS** | ANG v2 (architecture only); Sharpe 1981 (narrow: diversification of judgement); Sensoy 2009 (narrow: controls set in advance); Perold 1988 (shortfall identity); Perold & Sharpe 1988 (rebalancing rule reflects risk tolerance); Nordnet price list 2026-10-07 (facts); **Gao, Jiang & Yan 2026 v2** + procedure file (contamination test); **Didisheim, Fraschini & Somoza 2025** (memorisation; q-trimming; rewording dispersion); **Sørensen 2026 / Storebrand 2025** (secondary; owner-designated reference scoring specification) |
+| **PARTIAL** | Q Group lecture Oct 2026 (secondary; learning design, candidate cards, skills, verifiability); BCD 2022 (accountability); **ABD 2014** (funding/benchmarking TPA; rebalancing rule upstream; implementation leeway; verification horizons); **AQR 2026** (TPA weight mechanics per D-5; assumes leverage/shorting); van Binsbergen–Brandt–Koijen 2008; Jegadeesh 1990 and Lehmann 1990 (individual-stock reversal only); Glasserman & Lin 2023 (named vs anonymised only; see §4.7); **Henning et al. 2025 v3** (same-model homogeneity; forecast-rationality battery); **Liang 2026** (pre/post-cutoff magnitudes; weak identification); correlated-error literature (Kim et al. 2025; Kleinberg & Raghavan 2021; Panickssery et al. 2024; Liang et al. 2024); **third-party GitHub code** (patterns and verified pieces only); ML specification (candidates only); z-score screenshot (lead) |
 | **DOES NOT FIT** | Tinbergen, Grinold (not needed); misidentified uploads (Jones & Wermers 2011; NBIM news page); Altbridge benchmark; podcast; news items (illustration only) |
 
 ---
@@ -275,6 +290,11 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 | Outcome-based learning with 12 quarterly observations | Hit-rate SE 0.144 | D10 |
 | Third-party HRP | Not permutation-invariant (0.22 vs 0) | Review §7 |
 | Volatility floor (σ ≥ c) | Reverse-convex: never a silent hard optimiser constraint | Review §3 |
+| Capped linear score objective | Holds the top ⌈1/c⌉ names; invariant to monotone score transforms | Scoring P-2 |
+| Minimise TE subject to a score-exposure target | Active weights ∝ Σ⁻¹(s − s̄1), i.e. α ∝ score (max error 2.2 × 10⁻¹⁶) | Scoring P-3 |
+| One P/B outlier among 500 synthetic names | Composite rank correlation with P/E 0.77 → 0.94, with P/B 0.53 → 0.23 | Scoring P-4 |
+| LLM recall of index returns (GPT-4.1) | S&P 500 monthly correlation 1.00 (sign 98%); stocks 0.20 | Literature §1 P4 |
+| Lookahead Propensity after the cutoff | Mean 0.000 (2024) vs 0.18–0.88 (2012–2022) | Literature §1 P3 |
 
 ---
 
@@ -282,7 +302,7 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 
 | Item | Path |
 |---|---|
-| Papers | `DOC` = `~/Documents/Documents - Oliver’s MacBook Pro/Portfolio Optimization/Portfolio Optimization/` (incl. `Finsol Research Papers/`: ABD 2014, AQR TPA, Glasserman & Lin, S4 papers zip); `RPT` = `~/Desktop/Research Papers Thesis/` |
+| Papers | `DOC` = `~/Documents/Documents - Oliver’s MacBook Pro/Portfolio Optimization/Portfolio Optimization/` (incl. `Finsol Research Papers/`: ABD 2014, AQR TPA, Glasserman & Lin, S4 papers zip, the 2026-10-07 look-ahead paper zips); `RPT` = `~/Desktop/Research Papers Thesis/` |
 | Course slides (Sørensen/Storebrand) | `COURSE` = `~/Documents/Documents - Oliver’s MacBook Pro/MSc Finance/Semester 2/Res. Meths. Finance/` (`Constructing value and momentum scores.pdf`; `Factor investing Storebrand.pdf`) |
 | Lecture | `~/Downloads/Self driving portfolioPP.pdf`; `~/Downloads/Q Group Oct 2026.pptx` |
 | BCD 2022 | `~/Downloads/Evaluation_GPFG.pdf` |
