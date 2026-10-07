@@ -23,6 +23,7 @@ raise it as a spec question — do not decide it in code.
 
 | # | Document | Purpose |
 |---|---|---|
+| — | [Working handoff](HANDOFF.md) | **Start here:** state, rules, open decisions, next steps (DRAFT index; never overrides the documents it points to) |
 | 00 | [Charter](00_CHARTER.md) | Objective, scope, roles, design principles |
 | 01 | [Source of truth & Git workflow](01_SOURCE_OF_TRUTH_AND_WORKFLOW.md) | How documents change and how decisions are made |
 | 02 | [Evidence & status taxonomy](02_EVIDENCE_AND_STATUS.md) | The vocabulary used for every claim, decision, method, and fact |

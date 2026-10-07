@@ -1,5 +1,11 @@
 # Changelog — notes/v2
 
+## 2026-10-07 — Combined working handoff (owner-approved; branch `stage/s04-method-library`)
+
+- **New** `HANDOFF.md` (DRAFT, living): the single entry point. Contents: mandate, assistant rules (protocol; standing rules incl. newest-version, code-reuse and learning priority; security; tooling), repository state, architecture summary, stage status and recommended order, consolidated open owner decisions, sources at a glance, key quantitative results, local paths.
+- It indexes the authoritative documents and never overrides them. It supersedes the two local handoff files in ENGINE_V1.
+- README reading order updated.
+
 ## 2026-10-07 — Third-party implementation review (owner request; branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_GITHUB_IMPL_REVIEW.md` (DRAFT). The chirindaopensource repository is not the authors' code: it implements arXiv v1 (Apr 2026), is MIT-licensed and was never executed.
