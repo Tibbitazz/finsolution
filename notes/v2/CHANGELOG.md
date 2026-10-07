@@ -1,5 +1,14 @@
 # Changelog — notes/v2
 
+## 2026-10-07 — Third-party implementation review (owner request; branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_GITHUB_IMPL_REVIEW.md` (DRAFT). The chirindaopensource repository is not the authors' code: it implements arXiv v1 (Apr 2026), is MIT-licensed and was never executed.
+- **Fidelity:** roster matches neither paper version; ≈ 8 distinct portfolios of 20; late-cycle vote weight contradicts the paper; CIO uses the top 5 only; no learning loop.
+- **Verified defects:** HRP not permutation-invariant; clip-and-renormalise breaks the cap; "LW" is not Ledoit–Wolf; returns forward-filled; mixed-unit CMA candidates; inconsistent AdvDiv Sharpe floor; BL without views; review assignment self-assigns a single-member family; LLM-passed weights (R1); IPS soft targets treated as hard; broken tool bindings.
+- **Kept:** per-component verdicts; IPS-constraint mathematics (the reverse-convex volatility floor; path-dependent drawdown); ERC explained (PC-C2); invariants I-1 … I-9; port-and-verify candidates (exact projection, CVaR LP, assignment, SCP, Borda/composite, ensembles, drift metrics, provenance).
+- **Pointers:** RQ-15 and ANG-08 annotated; S4_PLAN amendment 16 and S4.23 row.
+- No method adopted; nothing pushed.
+
 ## 2026-10-07 — Lecture and sandbox inputs; agentic learning first; correlated agent errors (owner approval of plan A; branch `stage/s04-method-library`)
 
 - **New memo** `research/s4/S4_INPUTS_2026-10-07.md` (DRAFT):
