@@ -1,6 +1,6 @@
 # S4.0 — Paper acquisition checklist
 
-**Document status:** DRAFT (S4.0 source-access task) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-02 (ABD URL correction; addendum A for accountability/implementation sources; TPA source assessment) · **Basis:** [S4_PLAN.md](S4_PLAN.md), [S4_0_SOURCE_INVENTORY.md](S4_0_SOURCE_INVENTORY.md)
+**Document status:** DRAFT (S4.0 source-access task) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-02 (ABD URL correction; addendum A for accountability/implementation sources; TPA source assessment); 2026-10-07 (ABD 2014 obtained and verified; owner decision D-5 on AQR as TPA specification source; totals updated) · **Basis:** [S4_PLAN.md](S4_PLAN.md), [S4_0_SOURCE_INVENTORY.md](S4_0_SOURCE_INVENTORY.md)
 
 **Scope:**
 - Source access only. No methodology has been reviewed and no equations extracted.
@@ -61,7 +61,7 @@
 | Author(s) | Year | Title | Source | Role | Local file |
 |---|---|---|---|---|---|
 | Ang | 2012 | Mean-Variance Investing | SSRN 2131932 (book-chapter draft) | Exposition | RPT/Portfolio Optimization/Mean‐Variance Investing.pdf |
-| AQR Portfolio Solutions Group | 2026 | Total Portfolio Approach: A Quant Lens | AQR *Alternative Thinking* 2026 Issue 2 | Context only; **not a substitute for Ang–Brandt–Denison** | RPT/Portfolio Optimization/Total Portfolio Approach.pdf |
+| AQR Portfolio Solutions Group | 2026 | Total Portfolio Approach: A Quant Lens | AQR *Alternative Thinking* 2026 Issue 2 | Complement to Ang–Brandt–Denison (not a replacement as ANG's cited source). **Owner D-5 (2026-10-07):** may serve as the specification source for TPA weight mechanics where more informative (A.3) | RPT/Portfolio Optimization/Total Portfolio Approach.pdf |
 | Larsen | 2022 | Enhanced Portfolio Optimization of Factor Investment Strategies | CBS master's thesis | EPO replication context | RPT/Portfolio Optimization/ENHANCED PORTFOLIO OPTIMIZATION….pdf |
 | Wang, Yan, Zheng | (EFM) | Time-series and cross-sectional momentum in anomaly returns | *European Financial Management* | Momentum context | RPT/Momentum/TSMOM and XSMOM in rets.pdf |
 | Kivelä | 2025 | Cross-sectional and time-series momentum strategies' performance in the S&P 500 index | LUT bachelor's thesis | Context only | RPT/Momentum/XSMOM and TSMOM in SP500.pdf |
@@ -74,7 +74,7 @@
 
 | Author(s) | Year | Exact title | Source | S4 purpose | Where located | DOI / direct URL | Preferred version |
 |---|---|---|---|---|---|---|---|
-| Ang, Brandt, Denison | 2014 | Review of the Active Management of the Norwegian Government Pension Fund Global | Report to the Norwegian Ministry of Finance (20 Jan 2014) | PC-D4 TPA (ANG's cited source) | regjeringen.no (official) | **URL corrected 2026-10-02 (the earlier link serves BCD 2022).** Candidates, none fetched: https://www.regjeringen.no/globalassets/upload/fin/statens-pensjonsfond/eksterne-rapporter-og-brev/2014/angbrandtdenison_2014.pdf · http://www.regjeringen.no/pages/1934920/AngBrandtDenison_2014.pdf · https://kudos.dfo.no/documents/11206/files/11277.pdf | This official report |
+| Ang, Brandt, Denison | 2014 | Review of the Active Management of the Norwegian Government Pension Fund Global | Report to the Norwegian Ministry of Finance (20 Jan 2014) | PC-D4 TPA (ANG's cited source) | **OBTAINED** (owner-supplied 2026-10-02; identity verified 2026-10-07; see S4_0_SOURCE_INVENTORY §3). Row kept for history | **URL corrected 2026-10-02 (the earlier link serves BCD 2022).** Candidates, none fetched: https://www.regjeringen.no/globalassets/upload/fin/statens-pensjonsfond/eksterne-rapporter-og-brev/2014/angbrandtdenison_2014.pdf · http://www.regjeringen.no/pages/1934920/AngBrandtDenison_2014.pdf · https://kudos.dfo.no/documents/11206/files/11277.pdf | This official report |
 | He, Litterman | 1999 | The Intuition Behind Black-Litterman Model Portfolios | Goldman Sachs working paper (SSRN) | PC-B2 supporting | SSRN | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=334304 | SSRN version |
 | Idzorek | (2004/2005) | A Step-by-Step Guide to the Black-Litterman Model: Incorporating User-Specified Confidence Levels | Working paper (SSRN) | PC-B2 supporting | SSRN; Duke course copy | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3479867 · https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf | SSRN version (date/version to confirm) |
 | Spinu | 2013 | An Algorithm for Computing Risk Parity Weights | Working paper (SSRN) | PC-C2 ERC algorithm | SSRN | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2297383 | SSRN version |
@@ -188,7 +188,7 @@ Each item appears at its earliest required stage only. **[BI]** = probably needs
 - ☐ Boudt, Peterson & Croux — 2008 — Estimation and Decomposition of Downside Risk for Portfolios with Non-Normal Returns — https://faculty.washington.edu/ezivot/econ589/v11n2a4.pdf
 - ☐ Acerbi & Tasche — 2002 — On the Coherence of Expected Shortfall **[BI]** — https://doi.org/10.1016/S0378-4266(02)00283-2
 - ☐ Sortino & Price — 1994 — Performance Measurement in a Downside Risk Framework **[BI]** — https://doi.org/10.3905/joi.3.3.59
-- ☐ Ang, Brandt & Denison — 2014 — Review of the Active Management of the Norwegian Government Pension Fund Global — **URL corrected 2026-10-02 (the earlier link serves BCD 2022).** Candidates, none fetched: https://www.regjeringen.no/globalassets/upload/fin/statens-pensjonsfond/eksterne-rapporter-og-brev/2014/angbrandtdenison_2014.pdf · http://www.regjeringen.no/pages/1934920/AngBrandtDenison_2014.pdf · https://kudos.dfo.no/documents/11206/files/11277.pdf
+- ☑ Ang, Brandt & Denison — 2014 — Review of the Active Management of the Norwegian Government Pension Fund Global — **OBTAINED (owner-supplied; verified 2026-10-07). No download needed.** History: URL corrected 2026-10-02 (the earlier link serves BCD 2022).** Candidates, none fetched: https://www.regjeringen.no/globalassets/upload/fin/statens-pensjonsfond/eksterne-rapporter-og-brev/2014/angbrandtdenison_2014.pdf · http://www.regjeringen.no/pages/1934920/AngBrandtDenison_2014.pdf · https://kudos.dfo.no/documents/11206/files/11277.pdf
 - ☐ Gilmore & Simonian — 2025 — Some Practical Considerations for the Total Portfolio Approach to Pension Fund Management **[BI]** — https://www.pm-research.com/content/iijpormgmt/51/10/40
 - ☐ Bera & Park — 2008 — Optimal Portfolio Diversification Using the Maximum Entropy Principle **[BI]** — https://doi.org/10.1080/07474930801960394
 - *Optional version upgrades (local working versions already usable):*
@@ -216,14 +216,14 @@ Each item appears at its earliest required stage only. **[BI]** = probably needs
 
 | Measure | Count |
 |---|---|
-| Confirmed access | **32** |
-| Located but need to obtain | **39** |
+| Confirmed access | **33** (2026-10-07: +ABD 2014) |
+| Located but need to obtain | **38** (2026-10-07: −ABD 2014) |
 | Missing / unresolved | **8** |
 | **Total unique required sources** | **79** |
 
 - Versions of the same paper are listed beneath their entry and are not counted twice: PBL author version, BBP preprint, the HOP / Bird–Gao–Yeung / Laloux published versions, and working versions in 2e.
 - Not counted: 5 secondary sources (1b) and 1 unusable file.
-- Download items in §4: 42 required (39 located + 3 actionable missing: M-1, M-2, M-3) plus 3 optional version upgrades.
+- Download items in §4: 41 required (38 located + 3 actionable missing: M-1, M-2, M-3) plus 3 optional version upgrades (2026-10-07: ABD removed; obtained).
 
 ---
 
@@ -243,14 +243,15 @@ Not included in the totals above, which cover method sources. Identities verifie
 | A6 | Perold, Sharpe | 1988 | Dynamic Strategies for Asset Allocation | *FAJ* 44(1):16–27 | Rebalancing-rule ownership | Abstract, conclusion |
 | A7 | Jegadeesh | 1990 | Evidence of Predictable Behavior of Security Returns | *JF* 45(3):881–898 | S4.15b inventory (T3) | Abstract, cost passage |
 | A8 | Lehmann | 1990 | Fads, Martingales, and Market Efficiency | *QJE* 105(1):1–28 | S4.15b inventory (T3) | Abstract, cost passage |
-| A9 | AQR Portfolio Solutions Group | 2026 | Total Portfolio Approach: A Quant Lens | *AQR Alternative Thinking* 2026 Issue 2 | PC-D4 specification lead (SECONDARY, practitioner) | Read in full |
+| A9 | AQR Portfolio Solutions Group | 2026 | Total Portfolio Approach: A Quant Lens | *AQR Alternative Thinking* 2026 Issue 2 | PC-D4 specification source for TPA weights (SECONDARY, practitioner; owner D-5, 2026-10-07) | Read in full; pp. 5–7 re-read 2026-10-07 (md5 16bf8f961f21) |
+| A10 | Ang, Brandt, Denison | 2014 | Review of the Active Management of the Norwegian Government Pension Fund Global | Report to the Norwegian Ministry of Finance (20 Jan 2014) | PC-D4 (ANG's cited TPA source); ADR-0026 [SRC] citations; RQ-52/RQ-54 notes | Read in full 2026-10-02; identity verified 2026-10-07 (163 pp., md5 da26aa3090d0) |
 
 **Misidentified supplied files** (not counted):
 - "Active Management in Mostly Efficient Markets.pdf" is Jones & Wermers (2011), *FAJ* 67(6).
 - "NBIM_September_22_2014.pdf" is an NBIM news page and speech.
 
 ### A.2 Still to obtain
-- ☐ Ang, Brandt & Denison — 2014 — see the corrected candidate URLs above (**blocks the PC-D4 reproduction of ANG's cited source; does not block a separately specified TPA-family candidate**; see A.3).
+- ☑ Ang, Brandt & Denison — 2014 — **obtained** (A10). It does not unblock a *reproduction* of ANG's TPA, because ANG never states its construction (ANG-15, ANG-22).
 - ☐ Treynor & Black — 1973 — "How to Use Security Analysis to Improve Portfolio Selection," *Journal of Business* 46(1) (per AQR reference list) **[BI/JSTOR]** — primary for the appraisal-ratio allocation used in the AQR TPA construction. The local RPT file "Optimal Combination of New Investments w- Existing Ptf - Treynor Black Approach.pdf" has unconfirmed identity.
 - ☐ Gilmore & Simonian — 2025 — already listed in Priority B (ANG's second TPA citation).
 - ☐ *Optional:* Wermers — 2011 — "Performance Measurement of Mutual Funds, Hedge Funds, and Institutional Accounts," *ARFE* 3(1):537–574 (BCD App. C restatement suffices for current use).
@@ -263,3 +264,5 @@ Not included in the totals above, which cover method sources. Identities verifie
 | Can AQR serve as a **specification source** for a TPA-family PC candidate in our library? | **Yes, conditionally** | AQR gives one concrete two-factor construction consistent with ANG's label: regress each asset on stock and bond returns; AR = α/σ_ε (p. 6). Unconstrained results SR²_max = SR²_current + AR² and allocation ∝ AR/σ_ε, with existing weights reduced by β × that allocation (p. 6 fn. 11–12; verified numerically 2026-10-02) |
 | Conditions | (1) Mathematics anchored to the primary, Treynor & Black (1973). (2) Labelled "TPA-family candidate (AQR/Treynor–Black specification)", **not** "ANG TPA reproduction". (3) The closed forms assume leverage and shorting (AQR p. 7). A long-only / no-leverage version is a constrained optimisation that must be specified in S4.12. (4) Role of the stock/bond reference portfolio resolved under S4.10 (reference portfolio ≠ comparison benchmark ≠ anchor unless explicitly declared). (5) Status follows ADR-0024 §1 / ADR-0025 admission criteria | S4 plan S4.10, S4.12; ADR-0024; ADR-0025 (PROPOSED) |
 | Consequence for G4 | ABD 2014 stays a Class B gap for *reproducing ANG's TPA*. PC-D4 can still reach S4 COMPLETE as a separately specified candidate if conditions (1)–(5) are met | G4 #1, #4 |
+| **Update 2026-10-07: ABD obtained; owner decision D-5** | ABD is no longer a missing source. A reproduction gap remains because ANG does not state its construction. Owner D-5: AQR may substitute for ABD as the specification source for how TPA becomes weights, where more informative. Conditions (1)–(5) above still apply | ABD §III.C, Eq. (4) p. 74, Eq. (A.3) p. 121; AQR pp. 5–7 |
+| **Distinctness (`VERIFIED-DERIVATION`, 2026-10-07)** | Without constraints, AQR's sizing reproduces the max-Sharpe (tangency) portfolio under a factor-structured Σ with diagonal residuals. Block-inverse identity Σ⁻¹μ = [Σ_F⁻¹μ_F − B′D⁻¹α ; D⁻¹α]; numerical check max abs difference 1.6 × 10⁻¹⁴; SR²_max = SR²_F + Σ_i AR_i². So a TPA-family PC method is distinct from PC-B1 only if it is (a) reference-portfolio-relative with an active-risk budget, (b) funded explicitly from the reference portfolio (ABD's opportunity cost), and/or (c) constrained (long-only, no leverage). The S4.12 distinctness test must check this; otherwise MERGE with PC-B1 (factor-model Σ) | S4.12 |

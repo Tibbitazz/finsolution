@@ -7,6 +7,7 @@
 - **Extends:** ADR-0023 (§1 roles, §5 object model). **Annotates the reading of** ADR-0012 §7, 05 §2 layer 8, and 08 S13d. No body edits.
 - **Resolves:** S4 closure gaps G-4, G-6, G-7, G-8, G-12 (`research/s4/S4_PLAN.md` §0, amendment 11)
 - **Spec commit / tag:** —
+- **Pre-acceptance amendment (2026-10-07, owner-approved ABD edit 4):** ABD 2014 [SRC] citations added in §4.1, §5.1, §5.3 and the Evidence list. No decision content changed.
 
 ## Basis labels used in this ADR
 Every statement carries one of four labels, so that design choices are never presented as findings.
@@ -63,6 +64,7 @@ Every statement carries one of four labels, so that design choices are never pre
 1. **[GR]** A mandate declares its control *type* (portfolio control, forecasting reference, reference estimator, implementation control, validation criterion, admission criteria …). The *content* is fixed in advance by the S7 protocol. It is designated by a party other than the evaluated role.
    - **[SRC]** BCD p. 20 and App. C (p. 98) list "specified in advance" among valid benchmark properties, citing Wermers (2011).
    - **[SRC]** Sensoy (2009) finds self-designated prospectus benchmarks mismatched to actual style for almost one-third of funds, consistent with strategic behaviour. Scope: this supports "specification in advance is necessary but not sufficient". It does not address benchmarks chosen after observing performance; that prohibition is **[GR]**.
+   - **[SRC]** ABD (2014, p. 92) recommends starting measurement from "a publicly-stated index from an independent index provider", which "provides transparency, accountability, and verifiability". p. 101: the rebalanced weighted benchmark "is entirely owned by the Ministry of Finance and the Storting", i.e. not by the manager evaluated against it. Scope: this supports controls being set independently of, and before, the evaluated role. It does not prescribe our control types.
 2. **[GR]** Where one role weighs several criteria, the resolution rule or the resolving authority is declared in advance.
    - **[SRC]** BCD (pp. 6, 80) says two potentially conflicting objectives on one instrument "could lead to organizational challenges". Scope: this motivates explicit resolution. It does **not** establish a rule of one objective per role, and none is adopted.
 3. **[AD]** Mathematical objectives and penalties belong in Method Contracts, not in mandates.
@@ -86,6 +88,7 @@ Every statement carries one of four labels, so that design choices are never pre
      - ANG p. 14: the rebalancing plan is part of the CIO's board memo;
      - BCD p. 14 fn. 5 and p. 20 fn. 13: the rebalancing decision and bands are set by the Ministry, not the implementing manager;
      - Perold & Sharpe (1988, p. 26): the choice of rule should fit "the investor's risk tolerance", and analysts "cannot and should not choose a strategy without substantial knowledge of the investor's circumstances and desires".
+     - ABD (2014): the diversified benchmark and "a rebalancing rule" are the first stages of the investment process; they "involve active choices" (p. 16). "Rebalancing rules can add value, on average, compared to non-rebalanced, passive holdings" (p. 19). The rebalanced weighted benchmark is "the final stage under the responsibility of the Ministry of Finance" (p. 94). Returns should be reported at each stage (p. 92; Fig. 14, p. 159).
    - **Scope of that support:** it covers who **owns the rule**. It does not cover how the rule is evaluated.
 2. **Rebalancing determination.**
    - **[AD]** Given the approved rule, the determination is **deterministic**: it evaluates the rule on current state and produces either an authorised transition or a no-rebalance Decision Record. It is a service, not an agent role.
@@ -101,6 +104,7 @@ Every statement carries one of four labels, so that design choices are never pre
      - escalates.
    - Agent choices are bounded per R1. Hard constraints are deterministic predicates per R3.
    - **[SRC]** Perold (1988, pp. 5–7) motivates judgement over pace: execution cost and opportunity cost are "at opposite ends of a seesaw", and pace of trading is "the chief factor". Scope: the trade-off exists. **Whether discretion adds value is [DEF] (S7/S13) and is never assumed.**
+   - **[SRC]** ABD (2014): because traders can front-run an investor known to be forced to trade, "a fund manager should therefore have some leeway to optimally implement rebalancing" (p. 21). NBIM's framework is praised as one that "allows NBIM leeway to implement the required transactions" with "no ad-hoc decisions to rebalance" (p. 66). Scope: this supports implementation leeway under a rule owned upstream, for a very large fund facing adverse selection. Transfer of that motive to a small investor is **not** established. The leeway rationale here rests on cost/spread/FX/timing, and its value remains [DEF] (RQ-53).
 4. **[AD]** The Trader may not:
    - change w*, the investment thesis, the rebalancing rule, the window or the deviation limit;
    - create exposure absent from the authorised transition;
@@ -206,7 +210,8 @@ Every statement carries one of four labels, so that design choices are never pre
   - van Binsbergen, Brandt & Koijen (2008), abstract and conclusions;
   - Sensoy (2009), abstract;
   - Perold (1988) pp. 4–9;
-  - Perold & Sharpe (1988) pp. 16, 26.
+  - Perold & Sharpe (1988) pp. 16, 26;
+  - Ang, Brandt & Denison (2014) pp. 16, 19, 21, 66, 92, 94, 101; Fig. 14 p. 159 (added 2026-10-07; identity verified).
 - `VERIFIED-DERIVATION`: M-1, M-4.
 - `ASSUMED`, i.e. architecture decisions that are not empirical claims:
   - deterministic rebalancing determination;

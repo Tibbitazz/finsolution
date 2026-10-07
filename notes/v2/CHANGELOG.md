@@ -1,5 +1,16 @@
 # Changelog — notes/v2
 
+## 2026-10-07 — ABD 2014 recorded; TPA task restated (owner approval of the five ABD edits and decision D-5; branch `stage/s04-method-library`)
+
+- **Source:** Ang, Brandt & Denison (2014) recorded as AVAILABLE. The owner-supplied file was verified (163 pp., md5 da26aa3090d0; title, date and authors match ANG's reference list). The S4.0 inventory and acquisition checklist are updated: totals 33 confirmed / 38 located / 8 missing; download items 41.
+- **Owner decision D-5:** AQR (2026) may substitute for ABD as the specification source for how TPA becomes weights, where more informative. ABD remains ANG's cited source for the concept.
+- **`VERIFIED-DERIVATION`:** unconstrained AQR/Treynor–Black sizing equals the tangency portfolio under a factor-structured Σ (numerical check 1.6 × 10⁻¹⁴; SR² additivity). Hence a distinctness test is required for PC-D4.
+- **ANG_ISSUES_REGISTER:** ANG-22 updated (ABD's TPA is a funding/benchmarking framework without a weight rule). New section with ABD-1 … ABD-5 (verified against the PDF).
+- **S4_PLAN:** amendment 14; §D PC-D4 row; S4.12 restated (own TPA-family specification plus distinctness test; else MERGE/RELOCATE).
+- **ADR-0026 (PROPOSED; pre-acceptance amendment):** ABD [SRC] citations added in §4.1 (independent, pre-set controls), §5.1 (rebalancing rule owned upstream) and §5.3 (implementation leeway; transfer to a small investor not established). No decision content changed.
+- **OPEN_QUESTIONS:** RQ-52 candidate field "verification horizon". RQ-54 candidates: a not-rebalanced ladder rung, cost-of-constraints reporting, a replicable control in preference to an absolute target.
+- No methodology adopted; nothing pushed.
+
 ## 2026-10-02 — S4 closure preparation: accountability layer and source closure (owner approval of T-0 … T-8; branch `stage/s04-method-library`)
 
 - **ADR-0026 PROPOSED:** Agent Mandate and Decision Record objects (extends ADR-0023 §5); investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution; escalation; evidence rights; no container categories. Every statement is labelled [SRC] / [AD] / [GR] / [DEF]; embedded mathematical claims M-1 … M-4 are listed with their conditions. Annotates the reading of ADR-0012 §7, 05 §2 layer 8 and 08 S13d (no body edits). Final acceptance after the owner's mathematical/authority check.
