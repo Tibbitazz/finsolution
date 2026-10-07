@@ -1,5 +1,28 @@
 # Changelog — notes/v2
 
+## 2026-10-07 — Lecture and sandbox inputs; agentic learning first; correlated agent errors (owner approval of plan A; branch `stage/s04-method-library`)
+
+- **New memo** `research/s4/S4_INPUTS_2026-10-07.md` (DRAFT):
+  - authority and versions (paper v2 governs; lecture secondary; sandbox none);
+  - lecture→FinSol conformance map, with a correction to the earlier review;
+  - the analysis.md review and candidate skeleton v0;
+  - learning as a first-class component (reference design, learning objects, capture from day one, signals and their power, promotion protocol, RQ-22 split);
+  - correlated-agent-error research and mitigations M1–M8;
+  - generalisable sandbox lessons with derivations D1–D10;
+  - what is not transferred;
+  - developer requirements DR-1 … DR-8 (interface only).
+- **OPEN_QUESTIONS:**
+  - RQ-55 (agent output stability and verifiability) and RQ-56 (correlated agent errors) added;
+  - RQ-07/08/09/12/16/18/22/26/34/35/44/52/53 annotated;
+  - CB-17 … CB-19 proposed for the next gate, with evidence from Nordnet's price list retrieved 2026-10-07.
+- **ANG_ISSUES_REGISTER:** type LP; ANG-24 … ANG-27 added; ANG-01/06/09/12/16 annotated.
+- **S4_PLAN:** amendment 15; S4.1/S4.3/S4.16/S4.17/S4.20 rows; §I developer list; G4 criterion 24 (learning readiness).
+- **S4_ACCOUNTABILITY:** candidate fields F20 (verifiability) and F21 (learning signals).
+- **S4_DOWNSTREAM_INVENTORY:** T5/T7/T9 notes; §4 fair-value-gap research lead; §5 candidate simulation conventions.
+- **S4_0_SOURCE_INVENTORY:** §11 new sources.
+- **README:** current position.
+- No accepted document changed; no methodology adopted; nothing pushed.
+
 ## 2026-10-07 — ABD 2014 recorded; TPA task restated (owner approval of the five ABD edits and decision D-5; branch `stage/s04-method-library`)
 
 - **Source:** Ang, Brandt & Denison (2014) recorded as AVAILABLE. The owner-supplied file was verified (163 pp., md5 da26aa3090d0; title, date and authors match ANG's reference list). The S4.0 inventory and acquisition checklist are updated: totals 33 confirmed / 38 located / 8 missing; download items 41.

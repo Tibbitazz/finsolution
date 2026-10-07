@@ -1,6 +1,6 @@
 # S4.2b — Accountability layer: role taxonomy, Agent Mandate schema, mandate stubs, responsibility matrix, escalation
 
-**Document status:** DRAFT (S4.2b; companion to [ADR-0026](../../decisions/ADR-0026-agent-mandates-and-implementation-authority.md), PROPOSED) · **Prepared:** 2026-10-02 · **Basis:** owner decisions D-A … D-E (2026-10-02); ADR-0023; ADR-0024; ADR-0017; 05 R1–R8
+**Document status:** DRAFT (S4.2b; candidate fields F20–F21 added 2026-10-07; companion to [ADR-0026](../../decisions/ADR-0026-agent-mandates-and-implementation-authority.md), PROPOSED) · **Prepared:** 2026-10-02 · **Basis:** owner decisions D-A … D-E (2026-10-02); ADR-0023; ADR-0024; ADR-0017; 05 R1–R8
 
 **Scope:**
 - Structure only. No mandate *values* are decided here unless they follow from an accepted ADR.
@@ -32,6 +32,8 @@
 | F17 | Cost responsibility | Costs this role causes | [AD] |
 | F18 | Evaluation | Structure only; content S7 | [DEF] S7 |
 | F19 | Change control | Material-change list; human approval | [GR] ADR-0026 §4.4 |
+| F20 *(candidate, 2026-10-07)* | Verifiability | Per owned decision: autonomy class, verification method (known answer / seeded fault / repeat-run agreement / outcome), stability statistic | [DEF] RQ-55; for the owner's ADR-0026 check |
+| F21 *(candidate, 2026-10-07)* | Learning signals | Outcome-based and process-based signals used to improve the role; records required; agent-memory scope; promotion rule (per role, diversity check) | [DEF] RQ-22 (design forward), RQ-56; G4 criterion 24 |
 
 ---
 
