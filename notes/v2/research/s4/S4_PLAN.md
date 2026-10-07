@@ -1,6 +1,6 @@
 # S4 plan — Method Library & Eligibility (ANG baseline)
 
-**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024, ADR-0025 (accepted; ADR-0025 on 2026-10-07); ADR-0026 (proposed). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`).
+**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024, ADR-0025 (accepted; ADR-0025 on 2026-10-07); ADR-0026 (proposed). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`).
 **Basis:** owner instruction of 2026-10-02; full re-read of ANG (version 21 Sep 2026, 40 pp, read in full by text extraction; Exhibits 1, 2, 4 and 5 extracted as images and inspected); accepted S0–S3 (G0–G3).
 **Page numbers:** printed page numbers of the paper (PDF page − 1).
 
@@ -53,6 +53,12 @@
     - Field candidates for S4.20. Developer requirements DR-1 … DR-8 (§I). G4 criterion 24.
     - Sandbox-specific choices are explicitly not transferred (memo §7).
 16. **Third-party implementation review (owner request, 2026-10-07).** [S4_GITHUB_IMPL_REVIEW.md](S4_GITHUB_IMPL_REVIEW.md) gives a per-component verdict (ADOPT / ADOPT-WITH-FIX / REJECT / OUT OF ROSTER), the IPS-constraint mathematics, invariants I-1 … I-9 for S4.23/S4.24/S8, and port-and-verify code candidates (MIT). No method is adopted by this review; S4.5–S4.14 specify each method from its primary source.
+17. **Sørensen/Storebrand scoring (owner instruction, 2026-10-07).** [S4_SCORING_SORENSEN.md](S4_SCORING_SORENSEN.md) records the method as the **reference specification** for cross-sectional value and momentum scores in the individual-security domain.
+    - Value: global z(−P/E), z(−P/B), equal-weight sum, then percentile 0–100. Momentum: 12–1 percentile.
+    - Verified properties: P-1 … P-5.
+    - Open choices O-1 … O-10 are declared parameters; V0 = exact source (reproduction oracle); V1 = corrected variant proposed.
+    - Not a μ mapping (ADR-0012 §3); no master composite; no roster change (roster v0 = 23 confirmed by the owner).
+    - Work: S4.20 contract stub, S4.24 fixture, S7 grid, S6 data, S9c → G9.
 
 ---
 
@@ -247,7 +253,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.27 | G4 audit incl. ANG conformance | NOT STARTED |
 
 ### C.3 Method tracker (all NOT STARTED)
-Roster v0 (versioned; ANG reference 21 + 2): PC-A1 … PC-A5, PC-B1 … PC-B7 (incl. B6 Simple EPO, B7 Anchored EPO), PC-C1 … PC-C5, PC-D1 … PC-D4, PC-E1 Researcher, PC-E2 Adversarial Diversifier; SIG-1 XSMOM, SIG-2 TSMOM; CMA-1 … CMA-7; COV inventory; ENS-1 … ENS-7 (+ single-method selection); DEL-1 … DEL-6.
+Roster v0 (versioned; ANG reference 21 + 2): PC-A1 … PC-A5, PC-B1 … PC-B7 (incl. B6 Simple EPO, B7 Anchored EPO), PC-C1 … PC-C5, PC-D1 … PC-D4, PC-E1 Researcher, PC-E2 Adversarial Diversifier; SIG-1 XSMOM, SIG-2 TSMOM; SCORE-VAL and SCORE-MOM (Sørensen/Storebrand reference specification, individual-security domain, S9c; amendment 17); CMA-1 … CMA-7; COV inventory; ENS-1 … ENS-7 (+ single-method selection); DEL-1 … DEL-6.
 
 ---
 

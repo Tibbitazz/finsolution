@@ -1,5 +1,21 @@
 # Changelog — notes/v2
 
+## 2026-10-07 — Sørensen/Storebrand scoring recorded as the reference specification (owner instruction; branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_SCORING_SORENSEN.md` (DRAFT).
+  - Method from both source decks, with page references (re-read in full).
+  - Verified properties P-1 … P-5 on synthetic data, with an inline script:
+    - P-2: under a capped linear objective only the ordering of scores matters;
+    - P-3: TE minimisation with a score-exposure target implies α ∝ score, so it needs an RQ-33 mapping;
+    - P-4: one outlier moves the effective metric weights for every other name;
+    - P-5: the loss-maker sign issue.
+  - Open choices O-1 … O-10; V0 (exact) and V1 (corrected) proposed.
+  - Placement: individual-security domain, S9c, R8.
+  - Anchored EPO with a rank signal: PBL 2021 p. 133, eq. 21.
+- Roster v0 = 23 (ANG v2 Exhibit 3 + PC-B6/B7) confirmed by the owner. No roster change.
+- RQ-28/29/30/31/33 annotated. S4_PLAN amendment 17 and tracker entry added. HANDOFF §9 gains the `COURSE` path.
+- No μ mapping, no master composite, no evaluation claim.
+
 ## 2026-10-07 — Owner decisions D-1 … D-4 applied; ADR-0025 accepted (branch `stage/s04-method-library`)
 
 - **ADR-0025 ACCEPTED** (owner decision D-1). Admission is methodological; empirical evaluation (S7) is a separate axis; "production validated" waits for S15.

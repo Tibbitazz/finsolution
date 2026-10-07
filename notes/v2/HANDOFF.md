@@ -106,6 +106,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_DOWNSTREAM_INVENTORY.md` | T1–T12; FVG lead; simulation conventions |
 | `S4_INPUTS_2026-10-07.md` | Lecture, sandbox lessons, learning, correlated errors, derivations D1–D10, developer requirements DR-1 … DR-8 |
 | `S4_GITHUB_IMPL_REVIEW.md` | Third-party code: verdicts, mathematics, IPS constraints, invariants I-1 … I-9 |
+| `S4_SCORING_SORENSEN.md` | Owner-designated Sørensen/Storebrand value and momentum scores: specification, verified properties P-1 … P-5, open choices O-1 … O-10 |
 
 ---
 
@@ -282,6 +283,7 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 | Item | Path |
 |---|---|
 | Papers | `DOC` = `~/Documents/Documents - Oliver’s MacBook Pro/Portfolio Optimization/Portfolio Optimization/` (incl. `Finsol Research Papers/`: ABD 2014, AQR TPA, Glasserman & Lin, S4 papers zip); `RPT` = `~/Desktop/Research Papers Thesis/` |
+| Course slides (Sørensen/Storebrand) | `COURSE` = `~/Documents/Documents - Oliver’s MacBook Pro/MSc Finance/Semester 2/Res. Meths. Finance/` (`Constructing value and momentum scores.pdf`; `Factor investing Storebrand.pdf`) |
 | Lecture | `~/Downloads/Self driving portfolioPP.pdf`; `~/Downloads/Q Group Oct 2026.pptx` |
 | BCD 2022 | `~/Downloads/Evaluation_GPFG.pdf` |
 | ANG April draft | `~/Downloads/The Self-Driving Portfolio_ …pdf` (superseded) |
