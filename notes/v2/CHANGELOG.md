@@ -1,5 +1,18 @@
 # Changelog — notes/v2
 
+## 2026-10-07 — Owner decisions D-1 … D-4 applied; ADR-0025 accepted (branch `stage/s04-method-library`)
+
+- **ADR-0025 ACCEPTED** (owner decision D-1). Admission is methodological; empirical evaluation (S7) is a separate axis; "production validated" waits for S15.
+  - 06 §1 step (3), 06 §2 rule 4 and 02 §D are **annotated, not rewritten**.
+  - ADR-0005's status line records the partial supersession, as 01 §3 allows.
+  - Decision register updated; conflict C-4 marked resolved in S4_PLAN §B.1.
+- **D-2:** the Michaud resampling IP check happens before PC-B4 is implemented; it does not block the specification.
+- **D-3:** open SSRN or author working versions are accepted; the journal version governs.
+- **D-4:** unchanged (per-item download permission). Two items were permitted on 2026-10-07.
+- **CB-17 … CB-19:** the owner confirmed adoption at G4.
+- **`.gitignore`:** `.Rhistory` added. The owner's untracked R history file is untouched.
+- **ADR-0026 stays PROPOSED**, pending the owner's verification.
+
 ## 2026-10-07 — Combined working handoff (owner-approved; branch `stage/s04-method-library`)
 
 - **New** `HANDOFF.md` (DRAFT, living): the single entry point. Contents: mandate, assistant rules (protocol; standing rules incl. newest-version, code-reuse and learning priority; security; tooling), repository state, architecture summary, stage status and recommended order, consolidated open owner decisions, sources at a glance, key quantitative results, local paths.

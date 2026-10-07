@@ -1,6 +1,6 @@
 # ADR-0005 — Model-eligibility funnel before evaluation and deliberation
 
-- **Status:** ACCEPTED
+- **Status:** ACCEPTED · **Superseded in part by:** [ADR-0025](ADR-0025-methodological-admission-vs-empirical-evaluation.md), 2026-10-07 (the meaning of ADMISSIBLE: methodological admission, with empirical evaluation as a separate axis)
 - **Date proposed:** 2026-10-01 · **Date decided:** 2026-10-01
 - **Decided by:** Owner (design session 2026-10-01) · **Gate:** G0 (framework); thresholds at G4 and stage gates · **Stage:** S0
 - **Supersedes:** none · **Resolves:** none (thresholds remain RQ-14, RQ-21 and per-method RQs)

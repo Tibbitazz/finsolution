@@ -1,6 +1,6 @@
 # 02 — Evidence and Status Taxonomy
 
-**Document status:** STABLE (S0) · **Decision basis:** ADR-0003
+**Document status:** STABLE (S0) · **Decision basis:** ADR-0003 · **Annotated by:** ADR-0025 (2026-10-07; §D)
 
 ## Why separate vocabularies
 
@@ -51,6 +51,14 @@ Only the owner moves a decision to `ACCEPTED` or `REJECTED`.
 | `ADMISSIBLE` | Passed empirical evaluation against the control under the protocol |
 | `PRODUCTION` | Admissible and enabled by an accepted ADR |
 | `RETIRED` | Removed by ADR; history retained |
+
+> **Annotation (ADR-0025, ACCEPTED 2026-10-07).** The `ADMISSIBLE` and `PRODUCTION` rows above are superseded and kept as history.
+> - **`ADMISSIBLE`** = methodologically admitted for its declared role. The criteria are in ADR-0025 §2; admission is granted at G4 or later, by ADR or library manifest.
+> - **`PRODUCTION`** = admitted, deliberable in context, and enabled by an accepted ADR. Its empirical-evaluation status is displayed alongside.
+> - **Empirical evaluation status** is a separate axis: `UNEVALUATED` → `EVALUATED (protocol vN)`, under the S7 protocol. It is not a lifecycle step.
+> - **"Production validated"** is reserved for the integrated system after S15.
+>
+> The `PROVISIONAL` row is read the same way: "may enter empirical evaluation only" means the S7 axis. A PROVISIONAL method is still not deliberable.
 
 ## E. Fact status — for registry facts
 

@@ -1,6 +1,6 @@
 # 06 — Model-Eligibility Governance
 
-**Document status:** STABLE (S0) for the framework; every threshold `OPEN` · **Decision basis:** ADR-0005
+**Document status:** STABLE (S0) for the framework; every threshold `OPEN` · **Decision basis:** ADR-0005 · **Annotated by:** ADR-0025 (2026-10-07; §1 step (3), §2 rule 4)
 
 ## 1. The funnel
 
@@ -19,6 +19,18 @@ Policy Statement + Accounts/Brokers + Universe + Data availability   (= Problem 
 
 Replaces the pattern "all available models → agent chooses".
 
+> **Annotation (ADR-0025, ACCEPTED 2026-10-07).** The text of step (3) is superseded and kept only as history. **ADMISSIBLE** now means *methodologically admitted for the declared role*, which requires:
+> - a primary source;
+> - a clear mathematical definition;
+> - deterministic implementability;
+> - a verified reproduction;
+> - explicit inputs and assumptions;
+> - a defined role;
+> - an accepted Method Contract;
+> - FEASIBLE and ELIGIBLE in the point-in-time context.
+>
+> Empirical evaluation against the simple control is a **separate axis**, `UNEVALUATED → EVALUATED (protocol vN)` (S7). It informs CIO weighting, monitoring and S15 validation. It is **not** a precondition for admission or deliberation.
+
 ## 2. Rules
 
 1. **Contract required.** A method cannot be registered without an
@@ -34,6 +46,7 @@ Replaces the pattern "all available models → agent chooses".
 4. **Provisional status.** Until all its thresholds are established, a method
    is `PROVISIONAL`: it may enter empirical evaluation (step 3) but not
    deliberation or production.
+   > **Annotation (ADR-0025 §5, 2026-10-07).** The rule stands: a PROVISIONAL method is not deliberable. "Empirical evaluation (step 3)" is now read as the separate S7 evaluation axis, not as funnel step (3).
 5. **Pre-registration.** Thresholds and materiality margins are committed
    before the comparative results they govern are seen (P13).
 6. **Overrides.** The owner may override an exclusion only in a research

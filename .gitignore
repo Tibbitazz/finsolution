@@ -4,3 +4,6 @@
 *.local
 # OS noise
 .DS_Store
+
+# R session history (owner tooling; never committed)
+.Rhistory

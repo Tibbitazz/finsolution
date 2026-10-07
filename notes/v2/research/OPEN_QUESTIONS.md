@@ -114,7 +114,7 @@ Established at G3 (2026-10-01).
 | CB-15 | RQ-45 — legitimate consumer for field 1.7 | Any activation of `INV.investment_experience` | S14 → G14 (latest) | Research establishing a consumer; never an eligibility grant |
 | CB-16 | Other source-country treaty/withholding regimes (S3_REGISTRY_ARCHITECTURE §9) | Withholding projections for non-US source countries | S5 → G5 (which markets); S13a → G13a (facts) | Facts recorded per source country used |
 
-### Proposed additions (owner option (a), 2026-10-07; adopted into the register at the next gate)
+### Proposed additions (owner option (a), 2026-10-07; adopted into the register at the next gate — confirmed by the owner 2026-10-07: adopt at G4, with registry fact records drafted then)
 
 | ID | Unresolved question | Capability gated | Owner stage → gate | Resolution requirement | Evidence so far (2026-10-07) |
 |---|---|---|---|---|---|

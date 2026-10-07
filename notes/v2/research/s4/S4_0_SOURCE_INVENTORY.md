@@ -68,7 +68,7 @@ Paths are given relative to these roots. Local files are not copied into the rep
 | PC-B2 (supporting) | — | Idzorek (2005/2007) | MISSING | Not yet located |
 | PC-B3 | Robust mean–variance | Goldfarb & Iyengar (2003), *Math. Oper. Res.* 28(1):1–38, doi 10.1287/moor.28.1.1.14260 | MISSING — LOCATED (paywalled) | [INFORMS](https://pubsonline.informs.org/doi/10.1287/moor.28.1.1.14260) |
 | PC-B3 (supporting) | — | Tütüncü & Koenig (2004); Ceria & Stubbs (2006) | MISSING | Not yet located |
-| PC-B4 | Resampled efficient frontier | Michaud (1998), *Efficient Asset Management*, HBS Press (book; 2nd ed. 2008) | MISSING — LOCATED (book, purchase) | Publisher/retailer; related US patent 6,003,018 ([Google Patents](https://patents.google.com/patent/US6003018A/en)) — **IP status to check** |
+| PC-B4 | Resampled efficient frontier | Michaud (1998), *Efficient Asset Management*, HBS Press (book; 2nd ed. 2008) | MISSING — LOCATED (book, purchase) | Publisher/retailer; related US patent 6,003,018 ([Google Patents](https://patents.google.com/patent/US6003018A/en)) — **IP status to check** (owner decision D-2, 2026-10-07: the check is done before PC-B4 is implemented; it does not block registration or the specification) |
 | PC-B4 (supporting) | — | Michaud & Michaud, "Estimation Error and Portfolio Optimization: A Resampling Solution" (author note) | MISSING — LOCATED (open) | [New Frontier Advisors PDF](https://newfrontieradvisors.com/media/rxbld4hq/estimation-error-and-portfolio-optimization-12-05.pdf) — SECONDARY-to-book; IDENTITY UNCONFIRMED |
 | PC-B4 (critique) | — | Scherer (2002) | MISSING | Not yet located |
 | PC-B5 | Mean–downside risk (Sortino) | Sortino & van der Meer (1991), "Downside Risk," *JPM* 17(4):27–31 | AVAILABLE (identity confirmed from page image; scanned, no text layer) | RPT/Downside Risk/Downside Risk.pdf |
@@ -182,7 +182,9 @@ Identity verified against each document's own text, not its filename. These supp
 | MISSING — LOCATED, paywalled or book | 7 | Kirby–Ostdiek, Goldfarb–Iyengar, Michaud 1998 (book), Clarke–de Silva–Thorley, Choueifaty–Coignard, Rockafellar–Uryasev 2000, Gilmore–Simonian |
 | UNUSABLE/CORRUPT | 1 | EPO empirical-study PDF |
 
-**Working-version caveat:** where only an SSRN working version is open, the journal version governs. Differences are checked at S4.4 (rule: the published version governs; differences are recorded).
+**Working-version caveat:** where only an SSRN working version is open, the journal version governs. Differences are checked at S4.4 (rule: the published version governs; differences are recorded). **Owner decision D-3 (2026-10-07):** open SSRN or author working versions are accepted as working sources on this rule.
+
+**Owner decision D-4 (2026-10-07):** unchanged. The owner supplies papers; any download needs explicit per-item permission. Two items were permitted on 2026-10-07: arXiv 2502.15800 v3 and the Gao–Jiang–Yan procedure file.
 
 ## 11. Sources added 2026-10-07 (ANG lecture, its references, third-party code, contamination and correlated-error literature)
 

@@ -1,10 +1,12 @@
 # ADR-0025 — Methodological admission is distinct from empirical evaluation
 
-- **Status:** PROPOSED (owner decision OD-4 sets the principle; this ADR carries the required change to accepted definitions and needs owner confirmation)
-- **Date proposed:** 2026-10-02 · **Date decided:** —
-- **Decided by:** — · **Gate:** owner confirmation before S4.1 (or at G4) · **Stage:** S4
+- **Status:** ACCEPTED
+- **Date proposed:** 2026-10-02 · **Date decided:** 2026-10-07
+- **Decided by:** Owner (decision D-1, HANDOFF §6, confirmed 2026-10-07; principle set by OD-4, 2026-10-02) · **Gate:** — (owner confirmation before S4.1; reviewed at G4) · **Stage:** S4
 - **Supersedes (in part):** ADR-0005 (meaning of ADMISSIBLE); 06 §1 step (3) and §2 rule 4 wording; 02 §D definitions of `ADMISSIBLE` and `PRODUCTION`
 - **Resolves:** C-4 (S4 plan §B.1)
+- **Spec commit / tag:** acceptance commit on `stage/s04-method-library` (see CHANGELOG 2026-10-07); gate tag at G4
+- **Acceptance note:** accepted as proposed. The heading "Proposed decision" is retained so that the text is unchanged from the version the owner reviewed; it is the decision.
 
 ## Context — the conflict
 The owner decided (OD-4, 2026-10-02):
