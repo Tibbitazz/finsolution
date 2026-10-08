@@ -91,7 +91,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `ebc8529` | Sørensen/Storebrand scoring recorded as the owner-designated reference specification (`S4_SCORING_SORENSEN.md`); roster v0 = 23 confirmed |
 | `a46c613` | Look-ahead and agent-homogeneity literature (`S4_LIT_LOOKAHEAD_2026-10-07.md`); DR-9, DR-10; correction of the bias-direction statement; handoff refresh |
 | `d153b4d` | **ADR-0026 ACCEPTED** (owner check, option (a): C-1 … C-6, S-1 … S-4); 05 and 08 annotated; conflicts C-9, C-10 resolved; branch pushed |
-| (latest) | S6 data-source lead (step 1 of the plan of 2026-10-08); RQ-08, CB-19, DR-7 annotated |
+| `e9a5aeb` | S6 data-source lead (step 1 of the plan of 2026-10-08); RQ-08, CB-19, DR-7 annotated |
+| (latest) | S6 lead extended: Seeking Alpha, S&P Capital IQ (Pro, Financials, Estimates), data lineage, ESEF via filings.xbrl.org; step 1 complete; pushed |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -114,7 +115,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_GITHUB_IMPL_REVIEW.md` | Third-party code: verdicts, mathematics, IPS constraints, invariants I-1 … I-9 |
 | `S4_SCORING_SORENSEN.md` | Owner-designated Sørensen/Storebrand value and momentum scores: specification, verified properties P-1 … P-5, open choices O-1 … O-10 |
 | `S4_LIT_LOOKAHEAD_2026-10-07.md` | Look-ahead contamination and agent homogeneity: four papers (one duplicate removed), bias-direction correction, clean-window rule, diagnostics X-1 … X-5, DR-9, DR-10 |
-| `../s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` | **S6 lead (early):** data needs D-A … D-H; source and licence table; Simply Wall St = S&P Global Market Intelligence (stated); Investwiser = EODHD (inferred from fingerprints); Norges Bank Datatorg verified; DR-7 refined; candidate stack (not adopted) |
+| `../s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` | **S6 lead (early):** data needs D-A … D-H; source and licence table; Simply Wall St and Seeking Alpha = S&P Global Market Intelligence (stated; Seeking Alpha prices from Quodd); Investwiser = EODHD (inferred from fingerprints); S&P Capital IQ Pro/Financials/Estimates (enterprise; PIT Estimates Snapshot since Aug 2016); data lineage to primary sources (filings, ESEF via filings.xbrl.org, exchanges, brokers); Norges Bank Datatorg verified; DR-7 refined; candidate stack (not adopted) |
 
 ---
 
@@ -278,7 +279,7 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 |---|---|
 | **FITS** | ANG v2 (architecture only); Sharpe 1981 (narrow: diversification of judgement); Sensoy 2009 (narrow: controls set in advance); Perold 1988 (shortfall identity); Perold & Sharpe 1988 (rebalancing rule reflects risk tolerance); Nordnet price list 2026-10-07 (facts); **Norges Bank Datatorg** (NOK FX and rates; keyless; attribution); public macro and factor sources (FRED, SSB, ECB, French, AQR, Shiller, Damodaran; S6 lead); **Gao, Jiang & Yan 2026 v2** + procedure file (contamination test); **Didisheim, Fraschini & Somoza 2025** (memorisation; q-trimming; rewording dispersion); **Sørensen 2026 / Storebrand 2025** (secondary; owner-designated reference scoring specification) |
 | **PARTIAL** | Q Group lecture Oct 2026 (secondary; learning design, candidate cards, skills, verifiability); BCD 2022 (accountability); **ABD 2014** (funding/benchmarking TPA; rebalancing rule upstream; implementation leeway; verification horizons); **AQR 2026** (TPA weight mechanics per D-5; assumes leverage/shorting); van Binsbergen–Brandt–Koijen 2008; Jegadeesh 1990 and Lehmann 1990 (individual-stock reversal only); Glasserman & Lin 2023 (named vs anonymised only; see §4.7); **Henning et al. 2025 v3** (same-model homogeneity; forecast-rationality battery); **Liang 2026** (pre/post-cutoff magnitudes; weak identification); correlated-error literature (Kim et al. 2025; Kleinberg & Raghavan 2021; Panickssery et al. 2024; Liang et al. 2024); **third-party GitHub code** (patterns and verified pieces only); ML specification (candidates only); z-score screenshot (lead) |
-| **DOES NOT FIT** | **Simply Wall St** (S&P Capital IQ data; personal use, no retransmission) and **Investwiser** (EODHD data; personal use) as data sources (peer references only); Yahoo/yfinance; Nordnet External API (closed to new subscribers); Tinbergen, Grinold (not needed); misidentified uploads (Jones & Wermers 2011; NBIM news page); Altbridge benchmark; podcast; news items (illustration only) |
+| **DOES NOT FIT** | **Simply Wall St** (S&P Capital IQ data; personal use, no retransmission), **Seeking Alpha** (S&P + Quodd data; no redistribution) and **Investwiser** (EODHD data; personal use) as data sources (peer references only); **S&P Capital IQ** for a distributed engine (enterprise; owner-only validation via university at most); Yahoo/yfinance; Nordnet External API (closed to new subscribers); Tinbergen, Grinold (not needed); misidentified uploads (Jones & Wermers 2011; NBIM news page); Altbridge benchmark; podcast; news items (illustration only) |
 
 ---
 

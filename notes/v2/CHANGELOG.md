@@ -1,5 +1,24 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S6 data-source lead extended; step 1 complete (owner instruction; branch `stage/s04-method-library`)
+
+- **Seeking Alpha** (§4.4), stated in its help centre:
+  - fundamentals, estimates and analyst ratings from S&P Global Market Intelligence;
+  - backtests from ClariFI (S&P);
+  - prices from Quodd (formerly Xignite): Cboe BZX real-time, Nasdaq UTP delayed;
+  - "You may not copy or redistribute".
+- **Alpha Picks** is a rules-based, unaudited model portfolio. Its sector-relative quant grades and explicit buy/sell rules are recorded as peer references, not adopted.
+- **S&P Global Market Intelligence** (§4.5):
+  - Capital IQ Pro: enterprise; no public price; third-party estimates ≈$12–30k per user per year.
+  - Capital IQ Financials: point-in-time; from 1985; 180,000+ companies.
+  - Capital IQ Estimates **Snapshot**: point-in-time every 2 h since Aug 2016.
+  - Kensho MCP connector for Claude.
+  - Academic access via university and WRDS.
+  - Not free; not suitable for a distributed engine.
+- **Data lineage** (§4.6): primary sources for statements, estimates, prices, announcements, classification and FX, with free-access status. **ESEF filings via filings.xbrl.org** were verified: 958 Norwegian filings, public JSON-API, as-filed annual data.
+- **Findings:** F-4 updated (PIT consensus exists only at vendor level); new F-8 (consumer platforms are resellers) and F-9 (a free primary route for Nordic fundamentals). Candidate stack and open checks extended.
+- RQ-08 and HANDOFF updated. Step 1 of the 2026-10-08 plan is complete; the branch was pushed with owner authorisation.
+
 ## 2026-10-08 — S6 data-source lead recorded (owner instruction: step 1; branch `stage/s04-method-library`)
 
 - **New** `research/s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` (DRAFT; lead for S6, not a vendor decision). Contents:
