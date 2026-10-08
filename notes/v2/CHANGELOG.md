@@ -1,5 +1,13 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.4 PC source map drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_PC_SOURCE_MAP.md` (DRAFT for owner review): governing primary, supporting sources and access route for every roster method.
+  - 21 of 22 methods SOURCE LOCATED (10 with the governing primary in hand; 4 open working versions; 7 paywalled or book); PC-C5 minimum correlation is a documented gap (identity: third-party mirror only).
+  - ANG-vs-source differences known before reading (ANG-02, -07, -10, -13, -14, -15, -16, -17, -18, -22, ABD-5); ANG-35 disposition recorded.
+  - Acquisition plan ordered by step; nothing downloaded (D-4). A local BI course note on Treynor–Black-type sizing found and recorded as SECONDARY for PC-D4.
+- **Updated:** S4_PLAN C.2; ANG issues register (ANG-35); HANDOFF. Not pushed.
+
 ## 2026-10-08 — S4.3 reviewed: owner confirms O-1 … O-4 (branch `stage/s04-method-library`)
 
 - `S4_TAXONOMY.md` status REVIEWED: six kinds (Input added); Researcher typed as a role with roster numbering unchanged; new method-type ID prefixes assigned at their owning stages; specification objects stay in the repository without a separate registry.
