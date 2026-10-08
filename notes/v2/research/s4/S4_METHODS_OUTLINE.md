@@ -12,7 +12,7 @@
 |---|---|---|
 | S0–S3 | Charter, inputs, Policy Statement governance, external facts | **Done** (G0–G3) |
 | **S4 Section 1** — foundations (S4.0–S4.4) | Inventory, ANG reconstruction, adaptation and ADR-0027, accountability, taxonomy, source map | **Done** (S4.4 complete 2026-10-08; S4.2 and ADR-0027 await owner review at G4) |
-| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); **next: S4.6** |
+| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 drafted 2026-10-08, awaiting owner decision S46-D1; S4.7 next after review |
 | S4 Section 3 — the process around the methods (S4.15–S4.18) | Upstream CMA inventory, CRO diagnostics and candidate card, deliberation, CIO ensembles | Not started |
 | S4 Section 4 — consolidation (S4.19–S4.24) | Equation Register reconciliation, typed contracts, eligibility, dependency graph, full verification, fixtures | Not started |
 | S4 Section 5 — gate (S4.25–S4.27) | Portfolio Map requirements, library freeze, G4 audit | Not started |
@@ -88,6 +88,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 - **Verification:** closed forms vs a numerical solver to tolerance; frontier tracing; two-fund separation; condition-number sensitivity on synthetic data.
 - **Deliverable:** `S4_MVO_FOUNDATION.md`.
 - **Exit:** closed form = solver within tolerance.
+- *[2026-10-08]* **Drafted:** `S4_MVO_FOUNDATION.md`; register EQ-MVO-1 … EQ-MVO-4 (+ 2a, 3a, 4a), EQ-MVO-E1, E2; `verification/s46_*.py` (2 scripts, PASS; Jorion 1986 Tables 1–2 reproduced). ANG-47 new; ANG-44 extended. Exit met. Decision S46-D1 open.
 
 ### S4.7 Mean–variance family — PC-B1, B2, B3, B4, B6, B7
 - **Methods:** B1 maximum Sharpe; B2 Black–Litterman; B3 robust MV; B4 resampled frontier; B6 Simple EPO; B7 Anchored EPO.
@@ -210,7 +211,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.5 | Inverse-vol / inverse-variance exponent | Fixed at ½ and 1 (recommended) vs parameter | ANG-13 |
 | S4.5 | Asset-class capitalisation source | Data contract for S6 | ANG-46 (added at S4.5: S45-D3) |
 | S4.5 | Heuristic universe and cash (added at S4.5) | Risky assets only vs cash as one of N | ANG-44 (S45-D4) |
-| S4.6 | Risk-free and cash treatment | Cash as an asset vs a risk-free rate | — |
+| S4.6 | Risk-free and cash treatment | Cash as an asset vs a risk-free rate | ANG-44 (S46-D1) |
 | S4.7 | Black–Litterman convention | Σ vs Σ + M̄⁻¹; Ω rule; closed-form confidence | ANG-41, BL-1, IDZ-1 |
 | S4.7 | EPO shrinkage authority and tuning | Fixed vs system-estimated under the S7 protocol | ADR-0027 D4 |
 | S4.7 | Resampled frontier | IP check (D-2); resampling count and seed | D-2 |
@@ -245,7 +246,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | Step | Methods | Status | Last update | Next action |
 |---|---|---|---|---|
 | S4.5 | A1–A5 | **Done** | 2026-10-08 | Owner accepted S45-D1 … D4 as recommended |
-| S4.6 | MVO foundation | **Next** | 2026-10-08 | Start: read sources, extract EQ-MVO-1 … EQ-MVO-4 |
+| S4.6 | MVO foundation | **Drafted — owner review** | 2026-10-08 | Owner decision S46-D1 (`S4_MVO_FOUNDATION.md` §5); then S4.7 |
 | S4.7 | B1, B2, B3, B4, B6, B7 | Not started (B2 sources reproduced in S4.4) | — | — |
 | S4.8 | SIG-1, SIG-2 | Not started | — | — |
 | S4.9 | Signal × PC | Not started | — | — |

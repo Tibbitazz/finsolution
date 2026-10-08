@@ -107,7 +107,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `5db675e` | Six SSRN sources reviewed and reproduced (`S4_SOURCE_REVIEWS_2026-10-08.md`; `verification/s44_*.py` all PASS); ANG-39 … ANG-42; GitHub-review HRP correction; pushed |
 | `5aa0e36` | S4.4 marked DONE (owner); **Section 2 outline and tracker** `S4_METHODS_OUTLINE.md`; I-7 annotated (HRP); not pushed (owner: push together with S4.5) |
 | `e3e0acc` | **S4.5** heuristic portfolios: `S4_HEURISTICS.md` (A1–A5 method records; owner decisions S45-D1 … D4), `S4_EQUATION_REGISTER.md` (created), `verification/s45_*.py` (4 scripts, PASS); ANG-14 sharpened; ANG-43 … ANG-46; MM-1, MM-2; fifth-round uploads recorded (21/22 governing sources in hand; CdST 2006 still open) |
-| (latest) | S4.5 owner decisions S45-D1 … D4 recorded (accepted as recommended); S4.5 DONE; CdST 2006 verified (22/22 governing sources in hand); S4.6 NEXT. `5aa0e36`, `e3e0acc` and this commit pushed (owner authorisation 2026-10-08) |
+| `1ac0833` | S4.5 owner decisions S45-D1 … D4 recorded (accepted as recommended); S4.5 DONE; CdST 2006 verified (22/22 governing sources in hand); S4.6 NEXT. `5aa0e36`, `e3e0acc` and this commit pushed (owner authorisation 2026-10-08) |
+| (latest) | **S4.6** mean–variance foundation: `S4_MVO_FOUNDATION.md`; register EQ-MVO-1 … 4 (+ 2a, 3a, 4a), EQ-MVO-E1, E2; `verification/s46_*.py` (PASS; Jorion 1986 Tables 1–2 reproduced); ANG-47; ANG-44 extended; owner decision S46-D1 open; not pushed |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -130,6 +131,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_SOURCE_REVIEWS_2026-10-08.md` | **Reviews of the six SSRN sources** (He & Litterman, Idzorek, Spinu, López de Prado, Chekhlov–Uryasev–Zabarankin, Boudt–Carl–Peterson): what each specifies, exact reproductions, findings (BL-1 Σ vs Σ̄; IDZ-1 closed-form Ω; HRP-1 order dependence; CDD-1 drawdown definition; BCP-1 MCC vs ERC) |
 | `S4_METHODS_OUTLINE.md` | **Orientation for Section 2 (S4.5–S4.14), LIVING:** where we are across the engine; the nine-stage workflow every method step follows; method record template; per-step plan (methods, sources, equations, known issues, owner decisions, verification, deliverable, exit); decision points; acquisitions; tracker |
 | `S4_HEURISTICS.md` | **S4.5 (REVIEWED; owner decisions accepted 2026-10-08):** method records for PC-A1 … A5 (sources, equations, inputs, parameter authority, invariants, agent-readable summary); ANG vs source; decisions S45-D1 (volatility-targeting specification), D2 (fixed exponents), D3 (capitalisation data requirements), D4 (cash and universe) |
+| `S4_MVO_FOUNDATION.md` | **S4.6 (DRAFT, owner decision open):** the shared mean–variance mathematics (problem, closed forms, riskless asset and separation, GMV, long-only variants, estimation error with Jorion reproduced); ANG-47; decision S46-D1 (numéraire cash as the riskless asset) |
 | `S4_EQUATION_REGISTER.md` | **LIVING (created at S4.5):** canonical notation; EQ-H-1 … EQ-H-4 with sub-equations and shared turnover EQ-H-T, each with source page, assumptions, authority, limits and tests; appended at every Section 2 step |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
 | `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-46; source issues ABD-1 … ABD-5, MCA-1 … MCA-3, MM-1, MM-2 |
@@ -239,7 +241,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`, `S4_EQUATION_REGISTER.md`, `verification/s45_*.py` PASS; owner accepted S45-D1 … D4). **Next: S4.6** (mean–variance foundation) |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`; owner accepted S45-D1 … D4). **S4.6 drafted 2026-10-08** (`S4_MVO_FOUNDATION.md`; decision S46-D1 open) |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
@@ -274,6 +276,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 2b | **Data access (owner, when S6 starts):** free FRED, OpenFIGI and Tiingo keys; whether to take EODHD All World (+ fundamentals); whether the university licence (Bloomberg / FactSet / I/B/E/S) allows personal research use for validation | Decide at S6; nothing needed now | S6 lead §7–§8 |
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
+| 5 | **S4.6 decision S46-D1:** cash at the asset-class level: (a) numéraire cash is the riskless asset (excess returns; cash not a row of Σ; cash share set by the Policy Statement or by a method that includes the riskless asset) vs (b) cash as a risky asset vs (c) both | (a) | `S4_MVO_FOUNDATION.md` §5 |
 
 **Resolved on 2026-10-08 (later):** S4.5 decisions S45-D1 … D4 accepted as recommended (`S4_HEURISTICS.md` §4); CdST 2006 received and verified, so all 22 governing PC sources are in hand; `5aa0e36` and the S4.5 commits pushed with owner authorisation.
 

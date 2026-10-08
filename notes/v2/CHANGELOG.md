@@ -1,5 +1,19 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.6 mean–variance foundation drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_MVO_FOUNDATION.md` (DRAFT): the problem in risk and utility form with native Policy Statement constraints; closed forms; the riskless asset (Tobin's separation, Sharpe's CML); GMV; long-only variants; estimation error; inputs, units and parameter authority; owner decision S46-D1.
+- **Register** (`S4_EQUATION_REGISTER.md`): EQ-MVO-1 … EQ-MVO-4 with 2a (Markowitz critical lines), 3a (long-only maximum Sharpe), 4a (Jagannathan–Ma shrinkage), and EQ-MVO-E1 (condition-number amplification), E2 (Bayes–Stein).
+- **New** `verification/s46_mvo_closed_forms.py` and `s46_estimation_error_jorion.py` (PASS):
+  - closed forms = numerical solvers to 1e-6;
+  - tangency = numerical maximum Sharpe; Tobin separation; the failure case r_f ≥ m_g;
+  - long-only critical lines traced; Jagannathan–Ma verified through KKT and DGNU Proposition 1;
+  - κ bound attained; with a cash row in Σ, GMV is 99.1% cash and κ rises from 16 to 1,811;
+  - Jorion (1986) Table 1 statistics and Table 2 risk functions reproduced within the paper's Monte Carlo error.
+- **ANG issues:** ANG-47 (maximum Sharpe cites Markowitz 1952, which has no riskless asset); ANG-44 extended to all families.
+- `S4_RISK_MODEL_CHOICE.md`: the DGU row upgraded to VERIFIED-SOURCE; the Jagannathan–Ma row annotated (DGNU restatement; KKT derivation).
+- **Updated:** S4_PLAN C.2 and §F, outline tracker, `verification/README.md`, HANDOFF. Not pushed.
+
 ## 2026-10-08 — S4.5 done: owner decisions recorded; CdST 2006 verified; pushed (branch `stage/s04-method-library`)
 
 - **Owner decisions S45-D1 … S45-D4 accepted as recommended** (`S4_HEURISTICS.md` §4, now REVIEWED):

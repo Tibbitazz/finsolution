@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 entries added 2026-10-08; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -50,6 +50,15 @@
 | EQ-H-4 | Volatility-managed scaling (V0) and the volatility-target engine form (V1) | PC-A5 | Moreira & Muir 2017 eqs. (1)–(2), p. 1616; Tables IV–V, pp. 1625–1626 | EXTRACTED · VERIFIED (V1 decided: S45-D1) |
 | EQ-H-4a | Spanning alpha and Sharpe expansion | PC-A5 (diagnostic) | MM eq. (3), p. 1617; p. 1620; eq. (4), p. 1621 | EXTRACTED · VERIFIED |
 | EQ-H-T | Turnover including the cash leg | All PC methods (shared) | KO eqs. (5)–(6), p. 6; DGU eq. (15), p. 1929 | EXTRACTED · VERIFIED |
+| EQ-MVO-1 | Mean–variance problem: risk form (min variance for a target mean) and utility form (max w′μ − (γ/2)w′Σw); constraint sets | PC-B family, PC-C1 | Markowitz 1952 pp. 81–82; DGU 2009 eqs. (2)–(3), (18); Jorion 1986 eq. (4) | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-2 | Budget-only frontier in closed form; two-fund separation | PC-B family | VERIFIED-DERIVATION; constants as in Jorion 1986 Table 1 | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-2a | Long-only frontier: piecewise-linear weights (critical lines), piecewise-quadratic variance | PC-B family | Markowitz 1952 p. 87 | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-3 | Riskless asset: tangency, capital market line, separation | PC-B1 | Tobin 1958 eqs. (3.21)–(3.25), pp. 83–85; Sharpe 1964 Part III | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-3a | Long-only maximum Sharpe via a convex reformulation; failure conditions | PC-B1 | VERIFIED-DERIVATION | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-4 | Global minimum variance, closed form | PC-C1 | Jorion 1986 fn. 5, eq. (14); DGNU 2009 eqs. (1)–(2) | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-4a | Long-only GMV = unconstrained GMV of a shrunk matrix (Jagannathan–Ma); 1-norm equivalence | PC-C1 | DGNU 2009 eq. (3), Proposition 1, p. 802 | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-E1 | Error amplification: relative weight error ≤ κ(Σ) × relative input error | Diagnostic | VERIFIED-DERIVATION; Michaud 1989 (error maximisation) | EXTRACTED · VERIFIED (S4.6) |
+| EQ-MVO-E2 | Bayes–Stein expected returns and predictive covariance | Estimator (→ S4.15/S9); diagnostic | Jorion 1986 eqs. (14)–(18), pp. 285–286 | EXTRACTED · VERIFIED (Tables 1–2 reproduced) |
 
 ---
 
@@ -237,3 +246,109 @@
   - For PC-A5 the cash leg is material and must be counted.
 - **Units:** fraction of wealth traded per rebalancing (one-way plus the other side; no halving).
 - **Numerical tests:** 200 random cases each, fully invested and with cash (`s45_volatility_timing_ko.py`).
+
+---
+
+## S4.6 entries — mean–variance foundation
+
+Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1); μ_raw = μ + r_f·1 where a raw form is needed. With Σ invertible: A = 1′Σ⁻¹1, B = 1′Σ⁻¹μ_raw, C = μ_raw′Σ⁻¹μ_raw, D = AC − B² > 0 (Jorion's c, b, a; his d(Y₀) = D/A).
+
+## EQ-MVO-1 The mean–variance problem
+
+- **Source equations and pages:**
+  - Markowitz 1952: E = Σ X_i μ_i, V = Σ Σ σ_ij X_i X_j, Σ X_i = 1, **X_i ≥ 0** ("we will exclude negative values of the X_i (i.e., short sales)", p. 81). Efficient = "minimum V for given E or more and maximum E for given V or less" (p. 82). Inputs may be "aggregates such as, say, bonds, stocks and real estate" (p. 91).
+  - Utility form: DGU eqs. (2)–(3), p. 1922, and eq. (18), p. 1937: max x′μ − (γ/2)x′Σx; Jorion eq. (4), p. 282 (derived utility of mean and variance).
+- **Canonical:**
+  - risk form: min_w w′Σw s.t. w′μ_raw = m, 1′w = 1, w ∈ 𝒲;
+  - utility form: max_w w′μ − (γ/2)w′Σw s.t. 1′w = 1, w ∈ 𝒲;
+  - 𝒲 = the Policy Statement constraint set (bounds, group limits, long-only), applied natively as linear constraints.
+- **Dimensions / units:** w N × 1 (fraction of wealth); μ per period; Σ per period²; γ per period⁻¹ (scale-dependent: γ's value depends on the units of μ and Σ).
+- **Assumptions:** preferences over mean and variance only (Markowitz p. 89–90 discusses the third moment); moments treated as known (the certainty-equivalence step criticised by Jorion pp. 279–281).
+- **Parameter authority:**
+  - 𝒲: user-authorised (Policy Statement);
+  - m or a target volatility, where the risk form is used: user-authorised or derived by a declared rule (per method, S4.7);
+  - γ: system-estimated by an accepted calibration method, specific to this formulation and its units (`S2_RISK_PREFERENCE_RESEARCH.md`: model γ is "D (derived)", never a portable investor attribute; RQ-02).
+- **Limiting cases:** γ → ∞ gives GMV (EQ-MVO-4); m = m_g gives GMV.
+- **Numerical tests:** the utility form lies on the risk-form frontier at m = B/A + D/(Aγ) (`s46_mvo_closed_forms.py`).
+
+## EQ-MVO-2 Budget-only frontier; two-fund separation
+
+- **Source:** derivation (`VERIFIED-DERIVATION`). The constants A, B, C, D are Jorion's "efficient set statistics" (Table 1, p. 287).
+- **Canonical:**
+  - w(m) = [(C − Bm)Σ⁻¹1 + (Am − B)Σ⁻¹μ_raw] / D;
+  - σ²(m) = (Am² − 2Bm + C)/D, a parabola in (m, σ²), i.e. a hyperbola in (σ, m);
+  - any two distinct frontier portfolios span the frontier: w(m₃) = αw(m₁) + (1 − α)w(m₂), with α = (m₃ − m₂)/(m₁ − m₂).
+- **Assumptions:** Σ positive definite; short sales allowed; no riskless asset.
+- **Numerical tests:** 40 random problems × 5 targets agree with SLSQP to 1e-6; the variance identity is exact; two-fund spanning.
+
+## EQ-MVO-2a Long-only frontier: critical lines
+
+- **Source:** Markowitz 1952 p. 87: "The efficient set in the 4 security case is, as in the 3 security and also the N security case, a series of connected line segments", and "if we plotted V against E for efficient portfolios we would again get a series of connected parabola segments"; fn. 10 (p. 87) sketches tracing the set along critical lines.
+- **Canonical:** w(m) is piecewise linear in m between corner portfolios, where the set of non-zero weights changes; σ²(m) is piecewise quadratic.
+- **Numerical tests:** 121 QP solutions along the long-only frontier of a 6-asset problem. Within each active set the weights are exactly linear in m (second differences ≤ 1e-5); 3 corners here.
+
+## EQ-MVO-3 Riskless asset: tangency, capital market line, separation
+
+- **Source equations and pages:**
+  - Tobin 1958 §3.6: dominant sets solve [v_ij][x_i] = [λr_i] (eq. 3.22, p. 83). "All dominant sets lie on a ray from the origin" (p. 83). "The proportionate composition of the non-cash assets is independent of their aggregate share of the investment balance" (p. 84). The opportunity locus is a line, eqs. (3.23)–(3.25), p. 84.
+  - The analysis is "applicable only so long as cash is assumed to be a riskless asset"; without one, the locus is "a hyperbola rather than a line" (pp. 84–85).
+  - Tobin's cash yields zero, so his r_i are returns in excess of cash.
+  - Sharpe 1964 Part III: the capital market line with borrowing and lending at the pure rate.
+- **Canonical:**
+  - w_tan = Σ⁻¹μ / 1′Σ⁻¹μ;
+  - SR_max = √(μ′Σ⁻¹μ);
+  - with risk aversion γ: risky holdings x = Σ⁻¹μ/γ, cash 1 − 1′x; x/1′x = w_tan for every γ (separation).
+- **Conditions:** 1′Σ⁻¹μ > 0, equivalently r_f < m_g = B/A. Otherwise the formula returns a portfolio with negative expected excess return (the lower branch), and a maximum-Sharpe method must emit a failure record (`TANGENCY_UNDEFINED`, provisional), not a weight vector.
+- **Source note:** Tobin assumes x_i ≥ 0 (p. 82) but solves the equality system (3.22), which can give negative holdings; Sharpe (1964, fn. 15) points this out. The long-only case is EQ-MVO-3a.
+- **Numerical tests:**
+  - 40 random problems: w_tan equals numerical maximum-Sharpe (3 starts) and attains √(μ′Σ⁻¹μ);
+  - the tangency lies on the EQ-MVO-2 hyperbola;
+  - separation holds for γ ∈ {2, 5, 20};
+  - the r_f > m_g case yields negative expected excess return.
+
+## EQ-MVO-3a Long-only maximum Sharpe ratio
+
+- **Source:** derivation (`VERIFIED-DERIVATION`): homogeneity of the Sharpe ratio allows the substitution y = w/κ.
+- **Canonical:** min_y y′Σy s.t. μ′y = 1, y ≥ 0 (plus homogenised linear constraints); w = y/1′y.
+- **Conditions:** feasible only if some μ_i > 0; otherwise a failure record (`NO_POSITIVE_EXCESS_RETURN`, provisional).
+- **Numerical tests:** 30 problems with mixed-sign μ; the convex solution's Sharpe ratio ≥ the best of 5 direct SLSQP maximisations, with weights agreeing to 2e-3.
+
+## EQ-MVO-4 Global minimum variance
+
+- **Source:**
+  - Jorion 1986 eq. (14) and fn. 5 (p. 285): Y₀ is "the average return for the minimum variance portfolio"; the weights "minimize the variance … subject to the condition that they sum to one".
+  - DGNU 2009 eqs. (1)–(2), p. 801.
+- **Canonical:** w_g = Σ⁻¹1 / 1′Σ⁻¹1; σ²_g = 1/A; m_g = B/A. Independent of μ.
+- **Numerical tests:** closed form = SLSQP to 1e-6; σ²_g = 1/A exactly.
+
+## EQ-MVO-4a Long-only GMV as covariance shrinkage
+
+- **Source:** DGNU 2009 p. 802, restating Jagannathan & Ma (2003): the short-sale-constrained GMV "coincides with the solution to the unconstrained problem … if the sample covariance matrix … is replaced by Σ_JM = Σ − λ1′ − 1λ′" (eq. 3), with λ ≥ 0 the short-sale multipliers. Proposition 1 (p. 802): the 1-norm-constrained GMV with δ = 1 equals the short-sale-constrained GMV. J&M 2003 itself is not in hand (`S4_0_SOURCE_INVENTORY.md`).
+- **Canonical (multiplier scale for the objective w′Σw):** λ = Σw* − σ*²·1 ≥ 0, with λ_i w*_i = 0; then Σ_JM w* = σ*²·1, so w* ∝ Σ_JM⁻¹1 when Σ_JM is invertible.
+- **Use:** explains why long-only constraints regularise (`S4_RISK_MODEL_CHOICE.md` M-1 finding 3). Relevant to S4.11's GMV record.
+- **Numerical tests:** 40 problems: KKT dual feasibility and complementary slackness; Σ_JM w* = σ*²·1; GMV(Σ_JM) = w* to 1e-5; the 1-norm (δ = 1) solution = the long-only solution to 1e-4.
+
+## EQ-MVO-E1 Error amplification by the condition number
+
+- **Source:** linear algebra (`VERIFIED-DERIVATION`). It quantifies Michaud's (1989) "error maximisation" (p. 31) for the unconstrained solution x = Σ⁻¹μ.
+- **Canonical:** ‖δx‖/‖x‖ ≤ κ(Σ)·‖δμ‖/‖μ‖, with κ = λ_max/λ_min. The bound is attained with μ along the top eigenvector and δμ along the bottom one.
+- **Use:** a CRO diagnostic (S4.16): report κ of the Σ used by μ-dependent methods. This connects to EPO's "problem portfolios" (PBL 2021 p. 125; EQ-MVO-5 at S4.7).
+- **Numerical tests:** κ ∈ {10, 10³, 10⁵}: the bound holds in 200 random perturbations each and is attained to 1e-6.
+
+## EQ-MVO-E2 Bayes–Stein expected returns (Jorion 1986)
+
+- **Source equations and pages:**
+  - eq. (14), p. 285: E[r] = (1 − w)Ȳ + w·1Y₀, with w = λ/(T + λ) and Y₀ = 1′Σ⁻¹Ȳ / 1′Σ⁻¹1 (the GMV mean);
+  - eq. (15): V[r] = Σ(1 + 1/(T + λ)) + λ/(T(T + 1 + λ))·11′/(1′Σ⁻¹1);
+  - eq. (16), p. 285: diffuse prior, E[r] = Ȳ, V[r] = Σ(1 + 1/T);
+  - eq. (17), p. 286: ŵ = (N + 2) / ((N + 2) + T(Ȳ − 1Y₀)′Σ⁻¹(Ȳ − 1Y₀));
+  - eq. (18): Σ̂ = (T − 1)/(T − N − 2)·S.
+- **Assumptions:** i.i.d. normal returns; Σ estimated (eq. 18); T > N + 2.
+- **Conventions that reproduce Table 2 (INFERENCE from the reproduction):** eq. (18) is applied in both the diffuse and Bayes–Stein rules; λ̂ = Tŵ/(1 − ŵ); negative exponential utility with risk tolerance 52.2%/12 per month (A = 12/52.2 per %), weights summing to one.
+- **Use:** documents how estimation error in μ costs utility and how shrinkage toward the GMV mean recovers it. It is a candidate **expected-return estimator** (type M.CMA), so it belongs to S4.15/S9, not to the PC library.
+- **Numerical tests (`s46_estimation_error_jorion.py`):**
+  - Table 1 statistics: c 0.11836 (0.11838), b 0.0953, Y₀ 0.805, a 0.15849, d 0.08176 (0.08171);
+  - F_MAX 0.99728 vs 0.99734;
+  - Table 2 at T = 25 / 50 / 100 / 200: all 15 testable risk cells within 1.7 of the paper's Monte Carlo standard errors (K = 1,000); the shrinkage mean within 2.5 SE (largest deviation at T = 200: 0.309 vs 0.316);
+  - the orderings stated on p. 288 hold (Bayes–Stein < diffuse < certainty equivalence; minimum variance best at small T and worst at T = 200).
+

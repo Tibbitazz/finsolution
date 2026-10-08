@@ -35,3 +35,9 @@
   | `s45_market_cap.py` | Cap-weight invariants; zero turnover between issuance events; reverse optimisation; Sharpe (1964) linear relation | PC-A2 |
   | `s45_volatility_timing_ko.py` | Kirby–Ostdiek VT(η): limits, invariants, eq. (12) by QP, eq. (13) example, A3 = ERC iff equal correlations, turnover eq. (6) vs DGU eq. (15), cash degeneracy | PC-A3, PC-A4 |
   | `s45_volatility_managed_mm.py` | Moreira–Muir: eq. (1) with ex-post c, fn. 6, no look-ahead (MM-1), appraisal identity, Table IV variants, 1/σ vs 1/σ², the V1 engine form | PC-A5 |
+- *[2026-10-08, S4.6]* **Mean–variance foundation scripts** (`S4_MVO_FOUNDATION.md`):
+
+  | Script | Reproduces / proves | Method |
+  |---|---|---|
+  | `s46_mvo_closed_forms.py` | GMV, frontier, two-fund separation, utility form, tangency and Tobin separation, long-only maximum Sharpe (convex form), Markowitz critical lines, Jagannathan–Ma via KKT, DGNU Prop. 1, condition-number bound, cash in Σ | PC-B1, PC-C1 (foundation) |
+  | `s46_estimation_error_jorion.py` | Jorion (1986) Table 1 statistics and Table 2 risk functions and shrinkage factors within the paper's Monte Carlo error | Estimation error; Bayes–Stein |
