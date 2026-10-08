@@ -104,7 +104,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `bb3d983` | **S4.4** PC source map (`S4_PC_SOURCE_MAP.md`): 21/22 SOURCE LOCATED, PC-C5 identity gap; ANG-35 recorded; not pushed |
 | `5898b60` | S4.4 update after the owner upload and permitted download: Kirby & Ostdiek (ANG-13 resolved), Michaud 1989 read in full (no resampling procedure; PC-B4 → Michaud & Michaud 2008), MRT working version obtained; ANG-38; PC-C5 identity route; SSRN items for manual download |
 | `7e96e56` | S4.4 second round: all 22 methods SOURCE LOCATED; PC-B4 governed by Michaud & Michaud 2008 (book); PC-C5 identity confirmed (byte-identical file, metadata, code reproduction); source issues MCA-1 … MCA-3 |
-| (latest) | Six SSRN sources reviewed and reproduced (`S4_SOURCE_REVIEWS_2026-10-08.md`; `verification/s44_*.py` all PASS); ANG-39 … ANG-42; GitHub-review HRP correction; not pushed |
+| `5db675e` | Six SSRN sources reviewed and reproduced (`S4_SOURCE_REVIEWS_2026-10-08.md`; `verification/s44_*.py` all PASS); ANG-39 … ANG-42; GitHub-review HRP correction; pushed |
+| (latest) | S4.4 marked DONE (owner); **Section 2 outline and tracker** `S4_METHODS_OUTLINE.md`; I-7 annotated (HRP) |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -125,6 +126,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_TAXONOMY.md` | **S4.3 (REVIEWED 2026-10-08; O-1 … O-4 confirmed; SYNC-2):** six kinds (Method, Artefact, Role, Control, Record, Input); method types as plugin categories; artefact, role, control, record and input types; relations; method vs configuration vs parameter; identity and versioning; inventory pass with findings F-1 … F-10 |
 | `S4_PC_SOURCE_MAP.md` | **S4.4 (DRAFT, owner decisions recorded):** governing primary, supporting sources and access route per roster method; **all 22 SOURCE LOCATED** (PC-C5 identity confirmed; PC-B4 governed by Michaud & Michaud 2008); ANG-vs-source differences; acquisition list (six SSRN items for the owner, four BI items) |
 | `S4_SOURCE_REVIEWS_2026-10-08.md` | **Reviews of the six SSRN sources** (He & Litterman, Idzorek, Spinu, López de Prado, Chekhlov–Uryasev–Zabarankin, Boudt–Carl–Peterson): what each specifies, exact reproductions, findings (BL-1 Σ vs Σ̄; IDZ-1 closed-form Ω; HRP-1 order dependence; CDD-1 drawdown definition; BCP-1 MCC vs ERC) |
+| `S4_METHODS_OUTLINE.md` | **Orientation for Section 2 (S4.5–S4.14), LIVING:** where we are across the engine; the nine-stage workflow every method step follows; method record template; per-step plan (methods, sources, equations, known issues, owner decisions, verification, deliverable, exit); decision points; acquisitions; tracker |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
 | `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-37; ABD-1 … ABD-5 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
@@ -233,7 +235,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 complete 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **S4.5 onward not started** |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) next; orientation in `S4_METHODS_OUTLINE.md`** |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
@@ -268,7 +270,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 2b | **Data access (owner, when S6 starts):** free FRED, OpenFIGI and Tiingo keys; whether to take EODHD All World (+ fundamentals); whether the university licence (Bloomberg / FactSet / I/B/E/S) allows personal research use for validation | Decide at S6; nothing needed now | S6 lead §7–§8 |
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
-| 5 | **S4.4 remaining:** BI library access for Goldfarb & Iyengar 2003 (PC-B3), Clarke, de Silva & Thorley 2006 (PC-C1), Choueifaty & Coignard 2008 (PC-C4), Rockafellar & Uryasev 2000 (PC-D1); before S4.7 / S4.11 / S4.12 | Retrieve when convenient; S4.5 does not need them | S4.4 |
+| 5 | **Four BI papers** (owner downloading 2026-10-08): Goldfarb & Iyengar 2003 (PC-B3, S4.7); Clarke, de Silva & Thorley 2006 (PC-C1, S4.11); Choueifaty & Coignard 2008 (PC-C4, S4.11); Rockafellar & Uryasev 2000 (PC-D1, S4.12). Plus Treynor & Black 1973 for PC-D4 (S4.12) | Drop into `Finsol Research Papers/` | `S4_METHODS_OUTLINE.md` §4 |
 
 **Resolved on 2026-10-08:** ADR-0026 accepted with C-1 … C-6 and S-1 … S-4, and F20/F21 kept as candidate fields; branch pushed (no PR).
 

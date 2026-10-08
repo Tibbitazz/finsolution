@@ -241,8 +241,8 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.2 | ANG adaptation map + ANG-baseline ADR | DRAFTED 2026-10-08: `S4_ANG_ADAPTATION.md` (B-1 … B-45; C-11 … C-14) + ADR-0027 PROPOSED; awaiting owner review |
 | S4.2b | Accountability layer (ADR-0026) | DRAFTED 2026-10-02 — `S4_ACCOUNTABILITY.md`; completes with S4.2 |
 | S4.3 | Method taxonomy | REVIEWED 2026-10-08: `S4_TAXONOMY.md` (six kinds; type catalogue; identity and versioning; inventory pass F-1 … F-10); owner confirmed O-1 … O-4; SYNC-2 material for the developer |
-| S4.4 | ANG PC source map | DRAFTED and updated 2026-10-08: `S4_PC_SOURCE_MAP.md` (**all 22 SOURCE LOCATED**; 18 governing sources in hand; PC-C3, PC-D2, PC-D3 SOURCE REVIEWED; ANG-13 resolved; ANG-38 … ANG-42); `S4_SOURCE_REVIEWS_2026-10-08.md` with reproductions in `verification/s44_*.py`; 4 BI items outstanding |
-| S4.5 | Heuristic portfolios (5) | NOT STARTED |
+| S4.4 | ANG PC source map | **DONE 2026-10-08** (owner confirmed): `S4_PC_SOURCE_MAP.md` (all 22 SOURCE LOCATED; 18 governing sources in hand; PC-C3, PC-D2, PC-D3 SOURCE REVIEWED; ANG-13 resolved; ANG-38 … ANG-42); `S4_SOURCE_REVIEWS_2026-10-08.md`; `verification/s44_*.py`; 4 BI items outstanding |
+| S4.5 | Heuristic portfolios (5) | NEXT — Section 2 outline and tracker: `S4_METHODS_OUTLINE.md` (2026-10-08) |
 | S4.6 | Classical MVO foundation | NOT STARTED |
 | S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | NOT STARTED |
 | S4.8 | Momentum signal review (XSMOM, TSMOM) | NOT STARTED |

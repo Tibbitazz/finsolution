@@ -235,7 +235,7 @@ Expected return = current cash yield proxy. ADOPT (trivial; horizon mismatch dis
 | I-4 | CMA candidates share one declared basis (currency, nominal/real, total/excess, horizon, arithmetic/geometric) before any [min, max] bound | Mixed-basis inputs rejected |
 | I-5 | One Sharpe definition per use, declared in the contract (ex-ante vs realised) | AdvDiv floor and constraint use the same definition |
 | I-6 | Missing returns are never filled | Gap in input → explicit missing handling |
-| I-7 | Methods pass invariance fixtures (e.g. HRP permutation invariance; estimator formulas vs reference) | Permutation test; LW reference values |
+| I-7 | Methods pass invariance fixtures (e.g. HRP permutation invariance; estimator formulas vs reference) | Permutation test; LW reference values *[2026-10-08]* For HRP, invariance holds for the tree-split variant, or for the published algorithm only after a declared canonical ordering (HRP-1, `S4_SOURCE_REVIEWS_2026-10-08.md` §4); decided at S4.11 |
 | I-8 | Revisions change only contract-authorised parameters within bounds | Override outside authority rejected |
 | I-9 | In-sample diagnostics are labelled; runtime scoring metrics are defined by S7 | Label present in every CRO report |
 

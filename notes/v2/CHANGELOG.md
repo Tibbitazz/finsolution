@@ -1,5 +1,16 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.4 done; Section 2 outline (branch `stage/s04-method-library`)
+
+- S4.4 marked **DONE** (owner confirmation).
+- **New** `research/s4/S4_METHODS_OUTLINE.md` (LIVING), the orientation document for Section 2 (S4.5–S4.14):
+  - where we are across the engine;
+  - the nine-stage workflow every method step follows, and a method record template;
+  - per-step plan: methods, sources and their status, equations, known issues, expected owner decisions, verification, deliverable, exit;
+  - the owner decision points already visible, source acquisitions by step, and a tracker.
+- Invariant I-7 annotated for HRP (`S4_GITHUB_IMPL_REVIEW.md`).
+- **Updated:** S4_PLAN C.2 (S4.4 DONE; S4.5 NEXT), HANDOFF (four BI papers listed). Not pushed.
+
 ## 2026-10-08 — Six SSRN sources reviewed and reproduced (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_SOURCE_REVIEWS_2026-10-08.md`: identity, specification, verification and findings for He & Litterman, Idzorek, Spinu, López de Prado, Chekhlov–Uryasev–Zabarankin and Boudt–Carl–Peterson.
