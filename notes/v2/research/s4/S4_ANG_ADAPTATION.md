@@ -60,9 +60,9 @@
 
 | ID | ANG element | Class | Our form | Reason | Binding / stage |
 |---|---|---|---|---|---|
-| B-7 | Covariance agent; estimator unspecified (§2.1 S3) | G/D | Risk **role**. Estimators are Method Library entries (COV-x) with eligibility contracts (06 §4). **Selection is per PC method, constraint set and dimension** (§13.2, §13.3 evidence): each method declares its construction risk model; one common reference model serves evaluation (ADR-0027 D3, r2) | ANG silent; estimator performance depends on method, constraints and N | S4.13 → S10; RQ-14 |
-| B-33 | Three risk inputs: AC volatility, AC `correlation_row.json`, covariance agent Σ (ANG-33) | A | *(r2, 2026-10-08)* **Method-specific construction risk models** (declared per PC method, produced by the risk role as versioned artefacts) **plus one common reference risk model per declared horizon per run** for CRO diagnostics, IPS/limit checks, candidate cards, Portfolio Map and learning records; candidate cards show both (risk-model disagreement). AC-level volatilities and correlation rows are evidence (consistency-checked against the reference model), never PC inputs. Any matrix assembled from rows is symmetrised and projected to the nearest PSD correlation matrix **(ADR-0027 D3)** | Estimator fit is method-, constraint- and N-dependent; evaluation and limits need one yardstick fixed in advance; prevents non-PSD inputs and silent mixing | ADR-0027; S10 |
-| B-34 | Short- vs long-horizon volatility via different estimators (p. 29) | G | The horizon is a **declared field** of every risk artefact (construction and reference). Short-horizon (CRO, volatility targeting, Trader evidence) and SAA-horizon Σ may differ (GARCH deviation share ≈ 0.07 over 3 y) | §13.2, C-2 | ADR-0026 §8 (descriptor horizon); S10 |
+| B-7 | Covariance agent; estimator unspecified (§2.1 S3) | G/D | Risk **role**. Estimators are Method Library entries (COV-x) with eligibility contracts (06 §4). **Selection is per problem** (universe × horizon × risk object), not per PC method, on a pre-registered risk-accuracy test (ADR-0027 D3 r3, Option A; §13.2, §13.3; `S4_RISK_MODEL_CHOICE.md`) | ANG silent on the estimator; its ranking depends on dimension, constraints, horizon and use | S4.13 → S10; RQ-14 |
+| B-33 | Three risk inputs: AC volatility, AC `correlation_row.json`, covariance agent Σ (ANG-33) | A | *(r3, Option A, 2026-10-08)* **One authoritative risk model per problem per run** (universe × horizon × risk object), produced by the risk role and consumed by every PC method on that problem, the CRO, limit checks, candidate cards, Portfolio Map and learning records. Estimator chosen per problem on a pre-registered risk-accuracy test (S7 → S10); method-internal regularisation stays in the methods; the CRO reports sensitivity to alternative estimators. AC-level volatilities and correlation rows are evidence, never PC inputs. Assembled matrices are symmetrised and projected to the nearest PSD correlation matrix **(ADR-0027 D3)** | ANG-consistent (pp. 6, 9); comparable candidates; one yardstick for limits; avoids per-method specification search | ADR-0027; S10 |
+| B-34 | Short- vs long-horizon volatility via different estimators (p. 29) | G | The horizon is a **declared field** of every risk artefact, with one authoritative model per horizon. Short-horizon (CRO, volatility targeting, Trader evidence) and SAA-horizon Σ may differ (GARCH deviation share ≈ 0.07 over 3 y) | §13.2, C-2 | ADR-0026 §8 (descriptor horizon); S10 |
 
 ### 1.5 Portfolio construction
 
@@ -123,7 +123,7 @@
 | C-7, C-8 | RESOLVED (superseded proposals) | Replaced by B-18 and by the S4 plan |
 | C-9, C-10 | RESOLVED (ADR-0026) | — |
 | **C-11 (new)** ANG culls methods on performance vs ADR-0025 (evaluation ≠ admission) and 02 §D (`RETIRED` by ADR only) | **Proposed resolution:** B-39 | ADR-0027 D2 |
-| **C-12 (new)** ANG's three risk inputs vs a consistent risk architecture | **Proposed resolution:** B-33 (r2: method-specific construction models + one reference model per horizon) | ADR-0027 D3 |
+| **C-12 (new)** ANG's three risk inputs vs one consistent risk model | **Proposed resolution:** B-33 (r3, Option A: one authoritative model per problem) | ADR-0027 D3 |
 | **C-13 (new)** ANG's CMA unit and currency convention (USD implied) vs NOK context and D6 | **Proposed resolution:** B-31 | ADR-0027 D5; RQ-07 |
 | **C-14 (new)** ANG's data stack (FMP, Finviz, US-listed ETFs) vs licence and universe findings | **Resolved by planning, no ADR needed:** B-42 | DR-7, CB-19, S6 |
 
@@ -155,7 +155,7 @@ No conflict with accepted S0–S3 content or ADR-0023 … ADR-0026 is introduced
 |---|---|---|
 | D1 | Learning adopted as a core component under rules L-1 … L-7 | B-16, B-40, B-41 |
 | D2 | Governed registry evolution: no automatic culling; retirement by ADR; family-coverage floor | B-39 |
-| D3 | *(r2)* Method-specific construction risk models; one common reference risk model per declared horizon per run for evaluation and limits (dual reporting); AC-level risk outputs are evidence; PSD projection for assembled matrices | B-7, B-33, B-34 |
+| D3 | *(r3, Option A)* One authoritative risk model per problem (universe × horizon × risk object) per run; estimator selected on pre-registered risk accuracy; regularisation inside methods; CRO sensitivity report; AC-level risk outputs are evidence; PSD projection for assembled matrices | B-7, B-33, B-34 |
 | D4 | Runtime backtest diagnostics are deterministic, protocol-defined, labelled in-sample, and never admission evidence | B-38 |
 | D5 | Every CMA and risk artefact declares currency, hedging, horizon and return convention; numéraire per RQ-07 | B-31 |
 
@@ -178,7 +178,7 @@ No conflict with accepted S0–S3 content or ADR-0023 … ADR-0026 is introduced
 - rebalancing rules;
 - learning thresholds.
 
-**If ADR-0027 is accepted:** a risk-model artefact type with `role` (construction / reference / evidence) and horizon fields, several construction models per run and one reference model per horizon; CMA unit fields; learning-promotion gates with a diversity floor and correlation guardrail; no auto-retirement path.
+**If ADR-0027 is accepted:** a risk-model artefact type with universe, horizon, risk-object, estimator and version fields (one authoritative model per problem per run); CMA unit fields; learning-promotion gates with a diversity floor and correlation guardrail; no auto-retirement path.
 
 ## 6. Exit check
 

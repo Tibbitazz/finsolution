@@ -504,7 +504,7 @@ In population terms, clipping in the asset-class design replaces 15 eigenvalues 
 **Implications:**
 - **Asset-class level** (ANG's level; roster v0): RMT clipping is **not supported** by this evidence. Sample or correlation-shrinkage estimators (§13.2) remain the candidates.
 - **Security level** (Sørensen scoring → security-level EPO, `S4_SCORING_SORENSEN.md` O-9c; any unconstrained or weakly constrained stock-level method): RMT cleaning or nonlinear shrinkage (LW 2017) are leading candidates. Some cleaning is required when T ≤ N.
-- This is direct evidence for **method- and dimension-specific construction risk models** (ADR-0027 D3, r2). One estimator applied to all methods would be wrong somewhere.
+- This is direct evidence that the risk model must be chosen **per problem** (universe, dimension, horizon), not once for everything: the same estimator is best for one universe and worst for another (ADR-0027 D3 r3, Option A; `S4_RISK_MODEL_CHOICE.md`).
 
 **Caveats:**
 - one design per level;

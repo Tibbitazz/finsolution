@@ -326,7 +326,7 @@ ANG works at the asset-class level. The analogous object there is an **asset-cla
 - the CMA by method and the judge's final estimate and range;
 - confidence;
 - the TSMOM state;
-- volatility under the construction and reference risk models, with horizon (ADR-0027 D3, r2).
+- volatility under the authoritative risk model for that problem, with horizon (ADR-0027 D3 r3).
 
 Its type belongs in the S4.3 taxonomy; its content belongs in S4.15.
 

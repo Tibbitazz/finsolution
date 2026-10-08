@@ -1,5 +1,21 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — ADR-0027 D3 r3 (Option A); r2 and P-V1/P-V2 withdrawn; risk-model choice record (branch `stage/s04-method-library`)
+
+- **Correction of the previous commit.** The owner had asked for an opinion on per-method risk estimation, not a change. D3 r2 (method-specific construction models plus a reference model) is withdrawn and recorded as such in ADR-0027's revision history.
+- **ADR-0027 D3 r3 = Option A (owner decision, 2026-10-08; ADR still PROPOSED as a whole):**
+  - one authoritative risk model per problem (universe × horizon × risk object) per run, used by every PC method on that problem, the CRO, limit checks, candidate cards, Portfolio Map and learning records;
+  - estimator chosen by the risk role per problem on a pre-registered out-of-sample risk-accuracy test (S7 → S10), never per PC method and never on portfolio returns;
+  - method-internal regularisation (EPO, Black–Litterman, resampling, robust sets) stays inside the methods;
+  - PC agents never choose or test estimators; the CRO reports sensitivity to alternative estimators.
+- **New** `research/s4/S4_RISK_MODEL_CHOICE.md` (owner question: how much the risk model matters; whether one is better; which; when):
+  - literature (Michaud 1989; DeMiguel, Garlappi & Uppal 2009; Chopra & Ziemba 1993; Jagannathan & Ma 2003; Chan, Karceski & Lakonishok 1999; Ledoit & Wolf 2004, 2017; Ardia et al. 2017; PBL 2021; Patton 2011; Hansen, Lunde & Nason 2011), each with its verification status;
+  - M-1 (synthetic): return-forecast errors dominate mean–variance losses; estimator choice matters greatly unconstrained (1,655 vs 674 bp/yr) and little long-only (≤ 2 bp/yr);
+  - M-2: EPO-style regularisation inside the method beats swapping risk models unconstrained, and over-corrects under long-only caps;
+  - candidates per problem; selection rule; stage map (original plan; no change).
+- **Withdrawn:** P-V1, P-V2 and S4_PLAN §G.1 (the original plan already covers them).
+- **Reconciled:** `S4_ANG_ADAPTATION.md` B-7, B-33, B-34, C-12, §4, §5; S4_PLAN C-12 and the S4.3, S4.13, S4.16 rows; decision register; RQ-14; `S4_ANG_BASELINE.md` §13.3; `S4_SCORING_PEER_METHODS.md` §9.6; HANDOFF.
+
 ## 2026-10-08 — S4.2 owner-review round: method-specific risk models, RMT by universe size, score table, verification timing (branch `stage/s04-method-library`)
 
 - **ADR-0027 D3 revised (r2; still PROPOSED)** after the owner's question "should the risk estimation depend on the PC method?":
