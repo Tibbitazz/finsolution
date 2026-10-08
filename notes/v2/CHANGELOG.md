@@ -1,5 +1,10 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.3 reviewed: owner confirms O-1 … O-4 (branch `stage/s04-method-library`)
+
+- `S4_TAXONOMY.md` status REVIEWED: six kinds (Input added); Researcher typed as a role with roster numbering unchanged; new method-type ID prefixes assigned at their owning stages; specification objects stay in the repository without a separate registry.
+- S4_PLAN C.2 and HANDOFF updated. Pushed together with the S4.3 draft commit.
+
 ## 2026-10-08 — S4.3 taxonomy drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_TAXONOMY.md` (DRAFT for owner review; SYNC-2):

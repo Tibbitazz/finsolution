@@ -1,6 +1,6 @@
 # S4.3 — Canonical object taxonomy: kinds, types, identity, versioning
 
-**Document status:** DRAFT for owner review (S4.3; exit = "every inventory item has one type"; **SYNC-2**) · **Prepared:** 2026-10-08 · **Entry:** S4.2 drafted (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 r3 decided by the owner) · **Basis:**
+**Document status:** REVIEWED by the owner 2026-10-08 (O-1 … O-4 confirmed, §15); accepted at G4 with the S4 package (S4.3; exit = "every inventory item has one type"; **SYNC-2**) · **Prepared:** 2026-10-08 · **Entry:** S4.2 drafted (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 r3 decided by the owner) · **Basis:**
 - ADR-0023 §5 (Method, Method Contract, Agent Role, Agent Instance, Portfolio Proposal);
 - ADR-0026 §3 (adds Agent Mandate and Decision Record);
 - ADR-0012 §1–§6 (descriptor classes, typed contracts);
@@ -32,7 +32,7 @@ Every object has exactly **one kind** and **one type** within it. How an object 
 | **Record** (REC) | An append-only account of something that happened: a decision, a claim, an outcome, a change | Does it log an event for accountability or learning? | Append-only; corrections are new records | Record ID |
 | **Input** (IN) | Point-in-time data from outside the engine | Did it enter from outside, rather than being computed? | Snapshot | Snapshot content hash |
 
-**Deviation from the outline given to the owner (five kinds).** Input is added as a sixth kind. Market-data, fact-registry and holdings snapshots are neither computed (Artefact) nor yardsticks (Control). Without the sixth kind the exit test fails (§13, F-10). **Owner confirmation requested (§15, O-1).**
+**Deviation from the outline given to the owner (five kinds).** Input is added as a sixth kind. Market-data, fact-registry and holdings snapshots are neither computed (Artefact) nor yardsticks (Control). Without the sixth kind the exit test fails (§13, F-10). **Confirmed by the owner 2026-10-08 (§15, O-1).**
 
 **Governing specifications attach to the kind they govern:**
 - the **Method Contract** belongs to Method;
@@ -374,8 +374,8 @@ Method types partition by **output semantics and decision function**. They refin
 | Method vs configuration vs parameter; identity and versioning | §9, §10 |
 | Every inventory item has one type | §12; findings F-1 … F-10 |
 
-**Open items for the owner:**
-- **O-1:** confirm six kinds (Input added; F-10).
-- **O-2:** confirm F-1 (the Researcher typed as a role; roster numbering unchanged).
-- **O-3:** ID prefixes for new method types are assigned at their owning stages (§10). Confirm that no IDs need assigning now.
-- **O-4:** whether specification objects (§12.3) need a registry beyond the repository. Recommendation: no; the repository is their registry.
+**Owner decisions (2026-10-08, "I agree to all"):**
+- **O-1:** six kinds confirmed (Input added; F-10).
+- **O-2:** the Researcher is typed as a role; roster numbering unchanged (F-1).
+- **O-3:** ID prefixes for new method types are assigned at their owning stages (§10); none assigned now.
+- **O-4:** specification objects (§12.3) have no registry beyond the repository.

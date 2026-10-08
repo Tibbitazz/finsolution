@@ -240,7 +240,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.1 | Full ANG architectural reconstruction | DRAFTED 2026-10-08: `S4_ANG_BASELINE.md` (page-cited; verified V-1 … V-8; ANG-28 … ANG-36); awaiting owner review |
 | S4.2 | ANG adaptation map + ANG-baseline ADR | DRAFTED 2026-10-08: `S4_ANG_ADAPTATION.md` (B-1 … B-45; C-11 … C-14) + ADR-0027 PROPOSED; awaiting owner review |
 | S4.2b | Accountability layer (ADR-0026) | DRAFTED 2026-10-02 — `S4_ACCOUNTABILITY.md`; completes with S4.2 |
-| S4.3 | Method taxonomy | DRAFTED 2026-10-08: `S4_TAXONOMY.md` (six kinds; type catalogue; identity and versioning; inventory pass with findings F-1 … F-10); awaiting owner review (SYNC-2) |
+| S4.3 | Method taxonomy | REVIEWED 2026-10-08: `S4_TAXONOMY.md` (six kinds; type catalogue; identity and versioning; inventory pass F-1 … F-10); owner confirmed O-1 … O-4; SYNC-2 material for the developer |
 | S4.4 | ANG PC source map | NOT STARTED (§D draft) |
 | S4.5 | Heuristic portfolios (5) | NOT STARTED |
 | S4.6 | Classical MVO foundation | NOT STARTED |
