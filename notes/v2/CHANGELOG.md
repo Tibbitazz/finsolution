@@ -1,5 +1,14 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.3 taxonomy drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_TAXONOMY.md` (DRAFT for owner review; SYNC-2):
+  - six kinds: Method, Artefact, Role, Control, Record, Input (Input added to the five-kind outline; owner confirmation O-1);
+  - 18 method types (plugin categories; refining 06 §5 `method_type`), 17 artefact types, role types with mandate/skill/memory/instance specifications, 11 control types, 10 record types, 6 input types;
+  - relations for the S4.22 dependency graph; method vs configuration vs parameter vs variant; identity and versioning rules; status ladders by kind;
+  - inventory pass: every item has exactly one type. Findings F-1 … F-10, e.g. PC-E1 Researcher is a role (roster unchanged), "anchor" is a relation, decision states are Decision Record fields, two learning objects are role specifications.
+- **Updated:** S4_PLAN C.2 (S4.3 DRAFTED); HANDOFF. Not pushed.
+
 ## 2026-10-08 — ADR-0027 D3 r3 (Option A); r2 and P-V1/P-V2 withdrawn; risk-model choice record (branch `stage/s04-method-library`)
 
 - **Correction of the previous commit.** The owner had asked for an opinion on per-method risk estimation, not a change. D3 r2 (method-specific construction models plus a reference model) is withdrawn and recorded as such in ADR-0027's revision history.

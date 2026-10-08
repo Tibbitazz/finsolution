@@ -98,7 +98,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `d29fad3` | S4.1 settlement: scoring decision protocol; learning × correlation (ANG-37); covariance evidence; FMP/Finviz; external reviews; **pushed** |
 | `37f81df` | **S4.2** adaptation map (`S4_ANG_ADAPTATION.md`) + ADR-0027 PROPOSED; S4_PLAN §B superseded; C-5 … C-14 statuses; **not pushed** |
 | `f5470f2` | S4.2 owner-review round: ADR-0027 D3 r2 (later withdrawn); RMT by universe size (`S4_ANG_BASELINE.md` §13.3, Appendix C); score-table spec (`S4_SCORING_PEER_METHODS.md` §9); RQ-14, RQ-32 annotated |
-| (latest) | **ADR-0027 D3 r3 = Option A** (owner decision): one authoritative risk model per problem; r2 and P-V1/P-V2 withdrawn (original plan kept); risk-model choice record `S4_RISK_MODEL_CHOICE.md` (M-1, M-2); pushed with the two preceding commits |
+| `afcff9d` | **ADR-0027 D3 r3 = Option A** (owner decision): one authoritative risk model per problem; r2 and P-V1/P-V2 withdrawn (original plan kept); risk-model choice record `S4_RISK_MODEL_CHOICE.md` (M-1, M-2); pushed |
+| (latest) | **S4.3** taxonomy (`S4_TAXONOMY.md`): six kinds, type catalogue, relations, method/configuration/parameter, identity and versioning, inventory pass (F-1 … F-10); not pushed |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -116,6 +117,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_PLAN.md` | Plan, amendments 1–18, G4 criteria 1–24 |
 | `S4_ANG_BASELINE.md` | **S4.1 (DRAFT, awaiting owner review):** canonical page-cited reconstruction of ANG v2. Stage table; roster reconciliation (44); agent anatomy and skills; data (FMP, Finviz); determinism; IPS governance; limitations; verified exhibit arithmetic (V-1 … V-8; effective N = inverse HHI); lecture cross-check; new issues ANG-28 … ANG-36 |
 | `S4_ANG_ADAPTATION.md` | **S4.2 (DRAFT, awaiting owner review):** every baseline element classified U/G/A/D/N (B-1 … B-45); conflicts C-1 … C-14; ANG-01 … ANG-37 dispositioned; developer summary (SYNC-1); companion ADR-0027 PROPOSED |
+| `S4_TAXONOMY.md` | **S4.3 (DRAFT, awaiting owner review; SYNC-2):** six kinds (Method, Artefact, Role, Control, Record, Input); method types as plugin categories; artefact, role, control, record and input types; relations; method vs configuration vs parameter; identity and versioning; inventory pass with findings F-1 … F-10 |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
 | `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-37; ABD-1 … ABD-5 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
@@ -224,7 +226,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 onward not started** |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 drafted 2026-10-08** (`S4_TAXONOMY.md`; awaiting review; SYNC-2). **S4.4 onward not started** |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
