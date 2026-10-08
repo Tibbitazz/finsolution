@@ -72,6 +72,7 @@
 | EQ-ROB-1 | Uncertainty sets and their regression calibration | PC-B3 | G&I 2003 eqs. (2)–(4), p. 4; (61)–(63), pp. 17–18 | EXTRACTED · VERIFIED (S4.7) |
 | EQ-ROB-2 | Robust counterparts: worst cases, robust minimum variance, robust maximum Sharpe | PC-B3 | G&I eqs. (15), (26), (31)–(39), (64)–(68), pp. 7–13, 19–20 | EXTRACTED · VERIFIED (S4.7) |
 | EQ-REF-1 | Resampled efficient frontier: resampling, rank association, averaging | PC-B4 | Michaud & Michaud 2008 pp. 37–39, 42–45, 51–52, 56 | EXTRACTED · VERIFIED (S4.7; specification check under D-2) |
+| EQ-SPLIT-1 | Engine-level exposure rule (risk target σ*, leverage cap) | All PC candidates; CIO ensemble | Tobin 1958; Sharpe 1964 p. 433; owner decision S47-D6 | SPECIFIED (S4.7) |
 
 ---
 
@@ -394,6 +395,7 @@ Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1)
 - **Source:** eq. (17) EPO = (1/γ)(τΣ̃ + Λ)⁻¹(τs + γΛa); with Λ = λV and w = λ/(τ + λ): eq. (18) EPO(w) = Σ_w⁻¹[(1 − w)s/γ + wVa]; with a = V⁻¹s/γ: eq. (20) EPO^s(w) = Σ_w⁻¹s/γ (all p. 132).
 - **Limits:** w = 0 → MVO on Σ̃; w = 1 → V⁻¹s/γ (diagonal MVO; with a TSMOM-type signal this is equal-volatility weighting, eq. 27).
 - **Units:** s must be in expected-excess-return units for a meaningful γ; the simple EPO's Sharpe ratio does not depend on γ (p. 132).
+- **Engine parameters (owner decision S47-D2, 2026-10-08):** Σ̃ = the authoritative risk model (θ = 0; θ = 0.05 sensitivity-only); w endogenous by the past-only rule on the grid {0, 0.01, 0.03, 0.10, 0.25, 0.50, 0.75, 0.90, 0.97, 0.99, 1}, pre-registered at S7 with a switching margin (design study `s47_epo_grid_design_study.py`).
 - **w selection in PBL:** "for each time period, we estimated what choice of w (within a finite grid of possible values) would have produced the highest EPO portfolio Sharpe ratio in the time period up until that date. Then, we used this estimate in the next time period" (Figure 2 notes, p. 138); at least 15 years of data before the first choice (Table 1 notes). The grid is not stated (PBL-2).
 
 ## EQ-EPO-3 Anchored EPO
@@ -455,4 +457,15 @@ Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1)
   - Table 6.1 RE minimum-variance / middle / maximum-return portfolios within 0.7 / 1.6 / 3.0 pp (500 replications, T = 216);
   - the fn. 7 identity; all 51 RE portfolios below the classical frontier; long simulated samples approach MV.
 - **MCH-1 (under-specification):** Table 6.1's "middle" portfolio is not defined. The printed MV middle is efficient on our frontier at rank 24 of 51, not at the return midpoint (rank 26). The printed inputs also tie France and Japan at 0.88, so the classical maximum-return portfolio is not unique in the rounded data (the book shows 100% France).
+
+## EQ-SPLIT-1 Engine-level exposure rule (owner decision S47-D6, 2026-10-08)
+
+- **Source:** Tobin 1958 §3.6 (separation, pp. 83–85); Sharpe 1964 p. 433 (limited or no borrowing); S4.6 three-segment frontier with lending rate r_f and borrowing rate r_b; S46-D1.
+- **Canonical:** one target σ* and leverage cap L (Policy Statement, account permissions).
+  - Methods without expected returns, risky mix p: exposure k = min(σ*/σ(p), L); weights k·p; cash 1 − k·1′p (negative = borrowing at r_b, only if permitted).
+  - Return-based methods: the efficient portfolio at σ* under the same constraints (lending tangency + cash if σ* ≤ σ_tan; a riskier efficient mix with no cash if borrowing is not permitted; the borrowing tangency levered at r_b if it is).
+  - Exceptions: PC-A5 (own rule); methods with absolute risk limits (σ* inside their optimisation).
+  - Final ensemble rescaled to σ*.
+- **Units:** σ* and σ(p) on the same horizon and basis (ADR-0027 D5).
+- **Numerical tests:** separation and the three-segment frontier (`s46_mvo_closed_forms.py`; S4.6 discussion); the scaling rule is arithmetic; the frontier point at σ* uses EQ-MVO-2/2a.
 

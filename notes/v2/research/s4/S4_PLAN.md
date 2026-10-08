@@ -244,8 +244,8 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.4 | ANG PC source map | **DONE 2026-10-08** (owner confirmed): `S4_PC_SOURCE_MAP.md` (all 22 SOURCE LOCATED; 18 governing sources in hand; PC-C3, PC-D2, PC-D3 SOURCE REVIEWED; ANG-13 resolved; ANG-38 … ANG-42); `S4_SOURCE_REVIEWS_2026-10-08.md`; `verification/s44_*.py`; 4 BI items outstanding |
 | S4.5 | Heuristic portfolios (5) | **DONE 2026-10-08** (owner accepted S45-D1 … D4): `S4_HEURISTICS.md` (A1–A5 records), `S4_EQUATION_REGISTER.md` (created), `verification/s45_*.py` (PASS); ANG-43 … ANG-46, MM-1, MM-2 |
 | S4.6 | Classical MVO foundation | **DONE 2026-10-08** (owner decided S46-D1): `S4_MVO_FOUNDATION.md`, register EQ-MVO-1 … 4 (+ sub-equations, E1, E2), `verification/s46_*.py` (PASS); ANG-47 |
-| S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | **DRAFTED 2026-10-08**: `S4_MVO_FAMILY.md` (six method records; lineage; owner decisions S47-D1 … D6 open), register S4.7 entries, `verification/s47_*.py` (5 scripts, PASS); ANG-48, ANG-49; BL-2, MCH-1, PBL-1, PBL-2 |
-| S4.8 | Momentum signal review (XSMOM, TSMOM) | NOT STARTED |
+| S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | **DONE 2026-10-08** (owner decided S47-D1 … D6): `S4_MVO_FAMILY.md` (six method records; lineage), register S4.7 entries + EQ-SPLIT-1, `verification/s47_*.py` (PASS); ANG-48, ANG-49 resolved; B-46 adaptation (engine-level risk target); D-2 closed for B4 |
+| S4.8 | Momentum signal review (XSMOM, TSMOM) | **NEXT** |
 | S4.9 | Signal × PC compatibility | NOT STARTED |
 | S4.10 | Anchor and benchmark architecture | NOT STARTED |
 | S4.11 | Risk-structured PC methods (5) | NOT STARTED |

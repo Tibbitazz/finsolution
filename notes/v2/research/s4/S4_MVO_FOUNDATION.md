@@ -113,7 +113,7 @@ Full register entries: `S4_EQUATION_REGISTER.md`. In brief:
 - **Cash location** (broker account vs a bank deposit, including the ASK withdrawal-tax rule and withdrawal limits) is an implementation decision (S13).
 - **Borrowing** is a separate rate, and only if `POL.leverage` and the account permit it. With different lending and borrowing rates the efficient set has three segments (lend at the lending tangency; no cash; borrow at the borrowing tangency), checked numerically in the discussion.
 - **Not modelled:** restricted or subsidised savings products (e.g. BSU) and advice on debt repayment versus investing. The idea is on hold by the owner (RQ-57); existing context fields (S1 §2, 3.1, 3.2, 5.1, 5.2, 5.3) carry their decision-relevant effects.
-- **Still open, carried to S4.7:** whether the cash/risky split is set by one engine-level rule (separation; equal-risk comparison) or by each method.
+- **Still open, carried to S4.7:** whether the cash/risky split is set by one engine-level rule (separation; equal-risk comparison) or by each method. *[2026-10-08]* **Resolved by S47-D6:** one engine-level risk target, applied per method type (EQ-SPLIT-1).
 
 
 | Option | Description |

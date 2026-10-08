@@ -1,6 +1,6 @@
 # S4.7 Mean–variance family — PC-B1, B2, B3, B4, B6, B7: method records
 
-**Document status:** DRAFT (2026-10-08). Owner decided S47-D1, D3, D4, D5 and the S47-D2 rule; S47-D2's θ and grid, and S47-D6, open (§5). · **Basis:**
+**Document status:** REVIEWED (2026-10-08). Owner decisions S47-D1 … S47-D6 recorded (§5). · **Basis:**
 - S4_PLAN §G (step S4.7) and §F (EQ-MVO-5, EQ-EPO-1 … 5, EQ-BL-1 … 3, EQ-ROB-1 … 2, EQ-REF-1);
 - `S4_METHODS_OUTLINE.md` §1–§2;
 - `S4_MVO_FOUNDATION.md` (S4.6; S46-D1);
@@ -296,7 +296,7 @@ Common to all six:
 *[2026-10-08]* **Owner decision: w is endogenous, chosen by PBL's past-only rule (best trailing Sharpe).** The owner asked (i) raw vs 5%-pre-shrunk risk model and (ii) grid size. Recommendations, from PBL's evidence (Table 2; p. 138) and the design study `verification/s47_epo_grid_design_study.py` (synthetic, protocol resolution only):
 - (i) apply EPO to the **authoritative risk model** of the problem (ADR-0027 D3), with no method-private pre-shrink (θ = 0); θ = 0.05 as sensitivity-only. Reasons: for simple EPO θ is an exact reparametrisation of w (correlations × (1 − θ)(1 − w), verified); pre-shrinking raised plain MVO's Sharpe by 0.014–0.027 but changed the past-only EPO result by only +0.001/+0.004 (within 2 s.e.) and the best fixed w by −0.002/−0.000, as PBL report ("almost no effect" once correlations are shrunk heavily).
 - (ii) an **11-point, logit-spaced grid {0, 0.01, 0.03, 0.1, 0.25, 0.5, 0.75, 0.9, 0.97, 0.99, 1}**, pre-registered at S7, plus a pre-registered switching margin (hysteresis) tested at S7. Reasons: a 3-point grid lost 0.005–0.018 Sharpe; 8–11 points were indistinguishable; 21 or 101 points added at most +0.004 while w changed in 14–56% of months instead of 6–8%. Trailing-Sharpe estimation error over 15 years (≈ 0.27 annualised for SR ≈ 0.5, iid approximation) dwarfs the difference between neighbouring fine-grid values.
-- Awaiting owner confirmation of (i) and (ii).
+- *[2026-10-08]* **Owner confirmed (i) and (ii).**
 - **Options:**
   - (a) system-estimated by PBL's past-only rule (expanding window; maximum trailing Sharpe on a pre-registered grid, e.g. {0, 0.1, 0.25, 0.5, 0.75, 0.9, 1}; at least 15 years of history);
   - (b) a fixed w;
@@ -340,7 +340,15 @@ Common to all six:
 
 ### S47-D6 — Cash/risky split (carried from S46-D1)
 
-*[2026-10-08]* Owner asked for a more detailed explanation before deciding (open).
+*[2026-10-08]* Owner asked for a more detailed explanation (given in the session, with a synthetic 5-asset illustration: fully invested mixes ranged 5.3–10.1% volatility; utility-MVO cash moved from −175% to +45% as γ went from 2 to 10).
+
+*[2026-10-08]* **Owner decision: refined option (a), one engine-level risk target applied per method type:**
+1. One risk target σ* and one leverage rule for every candidate, from the Policy Statement (risk target, `POL.leverage`, account permissions, borrowing rate).
+2. Return-based methods (B1, B2, B3, B4, B6/B7) reach σ* along their efficient frontier: without leverage, a riskier efficient mix rather than the tangency mix fully invested (Sharpe 1964 p. 433); with leverage, the borrowing segment of the three-segment frontier (S4.6).
+3. Methods without expected returns (A1–A4, C-family) are scaled: exposure = min(σ*/σ(p), L); a mix below σ* at the leverage cap is reported by the CRO as under-target.
+4. Exceptions: PC-A5 keeps its own exposure rule (the rule is the method); methods with absolute risk limits (CVaR limit, drawdown limit, tracking-error budget) apply σ* inside their optimisation.
+5. After the CIO ensemble, the final portfolio is rescaled to σ*; the cash leg is placed per S46-D1 (S13).
+Consequences accepted: an ANG adaptation (B-46, `S4_ANG_ADAPTATION.md`; binding by ADR at G4); PC-A5's distinctness tested at admission (ADR-0025), with portfolio-level timing at S13c; long/short mixes scaled on gross positions within margin and shorting permissions; S7 backtests apply the same rule.
 - **Options:**
   - (a) one engine-level rule: each method proposes its risky portfolio, and one transparent rule sets the cash/risky split from the Policy Statement risk target, the leverage permission and the borrowing rate;
   - (b) each method sets its own split (through γ, δ or its own definition).

@@ -73,6 +73,7 @@
 | B-10 | Adversarial Diversifier: max tracking variance vs centroid, s.t. Sharpe ≥ 75% of max (§3) | U (role) / G (formulation) | Role kept. Non-convex formulation completed in S4.14 (ANG-16); the 75% floor is not adopted | ANG under-specifies it | S4.14 |
 | B-35 | PC inputs "CMAs + Σ" only (ANG-17) | G | Heterogeneous input contracts (caps, scenarios, paths, factors) | Methods need more than μ, Σ | S4.20 |
 | B-17 | Single institutional pre-tax portfolio (§1) | A | PC at total-portfolio level on the admissible universe; accounts, asset location, tax and FX in S13a. Contracts allow PC-level or account-level constraints | Multi-account, tax-aware individual | S11/S13 |
+| B-46 | Cash is one of the 18 asset classes; every PC method allocates to it; the final cash share emerges from the CIO ensemble (Exh. 9: 8.1%); the volatility band is soft and was missed (7.54% vs 8–12%) | A | Numéraire cash is the riskless asset (S46-D1). PC methods propose risky mixes; **one engine-level risk target and leverage rule** sets exposure: return-based methods along their frontier, others scaled, PC-A5 and methods with absolute risk limits internally; the CIO ensemble is rescaled to the target; cash placed at S13 | Tobin separation; candidates compared at equal risk; γ/δ not portable (X-10); cash rows in Σ degenerate (S4.5, S4.6 verified) | Owner decision S47-D6 (2026-10-08); binding by ADR at G4; S4.17, S4.18, S4.20, S7, S13 |
 
 ### 1.6 Strategy review and CIO
 

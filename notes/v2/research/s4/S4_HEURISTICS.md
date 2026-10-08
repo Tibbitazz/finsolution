@@ -239,6 +239,7 @@
   - `INVALID_RISK_INPUT`;
   - `TARGET_MISSING`.
 - **ANG vs source:** ANG-14 (sharpened), MM-1, MM-2.
+- *[2026-10-08, S47-D6]* **Exposure rule:** PC-A5 keeps its own exposure rule as an exception to the engine-level risk target; its distinctness from that rule is tested at admission (ADR-0025); portfolio-level timing stays at S13c.
 - **Relation to other roster items:**
   - A1–A4 are cross-sectional rules; A5 is a time-series exposure rule.
   - It overlaps the tactical volatility overlay T4 (S13c). The S4.20 contract must keep A5 as a candidate portfolio and leave overlays on the final portfolio to S13c, so that the same timing is not applied twice.

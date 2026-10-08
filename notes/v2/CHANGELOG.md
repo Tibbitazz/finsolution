@@ -1,5 +1,17 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.7 done: S47-D2 parameters and S47-D6 decided; pushed (branch `stage/s04-method-library`)
+
+- **S47-D2 parameters (owner confirmed):** EPO uses the authoritative risk model (θ = 0; 5% pre-shrink sensitivity-only); w chosen past-only on the grid {0, 0.01, 0.03, 0.10, 0.25, 0.50, 0.75, 0.90, 0.97, 0.99, 1}, with a switching margin pre-registered at S7.
+- **S47-D6 (owner decision):** one engine-level risk target and leverage rule for every candidate:
+  - return-based methods reach the target along their efficient frontier;
+  - methods without expected returns are scaled (exposure = min(σ*/σ, L));
+  - PC-A5 and methods with absolute risk limits handle the target internally;
+  - the CIO ensemble is rescaled to the target.
+- New register entry EQ-SPLIT-1; adaptation **B-46** in `S4_ANG_ADAPTATION.md` (binding by ADR at G4); PC-A5 record annotated; the S4.6 open item resolved.
+- `S4_MVO_FAMILY.md` REVIEWED; S4_PLAN C.2 (S4.7 DONE, S4.8 NEXT); outline tracker; HANDOFF.
+- Pushed together with `f28d116` and `f063e5a` (owner authorisation).
+
 ## 2026-10-08 — S4.7 owner decisions (part 1) (branch `stage/s04-method-library`)
 
 - **Decided:** S47-D1 (BL 1992 convention), S47-D2 rule (endogenous w by PBL's past-only trailing-Sharpe rule), S47-D3 (anchor deferred to S4.10, with a reminder to the owner first), S47-D4 (G&I robust maximum Sharpe), S47-D5 (resampled frontier as recommended).
