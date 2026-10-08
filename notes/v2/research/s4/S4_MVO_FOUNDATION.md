@@ -1,6 +1,6 @@
 # S4.6 Mean–variance foundation (supports PC-B1, PC-C1)
 
-**Document status:** DRAFT (2026-10-08). Awaiting owner decision S46-D1 (§5). · **Basis:**
+**Document status:** REVIEWED (2026-10-08). Owner decision S46-D1 recorded (§5). · **Basis:**
 - S4_PLAN §G (step S4.6) and §F (EQ-MVO-1 … EQ-MVO-4);
 - `S4_METHODS_OUTLINE.md` §1 (nine-stage workflow) and §2 (S4.6 plan);
 - ADR-0024 §3 (parameter authority), ADR-0027 D3 and D5 (risk model per problem; declared units);
@@ -32,7 +32,7 @@
    - Minimum variance, which ignores expected returns, beats every μ-based rule in short samples (T ≤ 40 months) and loses in long ones. Shrinking means toward the GMV mean (Bayes–Stein) beats sample means at every sample size.
 8. **Cash cannot be a row of Σ** at the asset-class level. With a 0.5%-volatility cash row, the minimum-variance portfolio is 99.1% cash and the condition number rises from 16 to 1,811 (decision S46-D1).
 
-**Decision for the owner:** S46-D1, cash as the riskless asset (§5).
+**Decision:** S46-D1, numéraire cash as the riskless asset, accepted by the owner with refinements (§5).
 
 ---
 
@@ -108,6 +108,14 @@ Full register entries: `S4_EQUATION_REGISTER.md`. In brief:
 
 ## 5. Owner decision (stage 6): S46-D1 — cash at the asset-class level
 
+*[2026-10-08]* **Owner decision: option (a), refined in discussion.**
+- **Risk-free rate:** the after-tax, per-period rate on uninvested cash at the best liquid deposit available to the user (declared by the user), or otherwise the broker's cash rate from the registry (e.g. 0% inside an ASK). It is stated on the same tax and currency basis as the risky returns. Nothing is defaulted (X-07).
+- **Cash location** (broker account vs a bank deposit, including the ASK withdrawal-tax rule and withdrawal limits) is an implementation decision (S13).
+- **Borrowing** is a separate rate, and only if `POL.leverage` and the account permit it. With different lending and borrowing rates the efficient set has three segments (lend at the lending tangency; no cash; borrow at the borrowing tangency), checked numerically in the discussion.
+- **Not modelled:** restricted or subsidised savings products (e.g. BSU) and advice on debt repayment versus investing. The idea is on hold by the owner (RQ-57); existing context fields (S1 §2, 3.1, 3.2, 5.1, 5.2, 5.3) carry their decision-relevant effects.
+- **Still open, carried to S4.7:** whether the cash/risky split is set by one engine-level rule (separation; equal-risk comparison) or by each method.
+
+
 | Option | Description |
 |---|---|
 | **(a) Numéraire cash is the riskless asset** | Every μ and Σ is for returns in excess of the numéraire cash rate r_f, and cash is not a row of Σ. Methods return risky-asset weights (1′w = 1). The cash share is set outside the method by the Policy Statement (e.g. a liquidity floor), or by a method whose definition includes the riskless asset: A5's residual (S45-D1), or a declared position on the capital market line. Never beyond the leverage the Policy Statement allows. Foreign-currency cash is a risky asset (it carries FX risk) |
@@ -158,7 +166,8 @@ Full register entries: `S4_EQUATION_REGISTER.md`. In brief:
 | S4.13 | μ-dependent methods need A.CMA and Σ on one basis; GMV needs Σ only |
 | S4.15 / S9 | Bayes–Stein (EQ-MVO-E2) as a candidate expected-return estimator (M.CMA), with the conventions that reproduce Jorion |
 | S4.16 | κ(Σ) as a CRO diagnostic for μ-dependent methods |
-| S5 / S9 | The numéraire and units basis that S46-D1 depends on |
+| S5 / S9 | The numéraire and units basis that S46-D1 depends on; a field for the uninvested-cash rate and its tax basis (extend S1 5.1 or add one field, through the S1/S2 amendment process) |
+| S13 | Cash location across accounts (ASK cash earns 0%; ASK withdrawals beyond contributions are taxed; deposit withdrawal limits) |
 | S7 | Jorion's and DGU's loss framework as design input for the evaluation protocol |
 | S2 / RQ-02 | γ calibration for utility-form methods |
 
@@ -170,4 +179,4 @@ Full register entries: `S4_EQUATION_REGISTER.md`. In brief:
 |---|---|
 | EQ-MVO-1 … EQ-MVO-4 (+ 2a, 3a, 4a), EQ-MVO-E1, E2 | EXTRACTED · VERIFIED |
 | PC-B1, PC-C1 | Foundation mathematics extracted and verified; method records at S4.7 and S4.11 |
-| S46-D1 | Awaiting owner decision |
+| S46-D1 | Decided 2026-10-08 (option (a), refined); split rule carried to S4.7 |

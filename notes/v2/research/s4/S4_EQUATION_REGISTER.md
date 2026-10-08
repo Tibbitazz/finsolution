@@ -298,6 +298,7 @@ Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1)
   - w_tan = Σ⁻¹μ / 1′Σ⁻¹μ;
   - SR_max = √(μ′Σ⁻¹μ);
   - with risk aversion γ: risky holdings x = Σ⁻¹μ/γ, cash 1 − 1′x; x/1′x = w_tan for every γ (separation).
+- **r_f (owner decision S46-D1, 2026-10-08):** the after-tax per-period rate on uninvested cash at the best liquid deposit available to the user, otherwise the broker's cash rate; same tax and currency basis as μ. Borrowing uses a separate rate (kinked frontier).
 - **Conditions:** 1′Σ⁻¹μ > 0, equivalently r_f < m_g = B/A. Otherwise the formula returns a portfolio with negative expected excess return (the lower branch), and a maximum-Sharpe method must emit a failure record (`TANGENCY_UNDEFINED`, provisional), not a weight vector.
 - **Source note:** Tobin assumes x_i ≥ 0 (p. 82) but solves the equality system (3.22), which can give negative holdings; Sharpe (1964, fn. 15) points this out. The long-only case is EQ-MVO-3a.
 - **Numerical tests:**

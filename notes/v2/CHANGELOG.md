@@ -1,5 +1,17 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.6 done: S46-D1 decided; RQ-57 on hold; pushed (branch `stage/s04-method-library`)
+
+- **Owner decision S46-D1** (`S4_MVO_FOUNDATION.md` §5, now REVIEWED):
+  - numéraire cash is the riskless asset;
+  - the risk-free rate is the after-tax per-period rate on uninvested cash at the best liquid deposit available to the user, otherwise the broker's cash rate from the registry (0% inside an ASK), on the same tax and currency basis as risky returns;
+  - cash location is an implementation decision (S13);
+  - borrowing is at a separate rate and only if permitted (three-segment efficient set).
+- Register EQ-MVO-3 annotated with the r_f definition; ANG-44 resolved for all families.
+- **RQ-57 added, ON HOLD (owner):** household-level advice (restricted or subsidised savings such as BSU, debt repayment versus investing, bank product choice). To be revisited after the main objective; existing S1 context fields carry the decision-relevant effects meanwhile.
+- **Carried to S4.7:** whether the cash/risky split is set by one engine-level rule or by each method.
+- S4_PLAN C.2 (S4.6 DONE, S4.7 NEXT); outline tracker; HANDOFF. Pushed with `389eff4` (owner authorisation).
+
 ## 2026-10-08 — S4.6 mean–variance foundation drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_MVO_FOUNDATION.md` (DRAFT): the problem in risk and utility form with native Policy Statement constraints; closed forms; the riskless asset (Tobin's separation, Sharpe's CML); GMV; long-only variants; estimation error; inputs, units and parameter authority; owner decision S46-D1.

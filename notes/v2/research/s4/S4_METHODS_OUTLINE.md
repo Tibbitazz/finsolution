@@ -12,7 +12,7 @@
 |---|---|---|
 | S0–S3 | Charter, inputs, Policy Statement governance, external facts | **Done** (G0–G3) |
 | **S4 Section 1** — foundations (S4.0–S4.4) | Inventory, ANG reconstruction, adaptation and ADR-0027, accountability, taxonomy, source map | **Done** (S4.4 complete 2026-10-08; S4.2 and ADR-0027 await owner review at G4) |
-| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 drafted 2026-10-08, awaiting owner decision S46-D1; S4.7 next after review |
+| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 done 2026-10-08 (owner decided S46-D1); **next: S4.7** |
 | S4 Section 3 — the process around the methods (S4.15–S4.18) | Upstream CMA inventory, CRO diagnostics and candidate card, deliberation, CIO ensembles | Not started |
 | S4 Section 4 — consolidation (S4.19–S4.24) | Equation Register reconciliation, typed contracts, eligibility, dependency graph, full verification, fixtures | Not started |
 | S4 Section 5 — gate (S4.25–S4.27) | Portfolio Map requirements, library freeze, G4 audit | Not started |
@@ -246,8 +246,8 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | Step | Methods | Status | Last update | Next action |
 |---|---|---|---|---|
 | S4.5 | A1–A5 | **Done** | 2026-10-08 | Owner accepted S45-D1 … D4 as recommended |
-| S4.6 | MVO foundation | **Drafted — owner review** | 2026-10-08 | Owner decision S46-D1 (`S4_MVO_FOUNDATION.md` §5); then S4.7 |
-| S4.7 | B1, B2, B3, B4, B6, B7 | Not started (B2 sources reproduced in S4.4) | — | — |
+| S4.6 | MVO foundation | **Done** | 2026-10-08 | Owner decided S46-D1 (option (a), refined); BSU idea on hold (RQ-57) |
+| S4.7 | B1, B2, B3, B4, B6, B7 | **Next** (B2 sources reproduced in S4.4) | 2026-10-08 | Start: read sources; carry the cash/risky split question from S46-D1 |
 | S4.8 | SIG-1, SIG-2 | Not started | — | — |
 | S4.9 | Signal × PC | Not started | — | — |
 | S4.10 | Anchors, benchmarks | Not started | — | — |
