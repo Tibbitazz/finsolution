@@ -101,7 +101,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `afcff9d` | **ADR-0027 D3 r3 = Option A** (owner decision): one authoritative risk model per problem; r2 and P-V1/P-V2 withdrawn (original plan kept); risk-model choice record `S4_RISK_MODEL_CHOICE.md` (M-1, M-2); pushed |
 | `4446151` | **S4.3** taxonomy (`S4_TAXONOMY.md`): six kinds, type catalogue, relations, method/configuration/parameter, identity and versioning, inventory pass (F-1 … F-10); pushed |
 | `6d9f972` | S4.3 reviewed: owner confirms O-1 … O-4; status REVIEWED; pushed |
-| (latest) | **S4.4** PC source map (`S4_PC_SOURCE_MAP.md`): 21/22 SOURCE LOCATED, PC-C5 identity gap; ANG-35 recorded; not pushed |
+| `bb3d983` | **S4.4** PC source map (`S4_PC_SOURCE_MAP.md`): 21/22 SOURCE LOCATED, PC-C5 identity gap; ANG-35 recorded; not pushed |
+| (latest) | S4.4 update after the owner upload and permitted download: Kirby & Ostdiek (ANG-13 resolved), Michaud 1989 read in full (no resampling procedure; PC-B4 → Michaud & Michaud 2008), MRT working version obtained; ANG-38; PC-C5 identity route; SSRN items for manual download; not pushed |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -264,7 +265,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 2b | **Data access (owner, when S6 starts):** free FRED, OpenFIGI and Tiingo keys; whether to take EODHD All World (+ fundamentals); whether the university licence (Bloomberg / FactSet / I/B/E/S) allows personal research use for validation | Decide at S6; nothing needed now | S6 lead §7–§8 |
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
-| 5 | **S4.4 review** (`S4_PC_SOURCE_MAP.md`) and the acquisition decisions in its §4: download permissions for the open SSRN items; BI library retrieval of paywalled items (Kirby & Ostdiek first, needed by S4.5); Michaud 1998 book; Varadi mirror | Approve the §4 plan | S4.4 |
+| 5 | **S4.4 open items** (`S4_PC_SOURCE_MAP.md` §6): download the six SSRN items manually (SSRN blocks automated access); PC-B4 procedure source = Michaud & Michaud 2008 (JOIM guest account, or permission to download the authors' copy); PC-C5 option 1 / 2 / 3 and what to do with the auto-saved mirror copy | Option 1 for PC-C5 | S4.4 |
 
 **Resolved on 2026-10-08:** ADR-0026 accepted with C-1 … C-6 and S-1 … S-4, and F20/F21 kept as candidate fields; branch pushed (no PR).
 

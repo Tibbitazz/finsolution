@@ -1,5 +1,13 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.4 updated after the owner's uploads and permitted downloads (branch `stage/s04-method-library`)
+
+- **Kirby & Ostdiek** (owner upload; working version of 9 May 2010): ANG-13 resolved. Inverse volatility = VT(½), inverse variance = VT(1) in KO's volatility-timing family; KO test η ∈ {1, 2, 4} only, so ANG's 1/σ is in the family but outside KO's evidence.
+- **Michaud 1989** (owner upload; published text copy) read in full: diagnoses error maximisation and non-uniqueness; **does not specify the resampled efficient frontier**. PC-B4's procedure source becomes Michaud & Michaud 2008 (*JOIM* 6(1)). `S4_RISK_MODEL_CHOICE.md` updated (Michaud now `VERIFIED-SOURCE`; p. 38 attributes error maximisation mainly to return errors). RQ-33 lead: the IC adjustment.
+- **Maillard, Roncalli & Teïletche** working version (May 2009) downloaded from the author's site with owner permission. The six other permitted items are SSRN-only. SSRN refused scripted access and showed a security check that was not bypassed, so they are listed for manual download.
+- **PC-C5:** the authors' release channels were found (release post, Scribd upload, spreadsheet, co-author R code with two variants). New issue ANG-38 (variant unspecified). Options for closing the identity gap are recorded.
+- **Updated:** `S4_PC_SOURCE_MAP.md` (§1, §2, new §6), `ANG_ISSUES_REGISTER.md`, `S4_0_SOURCE_INVENTORY.md` §13, `OPEN_QUESTIONS.md` RQ-33, HANDOFF. Not pushed.
+
 ## 2026-10-08 — S4.4 PC source map drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_PC_SOURCE_MAP.md` (DRAFT for owner review): governing primary, supporting sources and access route for every roster method.

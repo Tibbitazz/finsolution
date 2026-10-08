@@ -5,7 +5,7 @@
 - ADR-0027 D3 r3 (Option A, owner decision 2026-10-08): one authoritative risk model per problem (universe × horizon × risk object).
 
 **Evidence labels:**
-- `VERIFIED-SOURCE`: primary text read (ANG v2; Pedersen, Babu & Levine 2021; the third-party code);
+- `VERIFIED-SOURCE`: primary text read (ANG v2; Pedersen, Babu & Levine 2021; Michaud 1989; the third-party code);
 - `VERIFIED-ABSTRACT`: abstract read at the publisher, NBER or RePEc;
 - `VERIFIED-SECONDARY`: only described by other authors; full text not read;
 - `VERIFIED-DERIVATION`: our synthetic computation (Appendix; one design; illustrative).
@@ -28,7 +28,7 @@
 
 | Claim | Source | Status |
 |---|---|---|
-| Mean–variance optimisation tends to maximise the effects of errors in input assumptions; unconstrained MV can be inferior to equal weighting; its value improves when inputs are adjusted and constraints reflect fundamental considerations | Michaud 1989, *FAJ* 45(1) | `VERIFIED-ABSTRACT` |
+| Mean–variance optimisation tends to maximise the effects of errors in input assumptions; unconstrained MV can be inferior to equal weighting; its value improves when inputs are adjusted and constraints reflect fundamental considerations (p. 31). In Jobson and Korkie's simulation the estimated optimal portfolios had a true Sharpe ratio of 0.08, against 0.34 for the true optimum and 0.27 for equal weights, without a short-sale constraint, which would have reduced the differences (p. 34). Michaud attributes error maximisation largely to errors in returns rather than risk (p. 38), and considers asset-allocation estimates comparatively reliable because few are needed (p. 39) | Michaud 1989, *FAJ* 45(1):31–42 | `VERIFIED-SOURCE` (read in full 2026-10-08) |
 | None of 14 optimised models consistently beats 1/N; the sample-based MV strategy needs an estimation window of about 3,000 months (25 assets) to beat it | DeMiguel, Garlappi & Uppal 2009, *RFS* 22(5) (cited by ANG p. 9) | `VERIFIED-ABSTRACT` |
 | Errors in means matter far more than errors in variances, which matter more than errors in covariances; the ratio depends on risk aversion and is disputed | Chopra & Ziemba 1993, *JPM* 19(2) | `VERIFIED-SECONDARY` |
 | The precision of a mean estimate depends on the calendar span, not the sampling frequency; variance estimates improve with frequency. ANG uses this to motivate risk-based methods | Merton 1980, *JFE* 8(4); ANG p. 9 | Merton `VERIFIED-SECONDARY`; ANG's use `VERIFIED-SOURCE` |
@@ -150,7 +150,7 @@ It is second-order in long-only, bounded asset-class allocation, where CMA quali
 - One synthetic design: 17 classes, Gaussian i.i.d. stationary returns. CMA errors are independent across assets; correlated errors would change the magnitudes.
 - Single-period mean–variance utility; no transaction costs.
 - Chopra–Ziemba's ratios are `VERIFIED-SECONDARY` and disputed. M-1 reproduces their ordering in our design, not their ratios.
-- Literature claims are checked at abstract level, except ANG and PBL (full text).
+- Literature claims are checked at abstract level, except ANG, PBL and Michaud 1989 (full text).
 
 ## Appendix — simulation script (synthetic; reproduces M-1 and M-2; seed 20261008; runs in about 10 s)
 

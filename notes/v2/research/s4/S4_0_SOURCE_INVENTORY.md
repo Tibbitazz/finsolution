@@ -227,3 +227,16 @@ Context: `S4_LIT_LOOKAHEAD_2026-10-07.md`. Two retrievals were made with the own
 | Didisheim, Fraschini & Somoza, "AI's predictable memory in financial analysis", *Economics Letters* 256 (2025) 112602 | AVAILABLE · peer-reviewed · **FITS** | Owner upload, md5 132d26281a67 | RQ-26, RQ-55; X-2, X-3 |
 | "Assessing Look-Ahead Bias … GPT Sentiment Analysis 2.pdf" | DUPLICATE | md5 04a5203b0b35 = Glasserman & Lin (2023), §11 | — |
 
+## 13. Sources added 2026-10-08 (owner uploads; permitted download; S4.4)
+
+| Source | Status | Location / identity | Maps to |
+|---|---|---|---|
+| Michaud (1989), "The Markowitz Optimization Enigma: Is 'Optimized' Optimal?", *FAJ* 45(1):31–42 — JSTOR copy with text layer | AVAILABLE (published version; read in full) | Owner upload, `Finsol Research Papers/The Markowitz optimization enigma- Is ‘optimized’ optimal?.pdf`, 13 pp. incl. JSTOR cover, md5 28cd76210bbf. Supersedes the image scan of §2 for text extraction | S4.6; PC-B4 motivation (not its procedure); `S4_RISK_MODEL_CHOICE.md` |
+| Kirby & Ostdiek, "It's All in the Timing: Simple Active Portfolio Strategies that Outperform Naïve Diversification" — working version, 9 May 2010 (initial draft 18 Nov 2009) | AVAILABLE (working version; the *JFQA* 47(2) version governs, D-3) | Owner upload, `Finsol Research Papers/It’s All in the Timing- … .pdf`, 43 pp., md5 8da209076a0e | PC-A3, PC-A4 (ANG-13 resolved) |
+| Maillard, Roncalli & Teïletche, "On the Properties of Equally-Weighted Risk Contributions Portfolios" — working version, May 2009 (first version June 2008) | AVAILABLE (working version; the *JPM* 36(4) version governs) | Downloaded 2026-10-08 with owner permission from thierry-roncalli.com/download/erc.pdf (author-hosted) to `Finsol Research Papers/Downloaded 2026-10-08/MRT2010_ERC/erc.pdf`, 23 pp., md5 885b0373e72c | PC-C2 |
+| B. Gerard, "Constructing an Optimal Active Portfolio & the Optimal Active Share in an Overall Portfolio", GRA 6531 course note, BI, 13 Jan 2026 | SECONDARY (teaching material) | `RPT/Portfolio Optimization /Optimal Combination of New Investments w- Existing Ptf - Treynor Black Approach.pdf`, 8 pp., md5 7295450f59a2 | PC-D4 weight mechanics (lead) |
+| Michaud & Michaud (2008), "Estimation Error and Portfolio Optimization: A Resampling Solution", *JOIM* 6(1) | MISSING — LOCATED (JOIM, free guest account; authors' pre-publication copy open at New Frontier Advisors) | — | PC-B4 procedure (governing) |
+| Varadi, Kapler, Bee & Rittenhouse (2012), minimum correlation — authors' channels | LOCATED (identity route) | Release post, CSS Analytics blog, 21 Sep 2012; authors' Scribd upload doc 106570475; author spreadsheet; co-author R code (`min.corr.portfolio`, `min.corr2.portfolio`) | PC-C5 (ANG-38) |
+
+SSRN refused scripted access and showed a security verification in the in-app browser; it was not bypassed. The remaining permitted SSRN items are listed for manual download in `S4_PC_SOURCE_MAP.md` §6.
+
