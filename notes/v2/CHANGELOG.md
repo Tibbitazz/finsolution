@@ -1,5 +1,27 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — Peer scoring methods reviewed (owner request; branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_SCORING_PEER_METHODS.md` (DRAFT).
+- **Investwiser scores** traced from its public front-end definitions:
+  - Magic Formula = Greenblatt ROC + EY ranks;
+  - O'Shaughnessy = VC2-type composite, but shareholder yield includes debt paydown (IW-1);
+  - Quality = ROA, equity ratio, earnings stability;
+  - Trend = 3 m, 6 m, 12-1;
+  - all percentile ranks against all Nordic stocks.
+  - Mislabel found: "Operating Profitability (Novy-Marx)" is actually GP/A (IW-2). Undisclosed rules: IW-3, IW-4.
+- **Originals recorded:** Greenblatt and O'Shaughnessy (secondary until the books are obtained); quality primaries listed as candidate sources.
+- **Seeking Alpha factor grades** (help-centre FAQ and symbol pages):
+  - sector-relative A+–F grades on five factors;
+  - overall rating with undisclosed weights optimised for prediction, plus disqualification caps;
+  - estimates-dependent; US only.
+- **One generic score contract** maps all methods.
+  - G-1: rank-sum ≡ mean percentile.
+  - G-2: z-then-combine vs rank-then-combine share only 27/50 top names (synthetic).
+  - G-3: the missing-data rule is material.
+- **Fit verdicts:** EY, ROC, VC-type and primary quality measures FIT as candidates. The Greenblatt composite and the sector-relative concept are PARTIAL. Seeking Alpha's overall rating and Investwiser's totals DO NOT FIT. Estimate-based metrics are DEFERRED.
+- RQ-28 … RQ-32, the Sørensen record (§7) and HANDOFF annotated. Nothing adopted.
+
 ## 2026-10-08 — S6 data-source lead extended; step 1 complete (owner instruction; branch `stage/s04-method-library`)
 
 - **Seeking Alpha** (§4.4), stated in its help centre:

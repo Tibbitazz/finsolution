@@ -118,6 +118,7 @@ The source notes that "rank distribution is uniform" while the "z-score distribu
 - S7: pre-register the O-1 … O-10 variant grid with multiple-testing control (RQ-37).
 - S6: point-in-time data (O-5, O-8).
 - S9c → G9: specification and admission.
+- *[2026-10-08]* Peer methods (Greenblatt, O'Shaughnessy, Investwiser quality, Seeking Alpha factor grades) are mapped onto the same parameterised contract, with fit verdicts, in `S4_SCORING_PEER_METHODS.md`. The order of operations (O-7) and the missing-data rule (O-6) are shown to be material (G-2, G-3).
 
 ## Appendix — verification script (synthetic; reproduces P-1 … P-5)
 
