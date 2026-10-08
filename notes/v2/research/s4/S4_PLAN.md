@@ -241,7 +241,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.2 | ANG adaptation map + ANG-baseline ADR | DRAFTED 2026-10-08: `S4_ANG_ADAPTATION.md` (B-1 … B-45; C-11 … C-14) + ADR-0027 PROPOSED; awaiting owner review |
 | S4.2b | Accountability layer (ADR-0026) | DRAFTED 2026-10-02 — `S4_ACCOUNTABILITY.md`; completes with S4.2 |
 | S4.3 | Method taxonomy | REVIEWED 2026-10-08: `S4_TAXONOMY.md` (six kinds; type catalogue; identity and versioning; inventory pass F-1 … F-10); owner confirmed O-1 … O-4; SYNC-2 material for the developer |
-| S4.4 | ANG PC source map | DRAFTED 2026-10-08: `S4_PC_SOURCE_MAP.md` (21 of 22 methods SOURCE LOCATED; PC-C5 identity gap; ANG-vs-source differences; acquisition plan); awaiting owner review |
+| S4.4 | ANG PC source map | DRAFTED and updated 2026-10-08: `S4_PC_SOURCE_MAP.md` (**all 22 methods SOURCE LOCATED**; PC-C5 identity confirmed; ANG-13 resolved; ANG-38, MCA-1 … MCA-3; acquisition list); owner decisions recorded |
 | S4.5 | Heuristic portfolios (5) | NOT STARTED |
 | S4.6 | Classical MVO foundation | NOT STARTED |
 | S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | NOT STARTED |

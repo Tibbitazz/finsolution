@@ -1,5 +1,12 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.4 second round: all PC sources located; PC-C5 identity confirmed (branch `stage/s04-method-library`)
+
+- **PC-B4:** Michaud & Michaud, *Efficient Asset Management* (2nd ed., OUP 2008; owner upload) governs the resampling procedure (ch. 6; App. A). The book's statement that the procedure is patented and exclusively licensed confirms the D-2 check before implementation.
+- **PC-C5 (owner option 1):** identity confirmed. The owner's file is byte-identical to the mirror; its metadata lists the four authors with a creation date one day before the release post; its page count matches the authors' Scribd upload; and an own Python transcription of the co-author's R code reproduces the paper's worked example. Source issues MCA-1 (swapped example labels), MCA-2 (off-diagonal statistics), MCA-3 (rank direction); ANG-38 annotated. The owner's pasted backtest script was read for its design and not run.
+- **Result:** all 22 roster methods SOURCE LOCATED. Remaining acquisitions: six SSRN items (owner download) and four paywalled items (BI).
+- **Updated:** `S4_PC_SOURCE_MAP.md` (§1 rows, result, §2, new §7 with the check code), `ANG_ISSUES_REGISTER.md`, `S4_0_SOURCE_INVENTORY.md` §13, HANDOFF.
+
 ## 2026-10-08 — S4.4 updated after the owner's uploads and permitted downloads (branch `stage/s04-method-library`)
 
 - **Kirby & Ostdiek** (owner upload; working version of 9 May 2010): ANG-13 resolved. Inverse volatility = VT(½), inverse variance = VT(1) in KO's volatility-timing family; KO test η ∈ {1, 2, 4} only, so ANG's 1/σ is in the family but outside KO's evidence.

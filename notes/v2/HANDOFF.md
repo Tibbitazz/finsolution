@@ -102,7 +102,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `4446151` | **S4.3** taxonomy (`S4_TAXONOMY.md`): six kinds, type catalogue, relations, method/configuration/parameter, identity and versioning, inventory pass (F-1 … F-10); pushed |
 | `6d9f972` | S4.3 reviewed: owner confirms O-1 … O-4; status REVIEWED; pushed |
 | `bb3d983` | **S4.4** PC source map (`S4_PC_SOURCE_MAP.md`): 21/22 SOURCE LOCATED, PC-C5 identity gap; ANG-35 recorded; not pushed |
-| (latest) | S4.4 update after the owner upload and permitted download: Kirby & Ostdiek (ANG-13 resolved), Michaud 1989 read in full (no resampling procedure; PC-B4 → Michaud & Michaud 2008), MRT working version obtained; ANG-38; PC-C5 identity route; SSRN items for manual download; not pushed |
+| `5898b60` | S4.4 update after the owner upload and permitted download: Kirby & Ostdiek (ANG-13 resolved), Michaud 1989 read in full (no resampling procedure; PC-B4 → Michaud & Michaud 2008), MRT working version obtained; ANG-38; PC-C5 identity route; SSRN items for manual download |
+| (latest) | S4.4 second round: all 22 methods SOURCE LOCATED; PC-B4 governed by Michaud & Michaud 2008 (book); PC-C5 identity confirmed (byte-identical file, metadata, code reproduction); source issues MCA-1 … MCA-3; pushed |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -121,7 +122,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_ANG_BASELINE.md` | **S4.1 (DRAFT, awaiting owner review):** canonical page-cited reconstruction of ANG v2. Stage table; roster reconciliation (44); agent anatomy and skills; data (FMP, Finviz); determinism; IPS governance; limitations; verified exhibit arithmetic (V-1 … V-8; effective N = inverse HHI); lecture cross-check; new issues ANG-28 … ANG-36 |
 | `S4_ANG_ADAPTATION.md` | **S4.2 (DRAFT, awaiting owner review):** every baseline element classified U/G/A/D/N (B-1 … B-45); conflicts C-1 … C-14; ANG-01 … ANG-37 dispositioned; developer summary (SYNC-1); companion ADR-0027 PROPOSED |
 | `S4_TAXONOMY.md` | **S4.3 (REVIEWED 2026-10-08; O-1 … O-4 confirmed; SYNC-2):** six kinds (Method, Artefact, Role, Control, Record, Input); method types as plugin categories; artefact, role, control, record and input types; relations; method vs configuration vs parameter; identity and versioning; inventory pass with findings F-1 … F-10 |
-| `S4_PC_SOURCE_MAP.md` | **S4.4 (DRAFT, awaiting owner review):** governing primary, supporting sources and access route per roster method; 21 of 22 SOURCE LOCATED, PC-C5 documented gap (identity); ANG-vs-source differences known before reading; acquisition plan ordered by step |
+| `S4_PC_SOURCE_MAP.md` | **S4.4 (DRAFT, owner decisions recorded):** governing primary, supporting sources and access route per roster method; **all 22 SOURCE LOCATED** (PC-C5 identity confirmed; PC-B4 governed by Michaud & Michaud 2008); ANG-vs-source differences; acquisition list (six SSRN items for the owner, four BI items) |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
 | `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-37; ABD-1 … ABD-5 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
@@ -265,7 +266,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 2b | **Data access (owner, when S6 starts):** free FRED, OpenFIGI and Tiingo keys; whether to take EODHD All World (+ fundamentals); whether the university licence (Bloomberg / FactSet / I/B/E/S) allows personal research use for validation | Decide at S6; nothing needed now | S6 lead §7–§8 |
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
-| 5 | **S4.4 open items** (`S4_PC_SOURCE_MAP.md` §6): download the six SSRN items manually (SSRN blocks automated access); PC-B4 procedure source = Michaud & Michaud 2008 (JOIM guest account, or permission to download the authors' copy); PC-C5 option 1 / 2 / 3 and what to do with the auto-saved mirror copy | Option 1 for PC-C5 | S4.4 |
+| 5 | **S4.4 remaining:** owner downloads the six SSRN items (He & Litterman 334304; Idzorek 3479867; Spinu 2297383; López de Prado 2708678; Chekhlov, Uryasev & Zabarankin 544742; Boudt, Carl & Peterson 1885293) into `Finsol Research Papers/Downloaded 2026-10-08/`; BI library for B3, C1, C4, D1 when their steps approach | Do before S4.7 / S4.11 / S4.12 | S4.4 |
 
 **Resolved on 2026-10-08:** ADR-0026 accepted with C-1 … C-6 and S-1 … S-4, and F20/F21 kept as candidate fields; branch pushed (no PR).
 

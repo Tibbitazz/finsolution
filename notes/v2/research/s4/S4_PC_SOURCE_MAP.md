@@ -37,7 +37,7 @@ Roster v0 has 22 methods (type M.PC) and one role, PC-E1 Researcher (`S4_TAXONOM
 | PC-B1 | Maximum Sharpe ratio | Markowitz 1952 | Markowitz 1952; Tobin 1958; Sharpe 1964 | Michaud 1989; Jorion 1986 (estimation error) | In hand | **SOURCE LOCATED** | S4.6 |
 | PC-B2 | Black–Litterman | Black & Litterman 1992 | BL 1992, *FAJ* 48(5) | He & Litterman 1999 (open, SSRN 334304); Idzorek 2005 (open, SSRN) | Primary in hand; supporting open | **SOURCE LOCATED** | S4.7 |
 | PC-B3 | Robust mean–variance | Goldfarb & Iyengar 2003 | G&I 2003, *Math. Oper. Res.* 28(1):1–38 | Tütüncü & Koenig 2004; Ceria & Stubbs 2006 (paywalled) | Paywalled | **SOURCE LOCATED** (acquisition needed) | S4.7 |
-| PC-B4 | Resampled efficient frontier | Michaud 1998 | **Procedure:** Michaud & Michaud 2008, "Estimation Error and Portfolio Optimization: A Resampling Solution," *JOIM* 6(1) (published, by the method's originators). The 1998 book is optional | Michaud 1989 (in hand; read in full 2026-10-08: motivation only, **no resampling procedure**); Scherer 2002 critique (paywalled); "Bayes vs. Resampling: A Rematch," *JOIM* 6(1):29–45; US patent 6,003,018 | JOIM full text needs a free guest account (owner); the authors post an open pre-publication copy (New Frontier Advisors) | **SOURCE LOCATED** (acquisition needed; IP check before implementation, D-2) | S4.7 |
+| PC-B4 | Resampled efficient frontier | Michaud 1998 | **Michaud & Michaud 2008, *Efficient Asset Management*, 2nd ed., Oxford University Press** (the originators; the book states the procedure was "originally described in Michaud (1998, Chapter 6)"). Procedure: ch. 6, pp. 42–58, with rank- vs λ-associated averaging in App. A (p. 56) | Michaud 1989 (in hand; motivation only); Michaud & Michaud 2008, *JOIM* 6(1) (not needed now); Scherer 2002 critique (paywalled); US patent 6,003,018 | **In hand** (owner upload 2026-10-08; 145 pp., md5 `d1ae84ec9ade`). The book states RE is "a U.S. patented procedure" with an exclusive worldwide licensee (p. 42, fn. 1) | **SOURCE LOCATED** (IP check before implementation, D-2) | S4.7 |
 | PC-B5 | Mean–downside risk (Sortino) | Sortino & van der Meer 1991 | S&vdM 1991, *JPM* 17(4):27–31 | Estrada (mean–semivariance heuristic); Markowitz, Todd, Xu & Yamane 1993; semicovariance/LPM paper; Hogan & Warren 1974 (all in hand) | In hand (scan; no text layer, read from page images) | **SOURCE LOCATED** | S4.5 / S4.12 |
 | PC-B6 | Simple EPO | (not in ANG) | Pedersen, Babu & Levine 2021, *FAJ* 77(2):124–151 | Author version (49 pp., in hand); author code (not yet searched) | In hand | **SOURCE LOCATED** | S4.7 |
 | PC-B7 | Anchored EPO | (not in ANG) | Same | Same | In hand | **SOURCE LOCATED** | S4.7, S4.10 |
@@ -45,7 +45,7 @@ Roster v0 has 22 methods (type M.PC) and one role, PC-E1 Researcher (`S4_TAXONOM
 | PC-C2 | Risk parity (ERC) | Maillard, Roncalli & Teïletche 2010 | MRT 2010, *JPM* 36(4):60–70 | Spinu 2013 (algorithm; SSRN 2297383 only) | **In hand: working version** (May 2009, 23 pp., md5 `885b0373e72c`; author-hosted at thierry-roncalli.com; downloaded 2026-10-08 with owner permission). Published version governs | **SOURCE LOCATED** | S4.11 |
 | PC-C3 | Hierarchical risk parity | López de Prado 2016 | LdP 2016, *JPM* 42(4):59–69 | — | Open working version (SSRN 2708678) | **SOURCE LOCATED** | S4.11 |
 | PC-C4 | Maximum diversification | Choueifaty & Coignard 2008 | C&C 2008, *JPM* 35(1):40–51 | Choueifaty, Froidure & Reynier 2013 (not located) | Paywalled | **SOURCE LOCATED** (acquisition needed) | S4.11 |
-| PC-C5 | Minimum correlation | Varadi et al. 2012 | Varadi, Kapler, Bee & Rittenhouse 2012 (CSS Analytics working draft; never journal-published) | Authors' own channels found 2026-10-08: Varadi's release post (CSS Analytics blog, 21 Sep 2012) linking the authors' Scribd upload (doc 106570475, account `cssanalytics`) and an author spreadsheet; co-author Kapler's R implementation (`min.corr.portfolio`, `min.corr2.portfolio`) | Third-party mirror (rybn.org); authors' Scribd upload (an account is needed to download) | **GAP (identity), closable** through the authors' own channels (§6; owner decision) | S4.11 |
+| PC-C5 | Minimum correlation | Varadi et al. 2012 | Varadi, Kapler, Bee & Rittenhouse, *The Minimum Correlation Algorithm: A Practical Diversification Tool*, CSS Analytics, September 2012 (authors' release; never journal-published) | Co-author Kapler's R implementation (`min.corr`, `min.corr2`, SIT `strategy.r`; read only, never executed); authors' spreadsheet | **In hand** (owner upload 2026-10-08; 91 pp., md5 `c56c05f40ef4`). **Identity confirmed** (§7) | **SOURCE LOCATED** | S4.11 |
 | PC-D1 | CVaR optimisation | Rockafellar & Uryasev 2000 | R&U 2000, *J. Risk* 2(3):21–41 | R&U 2002, *JBF* (not located) | Paywalled; author copies likely | **SOURCE LOCATED** (acquisition needed) | S4.12 |
 | PC-D2 | Maximum drawdown-constrained | Chekhlov, Uryasev & Zabarankin 2005 | CUZ 2005, *IJTAF* 8(1):13–58 | Earlier version "Portfolio Optimization with Drawdown Constraints" (identity unconfirmed) | Open working version (SSRN 544742) | **SOURCE LOCATED** | S4.12 |
 | PC-D3 | Tail-risk parity | Boudt, Carl & Peterson 2013 | BCP 2013, *J. Risk* 15(3):39–68 | Boudt, Peterson & Croux 2008 (modified ES; not located) | Open working version (SSRN 1885293) | **SOURCE LOCATED** | S4.12 |
@@ -53,10 +53,10 @@ Roster v0 has 22 methods (type M.PC) and one role, PC-E1 Researcher (`S4_TAXONOM
 | PC-E2 | Adversarial diversifier | — (ANG §3.3 only) | ANG v2 §3.3, p. 10 | — | In hand | **SOURCE LOCATED** (ANG is the only source; formulation gaps, ANG-16) | S4.14 |
 | PC-E1 | Researcher (role) | — | ANG v2 §3.3; example method: Bera & Park 2008, *Econometric Reviews* 27(4–6) | — | Bera & Park paywalled | Not a method (F-1); its example source is LOCATED · paywalled | S4.14 |
 
-**Result (updated 2026-10-08 after the owner upload and the permitted download):** 21 of 22 methods are **SOURCE LOCATED**. PC-C5 is a **documented acquisition gap** (identity), now closable (§6).
-- 13 have the governing source in hand: A1, A2, A3, A4, A5, B1, B2, B5, B6, B7, C2, E2, and D4 for the concept. A3, A4 and C2 are working versions; the published version governs.
-- 3 are open working versions on SSRN only, which blocks scripted access: C3, D2, D3. They need a manual download (§6).
-- 5 need BI library access, a purchase or a free guest account: B3, B4, C1, C4, D1.
+**Result (updated 2026-10-08, second round):** **all 22 methods are SOURCE LOCATED.**
+- 15 have the governing source in hand: A1, A2, A3, A4, A5, B1, B2, B4, B5, B6, B7, C2, C5, E2, and D4 for the concept. A3, A4 and C2 are working versions; the published version governs.
+- 3 are open working versions on SSRN only, awaiting the owner's manual download: C3, D2, D3.
+- 4 need BI library access: B3, C1, C4, D1.
 ---
 
 ## 2. ANG-vs-source differences known before the mathematics is read
@@ -76,7 +76,7 @@ These come from ANG's own text and the issues register. **Everything else is che
 | PC-E2 | Budget, bounds, which Sharpe ratio, risk-free rate, and solving a maximisation of a convex function (non-convex) are all unspecified | ANG-16 (H) | S4.14 |
 | PC-E1 example | ANG describes maximum entropy as Shannon entropy of the weights with a Sharpe floor. Bera & Park (publisher record) use cross-entropy with side conditions from resampled moments | ANG-10 | S4.14 |
 | Category sizes | ANG p. 9: "four to six methods per category"; Exh. 3 has 5 / 5 / 5 / 4 plus 2 agentic; no category has six | ANG-35 (L) | **Recorded here: loose wording; no method missing from Exh. 3 relative to the text** |
-| PC-C5 | ANG cites Varadi et al. without saying which variant or tuning. The authors' materials show at least two variants and tuning options; the paper itself is a working draft | ANG-38 (M) | S4.11 |
+| PC-C5 | ANG cites Varadi et al. without saying which variant or tuning. The paper itself defines two variants (MinCorr, MinCorr2), and the co-author's code adds a rank-power parameter (default 1). The paper's worked examples carry swapped labels (source issues MCA-1 … MCA-3) | ANG-38 (M) | S4.11 |
 
 ---
 
@@ -146,11 +146,53 @@ Ordered by when each step needs its sources.
   3. **Specify our own minimum-correlation-type method from the published algorithm descriptions only.** No claim to reproduce Varadi et al.; ANG conformance would be by family, not by source.
 - *Side effect to disclose.* A web fetch of the mirror (to read its algorithm) automatically saved a copy of that PDF in this session's tool-results folder. The mirror was not on the permitted list, so that copy has **not** been read or used and awaits the owner's decision.
 
+## 7. Second round, 2026-10-08: Michaud & Michaud, and PC-C5 identity (owner confirmed option 1)
+
+**PC-B4.** The owner supplied Michaud & Michaud, *Efficient Asset Management* (2nd ed., OUP 2008), the originators' book. Chapter 6 defines the resampled efficient frontier: RE-optimal portfolios are averages of the weights of simulated efficient portfolios, associated by rank or by risk-aversion parameter (App. A). It governs PC-B4's procedure. The JOIM article is not needed. The book's own statement that RE is a patented, exclusively licensed procedure (p. 42, fn. 1) confirms that the D-2 IP check must precede implementation.
+
+**PC-C5: identity confirmed (option 1).**
+
+| Check | Result |
+|---|---|
+| Owner's upload vs the third-party mirror (the copy auto-saved earlier, §6; used only for this hash comparison) | Byte-identical (md5 `c56c05f40ef4`, 2,091,460 bytes) |
+| Document metadata | Authors "David Varadi, Michael Kapler, Henry Bee, Corey Rittenhouse"; created 20 Sep 2012, one day before Varadi's release post (21 Sep 2012) |
+| Authors' Scribd upload (doc 106570475) | Same page count (91). A byte comparison needs a Scribd login and was not done |
+| Algorithm vs the co-author's code | Our own Python transcription (below) of Kapler's `min.corr` and `min.corr2` (SIT `strategy.r`, read via the web; **never executed**) reproduces the paper's three-asset worked example to rounding, including every intermediate (μ_ρ = 0.817, σ_ρ = 0.104; row averages [0.29, 0.54, 0.62]; μ₀ = 0.544, σ₀ = 0.035; transformed [0.13, 0.63, 0.79]) |
+
+**Conclusion:** the uploaded file is the authors' release. It governs PC-C5, with the co-author's code as an independent cross-check of the algorithm.
+
+**Source issues found in the check** (recorded in `ANG_ISSUES_REGISTER.md`, MCA-1 … MCA-3):
+- **MCA-1:** the worked examples' labels are swapped. The example headed "Minimum Correlation" computes MinCorr2 and gives [0.50, 0.30, 0.20]. The example headed "Minimum Correlation 2" computes MinCorr and gives [0.21, 0.31, 0.48]. The step definitions (pp. 13–14) and the code agree with each other.
+- **MCA-2:** the definition says to use the mean and SD of "all elements" of the correlation matrix. The example and the code use the off-diagonal elements only (sample SD), and exclude the diagonal from the row averages.
+- **MCA-3:** the rank formula does not state the direction. The code ranks descending (`rank(-x)`): the most diversifying asset gets rank 1, which is the smallest rank weight. Final weights come from multiplying the rank weights by the adjusted matrix and then dividing by volatility.
+
+**The owner's pasted script** is the co-author's comparison backtest: 8 ETFs, weekly rebalancing, EW / RP / MV / MD / MC / MC2. It loads the toolbox by downloading and `source()`-ing remote code and uses Yahoo data. It was read for its test design only and was **not run** (third-party code is never executed; Yahoo data does not fit our licence findings). S4.11 can mirror the design on synthetic data.
+
+```python
+# Our transcription (S4.4 identity check); reproduces Varadi et al. (2012) pp. 15-16
+import numpy as np
+from math import erf, sqrt
+Phi = lambda x, m, s: 0.5 * (1 + erf((x - m) / (s * sqrt(2))))
+def rank_desc(x):  # R: rank(-x)
+    o = np.argsort(-np.asarray(x)); r = np.empty(len(x)); r[o] = np.arange(1, len(x) + 1); return r
+def min_corr(R, sig, power=1):     # Kapler's min.corr (MinCorr)
+    n = len(sig); iu = np.triu_indices(n, 1); c = R[iu]; mu, sd = c.mean(), c.std(ddof=1)
+    A = np.zeros((n, n)); A[iu] = [1 - Phi(v, mu, sd) for v in c]; A = A + A.T
+    avg = A.sum(1) / (n - 1); wr = rank_desc(avg) ** power; wr = wr / wr.sum()
+    w = wr @ A; w = w / w.sum(); x = w / sig; return x / x.sum()
+def min_corr2(R, sig, power=1):    # Kapler's min.corr2 (MinCorr2)
+    C = R.copy(); np.fill_diagonal(C, 0); avg = C.mean(1); mu, sd = avg.mean(), avg.std(ddof=1)
+    t = np.array([1 - Phi(v, mu, sd) for v in avg]); wr = rank_desc(t) ** power; wr = wr / wr.sum()
+    w = wr @ (1 - C); w = w / w.sum(); x = w / sig; return x / x.sum()
+R = np.array([[1, .90, .85], [.90, 1, .70], [.85, .70, 1]]); sig = np.array([14, 18, 22.])
+print(min_corr(R, sig).round(2), min_corr2(R, sig).round(2))   # [0.21 0.31 0.48] [0.5 0.3 0.2]
+```
+
 ## 5. Exit check
 
 | Criterion (S4_PLAN §G row S4.4) | Status |
 |---|---|
 | Final §D with sources per method | §1 (supersedes the draft §D's source columns; §D stays as history) |
 | ANG-vs-source differences listed | §2 (known now); the rest at each extraction step |
-| Every PC method at SOURCE LOCATED or a documented acquisition gap | 21 SOURCE LOCATED; PC-C5 documented gap (identity) |
+| Every PC method at SOURCE LOCATED or a documented acquisition gap | **All 22 SOURCE LOCATED** (second round, §7) |
 | ANG-35 disposition | Recorded (§2) |
