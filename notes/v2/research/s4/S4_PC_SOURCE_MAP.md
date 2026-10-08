@@ -35,27 +35,26 @@ Roster v0 has 22 methods (type M.PC) and one role, PC-E1 Researcher (`S4_TAXONOM
 | PC-A4 | Inverse variance | Kirby & Ostdiek 2012 | Same | — | Same | **SOURCE LOCATED** | S4.5 |
 | PC-A5 | Volatility targeting | Moreira & Muir 2017 | Moreira & Muir 2017, *JF* 72(4) | — | In hand | **SOURCE LOCATED** | S4.5 |
 | PC-B1 | Maximum Sharpe ratio | Markowitz 1952 | Markowitz 1952; Tobin 1958; Sharpe 1964 | Michaud 1989; Jorion 1986 (estimation error) | In hand | **SOURCE LOCATED** | S4.6 |
-| PC-B2 | Black–Litterman | Black & Litterman 1992 | BL 1992, *FAJ* 48(5) | He & Litterman 1999 (open, SSRN 334304); Idzorek 2005 (open, SSRN) | Primary in hand; supporting open | **SOURCE LOCATED** | S4.7 |
+| PC-B2 | Black–Litterman | Black & Litterman 1992 | BL 1992, *FAJ* 48(5) | He & Litterman 1999 and Idzorek 2005 (**in hand**, owner upload 2026-10-08; reviewed and reproduced, `S4_SOURCE_REVIEWS_2026-10-08.md` §1–§2) | Primary and supporting in hand | **SOURCE LOCATED** (supporting sources REVIEWED) | S4.7 |
 | PC-B3 | Robust mean–variance | Goldfarb & Iyengar 2003 | G&I 2003, *Math. Oper. Res.* 28(1):1–38 | Tütüncü & Koenig 2004; Ceria & Stubbs 2006 (paywalled) | Paywalled | **SOURCE LOCATED** (acquisition needed) | S4.7 |
 | PC-B4 | Resampled efficient frontier | Michaud 1998 | **Michaud & Michaud 2008, *Efficient Asset Management*, 2nd ed., Oxford University Press** (the originators; the book states the procedure was "originally described in Michaud (1998, Chapter 6)"). Procedure: ch. 6, pp. 42–58, with rank- vs λ-associated averaging in App. A (p. 56) | Michaud 1989 (in hand; motivation only); Michaud & Michaud 2008, *JOIM* 6(1) (not needed now); Scherer 2002 critique (paywalled); US patent 6,003,018 | **In hand** (owner upload 2026-10-08; 145 pp., md5 `d1ae84ec9ade`). The book states RE is "a U.S. patented procedure" with an exclusive worldwide licensee (p. 42, fn. 1) | **SOURCE LOCATED** (IP check before implementation, D-2) | S4.7 |
 | PC-B5 | Mean–downside risk (Sortino) | Sortino & van der Meer 1991 | S&vdM 1991, *JPM* 17(4):27–31 | Estrada (mean–semivariance heuristic); Markowitz, Todd, Xu & Yamane 1993; semicovariance/LPM paper; Hogan & Warren 1974 (all in hand) | In hand (scan; no text layer, read from page images) | **SOURCE LOCATED** | S4.5 / S4.12 |
 | PC-B6 | Simple EPO | (not in ANG) | Pedersen, Babu & Levine 2021, *FAJ* 77(2):124–151 | Author version (49 pp., in hand); author code (not yet searched) | In hand | **SOURCE LOCATED** | S4.7 |
 | PC-B7 | Anchored EPO | (not in ANG) | Same | Same | In hand | **SOURCE LOCATED** | S4.7, S4.10 |
 | PC-C1 | Global minimum variance | Clarke, de Silva & Thorley 2006 | CdST 2006, *JPM* 33(1):10–24 | Markowitz 1952; Jagannathan & Ma 2003 (abstract verified 2026-10-08; full text missing) | Paywalled; author-affiliated page (identity unconfirmed until retrieved) | **SOURCE LOCATED** (acquisition needed) | S4.11 |
-| PC-C2 | Risk parity (ERC) | Maillard, Roncalli & Teïletche 2010 | MRT 2010, *JPM* 36(4):60–70 | Spinu 2013 (algorithm; SSRN 2297383 only) | **In hand: working version** (May 2009, 23 pp., md5 `885b0373e72c`; author-hosted at thierry-roncalli.com; downloaded 2026-10-08 with owner permission). Published version governs | **SOURCE LOCATED** | S4.11 |
-| PC-C3 | Hierarchical risk parity | López de Prado 2016 | LdP 2016, *JPM* 42(4):59–69 | — | Open working version (SSRN 2708678) | **SOURCE LOCATED** | S4.11 |
+| PC-C2 | Risk parity (ERC) | Maillard, Roncalli & Teïletche 2010 | MRT 2010, *JPM* 36(4):60–70 | Spinu 2013 (**in hand**, owner upload; algorithm reproduced, `S4_SOURCE_REVIEWS_2026-10-08.md` §3) | **In hand: working version** (May 2009, md5 `885b0373e72c`); published version governs | **SOURCE LOCATED** | S4.11 |
+| PC-C3 | Hierarchical risk parity | López de Prado 2016 | LdP 2016, *JPM* 42(4):59–69 | Author code (Appendix A.3–A.4, Python 2) | **In hand: working version** (23 May 2016, md5 `575345cad8d5`; owner upload). Exhibit 7 reproduced exactly (`S4_SOURCE_REVIEWS_2026-10-08.md` §4) | **SOURCE REVIEWED** | S4.11 |
 | PC-C4 | Maximum diversification | Choueifaty & Coignard 2008 | C&C 2008, *JPM* 35(1):40–51 | Choueifaty, Froidure & Reynier 2013 (not located) | Paywalled | **SOURCE LOCATED** (acquisition needed) | S4.11 |
 | PC-C5 | Minimum correlation | Varadi et al. 2012 | Varadi, Kapler, Bee & Rittenhouse, *The Minimum Correlation Algorithm: A Practical Diversification Tool*, CSS Analytics, September 2012 (authors' release; never journal-published) | Co-author Kapler's R implementation (`min.corr`, `min.corr2`, SIT `strategy.r`; read only, never executed); authors' spreadsheet | **In hand** (owner upload 2026-10-08; 91 pp., md5 `c56c05f40ef4`). **Identity confirmed** (§7) | **SOURCE LOCATED** | S4.11 |
 | PC-D1 | CVaR optimisation | Rockafellar & Uryasev 2000 | R&U 2000, *J. Risk* 2(3):21–41 | R&U 2002, *JBF* (not located) | Paywalled; author copies likely | **SOURCE LOCATED** (acquisition needed) | S4.12 |
-| PC-D2 | Maximum drawdown-constrained | Chekhlov, Uryasev & Zabarankin 2005 | CUZ 2005, *IJTAF* 8(1):13–58 | Earlier version "Portfolio Optimization with Drawdown Constraints" (identity unconfirmed) | Open working version (SSRN 544742) | **SOURCE LOCATED** | S4.12 |
-| PC-D3 | Tail-risk parity | Boudt, Carl & Peterson 2013 | BCP 2013, *J. Risk* 15(3):39–68 | Boudt, Peterson & Croux 2008 (modified ES; not located) | Open working version (SSRN 1885293) | **SOURCE LOCATED** | S4.12 |
+| PC-D2 | Maximum drawdown-constrained | Chekhlov, Uryasev & Zabarankin 2005 | CUZ 2005, *IJTAF* 8(1):13–58 | — | **In hand: working version** (UF report 2003-15, 25 Jun 2003, md5 `597c81fcff3f`; owner upload). LPs verified (`S4_SOURCE_REVIEWS_2026-10-08.md` §5) | **SOURCE REVIEWED** | S4.12 |
+| PC-D3 | Tail-risk parity | Boudt, Carl & Peterson 2013 | BCP 2013, *J. Risk* 15(3):39–68 | Boudt, Peterson & Croux 2008 (modified ES; not located; the BCP appendix restates the estimator) | **In hand: working version** (24 May 2012, md5 `a6b28ba66935`; owner upload). Estimator and properties verified (`S4_SOURCE_REVIEWS_2026-10-08.md` §6) | **SOURCE REVIEWED** | S4.12 |
 | PC-D4 | TPA two-factor (equity, bonds) | Ang, Brandt & Denison 2014 (text also cites Gilmore & Simonian 2025) | **Concept:** ABD 2014 (in hand). **Weight mechanics:** AQR 2026 (in hand; D-5) with Treynor & Black 1973 as the primary for appraisal-ratio sizing | Gilmore & Simonian 2025, *JPM* 51(10) (paywalled); BI course note (Gerard 2026; local, SECONDARY) | Concept and specification lead in hand; Treynor & Black and Gilmore & Simonian paywalled | **SOURCE LOCATED** (Treynor & Black needed for the primary sizing mathematics) | S4.12 |
 | PC-E2 | Adversarial diversifier | — (ANG §3.3 only) | ANG v2 §3.3, p. 10 | — | In hand | **SOURCE LOCATED** (ANG is the only source; formulation gaps, ANG-16) | S4.14 |
 | PC-E1 | Researcher (role) | — | ANG v2 §3.3; example method: Bera & Park 2008, *Econometric Reviews* 27(4–6) | — | Bera & Park paywalled | Not a method (F-1); its example source is LOCATED · paywalled | S4.14 |
 
-**Result (updated 2026-10-08, second round):** **all 22 methods are SOURCE LOCATED.**
-- 15 have the governing source in hand: A1, A2, A3, A4, A5, B1, B2, B4, B5, B6, B7, C2, C5, E2, and D4 for the concept. A3, A4 and C2 are working versions; the published version governs.
-- 3 are open working versions on SSRN only, awaiting the owner's manual download: C3, D2, D3.
+**Result (updated 2026-10-08, third round):** **all 22 methods are SOURCE LOCATED**; PC-C3, PC-D2 and PC-D3 are **SOURCE REVIEWED** (`S4_SOURCE_REVIEWS_2026-10-08.md`).
+- 18 have the governing source in hand: A1–A5, B1, B2, B4, B5, B6, B7, C2, C3, C5, D2, D3, E2, and D4 for the concept. A3, A4, C2, C3, D2 and D3 are working versions; the published version governs.
 - 4 need BI library access: B3, C1, C4, D1.
 ---
 
@@ -187,6 +186,10 @@ def min_corr2(R, sig, power=1):    # Kapler's min.corr2 (MinCorr2)
 R = np.array([[1, .90, .85], [.90, 1, .70], [.85, .70, 1]]); sig = np.array([14, 18, 22.])
 print(min_corr(R, sig).round(2), min_corr2(R, sig).round(2))   # [0.21 0.31 0.48] [0.5 0.3 0.2]
 ```
+
+## 8. Third round, 2026-10-08: the six SSRN items
+
+The owner supplied all six (He & Litterman, Idzorek, Spinu, López de Prado, Chekhlov–Uryasev–Zabarankin, Boudt–Carl–Peterson). They were reviewed in depth and their published examples reproduced with our own code (`verification/s44_*.py`, all PASS). Results and findings (HL-1, BL-1, IDZ-1, SPN-1, HRP-1, HRP-2, CDD-1, CDD-2, BCP-1 … BCP-3): `S4_SOURCE_REVIEWS_2026-10-08.md`. New ANG issues ANG-39 … ANG-42.
 
 ## 5. Exit check
 

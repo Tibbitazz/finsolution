@@ -244,3 +244,16 @@ Context: `S4_LIT_LOOKAHEAD_2026-10-07.md`. Two retrievals were made with the own
 
 SSRN refused scripted access and showed a security verification in the in-app browser; it was not bypassed. The remaining permitted SSRN items are listed for manual download in `S4_PC_SOURCE_MAP.md` §6.
 
+## 14. Sources added 2026-10-08, third round (owner uploads: the six SSRN items)
+
+| Source | Status | Location / identity | Maps to |
+|---|---|---|---|
+| He & Litterman (1999), GSAM working paper (PDF of 2002) | AVAILABLE · reviewed · reproduced | `Finsol Research Papers/The Intuition Behind Black-Litterman Model Portfolios.pdf`, 27 pp., md5 a03589438332 | PC-B2 |
+| Idzorek, draft of 26 Apr 2005 (SSRN 3479867) | AVAILABLE · reviewed · reproduced | `Finsol Research Papers/ Add Paper to My Library Share- … Confidence Levels.pdf` (file name carries SSRN page text), 34 pp., md5 cf1ee81ea46d | PC-B2 |
+| Spinu (2013), SSRN 2297383 | AVAILABLE · reviewed · reproduced | `Finsol Research Papers/An Algorithm for Computing Risk Parity Weight.pdf`, 6 pp., md5 7152aad7f6f6 | PC-C2 |
+| López de Prado (2016), version of 23 May 2016 | AVAILABLE (working version; *JPM* governs) · reviewed · Exhibit 7 reproduced | `Finsol Research Papers/Building Diversified Portfolios that Outperform Out-of-Sample.pdf`, 31 pp., md5 575345cad8d5 | PC-C3 |
+| Chekhlov, Uryasev & Zabarankin, UF report 2003-15 (25 Jun 2003) | AVAILABLE (working version; *IJTAF* governs) · reviewed | `Finsol Research Papers/Drawdown Measure in Portfolio Optimization.pdf`, 41 pp., md5 597c81fcff3f | PC-D2 |
+| Boudt, Carl & Peterson, version of 24 May 2012 | AVAILABLE (working version; *J. Risk* governs) · reviewed | `Finsol Research Papers/Asset Allocation with Conditional Value-at-Risk Budgets.pdf`, 36 pp., md5 a6b28ba66935 | PC-D3 |
+
+Reviews and reproductions: `S4_SOURCE_REVIEWS_2026-10-08.md`; scripts `verification/s44_*.py`.
+

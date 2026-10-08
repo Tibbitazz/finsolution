@@ -1,5 +1,19 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — Six SSRN sources reviewed and reproduced (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_SOURCE_REVIEWS_2026-10-08.md`: identity, specification, verification and findings for He & Litterman, Idzorek, Spinu, López de Prado, Chekhlov–Uryasev–Zabarankin and Boudt–Carl–Peterson.
+- **New** `research/s4/verification/s44_*.py` (six scripts, all PASS), all own code:
+  - He & Litterman Tables 2, 4–8 and eq. 17 = eq. 13; Ω convention recovered (ω = τ·pΣp′);
+  - Idzorek Tables 4, 6, 7, plus a closed-form confidence Ω replacing the numerical search;
+  - Spinu Newton algorithm and the MRT volatility ordering;
+  - López de Prado Exhibit 7 exactly, plus the finding that published HRP is order-dependent while a tree-split variant is invariant;
+  - Chekhlov–Uryasev–Zabarankin CDD definitions = LP forms; drawdown LP exact, and an infeasible case;
+  - Boudt–Carl–Peterson modified-CVaR Iq identity, Gaussian limit, Euler allocation, Prop. 15.
+- **New ANG issues** ANG-39 (MCC vs ERC-CVaR), ANG-40 (drawdown definition vs the IPS limit), ANG-41 (BL conventions), ANG-42 (HRP order dependence and variant).
+- **Correction:** `S4_GITHUB_IMPL_REVIEW.md` §7's "0.00 for a correct HRP" holds only in particular cases (annotated).
+- **Updated:** `S4_PC_SOURCE_MAP.md` (rows, result, §8), `S4_0_SOURCE_INVENTORY.md` §14, `verification/README.md`, S4_PLAN C.2, HANDOFF. Not pushed.
+
 ## 2026-10-08 — S4.4 second round: all PC sources located; PC-C5 identity confirmed (branch `stage/s04-method-library`)
 
 - **PC-B4:** Michaud & Michaud, *Efficient Asset Management* (2nd ed., OUP 2008; owner upload) governs the resampling procedure (ch. 6; App. A). The book's statement that the procedure is patented and exclusively licensed confirms the D-2 check before implementation.
