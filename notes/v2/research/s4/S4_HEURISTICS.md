@@ -1,6 +1,6 @@
 # S4.5 Heuristic portfolios — PC-A1 … PC-A5: method records
 
-**Document status:** DRAFT (2026-10-08). Awaiting owner decisions S45-D1 … S45-D4 (§4). · **Basis:**
+**Document status:** REVIEWED (2026-10-08). Owner decisions S45-D1 … S45-D4 accepted as recommended (§4). · **Basis:**
 - S4_PLAN §G (step S4.5) and §F (EQ-H-1 … EQ-H-4);
 - `S4_METHODS_OUTLINE.md` §1 (nine-stage workflow, method record template) and §2 (S4.5 plan);
 - ADR-0024 §3–§5 (parameter authority, allocation domains, dual contract);
@@ -40,6 +40,8 @@
 - S45-D2: fixed exponents for A3/A4.
 - S45-D3: capitalisation data requirements for A2.
 - S45-D4: cash and universe rule for heuristics.
+
+*[2026-10-08]* All four accepted by the owner as recommended (§4).
 
 ---
 
@@ -214,18 +216,18 @@
   - Issues: MM-1, MM-2.
 - **Definition:**
   - **V0 (the source, verification oracle):** f^σ_{t+1} = (c/RV²_t) f_{t+1}, with RV² from the previous month's 22 daily returns and c set ex post so that sd(f^σ) = sd(f).
-  - **V1 (engine candidate, S45-D1):** s_t = min(σ*/σ̂_t(b), L); w_t = s_t·b; w_{0,t} = 1 − s_t.
+  - **V1 (engine form, decided by S45-D1):** s_t = min(σ*/σ̂_t(b), L); w_t = s_t·b; w_{0,t} = 1 − s_t.
   - Both in EQ-H-4.
 - **Inputs and risk objects:**
-  - base portfolio b: the output of another method or a declared portfolio (S45-D1);
+  - base portfolio b: the A2 output (A1 as the declared fallback; S45-D1);
   - σ̂_t(b): the short-horizon risk problem (ADR-0027 D3);
-  - σ*: from the long-horizon problem or the Policy Statement (S45-D1);
+  - σ*: the long-run volatility of b, from the long-horizon risk problem (S45-D1);
   - L: from the effective `POL.leverage`;
   - deliberately not used: μ.
-- **Parameters (V1):**
-  - σ*: system-estimated or user-authorised (S45-D1);
-  - L: user-authorised;
-  - b: fixed by decision;
+- **Parameters (V1; S45-D1 decided 2026-10-08):**
+  - σ*: system-estimated, the long-run volatility of b (long-horizon risk problem);
+  - L: user-authorised, min(1, effective `POL.leverage` maximum);
+  - b: fixed, A2 (A1 as the declared fallback while S45-D3 is open);
   - estimator: system-estimated (S10);
   - exponent: fixed by decision;
   - rebalancing frequency: S13;
@@ -255,13 +257,15 @@
   - *Failure modes:* if high volatility is followed by high compensation, scaling reduces exposure exactly when it is rewarded (the premise fails); estimation noise in σ̂_t.
   - *Valid comparisons:* against its own base b (spanning regression, EQ-H-4a).
   - *Invalid comparisons:* α across different bases; V0's ex-post-c results treated as real-time performance.
-- **Ladder:** MATHEMATICS EXTRACTED · COMPUTATION VERIFIED for V0 and the V1 candidate form. **V1 parameters pending S45-D1.**
+- **Ladder:** MATHEMATICS EXTRACTED · COMPUTATION VERIFIED for V0 and V1. V1 parameters decided (S45-D1, 2026-10-08).
 
 ---
 
 ## 4. Owner decisions (stage 6)
 
 ### S45-D1 — PC-A5 specification
+
+*[2026-10-08]* **Owner decision: accepted as recommended.** PC-A5 V1 = 1/σ scaling of the market-cap portfolio (A2; A1 as the declared fallback while S45-D3's data source is open) to its own long-run volatility, capped at min(1, effective `POL.leverage` maximum), cash residual, σ̂_t from the short-horizon risk problem.
 
 | Sub-choice | Options | Recommendation | Why (verified) |
 |---|---|---|---|
@@ -273,6 +277,8 @@
 
 ### S45-D2 — A3/A4 exponents
 
+*[2026-10-08]* **Owner decision: accepted as recommended.** η fixed: A3 = ½, A4 = 1; other values sensitivity-only.
+
 - **Options:**
   - η fixed (A3 = ½, A4 = 1), other values sensitivity-only;
   - η as a parameter.
@@ -282,6 +288,8 @@
   - A free η would merge A3 and A4 into one tunable method and invite in-sample tuning, which ADR-0024 §2 prohibits.
 
 ### S45-D3 — A2 capitalisation data requirements (the source itself is chosen at S6)
+
+*[2026-10-08]* **Owner decision: accepted as recommended.** Requirements 1–5 approved; the data source is chosen at S6.
 
 - **Requirements proposed now:**
   1. Proxies partition the universe: no overlapping classes (ANG-46).
@@ -293,6 +301,8 @@
 - **Recommendation:** approve the requirements; choose the source at S6.
 
 ### S45-D4 — Heuristic universe and cash
+
+*[2026-10-08]* **Owner decision: accepted as recommended.** Option (a): A1–A4 on risky assets only.
 
 - **Options:**
   - (a) A1–A4 operate on risky assets only. Cash enters only through A5's residual or a Policy Statement cash allocation applied in post-processing.
@@ -325,7 +335,7 @@
 | S4.6 | General cash and risk-free treatment (S45-D4 is consistent with either outcome); EQ-H-1b as the estimation-error diagnostic for sample MV |
 | S4.10 | A1 and A2 as anchor and benchmark candidates |
 | S4.11 | EQ-H-3a (A4 = diagonal GMV); A3 = ERC under equal correlations |
-| S4.13 | Risk dependencies: A1/A2 none; A3/A4 the variances only; A5 short-horizon volatility of b (plus the long-run volatility if S45-D1(b) is accepted) |
+| S4.13 | Risk dependencies: A1/A2 none; A3/A4 the variances only; A5 short-horizon volatility of b plus b's long-run volatility (S45-D1(b) accepted) |
 | S4.16 | EQ-H-1a and EQ-H-4a as in-sample diagnostics (labelled, I-9) |
 | S4.20 | Post-processing rule for Policy Statement bounds; provisional failure codes; the A5/T4 boundary |
 | S5 | ANG-46: the universe must be a partition for A2 (and should be for A1, A3, A4) |
@@ -344,6 +354,6 @@
 | PC-A2 | SOURCE LOCATED (in hand) | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); data contract open (S45-D3) |
 | PC-A3 | SOURCE LOCATED (in hand) | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level) |
 | PC-A4 | SOURCE LOCATED (in hand) | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level) |
-| PC-A5 | SOURCE LOCATED (in hand) | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED for V0 and the V1 form; V1 parameters pending S45-D1 |
+| PC-A5 | SOURCE LOCATED (in hand) | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED for V0 and V1; V1 parameters decided (S45-D1) |
 
 NOTATION RECONCILED, CONTRACT DEFINED and FIXTURES DEFINED complete in Section 4 (S4.19–S4.24).

@@ -1,5 +1,18 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.5 done: owner decisions recorded; CdST 2006 verified; pushed (branch `stage/s04-method-library`)
+
+- **Owner decisions S45-D1 … S45-D4 accepted as recommended** (`S4_HEURISTICS.md` §4, now REVIEWED):
+  - D1: PC-A5 = 1/σ scaling of the market-cap portfolio (equal weight as the declared fallback) to its own long-run volatility, capped at min(1, `POL.leverage`), with a cash residual;
+  - D2: fixed exponents (A3 = ½, A4 = 1);
+  - D3: capitalisation data requirements approved, source chosen at S6;
+  - D4: heuristics on risky assets only.
+- `S4_EQUATION_REGISTER.md` EQ-H-4: V1 marked decided; σ* reclassified to system-estimated (the draft said user-authorised, which conflicted with the accepted recommendation).
+- ANG-14 and ANG-44 resolved; ANG-46 annotated.
+- **Clarke, de Silva & Thorley (2006) received and verified:** title page, JPM Fall 2006, pp. 10–24. The scan lacks pp. 11 and 13, but the text runs on across both gaps, so no article content is missing. **All 22 governing PC sources are now in hand.**
+- S4_PLAN C.2: S4.5 DONE, S4.6 NEXT; outline tracker; HANDOFF.
+- Pushed together with `5aa0e36` and `e3e0acc` (owner authorisation).
+
 ## 2026-10-08 — S4.5 heuristic portfolios drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_HEURISTICS.md` (DRAFT): method records for PC-A1 equal weight, A2 market cap, A3 inverse volatility, A4 inverse variance and A5 volatility targeting. Each record covers sources and pages, equations, inputs and risk objects, parameter authority, constraints, allocation domains, failure codes (provisional), invariants, verification and an agent-readable summary.

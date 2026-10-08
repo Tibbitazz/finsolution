@@ -47,7 +47,7 @@
 | EQ-H-2a | Reverse optimisation: μ = λΣw_m ⇔ tangency = w_m; E(R_i) − P = B_im[E(R_m) − P] | PC-A2, links to EQ-BL-1 | Sharpe 1964 fns. 22, 25, 26, pp. 438–441 | EXTRACTED · VERIFIED |
 | EQ-H-3 | Volatility timing VT(η) | PC-A3 (η = ½), PC-A4 (η = 1) | Kirby & Ostdiek eq. (14), p. 14 (working version) | EXTRACTED · VERIFIED |
 | EQ-H-3a | VT(1) = minimum variance under diagonal Σ | PC-A4 | KO eq. (12), p. 13 | EXTRACTED · VERIFIED |
-| EQ-H-4 | Volatility-managed scaling (V0) and the volatility-target engine form (candidate V1) | PC-A5 | Moreira & Muir 2017 eqs. (1)–(2), p. 1616; Tables IV–V, pp. 1625–1626 | EXTRACTED · VERIFIED (V1 pending decision S45-D1) |
+| EQ-H-4 | Volatility-managed scaling (V0) and the volatility-target engine form (V1) | PC-A5 | Moreira & Muir 2017 eqs. (1)–(2), p. 1616; Tables IV–V, pp. 1625–1626 | EXTRACTED · VERIFIED (V1 decided: S45-D1) |
 | EQ-H-4a | Spanning alpha and Sharpe expansion | PC-A5 (diagnostic) | MM eq. (3), p. 1617; p. 1620; eq. (4), p. 1621 | EXTRACTED · VERIFIED |
 | EQ-H-T | Turnover including the cash leg | All PC methods (shared) | KO eqs. (5)–(6), p. 6; DGU eq. (15), p. 1929 | EXTRACTED · VERIFIED |
 
@@ -179,7 +179,7 @@
 
   - **MM-2 (source inconsistency):** the α values of the 1/RV and expected-variance rows are swapped between Table IV and Table V. The data needed to tell which is right are not in hand. Not material to our specification, because no α is used as a parameter.
   - **c in the capped variants:** not stated in the text. Table V's P50 of 0.93 for both capped variants equals the baseline's, which implies the baseline c is used before capping.
-- **Candidate engine form V1 (for decision S45-D1; option 1 shown):** for a base portfolio b (1′b = 1, long-only):
+- **Engine form V1 (owner decision S45-D1, 2026-10-08):** for a base portfolio b (1′b = 1, long-only):
   - risky scale s_t = min(σ* / σ̂_t(b), L);
   - weights w_t = s_t·b, cash w_{0,t} = 1 − s_t.
   - σ̂_t(b) = √(b′Σ̂_t b) is the ex-ante volatility of b from the short-horizon authoritative risk model (ADR-0027 D3).
@@ -194,9 +194,9 @@
   - V1: the same, plus a declared risk target.
 - **Constraints:** with L ≤ 1, long-only plus cash. Policy Statement asset bounds apply to s_t·b, so post-processing is needed if the bounds bind (S4.20).
 - **Parameter authority (V1):**
-  - σ*: user-authorised. It is a portfolio risk control declared by the user or derived by an accepted calibration method; an O2 constraint object (`S2_RISK_PREFERENCE_RESEARCH.md`; input `INV.volatility_range`).
-  - L: user-authorised, from the effective `POL.leverage` (narrowed by account capability, FX-06 / FX2-18).
-  - b: decision S45-D1.
+  - σ*: system-estimated, the long-run volatility of b from the long-horizon risk problem (S45-D1). *[2026-10-08]* The draft classed σ* as user-authorised; the owner accepted the system-estimated target. The Policy Statement's risk controls (`S2_RISK_PREFERENCE_RESEARCH.md`; `INV.volatility_range`) apply to the final portfolio, not inside A5.
+  - L: user-authorised, min(1, effective `POL.leverage` maximum) (narrowed by account capability, FX-06 / FX2-18).
+  - b: A2 market cap; A1 as the declared fallback while S45-D3 is open (S45-D1).
   - σ̂_t: system-estimated (risk model).
   - Exponent (1 vs 2): S45-D1.
   - Rebalancing frequency: S13.

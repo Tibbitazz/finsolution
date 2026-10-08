@@ -242,8 +242,8 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.2b | Accountability layer (ADR-0026) | DRAFTED 2026-10-02 — `S4_ACCOUNTABILITY.md`; completes with S4.2 |
 | S4.3 | Method taxonomy | REVIEWED 2026-10-08: `S4_TAXONOMY.md` (six kinds; type catalogue; identity and versioning; inventory pass F-1 … F-10); owner confirmed O-1 … O-4; SYNC-2 material for the developer |
 | S4.4 | ANG PC source map | **DONE 2026-10-08** (owner confirmed): `S4_PC_SOURCE_MAP.md` (all 22 SOURCE LOCATED; 18 governing sources in hand; PC-C3, PC-D2, PC-D3 SOURCE REVIEWED; ANG-13 resolved; ANG-38 … ANG-42); `S4_SOURCE_REVIEWS_2026-10-08.md`; `verification/s44_*.py`; 4 BI items outstanding |
-| S4.5 | Heuristic portfolios (5) | **DRAFTED 2026-10-08**: `S4_HEURISTICS.md` (A1–A5 records; owner decisions S45-D1 … D4 open), `S4_EQUATION_REGISTER.md` (created), `verification/s45_*.py` (PASS); ANG-43 … ANG-46, MM-1, MM-2. Awaiting owner review |
-| S4.6 | Classical MVO foundation | NEXT (after S4.5 review) |
+| S4.5 | Heuristic portfolios (5) | **DONE 2026-10-08** (owner accepted S45-D1 … D4): `S4_HEURISTICS.md` (A1–A5 records), `S4_EQUATION_REGISTER.md` (created), `verification/s45_*.py` (PASS); ANG-43 … ANG-46, MM-1, MM-2 |
+| S4.6 | Classical MVO foundation | **NEXT** |
 | S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | NOT STARTED |
 | S4.8 | Momentum signal review (XSMOM, TSMOM) | NOT STARTED |
 | S4.9 | Signal × PC compatibility | NOT STARTED |
