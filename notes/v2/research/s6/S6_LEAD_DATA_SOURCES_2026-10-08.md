@@ -28,7 +28,7 @@
 
 | Source | Finding | Label |
 |---|---|---|
-| ANG v2 (21 Sep 2026) | No vendor is named. Agents "call scripts that fetch data from APIs" (p. 36). The macro agent "first fetches macro and market data" (p. 7). Flows and positioning come "via web search" (Exh. A.1 step 5, p. 38) | `VERIFIED-SOURCE` |
+| ANG v2 (21 Sep 2026) | Agents "call scripts that fetch data from APIs" (p. 36). The macro agent "first fetches macro and market data" (p. 7). Flows and positioning come "via web search" (Exh. A.1 step 5, p. 38). **Correction (2026-10-08, S4.1 full read):** Exh. A.1 (p. 38) lists the required skill **`apex-data-financial (fmp, finviz)`**, i.e. Financial Modeling Prep and Finviz. It also uses Bloomberg identifiers (`BBG: SPTR Index`) and "History: Jan 1990–present". The earlier statement "no vendor is named" was wrong; no *dataset* is provided (ANG-34) | `VERIFIED-SOURCE` |
 | Q Group lecture (Oct 2026), slides and speaker notes | No vendor is named. Slide 40 ("Where to get started") includes "In-house: no new data or models to buy". Slide 38 lists "Data leakage" as a risk | `VERIFIED-SOURCE` |
 | Third-party code (chirindaopensource, v1) | **Runs on synthetic data.** README badge: "Bloomberg \| Apex Data \| FRED". "Live API Integration: … Bloomberg (B-PIPE) or FactSet" is listed only as a future extension. Universe of 18 asset classes keyed by Bloomberg codes: SPTR, RTY, SPVU, SPYG, MXEA, MXEF and 12 US ETFs (SHY, IEF, TLT, LQD, HYG, BWX, PICB, EMB, VNQ, GLD, PDBC, BIL). Web-search allowlist: fred.stlouisfed.org, bis.org | `VERIFIED-REPO` |
 
@@ -212,7 +212,7 @@ The owner's link (an advertising URL) was opened **without its tracking paramete
 
 | # | Finding | Status |
 |---|---|---|
-| F-1 | No researcher material provides or names a dataset. ANG's data is not public. Vendor selection is ours (S6) | `VERIFIED-SOURCE` |
+| F-1 | No researcher material provides a dataset. ANG's data is not public. **ANG names FMP and Finviz** as the data skill's sources (Exh. A.1; corrected 2026-10-08); FMP is in the source table (§3). Vendor selection is ours (S6) | `VERIFIED-SOURCE` |
 | F-2 | **Licence, not price, is the binding constraint.** Every free or entry tier reviewed is personal or non-commercial, and the consumer platforms forbid reuse. The compliant architecture for a reusable, multi-user local engine is **per-user credentials and local storage, with no redistribution between users** (DR-7 refinement, §6; CB-19; ADR-0014) | `INFERENCE` from verified terms |
 | F-3 | **Research data ≠ implementation data.** D-A can use long US proxy series from free sources. D-F needs European-listed UCITS instruments, which no free tier reliably covers; EODHD (≈$20/month, personal) is the cheapest verified option | Mixed; per-instrument KID availability `UNVERIFIED` |
 | F-4 | **Sørensen value score:** point-in-time consensus forward P/E exists only at vendor level: **S&P Capital IQ Estimates Snapshot (PIT since Aug 2016, every 2 h)** and LSEG I/B/E/S (often via WRDS). Both are paid or academic; no free source exists, because the primary data is broker contributions. The options are owner decisions at S6/S9c, not blockers: (a) academic access for validation only; (b) collect consensus snapshots forward from now; (c) a declared trailing-P/E/B variant from **as-filed primary data** (EDGAR for the US; **ESEF via filings.xbrl.org** for Norway and the EU), point-in-time by filing date. The momentum leg needs only prices | `VERIFIED-SOURCE` (S&P pages) and `VERIFIED-SECONDARY` |

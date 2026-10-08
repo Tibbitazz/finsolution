@@ -1,6 +1,6 @@
 # S4 plan — Method Library & Eligibility (ANG baseline)
 
-**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024, ADR-0025, ADR-0026 (accepted; ADR-0025 on 2026-10-07, ADR-0026 on 2026-10-08). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`; amendment 18: look-ahead contamination and agent-homogeneity literature; `S4_LIT_LOOKAHEAD_2026-10-07.md`).
+**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 drafted 2026-10-08 (`S4_ANG_BASELINE.md`, awaiting owner review). ADR basis: ADR-0023, ADR-0024, ADR-0025, ADR-0026 (accepted; ADR-0025 on 2026-10-07, ADR-0026 on 2026-10-08). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`; amendment 18: look-ahead contamination and agent-homogeneity literature; `S4_LIT_LOOKAHEAD_2026-10-07.md`).
 **Basis:** owner instruction of 2026-10-02; full re-read of ANG (version 21 Sep 2026, 40 pp, read in full by text extraction; Exhibits 1, 2, 4 and 5 extracted as images and inspected); accepted S0–S3 (G0–G3).
 **Page numbers:** printed page numbers of the paper (PDF page − 1).
 
@@ -69,6 +69,8 @@
 ---
 
 ## A. ANG architecture baseline map
+
+> **Superseded as the canonical map (2026-10-08)** by [S4_ANG_BASELINE.md](S4_ANG_BASELINE.md) (S4.1). This section is kept as draft history. Corrections found while verifying it are listed in S4_ANG_BASELINE §0.3 (page references pp. 13/21 → 14/22; fn. 6 spans pp. 14–15; data skill `apex-data-financial (fmp, finviz)`; Exhibit 1 differences).
 
 ### A.1 Pipeline (§3.1, pp. 6–7; Exhibit 1, p. 7)
 
@@ -228,7 +230,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | Step | Title | Status |
 |---|---|---|
 | S4.0 | Source and artefact inventory | DONE — awaiting owner review |
-| S4.1 | Full ANG architectural reconstruction | NOT STARTED (this proposal's §A is a draft input) |
+| S4.1 | Full ANG architectural reconstruction | DRAFTED 2026-10-08: `S4_ANG_BASELINE.md` (page-cited; verified V-1 … V-8; ANG-28 … ANG-36); awaiting owner review |
 | S4.2 | ANG adaptation map + ANG-baseline ADR | NOT STARTED (§B is a draft input) |
 | S4.2b | Accountability layer (ADR-0026) | DRAFTED 2026-10-02 — `S4_ACCOUNTABILITY.md`; completes with S4.2 |
 | S4.3 | Method taxonomy | NOT STARTED |

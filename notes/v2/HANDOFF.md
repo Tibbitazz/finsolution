@@ -92,7 +92,9 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `a46c613` | Look-ahead and agent-homogeneity literature (`S4_LIT_LOOKAHEAD_2026-10-07.md`); DR-9, DR-10; correction of the bias-direction statement; handoff refresh |
 | `d153b4d` | **ADR-0026 ACCEPTED** (owner check, option (a): C-1 … C-6, S-1 … S-4); 05 and 08 annotated; conflicts C-9, C-10 resolved; branch pushed |
 | `e9a5aeb` | S6 data-source lead (step 1 of the plan of 2026-10-08); RQ-08, CB-19, DR-7 annotated |
-| (latest) | S6 lead extended: Seeking Alpha, S&P Capital IQ (Pro, Financials, Estimates), data lineage, ESEF via filings.xbrl.org; step 1 complete; pushed |
+| `96c163c` | S6 lead extended: Seeking Alpha, S&P Capital IQ (Pro, Financials, Estimates), data lineage, ESEF via filings.xbrl.org; step 1 complete; pushed |
+| `3aa8f34` | Peer scoring methods (Investwiser Greenblatt/O'Shaughnessy/quality; Seeking Alpha factor grades); G-1 … G-3 |
+| (latest) | **S4.1** ANG v2 baseline (`S4_ANG_BASELINE.md`); ANG-28 … ANG-36; ANG-09/11 annotated; §A superseded; FMP/Finviz correction in the S6 lead and RQ-08 |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -107,8 +109,9 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | File | Content |
 |---|---|
 | `S4_PLAN.md` | Plan, amendments 1–18, G4 criteria 1–24 |
+| `S4_ANG_BASELINE.md` | **S4.1 (DRAFT, awaiting owner review):** canonical page-cited reconstruction of ANG v2. Stage table; roster reconciliation (44); agent anatomy and skills; data (FMP, Finviz); determinism; IPS governance; limitations; verified exhibit arithmetic (V-1 … V-8; effective N = inverse HHI); lecture cross-check; new issues ANG-28 … ANG-36 |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
-| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-27; ABD-1 … ABD-5 |
+| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-36; ABD-1 … ABD-5 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
 | `S4_DOWNSTREAM_INVENTORY.md` | T1–T12; FVG lead; simulation conventions |
 | `S4_INPUTS_2026-10-07.md` | Lecture, sandbox lessons, learning, correlated errors, derivations D1–D10, developer requirements DR-1 … DR-8 |
@@ -214,7 +217,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. S4.2b and S4.15b drafted. Inputs recorded (amendments 14–18). **S4.1 onward not started** |
+| S4 | S4.0 done. **S4.1 drafted 2026-10-08** (`S4_ANG_BASELINE.md`; awaiting review). S4.2b and S4.15b drafted. Inputs recorded (amendments 14–18). **S4.2 onward not started** |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |

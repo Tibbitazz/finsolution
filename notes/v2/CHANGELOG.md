@@ -1,5 +1,31 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.1 ANG v2 baseline drafted (owner instruction; branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_ANG_BASELINE.md` (DRAFT for owner review; canonical map, superseding S4_PLAN §A, which is kept as history). It is based on:
+  - a full read of all 40 pages;
+  - Exhibits 1, 2, 4 and 5 read from rendered images;
+  - a lecture cross-check.
+- **Contents:** scope; pipeline and stage table (inputs, code vs LLM, outputs, citations, unspecified items); order and information barriers; roster reconciliation (44, itemisation marked as inference); agent anatomy and skill inventory; CMA-judge rules; data and provenance; determinism and model governance; IPS governance and memo contents; stated limitations; illustrative-run facts.
+- **Verified exhibit arithmetic:**
+  - V-1: Borda total 273;
+  - V-3: 40/60 min–max composite reproduced to ≤ 0.0011;
+  - V-4: weight sums;
+  - V-6: effective N = inverse HHI = 11.2 (resolves the ANG-11 definition);
+  - V-7: judge within [min, max].
+- **New issues** ANG-28 … ANG-36:
+  - non-equity CMA methods;
+  - "12 other asset classes";
+  - Exhibit 1 vs text;
+  - meta-agent PC metrics missing;
+  - dissent reports;
+  - **two volatility sources (H)**;
+  - data provenance and PIT;
+  - category counts;
+  - review assignment.
+- **Correction:** ANG Exh. A.1 names the data skill `apex-data-financial (fmp, finviz)`. The S6 lead (§1, F-1) and RQ-08 are corrected; the earlier "no vendor named" was wrong.
+- S4_PLAN §C.2 status and header updated; HANDOFF updated. Nothing pushed.
+
 ## 2026-10-08 — Peer scoring methods reviewed (owner request; branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_SCORING_PEER_METHODS.md` (DRAFT).
