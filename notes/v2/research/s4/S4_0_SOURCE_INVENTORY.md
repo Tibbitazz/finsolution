@@ -257,3 +257,17 @@ SSRN refused scripted access and showed a security verification in the in-app br
 
 Reviews and reproductions: `S4_SOURCE_REVIEWS_2026-10-08.md`; scripts `verification/s44_*.py`.
 
+## 15. Sources added 2026-10-08, fifth round (owner uploads: the four BI items and Treynor & Black)
+
+Identity checked against title page, journal, volume and pages; md5 of the PDF inside each zip.
+
+| Source | Status | Location / identity | Maps to |
+|---|---|---|---|
+| Goldfarb & Iyengar (2003), *Math. Oper. Res.* 28(1):1–38 | AVAILABLE (published, JSTOR) | `Finsol Research Papers/Robust Portfolio Selection Problems.pdf`, 39 pp., md5 09a33510a521 | PC-B3 (S4.7) |
+| Clarke, de Silva & Thorley (**2011**), "Minimum-Variance Portfolio Composition", *JPM* 37(2):31–45 | AVAILABLE (published) · **not the cited paper** | `Finsol Research Papers/Minimum-Variance Portfolio Composition.pdf`, 15 pp., md5 925a66809d51 | PC-C1, **supporting** only. ANG cites CdST **2006**, "Minimum-Variance Portfolios in the U.S. Equity Market", *JPM* 33(1):10–24 (ANG references). The 2006 paper is still needed (S4.11) |
+| Choueifaty & Coignard (2008), "Toward Maximum Diversification", *JPM* 35(1) (Fall 2008):40–51 | AVAILABLE (published) | `Finsol Research Papers/Toward Maximum Diversification.pdf`, 12 pp., md5 6c2a655f2c23 | PC-C4 (S4.11) |
+| Rockafellar & Uryasev, "Optimization of Conditional Value-at-Risk" | AVAILABLE (author version, pdfTeX, with numerical tables; the published *J. Risk* 2(3):21–41 governs, D-3) | `Finsol Research Papers/Optimization of Conditional Value-at-Risk.pdf`, 26 pp., md5 ee8f86ef5b31 | PC-D1 (S4.12) |
+| Treynor & Black (1973), "How to Use Security Analysis to Improve Portfolio Selection", *J. Business* 46(1):66–86 | AVAILABLE (published, JSTOR) | `Finsol Research Papers/How to Use Security Analysis to Improve Portfolio Selection.pdf`, 22 pp., md5 4a0b5496a175 | PC-D4 primary for appraisal-ratio sizing (S4.12) |
+
+Result: 21 of 22 governing PC sources in hand (`S4_PC_SOURCE_MAP.md` §1). Open: CdST 2006 (PC-C1).
+

@@ -12,7 +12,7 @@
 |---|---|---|
 | S0–S3 | Charter, inputs, Policy Statement governance, external facts | **Done** (G0–G3) |
 | **S4 Section 1** — foundations (S4.0–S4.4) | Inventory, ANG reconstruction, adaptation and ADR-0027, accountability, taxonomy, source map | **Done** (S4.4 complete 2026-10-08; S4.2 and ADR-0027 await owner review at G4) |
-| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **Next: S4.5** |
+| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 drafted 2026-10-08, awaiting owner decisions S45-D1 … D4; S4.6 next after review |
 | S4 Section 3 — the process around the methods (S4.15–S4.18) | Upstream CMA inventory, CRO diagnostics and candidate card, deliberation, CIO ensembles | Not started |
 | S4 Section 4 — consolidation (S4.19–S4.24) | Equation Register reconciliation, typed contracts, eligibility, dependency graph, full verification, fixtures | Not started |
 | S4 Section 5 — gate (S4.25–S4.27) | Portfolio Map requirements, library freeze, G4 audit | Not started |
@@ -77,6 +77,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
   - A4 equals minimum variance under a diagonal Σ (KO eq. 12).
 - **Deliverables:** `S4_HEURISTICS.md` (five method records); `S4_EQUATION_REGISTER.md` (created); `verification/s45_*.py`.
 - **Exit:** A1–A5 reach MATHEMATICS EXTRACTED → COMPUTATION VERIFIED.
+- *[2026-10-08]* **Drafted:** `S4_HEURISTICS.md` (five method records; decisions S45-D1 … D4), `S4_EQUATION_REGISTER.md` (created; EQ-H-1 … EQ-H-4 with sub-equations and the shared turnover EQ-H-T), `verification/s45_*.py` (4 scripts, PASS). New issues: ANG-43 … ANG-46; source issues MM-1, MM-2. Exit reached at source level; A5's V1 parameters wait for S45-D1.
 
 ### S4.6 Mean–variance foundation (supports PC-B1, PC-C1)
 - **Scope:** objective, efficient frontier, tangency portfolio, constraints, risk-free treatment, and the estimation-error problem.
@@ -207,7 +208,8 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 |---|---|---|---|
 | S4.5 | Volatility targeting specification | Base portfolio; target; cash or leverage; estimator and horizon | ANG-14 |
 | S4.5 | Inverse-vol / inverse-variance exponent | Fixed at ½ and 1 (recommended) vs parameter | ANG-13 |
-| S4.5 | Asset-class capitalisation source | Data contract for S6 | — |
+| S4.5 | Asset-class capitalisation source | Data contract for S6 | ANG-46 (added at S4.5: S45-D3) |
+| S4.5 | Heuristic universe and cash (added at S4.5) | Risky assets only vs cash as one of N | ANG-44 (S45-D4) |
 | S4.6 | Risk-free and cash treatment | Cash as an asset vs a risk-free rate | — |
 | S4.7 | Black–Litterman convention | Σ vs Σ + M̄⁻¹; Ω rule; closed-form confidence | ANG-41, BL-1, IDZ-1 |
 | S4.7 | EPO shrinkage authority and tuning | Fixed vs system-estimated under the S7 protocol | ADR-0027 D4 |
@@ -229,11 +231,11 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 
 | Needed by | Item | Route | Blocking? |
 |---|---|---|---|
-| S4.7 | Goldfarb & Iyengar (2003), *Robust Portfolio Selection Problems*, Math. Oper. Res. 28(1):1–38 | BI library (owner) | Blocks B3 only |
-| S4.11 | Clarke, de Silva & Thorley (2006), *Minimum-Variance Portfolios in the U.S. Equity Market*, JPM 33(1):10–24 | BI library (owner) | Blocks C1 only |
-| S4.11 | Choueifaty & Coignard (2008), *Toward Maximum Diversification*, JPM 35(1):40–51 | BI library (owner) | Blocks C4 only |
-| S4.12 | Rockafellar & Uryasev (2000), *Optimization of Conditional Value-at-Risk*, J. Risk 2(3):21–41 | BI library (owner) | Blocks D1 only |
-| S4.12 | Treynor & Black (1973), *How to Use Security Analysis to Improve Portfolio Selection*, J. Business 46(1) | BI / JSTOR | Blocks D4's primary sizing source |
+| S4.7 | Goldfarb & Iyengar (2003), *Robust Portfolio Selection Problems*, Math. Oper. Res. 28(1):1–38 | BI library (owner) | **In hand 2026-10-08** |
+| S4.11 | Clarke, de Silva & Thorley (2006), *Minimum-Variance Portfolios in the U.S. Equity Market*, JPM 33(1):10–24 | BI library (owner) | Blocks C1 only. **Still open:** the 2026-10-08 upload was CdST 2011, *Minimum-Variance Portfolio Composition* (kept as supporting) |
+| S4.11 | Choueifaty & Coignard (2008), *Toward Maximum Diversification*, JPM 35(1):40–51 | BI library (owner) | **In hand 2026-10-08** |
+| S4.12 | Rockafellar & Uryasev (2000), *Optimization of Conditional Value-at-Risk*, J. Risk 2(3):21–41 | BI library (owner) | **In hand 2026-10-08** (author version; published governs) |
+| S4.12 | Treynor & Black (1973), *How to Use Security Analysis to Improve Portfolio Selection*, J. Business 46(1) | BI / JSTOR | **In hand 2026-10-08** |
 | Optional | Jagannathan & Ma 2003 (S4.6); Kan & Zhou 2007 (S4.6); Tütüncü & Koenig 2004, Ceria & Stubbs 2006, Scherer 2002 (S4.7); Choueifaty, Froidure & Reynier 2013 (S4.11); Rockafellar & Uryasev 2002, Boudt, Peterson & Croux 2008, Gilmore & Simonian 2025 (S4.12); Bera & Park 2008 (S4.14); Meucci 2009 (open SSRN; S4.16) | BI / SSRN | No |
 
 ---
@@ -242,7 +244,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 
 | Step | Methods | Status | Last update | Next action |
 |---|---|---|---|---|
-| S4.5 | A1–A5 | **Next** | 2026-10-08 (outline) | Start: read sources, extract EQ-H-1 … EQ-H-4 |
+| S4.5 | A1–A5 | **Drafted — owner review** | 2026-10-08 | Owner decisions S45-D1 … D4 (`S4_HEURISTICS.md` §4); then S4.6 |
 | S4.6 | MVO foundation | Not started | — | — |
 | S4.7 | B1, B2, B3, B4, B6, B7 | Not started (B2 sources reproduced in S4.4) | — | — |
 | S4.8 | SIG-1, SIG-2 | Not started | — | — |

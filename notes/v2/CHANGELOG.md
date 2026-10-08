@@ -1,5 +1,19 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.5 heuristic portfolios drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_HEURISTICS.md` (DRAFT): method records for PC-A1 equal weight, A2 market cap, A3 inverse volatility, A4 inverse variance and A5 volatility targeting. Each record covers sources and pages, equations, inputs and risk objects, parameter authority, constraints, allocation domains, failure codes (provisional), invariants, verification and an agent-readable summary.
+- **New** `research/s4/S4_EQUATION_REGISTER.md` (LIVING): canonical notation; EQ-H-1 … EQ-H-4 with sub-equations (EQ-H-1a/1b, 2a, 3a, 4a) and the shared turnover definition EQ-H-T.
+- **New** `research/s4/verification/s45_*.py` (four scripts, all PASS; own code, synthetic data):
+  - DGU Proposition 1: all 15 stated critical estimation windows reproduced (e.g. 270/534/1061 vs 270/530/1060 months); Monte Carlo confirmation of the expected-utility terms;
+  - cap weights: zero turnover between issuance events; reverse optimisation (tangency = w_m when μ = λΣw_m);
+  - Kirby–Ostdiek VT(η): limits, eq. (12) by numerical QP, the eq. (13) example, A3 = ERC iff correlations are equal, turnover with the cash leg; with a 0.5%-volatility cash asset A3/A4 put 80% / 98.5% in cash;
+  - Moreira–Muir: ex-post c, the appraisal-ratio identity, no look-ahead; 1/σ scaling holds risk constant and 1/σ² does not.
+- **ANG issues:** ANG-14 sharpened; new ANG-43 (Sharpe 1964 has no capitalisation rule), ANG-44 (cash inside the heuristic universe, H), ANG-45 ("dominate" overstates DGU), ANG-46 (overlapping equity classes double-count capitalisation). New cited-source section for Moreira & Muir: MM-1 (eq. 2 as printed is look-ahead), MM-2 (α swapped between Tables IV and V).
+- **Owner decisions opened:** S45-D1 … S45-D4 (`S4_HEURISTICS.md` §4).
+- **Fifth-round uploads recorded** (`S4_0_SOURCE_INVENTORY.md` §15; `S4_PC_SOURCE_MAP.md`): Goldfarb & Iyengar, Choueifaty & Coignard, Rockafellar & Uryasev (author version) and Treynor & Black are in hand, so 21 of 22 governing sources are now in hand. The file "Minimum-Variance Portfolio Composition" is Clarke, de Silva & Thorley **2011**, not the cited 2006 paper; it is kept as supporting and the 2006 paper is still needed (S4.11).
+- **Updated:** `S4_METHODS_OUTLINE.md` (§0, §2, §3, §4, §5), S4_PLAN C.2 and §F, `verification/README.md`, HANDOFF. Not pushed.
+
 ## 2026-10-08 — S4.4 done; Section 2 outline (branch `stage/s04-method-library`)
 
 - S4.4 marked **DONE** (owner confirmation).
