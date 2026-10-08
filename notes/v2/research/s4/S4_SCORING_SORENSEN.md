@@ -119,6 +119,7 @@ The source notes that "rank distribution is uniform" while the "z-score distribu
 - S6: point-in-time data (O-5, O-8).
 - S9c → G9: specification and admission.
 - *[2026-10-08]* Peer methods (Greenblatt, O'Shaughnessy, Investwiser quality, Seeking Alpha factor grades) are mapped onto the same parameterised contract, with fit verdicts, in `S4_SCORING_PEER_METHODS.md`. The order of operations (O-7) and the missing-data rule (O-6) are shown to be material (G-2, G-3).
+- *[2026-10-08]* Display: Sørensen value and momentum appear as separate columns of the score table (`S4_SCORING_PEER_METHODS.md` §9), next to the Greenblatt-type legs; no combined total by default.
 
 ## Appendix — verification script (synthetic; reproduces P-1 … P-5)
 

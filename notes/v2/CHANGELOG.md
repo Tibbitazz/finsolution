@@ -1,5 +1,22 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.2 owner-review round: method-specific risk models, RMT by universe size, score table, verification timing (branch `stage/s04-method-library`)
+
+- **ADR-0027 D3 revised (r2; still PROPOSED)** after the owner's question "should the risk estimation depend on the PC method?":
+  - construction risk models are **method-specific** (declared per PC method in its contract; produced by the risk role as versioned artefacts);
+  - **one common reference risk model per declared horizon per run** serves evaluation: CRO diagnostics, IPS/limit checks (binding), candidate cards, Portfolio Map (PM-1) and learning records. It is a reference-estimator control (ADR-0026 §4.1);
+  - dual reporting on candidate cards (risk-model disagreement; sensitivity line);
+  - AC-level risk outputs remain evidence; PSD projection kept;
+  - title, alternatives, evidence, consequences and revisit triggers updated; revision history added.
+- **RMT cleaning by universe size** (`S4_ANG_BASELINE.md` §13.3, Appendix C; synthetic, reproducible, seed 20261008):
+  - harmful for 17 asset classes (genuine sub-edge eigenvalues destroyed);
+  - best for 100–300 stocks;
+  - neutral under long-only 10% caps.
+  - Eligibility needs N, q_eff, constraint set and a spectrum diagnostic. No threshold set (S10, RQ-14).
+- **Score table spec** (`S4_SCORING_PEER_METHODS.md` §9): separate columns for Sørensen value and momentum and the Greenblatt-type EY and ROC legs; AGG-EYROC only as a labelled aggregation variant; cell contract; null-reason codes NR-1 … NR-6; rules T-1 … T-8; one artefact for dashboard and agents.
+- **Verification timing** (S4_PLAN §G.1): mathematical verification per method in S4.5–S4.24 on synthetic data; empirical selection of signals, moments and estimators in S7 → S9/S10/S11. Refinements P-V1 and P-V2 proposed, not applied.
+- **Reconciled:** `S4_ANG_ADAPTATION.md` B-7, B-33, B-34, C-12, §4, §5; S4_PLAN C-12 and the S4.3, S4.13 and S4.16 rows; decision register; RQ-14, RQ-32; Sørensen record pointer; HANDOFF. Not pushed.
+
 ## 2026-10-08 — S4.2 adaptation map drafted; ADR-0027 proposed (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_ANG_ADAPTATION.md` (DRAFT for owner review):

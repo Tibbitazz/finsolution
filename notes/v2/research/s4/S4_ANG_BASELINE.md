@@ -451,6 +451,70 @@ So estimator choice is **method- and constraint-dependent**, which supports the 
 - So conditional-volatility dynamics barely move a **3-year SAA** covariance. They matter for **short-horizon** uses: CRO risk reports, volatility targeting (PC-A5), monitoring and Trader timing evidence.
 - This matches ANG's own short- vs long-horizon split (p. 29). Horizon must be a declared field of every Σ (ADR-0026 §8 descriptor horizon).
 
+### 13.3 RMT cleaning and universe size (owner question, 2026-10-08, second round)
+
+**Question:** "What about the RMT-cleaned risk model based on the number of assets included?"
+
+**Mechanism** (`VERIFIED-DERIVATION`; closed form plus the spectra below):
+- Eigenvalue clipping (Laloux et al. 1999, `CANDIDATE SOURCE`) keeps the eigenvalues of the sample correlation matrix above the Marchenko–Pastur edge λ+ = (1 + √q)², q = N/T. It replaces all others by their average (trace preserving).
+- This is close to ideal when the true spectrum is **a few large factors plus a flat bulk**: the clipped bulk is then pure noise.
+- It is **harmful when genuine eigenvalues lie below the edge**. Clipping lifts real low-variance directions (e.g. near-collinear bond maturities), which minimum-variance-type methods exploit.
+- The edge is a pure-noise null. It cannot tell a small genuine eigenvalue from noise, and at small N there are too few eigenvalues for the bulk to be estimated (06 §4).
+
+**True spectra of the two synthetic designs** (Appendix C):
+
+| Design | True correlation eigenvalues | Above λ+ at T = 60 / 120 / 250 |
+|---|---|---|
+| 17 asset classes (Appendix B design) | 6.92, 4.22, 1.11, 0.99, 0.82, 0.60, 0.40, 0.40, 0.20 (×6), 0.15, 0.15, **0.02** | 2 / 2 / 2 (λ+ = 2.35 / 1.89 / 1.59) |
+| 100 stocks (market + 8 sectors; one draw) | 38.06; 3.07 … 0.78 (eight sector eigenvalues); bulk of 91 in [0.20, 0.77] | spiked-bulk shape, which RMT is designed for |
+
+In population terms, clipping in the asset-class design replaces 15 eigenvalues (1.11 down to 0.02) by their mean of about 0.39. The 0.02 and 0.15 directions are real hedges, and they are lost.
+
+**Simulation R-1** (synthetic; Gaussian i.i.d.; monthly; 100 simulations per cell; seed 20261008; Appendix C; **illustrative, not adopted**). Unconstrained GMV; each cell is out-of-sample variance divided by the true-GMV variance:
+
+| Universe | T (months) | q = N/T | Sample | LW-correlation | RMT clipping | Eigenvalues kept (mean) |
+|---|---|---|---|---|---|---|
+| 17 asset classes | 60 | 0.28 | **1.39** | 1.42 | 1.89 | 2.0 |
+| 17 asset classes | 120 | 0.14 | **1.16** | 1.23 | 1.83 | 2.0 |
+| 17 asset classes | 250 | 0.07 | **1.07** | 1.12 | 1.77 | 2.0 |
+| 50 stocks | 60 | 0.83 | 6.44 | 1.70 | **1.44** | 1.0 |
+| 50 stocks | 120 | 0.42 | 1.67 | 1.42 | **1.30** | 1.0 |
+| 50 stocks | 250 | 0.20 | 1.25 | **1.21** | 1.24 | 1.1 |
+| 100 stocks | 60 | 1.67 | singular | 1.96 | **1.65** | 1.1 |
+| 100 stocks | 120 | 0.83 | 5.95 | 1.93 | **1.43** | 1.8 |
+| 100 stocks | 250 | 0.40 | 1.67 | 1.51 | **1.33** | 3.4 |
+| 300 stocks | 60 | 5.00 | singular | 2.39 | **2.20** | 2.1 |
+| 300 stocks | 120 | 2.50 | singular | 1.93 | **1.51** | 3.9 |
+| 300 stocks | 250 | 1.20 | singular | 2.63 | **1.26** | 7.1 |
+
+**Simulation R-2** (same stock design; 100 stocks; long-only, maximum weight 10%; 40 simulations):
+
+| T | q | Sample | LW-correlation | RMT clipping |
+|---|---|---|---|---|
+| 120 | 0.83 | 1.125 | 1.120 | 1.120 |
+| 250 | 0.40 | 1.060 | 1.058 | 1.069 |
+
+**Findings (R-1, R-2):**
+1. **The same estimator is the worst choice in one problem and the best in another.** At the asset-class level (N = 17) RMT clipping was the worst estimator at every T (1.77–1.89× vs 1.07–1.39× for the sample matrix). For 100–300 stocks it was the best in every cell. At N = 50, T = 250 the three are within 0.04.
+2. **Dimension alone is not the criterion; spectrum shape matters too.** The asset-class failure is not only "N is small". The design has genuine eigenvalues far below the edge. This refines 06 §4: the eligibility contract needs N, q_eff **and** a spectrum or structure diagnostic. The exact form is an S10 question.
+3. **Some cleaning is mandatory once T ≤ N.** The sample matrix is then singular, and unconstrained methods cannot run on it (300 stocks at T = 250 months is already q > 1).
+4. **Constraints again neutralise most differences** (R-2: all within 1.06–1.13×; differences ≤ 0.011, standard errors not computed). This matches §13.2 finding 2 and Jagannathan & Ma (2003).
+5. **Unexplained result, recorded rather than smoothed over:** LW-correlation at N = 300 is worse at T = 250 (2.63) than at T = 120 (1.93). A plausible cause is the intensity estimate near q ≈ 1 with an identity target that ignores the market factor. This has not been investigated.
+
+**Implications:**
+- **Asset-class level** (ANG's level; roster v0): RMT clipping is **not supported** by this evidence. Sample or correlation-shrinkage estimators (§13.2) remain the candidates.
+- **Security level** (Sørensen scoring → security-level EPO, `S4_SCORING_SORENSEN.md` O-9c; any unconstrained or weakly constrained stock-level method): RMT cleaning or nonlinear shrinkage (LW 2017) are leading candidates. Some cleaning is required when T ≤ N.
+- This is direct evidence for **method- and dimension-specific construction risk models** (ADR-0027 D3, r2). One estimator applied to all methods would be wrong somewhere.
+
+**Caveats:**
+- one design per level;
+- Gaussian, i.i.d. and stationary returns (no heavy tails, volatility clustering or regime change);
+- GMV only (no μ);
+- the stock design is exactly the spiked model RMT is built for, which favours RMT;
+- linear shrinkage is represented by one target only (identity on correlations). LW 2003 single-factor and constant-correlation targets, LW 2017 nonlinear shrinkage, Bun–Bouchaud–Potters rotationally invariant estimators, EWMA and effective-T effects are **not** in this run.
+
+All of these belong to the S10 design (RQ-14). **No threshold is set.**
+
 ## Appendix — verification script (published numbers; reproduces V-1, V-3, V-4, V-6)
 
 ```python
@@ -501,4 +565,77 @@ for T in (36,60,120):
         X=rng.multivariate_normal(np.zeros(N),Sig,T)
         for k,f in E.items(): S=f(X); w=lo(S); v=un(S); L[k].append(w@Sig@w/va); U[k].append(v@Sig@v/vb)
     print(T,{k:round(np.mean(x),3) for k,x in L.items()},{k:round(np.mean(x),2) for k,x in U.items()})
+```
+
+## Appendix C — RMT cleaning by universe size (synthetic; reproduces the §13.3 tables and spectra)
+
+Run time is about 40 s. Output order: R-1 rows, R-2 rows, then the two spectra.
+
+```python
+import numpy as np, warnings; from scipy.optimize import minimize
+warnings.filterwarnings('ignore'); np.seterr(all='ignore')
+rng=np.random.default_rng(20261008)
+def lw_target_identity(Z):                      # LW(2004) on standardised data (correlation shrinkage toward I)
+    T,n=Z.shape; Zc=Z-Z.mean(0); S=Zc.T@Zc/T; m=np.trace(S)/n; d2=np.sum((S-m*np.eye(n))**2)/n
+    b2=min(sum(np.sum((np.outer(x,x)-S)**2) for x in Zc)/n/T**2,d2); return (b2/d2)*m*np.eye(n)+((d2-b2)/d2)*S
+def to_cov(C,s): d=np.sqrt(np.diag(C)); return np.outer(s,s)*C/np.outer(d,d)
+def est_sample(X): return np.cov(X,rowvar=False,bias=True)
+def est_lwcorr(X): s=X.std(0); return to_cov(lw_target_identity((X-X.mean(0))/s),s)
+def est_rmt(X):                                 # Laloux et al. eigenvalue clipping, trace preserving
+    T,n=X.shape; s=X.std(0); C=np.corrcoef(X,rowvar=False); q=n/T; lp=(1+np.sqrt(q))**2
+    w,V=np.linalg.eigh(C); noise=w<lp
+    if noise.sum()>0: w=w.copy(); w[noise]=w[noise].mean()
+    Cc=V@np.diag(w)@V.T; return to_cov(Cc,s)
+def gmv_u(S):
+    try: x=np.linalg.solve(S,np.ones(len(S)))
+    except np.linalg.LinAlgError: return None
+    return x/x.sum()
+def factor_corr(n,k=8):                         # stock universe: market + k sectors, heterogeneous loadings
+    bm=rng.uniform(.4,.8,n); sec=rng.integers(0,k,n); bs=rng.uniform(.2,.5,n)
+    F=np.zeros((n,k)); F[np.arange(n),sec]=bs; L=np.column_stack([bm,F]); C=L@L.T; np.fill_diagonal(C,1)
+    return C
+def asset_class_corr():                         # 17 asset classes (as in Appendix B)
+    g=['E']*6+['T','T','T','C','H','S','C','M','R','G','K']
+    def rho(a,b):
+        if a==b: return {'E':.80,'T':.85,'C':.80}.get(a,.6)
+        s={a,b}
+        if s<={'E','R','H','M'}: return .60
+        if 'E' in s and s&{'T','S'}: return -.10
+        if 'E' in s and 'C' in s: return .30
+        if s<={'T','S','C'}: return .55
+        return .05 if 'G' in s else (.25 if 'K' in s else .20)
+    R=np.array([[1 if i==j else rho(g[i],g[j]) for j in range(17)] for i in range(17)])
+    e,V=np.linalg.eigh(R); R=V@np.diag(np.clip(e,1e-3,None))@V.T; d=np.sqrt(np.diag(R)); return R/np.outer(d,d)
+# R-1: unconstrained GMV
+cases=[("17 asset classes",asset_class_corr(),np.array([.16,.20,.16,.19,.17,.21,.02,.05,.12,.07,.10,.08,.07,.11,.19,.15,.20]))]
+for n in (50,100,300): cases.append((f"{n} stocks",factor_corr(n),rng.uniform(.18,.45,n)))
+est={'sample':est_sample,'LW-corr':est_lwcorr,'RMT-clip':est_rmt}
+for name,C,vol in cases:
+    n=len(vol); Sig=np.outer(vol,vol)*C/12; w0=gmv_u(Sig); v0=w0@Sig@w0
+    for T in (60,120,250):
+        out={k:[] for k in est}; nclip=[]
+        for _ in range(100):
+            X=rng.multivariate_normal(np.zeros(n),Sig,T)
+            for k,f in est.items():
+                if k=='sample' and T<=n: continue
+                w=gmv_u(f(X))
+                if w is not None: out[k].append(w@Sig@w/v0)
+            nclip.append((np.linalg.eigvalsh(np.corrcoef(X,rowvar=False))>=(1+np.sqrt(n/T))**2).sum())
+        print(name,T,round(n/T,2),{k:(round(np.mean(v),2) if v else 'singular') for k,v in out.items()},'kept',np.mean(nclip))
+# R-2: long-only GMV, max weight 10%, 100 stocks (re-seeded)
+def lo(S):
+    n=len(S); return minimize(lambda w:w@S@w,np.ones(n)/n,jac=lambda w:2*S@w,bounds=[(0,.10)]*n,
+        constraints=[{'type':'eq','fun':lambda w:w.sum()-1}],method='SLSQP',options={'maxiter':300,'ftol':1e-12}).x
+rng=np.random.default_rng(20261008)
+n=100; C=factor_corr(n); vol=rng.uniform(.18,.45,n); Sig=np.outer(vol,vol)*C/12; w0=lo(Sig); v0=w0@Sig@w0
+for T in (120,250):
+    out={k:[] for k in est}
+    for _ in range(40):
+        X=rng.multivariate_normal(np.zeros(n),Sig,T)
+        for k,f in est.items(): w=lo(f(X)); out[k].append(w@Sig@w/v0)
+    print('R-2',T,round(n/T,2),{k:round(np.mean(v),3) for k,v in out.items()})
+# Mechanism: true correlation spectra (re-seeded draw of the stock DGP)
+print('17-class spectrum',np.round(np.sort(np.linalg.eigvalsh(asset_class_corr()))[::-1],2))
+rng=np.random.default_rng(20261008); f=np.sort(np.linalg.eigvalsh(factor_corr(100)))[::-1]
+print('100-stock spectrum: top 9',np.round(f[:9],2),'bulk range',np.round((f[9:].min(),f[9:].max()),2))
 ```

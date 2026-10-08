@@ -239,6 +239,103 @@ Power table for D-5:
 - The decision is taken at G9 by D-1 … D-7.
 - Expected outcome under low power: decomposition plus combination (cheapness on an enterprise basis plus a separate profitability descriptor), not a winner-takes-all choice.
 
+## 9. Score table: separate scores for the dashboard and for agent review (owner request, 2026-10-08)
+
+**Owner request:** "perhaps the Sørensen and Greenblatt may show two different scores instead of combining them, since they show two different things. We want to construct a similar scoring table as Investwiser has shown. This will be useful for the dashboard for our visual analysis, and the agents when they are doing their review."
+
+**Answer: agreed, with one refinement.**
+- **Separate display is already what our rules require:**
+  - ADR-0012 §4 (no master composite);
+  - Sørensen's own value and momentum are already two scores (`S4_SCORING_SORENSEN.md` S-5);
+  - §8 D-6 ("do not choose; keep both as separate descriptors").
+- **Refinement: they are only partly "two different things".**
+  - Sørensen Value (−P/E, −P/B) and Greenblatt's earnings yield (EBIT/EV) both measure **cheapness** and should usually be positively rank-correlated.
+  - The genuinely different content is Greenblatt's **return on capital** (profitability) and Sørensen's **momentum**.
+  - Greenblatt's score is itself a combination (EY + ROC).
+
+  So the table shows the **legs** as columns, and the Greenblatt-type combined rank only as a labelled aggregation variant. A reader can then see *why* the two methods disagree on a stock, e.g. "cheap but unprofitable" or "profitable but expensive".
+- **Display does not decide inputs.** Which scores feed beliefs or portfolio construction is still decided by the §8 protocol at G9. A column's presence is not an admission (ADR-0025).
+
+### 9.1 Layout (v0 proposal; nothing adopted)
+One row per security in the declared universe at an as-of date, and one column per descriptor. This follows the Investwiser format (percentiles 0–100 against a stated universe, §1), with our own specifications and without undisclosed totals.
+
+| Group | Column | Descriptor ID (§6) | Definition (summary) | Cell | Status badge |
+|---|---|---|---|---|---|
+| Value | Value (Sørensen) | SCORE-VAL (V0; V1 variant) | z(−P/E) + z(−P/B), re-standardised, then percentile | 0–100 | REFERENCE |
+| Value | Earnings yield, EV basis (Greenblatt-type) | DESC-V-EYEV | EBIT / EV | 0–100, raw % on drill-down | CANDIDATE |
+| Value | Value composite (O'Shaughnessy-type) | SCORE-VAL-VC | VC2-type: mean percentile of six metrics, re-ranked | 0–100 | VARIANT |
+| Quality | Return on capital (Greenblatt-type) | DESC-Q-ROCG | EBIT / (NWC + NFA) | 0–100, raw % on drill-down | CANDIDATE |
+| Quality | Gross profitability | DESC-Q-GPA | Gross profit / total assets (Novy-Marx) | 0–100 | CANDIDATE |
+| Quality | Operating profitability | DESC-Q-OP | Fama–French (2015) RMW-type | 0–100 | CANDIDATE |
+| Quality | Return on assets | DESC-Q-ROA | Net income / total assets | 0–100 | CANDIDATE |
+| Quality | F-score | DESC-Q-FSCORE | Nine binary criteria (Piotroski) | **raw 0–9**, not a percentile | CANDIDATE |
+| Quality | Accruals | DESC-Q-ACCR | Sloan-type accruals | 0–100 | CANDIDATE |
+| Momentum | Momentum 12–1 (Sørensen) | SCORE-MOM | P(t−1)/P(t−12) − 1 on a total-return index | 0–100 | REFERENCE |
+| Momentum | 3 m and 6 m returns | SCORE-MOM variants | No skip month; they overlap the short-term reversal window (§5) | 0–100 | VARIANT |
+| Aggregation (labelled) | EY–ROC rank composite (Greenblatt-type) | AGG-EYROC | Rank-sum of EY and ROC, shown as a percentile | 0–100 | AGGREGATION VARIANT (RQ-32) |
+| Context (not scores) | Sector, country, currency, market cap, liquidity, data as-of | — | Raw values | — | CONTEXT |
+| Deferred | EPS revisions; forward growth | DESC-REV, DESC-GROWTH-FWD | — | — | DEFERRED (point-in-time consensus) |
+
+### 9.2 Cell contract (every non-context cell)
+
+| Field | Content |
+|---|---|
+| Value | Percentile 0–100 by percent_rank = (rank − 1)/(n − 1), as in `S4_SCORING_SORENSEN.md` S-5; or a raw value for count scores |
+| Raw inputs (drill-down) | Each metric with units, fiscal period (TTM or annual; period end), price date and currency |
+| Comparison universe | ID, definition and N on the as-of date. The column header states it (e.g. "pct vs Nordic eligible, N = 412") |
+| Method | Transform and combine order (z-then-rank vs rank-then-combine, G-2), missing-data rule (G-3) and method version (e.g. V0/V1) |
+| Provenance | Data source, filing or publication date, as-of timestamp (point-in-time; DR-1) |
+| Staleness | ADR-0012 §2 staleness state |
+| Null reason | A code from §9.3. A blank cell always says why |
+| History | Stored point-in-time values over time (sparkline). **Never recomputed with later-restated data** |
+| Admission and use | Status badge (§9.1) plus the consumer roles that currently use the descriptor (admitted uses per consumer, ADR-0026 §8) |
+
+### 9.3 Null-reason codes (requirements; the S9c contract defines them)
+
+| Code | Meaning | Example |
+|---|---|---|
+| NR-1 | Input missing | No EBIT reported. In V0, listwise deletion (S-6) blanks both Sørensen scores |
+| NR-2 | Ineligible by predicate | Financials and utilities for EV-based metrics |
+| NR-3 | Sign or denominator rule | ROC with NWC + NFA ≤ 0; P/E for loss-makers in V0 (P-5) |
+| NR-4 | Insufficient history | Fewer than 12 months of prices; under 5 years for stability measures |
+| NR-5 | Stale beyond limit | Last filing older than the staleness limit |
+| NR-6 | Comparison group too small | Sector-relative variant below the minimum group size (RQ-30) |
+
+### 9.4 Rules
+
+| Rule | Content | Reason |
+|---|---|---|
+| T-1 | **No master total by default.** AGG-EYROC, and any QVM-type total, appear only as labelled aggregation variants registered under RQ-32 | ADR-0012 §4; a total hides which leg drives it (§5: Investwiser totals DOES NOT FIT) |
+| T-2 | **Display ≠ signal.** A column is shown with its status badge. Showing it neither admits it nor makes it a belief or PC input | ADR-0025; §8 |
+| T-3 | **The universe is explicit.** Changing the comparison universe (global, region, sector) creates a different descriptor ID, not a toggle on the same one | O-4; RQ-30 |
+| T-4 | **Agents cite, challenge and never compute.** They cite cell IDs (descriptor, as-of, version). A challenge (e.g. P/E is meaningless for a loss-maker; EV distorted by IFRS 16 leases) is a structured note against the cell, never a changed number | R8; ADR-0012 §5 |
+| T-5 | **Overlap panel.** For the current universe and date, show the cross-sectional Spearman correlation matrix among the displayed columns, with its history | Answers "do Sørensen and Greenblatt measure different things?" with data each period. Highly correlated columns are fewer independent bets (cf. N_eff, `S4_ANG_BASELINE.md` §13.1) |
+| T-6 | **Disagreement view.** List securities where two columns diverge by more than a declared percentile gap (e.g. top quintile on SCORE-VAL, bottom half on DESC-Q-ROCG). The gap is a display parameter, not a signal | Directs review to the cases where the methods differ |
+| T-7 | **Neutral encoding.** Percentiles on a neutral sequential scale; no buy/sell colours or labels | ADR-0017 (analysis-only default) |
+| T-8 | **One artefact, two consumers.** One deterministic Score Table artefact per (universe, as-of, method versions). The dashboard renders it (S8 view registry, PM-9; S14 report). Agents receive it, or row subsets, inside evidence packets (RQ-34) | Dashboard and agents never see different numbers |
+
+### 9.5 How agents use it in review
+- **Security-sleeve reviewers and the CRO:**
+  - cite which descriptors drive a proposal's holdings;
+  - flag concentration in one leg (e.g. all cheapness, no profitability);
+  - flag holdings with null or stale cells.
+- **Learning (ADR-0027 D1, proposed):** the stored table at each as-of date is the record against which later outcomes are measured (Forecast and Outcome Records). Scores are deterministic and point-in-time, so their historical evaluation is valid. There is no LLM look-ahead (`S4_SCORING_SORENSEN.md` §5).
+
+### 9.6 Asset-class analogue (not specified here)
+ANG works at the asset-class level. The analogous object there is an **asset-class evidence panel**: one row per asset class, with columns for:
+- the CMA by method and the judge's final estimate and range;
+- confidence;
+- the TSMOM state;
+- volatility under the construction and reference risk models, with horizon (ADR-0027 D3, r2).
+
+Its type belongs in the S4.3 taxonomy; its content belongs in S4.15.
+
+### 9.7 Open items
+- Column set and display order: S9c and S14. Display order is a presentation preference, not a belief.
+- Universe (Nordic, global, other): S5. Open sector classification: §7 item 2.
+- Data: S6. ESEF is annual only, so TTM fields need another source.
+- Visual mock-up: S8/S14. The UI concept prototype stays outside GitHub.
+
 ## Appendix — verification script (synthetic; reproduces G-1 … G-3)
 
 ```python

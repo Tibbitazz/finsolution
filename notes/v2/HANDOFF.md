@@ -96,12 +96,13 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `3aa8f34` | Peer scoring methods (Investwiser Greenblatt/O'Shaughnessy/quality; Seeking Alpha factor grades); G-1 … G-3 |
 | `18d738d` | **S4.1** ANG v2 baseline (`S4_ANG_BASELINE.md`); ANG-28 … ANG-36; §A superseded; FMP/Finviz correction |
 | `d29fad3` | S4.1 settlement: scoring decision protocol; learning × correlation (ANG-37); covariance evidence; FMP/Finviz; external reviews; **pushed** |
-| (latest) | **S4.2** adaptation map (`S4_ANG_ADAPTATION.md`) + ADR-0027 PROPOSED; S4_PLAN §B superseded; C-5 … C-14 statuses |
+| `37f81df` | **S4.2** adaptation map (`S4_ANG_ADAPTATION.md`) + ADR-0027 PROPOSED; S4_PLAN §B superseded; C-5 … C-14 statuses; **not pushed** |
+| (latest) | S4.2 owner-review round: **ADR-0027 D3 r2** (method-specific construction risk models + one common reference model per horizon); RMT by universe size (`S4_ANG_BASELINE.md` §13.3, Appendix C); score-table spec (`S4_SCORING_PEER_METHODS.md` §9); verification timing (S4_PLAN §G.1); RQ-14, RQ-32 annotated; **not pushed** |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
 - **0025** (admission ≠ evaluation): **ACCEPTED 2026-10-07** (owner decision D-1). 06 §1/§2 and 02 §D are annotated; ADR-0005 is superseded in part.
-- **0027** (ANG adaptation: governed learning L-1 … L-7, registry evolution without auto-culling, one risk model per declared horizon, runtime diagnostics, declared units): **PROPOSED 2026-10-08** (S4.2).
+- **0027** (ANG adaptation: governed learning L-1 … L-7, registry evolution without auto-culling, method-specific construction risk models with one common reference model per declared horizon (D3 r2), runtime diagnostics, declared units): **PROPOSED 2026-10-08** (S4.2).
 - **0026** (Agent Mandate and Decision Record; investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution): **ACCEPTED 2026-10-08** after the owner's mathematical/authority check, with corrections C-1 … C-6 and additions S-1 … S-4 (owner check record in the ADR). 05 §2 layer 8 and 08 S13d are annotated.
 
 ### 3.3 Where things are (`notes/v2/`)
@@ -222,7 +223,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED; awaiting review). S4.2b and S4.15b drafted. **S4.3 onward not started** |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 revised to r2 after the owner's review question; awaiting review). S4.2b and S4.15b drafted. **S4.3 onward not started** |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
@@ -251,12 +252,14 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 
 | # | Decision | Recommendation | Where |
 |---|---|---|---|
-| 0 | **S4.2 review:** accept `S4_ANG_ADAPTATION.md`; accept, amend or defer **ADR-0027** (governed learning; no auto-culling; one risk model per horizon; runtime diagnostics; declared units) | Accept ADR-0027 at G4 or earlier | S4.2 |
+| 0 | **S4.2 review:** accept `S4_ANG_ADAPTATION.md`; accept, amend or defer **ADR-0027** (governed learning; no auto-culling; method-specific construction risk models + one reference model per horizon (r2); runtime diagnostics; declared units) | Accept ADR-0027 at G4 or earlier | S4.2 |
 | 1 | **S8 start:** circulate the Developer Architecture Brief (S4 plan §I) with DR-1 … DR-10 as interface-only items | After the push | S4 plan §H–§I |
 | 2 | **Sandbox keys:** regenerate/revoke the EODHD and Tiingo keys | Do (owner action) | sandbox D7 |
 | 2b | **Data access (owner, when S6 starts):** free FRED, OpenFIGI and Tiingo keys; whether to take EODHD All World (+ fundamentals); whether the university licence (Bloomberg / FactSet / I/B/E/S) allows personal research use for validation | Decide at S6; nothing needed now | S6 lead §7–§8 |
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
+| 5 | **Verification refinements P-V1, P-V2:** S4.4 lists the inputs (moments) each PC method consumes; S4.5 creates the verification harness so each method is verified when extracted | Approve | S4_PLAN §G.1 |
+| 6 | **Push** of `37f81df` and the S4.2 review-round commit | Push after the owner has read ADR-0027 r2 | §3.1 |
 
 **Resolved on 2026-10-08:** ADR-0026 accepted with C-1 … C-6 and S-1 … S-4, and F20/F21 kept as candidate fields; branch pushed (no PR).
 
@@ -311,6 +314,7 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 | One P/B outlier among 500 synthetic names | Composite rank correlation with P/E 0.77 → 0.94, with P/B 0.53 → 0.23 | Scoring P-4 |
 | LLM recall of index returns (GPT-4.1) | S&P 500 monthly correlation 1.00 (sign 98%); stocks 0.20 | Literature §1 P4 |
 | Lookahead Propensity after the cutoff | Mean 0.000 (2024) vs 0.18–0.88 (2012–2022) | Literature §1 P3 |
+| RMT eigenvalue clipping vs universe size (unconstrained GMV, synthetic) | 17 asset classes: worst (1.77–1.89× oracle vs sample 1.07–1.39×); 100–300 stocks: best (300 stocks, T = 250: 1.26 vs LW-corr 2.63); long-only 10% cap: all 1.06–1.13× | S4.1 §13.3 |
 
 ---
 
