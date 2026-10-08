@@ -111,13 +111,14 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_PLAN.md` | Plan, amendments 1–18, G4 criteria 1–24 |
 | `S4_ANG_BASELINE.md` | **S4.1 (DRAFT, awaiting owner review):** canonical page-cited reconstruction of ANG v2. Stage table; roster reconciliation (44); agent anatomy and skills; data (FMP, Finviz); determinism; IPS governance; limitations; verified exhibit arithmetic (V-1 … V-8; effective N = inverse HHI); lecture cross-check; new issues ANG-28 … ANG-36 |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
-| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-36; ABD-1 … ABD-5 |
+| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-37; ABD-1 … ABD-5 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
 | `S4_DOWNSTREAM_INVENTORY.md` | T1–T12; FVG lead; simulation conventions |
 | `S4_INPUTS_2026-10-07.md` | Lecture, sandbox lessons, learning, correlated errors, derivations D1–D10, developer requirements DR-1 … DR-8 |
 | `S4_GITHUB_IMPL_REVIEW.md` | Third-party code: verdicts, mathematics, IPS constraints, invariants I-1 … I-9 |
 | `S4_SCORING_SORENSEN.md` | Owner-designated Sørensen/Storebrand value and momentum scores: specification, verified properties P-1 … P-5, open choices O-1 … O-10 |
 | `S4_SCORING_PEER_METHODS.md` | Investwiser scoring (Greenblatt, O'Shaughnessy, quality) traced to originals; Seeking Alpha factor grades; one generic score contract; fit verdicts (FITS / PARTIAL / DOES NOT FIT); results G-1 … G-3 |
+| `S4_EXTERNAL_REVIEWS_2026-10-08.md` | MongoDB Atlas agentic-portfolio demo (DOES NOT FIT as methodology; S8 infrastructure patterns only); Medium "vibe-coded portfolio" (a personal website, DOES NOT FIT) |
 | `S4_LIT_LOOKAHEAD_2026-10-07.md` | Look-ahead contamination and agent homogeneity: four papers (one duplicate removed), bias-direction correction, clean-window rule, diagnostics X-1 … X-5, DR-9, DR-10 |
 | `../s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` | **S6 lead (early):** data needs D-A … D-H; source and licence table; Simply Wall St and Seeking Alpha = S&P Global Market Intelligence (stated; Seeking Alpha prices from Quodd); Investwiser = EODHD (inferred from fingerprints); S&P Capital IQ Pro/Financials/Estimates (enterprise; PIT Estimates Snapshot since Aug 2016); data lineage to primary sources (filings, ESEF via filings.xbrl.org, exchanges, brokers); Norges Bank Datatorg verified; DR-7 refined; candidate stack (not adopted) |
 

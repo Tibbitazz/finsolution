@@ -315,7 +315,7 @@ The text says "four to six methods per category" (p. 9); no category has six (**
 - ANG-11 is resolved by V-6 (definition = inverse HHI);
 - ANG-09 is supported by V-3 (min–max normalisation, 40/60).
 
-**New issues from this reconstruction** (added to the register):
+**New issues from this reconstruction** (added to the register; ANG-37 added at the S4.1 settlement, §13):
 
 | ID | Type | Issue | Mat. | Stage |
 |---|---|---|---|---|
@@ -328,6 +328,7 @@ The text says "four to six methods per category" (p. 9); no category has six (**
 | ANG-34 | US | Data provenance: FMP and Finviz via `apex-data-financial` and web search (pp. 7, 38). Point-in-time handling and the "proprietary" look-ahead techniques are undisclosed (pp. 2, 14–15, 24) | M | S6 |
 | ANG-35 | II | "four to six methods per category" (p. 9) vs Exh. 3 counts 5/5/5/4 (+2 agentic) | L | S4.4 |
 | ANG-36 | US | Paper: each agent *reviews* two peers (p. 11). Lecture: each candidate *receives* two reviews (s31 notes). Both ⇒ a balanced 2-in/2-out design. With category E of size 2, the intra-category review is forced (Researcher ↔ AdvDiv) [I]. The assignment algorithm is unspecified (cf. the third-party self-assignment defect, `S4_GITHUB_IMPL_REVIEW.md`) | M | S4.17 → S12 |
+| ANG-37 | US | **Learning × correlated errors.** ANG never addresses whether self-learning (global skill deployment, common lessons, performance culling, an LLM editing LLM agents) homogenises agents and erodes the diversity its own CIO logic relies on (p. 20; pp. 24–25 vs pp. 27–28; s16). See §13.1 | **H** | S4.2, S4.3 → S8, S17 |
 
 ## 12. S4.1 exit checklist (S4_PLAN §G row S4.1)
 
@@ -348,6 +349,108 @@ The text says "four to six methods per category" (p. 9); no category has six (**
 
 **Handoff (SYNC-1, with S4.2):** the stage table §2.1 and the open items §11 are the developer-facing input. S4.2 classifies every element (adopted / generalised / adapted / deferred / N/A) and resolves or escalates C-1 … C-10.
 
+## 13. S4.1 settlement: owner questions of 2026-10-08
+
+### 13.1 Learning in ANG: verified, and its tension with correlated errors
+
+**Learning is a core pillar of ANG** (`VERIFIED-SOURCE`).
+- **In the paper:**
+  - Abstract (p. 0): a meta agent "compares past forecasts against realized returns and rewrites agent code and prompts to improve future performance".
+  - p. 2: "Our agentic architecture also allows agents to learn and acquire new skills".
+  - Conclusion (p. 29): the meta agent "closes the feedback loop between prediction and realized outcomes so that agents can learn".
+- **In the lecture:** SELF-LEARNING is one of the three things "really new", alongside SCALE and PRODUCTIVE DISSENT (s12, s26; also s16, s36).
+
+**ANG has two learning loops:**
+1. **Forecast learning (meta agent, pp. 27–28).**
+   - Macro and AC estimates are scored against outcomes over a rolling 3-year window.
+   - Skills, prompts and code are edited, with human approval above a materiality threshold.
+2. **Method-registry evolution.**
+   - "as the agents discover and evaluate new PC methods, and decommission other PC approaches, the size and type of the PC registry will become endogenous" (fn. 4 p. 9).
+   - "successful new PC methods will be added … a portfolio review process can also cull unsuccessful PC methods" (p. 10).
+   - The forecasts to be evaluated include "the portfolio methodologies of the PC agents" (p. 27).
+   - **But no PC-method evaluation metric is given** (ANG-31). The paper also concedes that "because of the long horizons required for SAA evaluations, it will take some time before we can evaluate whether the meta agent's modifications genuinely improve out-of-sample performance" (p. 28).
+
+**Does learning conflict with agent correlation?** **Yes, potentially. ANG does not address the interaction (new ANG-37).** Four mechanisms can homogenise the agents:
+
+| # | Mechanism | Effect |
+|---|---|---|
+| (a) | **Global deployment:** the lecture's skill evolver "deploys the improved skill across all agents" (s16) | All agents share the same updated instructions, raising error correlation |
+| (b) | **Common lessons:** every agent learns from the same outcome history | Agents converge on the same lessons |
+| (c) | **Performance culling:** "cull unsuccessful PC methods" | Shrinks the method set toward recent winners. This contradicts ANG's own CIO logic, which values centrality and the orthogonal Adversarial Diversifier and appeals to boosting, where the ensemble gains "precisely from learners that make forecasting errors in uncorrelated dimensions" (p. 20) |
+| (d) | **An LLM meta agent editing other LLM agents** | Judge = author risk (self-preference; RQ-56) |
+
+**Quantified** (L-1, `VERIFIED-DERIVATION`, the standard equicorrelation result): N agents whose errors have pairwise correlation ρ behave like N_eff = N / (1 + (N−1)ρ) independent agents. For 21 agents:
+
+| ρ | 0.0 | 0.1 | 0.3 | 0.6 | 0.9 |
+|---|---|---|---|---|---|
+| N_eff | 21.0 | 7.0 | 3.0 | 1.62 | 1.11 |
+
+Learning that raises ρ from 0.1 to 0.3 cuts the effective ensemble from 7 to 3. The statistical power to learn is also low (D9, D10: hit-rate SE 0.144 with 12 quarterly observations), so performance-driven culling largely selects on noise (D7: the best of 50 null strategies over 5 years has Sharpe ≈ 1.0).
+
+**Determination (`INFERENCE`; proposed as S4.2 classification "ADOPTED with guardrails"):** learning and diversity are complementary *if* diversity is a learning constraint, not an afterthought. Candidate design rules for S4.3/S8/S17:
+
+| Rule | Content |
+|---|---|
+| L-1 | **Separate learning targets.** Forecast-model parameters, CMA-method weights and method eligibility are learned in **code** under pre-registered statistics. Prompts and skills change only through the gated path |
+| L-2 | **PC methods are evaluated deterministically** (S7 protocol: net-of-cost, IR vs control, drawdown, turnover, CRO diagnostics) over **minimum horizons fixed in advance**. Evaluation informs CIO weighting (ADR-0025 axis); **it never auto-culls**. Retirement requires failing admission criteria or pre-registered evidence thresholds with multiple-testing control (D7) |
+| L-3 | **Diversity floor.** Learning may never reduce coverage below a family floor. This generalises ANG's own "≥ 3 of 5 families" rule (p. 12) from the shortlist to the registry |
+| L-4 | **Correlation as a promotion guardrail.** A change is promoted only if measured cross-agent error correlation (M6) and proposal dispersion do not deteriorate beyond a pre-set margin |
+| L-5 | **Per-role, not global, deployment** of learned skills. Champion/challenger shadow runs before promotion (S4_INPUTS §4.5) |
+| L-6 | **Judge ≠ author.** The meta agent proposes; a deterministic test battery plus a human decides (ADR-0026 §4.4; ANG pp. 27–28) |
+| L-7 | **Clean-window rule.** Only post-cutoff outcomes count as learning signals (`S4_LIT_LOOKAHEAD_2026-10-07.md` §2.4) |
+
+### 13.2 Volatility and covariance: what ANG specifies, and what it does not
+
+**What ANG specifies** (`VERIFIED-SOURCE`):
+
+| Element | Statement | Ref |
+|---|---|---|
+| Covariance agent | "estimates the asset class covariance matrix using historical data and macro forecasts". **No estimator, window, frequency, shrinkage or horizon is given** | p. 6; Exh. 1 says "Covariance Agents" |
+| AC agents | Output "a volatility estimate" with the CMA; `historical_stats.json` carries trailing volatility; **each AC agent also writes `correlation_row.json`** ("correlations vs 12 other asset classes", ANG-29) | p. 6; p. 39; Exh. A.1 p. 38 |
+| CRO | Reports "ex-ante and backtest volatility, value-at-risk, maximum drawdown" | p. 10 |
+| Decomposition hint | CRO sub-agents for "short-horizon versus long-horizon volatility (each using different covariance estimators produced by yet further agents)" | p. 29 |
+
+So ANG has **three** potential risk inputs: AC volatilities, AC correlation rows and the covariance agent's Σ. How they are reconciled is unspecified (ANG-33, raised to cover the correlation rows).
+
+**A matrix assembled from separately estimated rows** (different windows or samples) need not be symmetric or positive semi-definite. It would need projection to the nearest correlation matrix (Higham 2002, `CANDIDATE SOURCE`) before any optimiser uses it.
+
+**Our position:**
+- The correlation or covariance estimator is a **Method Library entry** (COV-x) with its own eligibility contract (06 §4 RMT example: q = N/T plus a minimum N). PC methods declare their Σ dependency (S4.13 → S10; RQ-14).
+- **Candidates** (inventory S4.0 §6, extended):
+
+  | Family | Estimators |
+  |---|---|
+  | Static | Sample over a fixed or rolling window |
+  | Exponentially weighted | EWMA (RiskMetrics 1996) |
+  | Linear shrinkage | Ledoit–Wolf 2003/2004, **including correlation-only and constant-correlation targets** (Elton & Gruber 1973) |
+  | Nonlinear shrinkage | Ledoit–Wolf 2017 |
+  | RMT cleaning | Laloux et al.; Bun–Bouchaud–Potters 2017 |
+  | Factor models | — |
+  | Dynamic GARCH-type | CCC-GARCH (Bollerslev 1990), DCC (Engle 2002), cDCC (Aielli 2013) |
+
+**Evidence computed now** (synthetic; one stylised DGP: 17 asset classes, block correlations, volatilities 2–21%, Gaussian i.i.d., 200 simulations; Appendix B, seed 20261008; **illustrative, not adopted**):
+
+Each cell is out-of-sample GMV variance divided by the true minimum.
+
+| Months T | Long-only: sample | LW-identity | LW-correlation | CC-0.5 | Unconstrained: sample | LW-identity | LW-correlation | CC-0.5 |
+|---|---|---|---|---|---|---|---|---|
+| 36 | 1.059 | **3.286** | 1.054 | 1.043 | 1.82 | **10.74** | 1.64 | 1.92 |
+| 60 | 1.049 | 2.445 | 1.044 | 1.041 | 1.40 | 7.05 | 1.42 | 1.83 |
+| 120 | 1.023 | 1.578 | 1.021 | 1.043 | 1.15 | 3.83 | 1.23 | 1.75 |
+
+**Findings (C-1b):**
+1. **Target choice matters more than whether to shrink.** Shrinking toward a scaled identity equalises variances across asset classes with heterogeneous volatility and is harmful throughout. Correlation-only shrinkage preserves the volatilities.
+2. **The long-only constraint already regularises** (consistent with Jagannathan & Ma 2003). For long-only GMV, all reasonable estimators are within 2–6% of the oracle; for unconstrained GMV, estimation error costs 15–82% and correlation shrinkage helps at short T.
+3. **Fixed shrinkage intensity misfires as T grows** (CC-0.5 at T = 120). Intensity must be data-driven.
+
+So estimator choice is **method- and constraint-dependent**, which supports the per-method Σ-dependency contract in S4.13.
+
+**Dynamic models (C-2, `VERIFIED-DERIVATION`):**
+- For a GARCH(1,1)-type variance with persistence φ, the share of today's variance deviation that survives in the average forecast over H periods is (1 − φ^H) / ((1 − φ)H).
+- At daily φ = 0.98: 0.82 over 1 month, 0.20 over 1 year, **0.066 over 3 years**.
+- So conditional-volatility dynamics barely move a **3-year SAA** covariance. They matter for **short-horizon** uses: CRO risk reports, volatility targeting (PC-A5), monitoring and Trader timing evidence.
+- This matches ANG's own short- vs long-horizon split (p. 29). Horizon must be a declared field of every Σ (ADR-0026 §8 descriptor horizon).
+
 ## Appendix — verification script (published numbers; reproduces V-1, V-3, V-4, V-6)
 
 ```python
@@ -360,4 +463,42 @@ assert vote.sum() == 21*15 - 21*2                                   # V-1
 assert np.abs(.4*mm(vote) + .6*mm(metric) - comp).max() < 0.0015    # V-3
 w9 = np.array([15.9,14.7,8.9,8.4,8.1,7.3,7.2,4.9,4.8,4.4,3.6,2.4,2.1,1.6,1.6,1.4,1.3,1.2]); p = w9 / w9.sum()
 print(round(1/np.sum(p**2), 1), round(np.exp(-np.sum(p*np.log(p))), 2))  # V-6: 11.2 (inverse HHI) vs 13.57
+```
+
+## Appendix B — covariance-estimator simulation (synthetic; reproduces the §13.2 table)
+
+```python
+import numpy as np, warnings; from scipy.optimize import minimize
+warnings.filterwarnings('ignore'); np.seterr(all='ignore')
+vol=np.array([.16,.20,.16,.19,.17,.21,.02,.05,.12,.07,.10,.08,.07,.11,.19,.15,.20])   # 6 EQ, 8 FI, REIT, gold, commodities
+g=['E']*6+['T','T','T','C','H','S','C','M','R','G','K']
+def rho(a,b):
+    if a==b: return {'E':.80,'T':.85,'C':.80}.get(a,.6)
+    s={a,b}
+    if s<={'E','R','H','M'}: return .60
+    if 'E' in s and s&{'T','S'}: return -.10
+    if 'E' in s and 'C' in s: return .30
+    if s<={'T','S','C'}: return .55
+    return .05 if 'G' in s else (.25 if 'K' in s else .20)
+N=17; R=np.array([[1 if i==j else rho(g[i],g[j]) for j in range(N)] for i in range(N)])
+e,V=np.linalg.eigh(R); R=V@np.diag(np.clip(e,1e-3,None))@V.T; d=np.sqrt(np.diag(R)); R/=np.outer(d,d); Sig=np.outer(vol,vol)*R/12
+def lw(X):                                   # Ledoit-Wolf (2004), scaled-identity target
+    T,n=X.shape; Xc=X-X.mean(0); S=Xc.T@Xc/T; m=np.trace(S)/n; d2=np.sum((S-m*np.eye(n))**2)/n
+    b2=min(sum(np.sum((np.outer(x,x)-S)**2) for x in Xc)/n/T**2,d2); return (b2/d2)*m*np.eye(n)+((d2-b2)/d2)*S
+def lw_corr(X):                              # LW on standardised data -> shrunk correlation, sample vols kept
+    s=X.std(0); C=lw((X-X.mean(0))/s); d=np.sqrt(np.diag(C)); return np.outer(s,s)*C/np.outer(d,d)
+def cc(X,k=.5):                              # fixed 50% shrink of correlation toward constant correlation
+    S=np.cov(X,rowvar=False,bias=True); s=np.sqrt(np.diag(S)); Rs=S/np.outer(s,s); rb=(Rs.sum()-N)/(N*(N-1))
+    Rc=np.full((N,N),rb); np.fill_diagonal(Rc,1); return np.outer(s,s)*((1-k)*Rs+k*Rc)
+def lo(S): return minimize(lambda w:w@S@w,np.ones(N)/N,jac=lambda w:2*S@w,bounds=[(0,1)]*N,
+           constraints=[{'type':'eq','fun':lambda w:w.sum()-1}],method='SLSQP',options={'maxiter':500,'ftol':1e-14}).x
+def un(S): x=np.linalg.solve(S,np.ones(N)); return x/x.sum()
+rng=np.random.default_rng(20261008); a=lo(Sig); va=a@Sig@a; b=un(Sig); vb=b@Sig@b
+E={'sample':lambda X:np.cov(X,rowvar=False,bias=True),'LW-identity':lw,'LW-corr':lw_corr,'CC-0.5':cc}
+for T in (36,60,120):
+    L={k:[] for k in E}; U={k:[] for k in E}
+    for _ in range(200):
+        X=rng.multivariate_normal(np.zeros(N),Sig,T)
+        for k,f in E.items(): S=f(X); w=lo(S); v=un(S); L[k].append(w@Sig@w/va); U[k].append(v@Sig@v/vb)
+    print(T,{k:round(np.mean(x),3) for k,x in L.items()},{k:round(np.mean(x),2) for k,x in U.items()})
 ```

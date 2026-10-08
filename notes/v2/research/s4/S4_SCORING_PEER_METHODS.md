@@ -187,6 +187,58 @@ Every method above is an instance of one cross-sectional composite-score contrac
 3. Accounting conventions for Nordic IFRS data: EBIT definition; IFRS 16 leases in EV and NFA; negative or zero denominators; financials and utilities handling; TTM vs annual (ESEF is annual only).
 4. Naming and trademark check for "Magic Formula".
 
+## 8. Sørensen vs Greenblatt: how to decide (owner question, 2026-10-08)
+
+**First, a clarification of G-2.** The 27/50 overlap compared two *orders of operation* on the **same** metrics. It is not a Sørensen-vs-Greenblatt comparison. On real data the two will disagree more, because they use different metrics:
+- **Sørensen:** pure cheapness (−P/E, −P/B), with momentum as a separate score;
+- **Greenblatt:** cheapness on an enterprise basis (EBIT/EV) **plus** profitability (ROC).
+
+**Is one "more accurate"? Neither, a priori.** They answer different questions:
+- Sørensen: how cheap is the stock?
+- Greenblatt: how cheap *and* how profitable is it?
+
+Their usefulness is **predictive power for future, risk-adjusted, net-of-cost returns in our universe**. That is an **empirical belief question**, not a preference (ADR-0009: beliefs ⊥ preferences). Preference enters only if the investor has a non-pecuniary taste (e.g. "I want to own profitable companies"). That would be a Policy Statement field, never a reason to prefer a signal.
+
+**What the literature suggests** (priors and leads only; not our evidence; `VERIFIED-SECONDARY` unless stated):
+- **For adding profitability:** Novy-Marx (2013, *JFE* 108(1)): gross profitability predicts returns "roughly as well as book-to-market", and "controlling for profitability also dramatically increases the performance of value strategies, especially among the largest, most liquid stocks" (abstract wording via secondary records).
+- **Against Greenblatt's ROC leg:** Gray & Carlisle (*Quantitative Value*, 2012), per a CFA Institute review: the Magic Formula's edge comes from EBIT/EV, with none from ROC. EBIT/EV alone beat the two-factor formula by more than 2% per year (1974–2011, US).
+- **Nordic evidence is mixed:**
+  - Finland 1991–2013 (peer-reviewed): EBIT/EV gave the best risk-adjusted returns among value variants;
+  - Oslo 2003–2022 (NHH thesis): Magic Formula alpha of about 0.5% per month, significant before costs and weak after;
+  - Nordic 2008–2021 (NHH thesis): significant alpha before costs.
+
+  Theses are leads only.
+
+**Taken together:** the *metric* (EBIT/EV vs P/E, P/B), the *profitability* dimension and the *combination rule* are three separable questions. The literature does not settle them for our universe and costs.
+
+**Decision protocol** (pre-registered in S7 under RQ-37, before any result is seen):
+
+| Step | Rule |
+|---|---|
+| D-1 | **Define both exactly:** Sørensen V0/V1; Greenblatt-type AGG-EYROC; plus the separable components DESC-V-EYEV and DESC-Q-ROCG. Same universe, rebalance frequency, point-in-time data (filing-date lag), cost model and eligibility |
+| D-2 | **Primary metric:** a long-only top-quantile portfolio per signal vs the universe benchmark, giving **net-of-cost active return and information ratio**. **Secondary:** rank IC (Spearman of score vs next-period return; mean and HAC t-statistic); decile monotonicity; turnover |
+| D-3 | **Head-to-head:** a test of the IR or Sharpe difference with HAC standard errors. **Spanning regressions** (regress A's returns on B's and the market's; is A's alpha given B non-zero, and B's alpha given A?) separate "different" from "better" |
+| D-4 | **Multiple testing:** the variant count is fixed in advance, with deflated-Sharpe / higher t-hurdle logic (D7) |
+| D-5 | **Power, stated up front** (D9; T ≈ 2(1−ρ)(2/ΔSR)² years to reach t = 2). See the table below |
+| D-6 | **Decision rule if the test cannot discriminate (the likely case):** prefer by (i) robustness across sub-periods and markets, (ii) turnover and cost, (iii) economic rationale, (iv) simplicity. Or **do not choose**: keep both as separate descriptors (ADR-0012 §4) and let the portfolio/CIO layer diversify across them (AMP combine strategy returns, not scores) |
+| D-7 | **Confirm forward:** an untouched holdout plus a prospective record before any production default changes |
+
+Power table for D-5:
+
+| Correlation ρ of the two strategies' returns | ΔSR = 0.1 | ΔSR = 0.2 | ΔSR = 0.3 |
+|---|---|---|---|
+| 0.5 | 400 years | 100 | 44 |
+| 0.7 | 240 | 60 | 27 |
+| 0.9 | 80 | 20 | 9 |
+
+(Leading-term approximation; i.i.d. returns.) **With realistic history (10–30 years) only large differences are detectable**, which is why D-6 matters more than a "winner" test.
+
+**Recommendation:**
+- Sørensen stays the **reference** (owner designation; reproduction oracle).
+- The Greenblatt-type composite and its separable components are pre-registered **variants**.
+- The decision is taken at G9 by D-1 … D-7.
+- Expected outcome under low power: decomposition plus combination (cheapness on an enterprise basis plus a separate profitability descriptor), not a winner-takes-all choice.
+
 ## Appendix — verification script (synthetic; reproduces G-1 … G-3)
 
 ```python

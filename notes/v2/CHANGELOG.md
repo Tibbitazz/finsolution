@@ -1,5 +1,30 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.1 settled: owner questions on scoring choice, learning, covariance, FMP/Finviz, external references (branch `stage/s04-method-library`)
+
+- **Sørensen vs Greenblatt** (`S4_SCORING_PEER_METHODS.md` §8):
+  - an empirical belief question, not a preference;
+  - literature priors: Novy-Marx 2013; Gray & Carlisle; Nordic theses;
+  - decision protocol D-1 … D-7 (spanning regressions, HAC IR difference, multiple testing);
+  - power table: e.g. 60 years for ΔSR = 0.2 at ρ = 0.7;
+  - recommendation: decompose and combine if indistinguishable.
+- **Learning** (`S4_ANG_BASELINE.md` §13.1):
+  - verified as an ANG pillar;
+  - two loops (forecast learning; registry evolution);
+  - PC-method evaluation intended but unspecified;
+  - tension with correlated errors recorded as **ANG-37 (H)**, quantified by N_eff = N/(1+(N−1)ρ);
+  - design rules L-1 … L-7.
+- **Volatility and covariance** (§13.2):
+  - three ANG risk inputs (ANG-33 extended);
+  - estimator inventory extended (CCC-GARCH, EWMA, Higham nearest-correlation, constant correlation; candidates);
+  - synthetic simulation (Appendix B, reproducible): the scaled-identity Ledoit–Wolf target is harmful for heterogeneous-volatility classes; long-only constraints regularise; estimator choice is method-dependent;
+  - GARCH horizon derivation (3-year deviation share ≈ 0.07).
+- **FMP and Finviz** (S6 lead §4.5b): FMP PARTIAL (per-user key; global only at Ultimate; Oslo unconfirmed; not PIT); Finviz DOES NOT FIT (US-only screener).
+- **External references** (`S4_EXTERNAL_REVIEWS_2026-10-08.md`):
+  - MongoDB agentic-portfolio demo: DOES NOT FIT (no optimiser, risk model or evaluation; LLM recommendations; S8 infrastructure patterns only);
+  - Medium article: about a personal website, DOES NOT FIT.
+- **Annotated:** RQ-08, RQ-14, RQ-22, RQ-37, RQ-56; S4.0 §6 inventory; ANG register (ANG-37; ANG-33); HANDOFF.
+
 ## 2026-10-08 — S4.1 ANG v2 baseline drafted (owner instruction; branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_ANG_BASELINE.md` (DRAFT for owner review; canonical map, superseding S4_PLAN §A, which is kept as history). It is based on:

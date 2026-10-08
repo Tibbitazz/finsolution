@@ -197,6 +197,30 @@ The owner's link (an advertising URL) was opened **without its tracking paramete
   - **later commercial option:** if the engine ever becomes a product (CB-19).
 - **Pattern lead (DR-6/S8, not adopted):** the Kensho MCP connector shows a licensed data source exposed to agents through MCP with entitlement checks. It is consistent with R8 (agents consume deterministic, attributed data).
 
+### 4.5b FMP and Finviz: the data skill named by ANG (`apex-data-financial (fmp, finviz)`, Exh. A.1 p. 38) · `VERIFIED-SOURCE` (vendor pages, 2026-10-08)
+
+| | **FMP (Financial Modeling Prep)** | **Finviz** |
+|---|---|---|
+| What it is | Data API: prices, statements, ratios, estimates, news, transcripts, ETF holdings, economics | US equity screener and charting website; CSV export and an export "API" for Elite users |
+| Free tier | **Basic: 250 calls/day, end of day, "150+ endpoints"**; 5-year history (compare table) | Free registered account: delayed quotes, 3 years of statements, **no export** |
+| Paid (personal) | Annual billing:<br>- **Starter $19/month:** US coverage, 5 years;<br>- **Premium $49/month:** + UK, Canada, 30 years;<br>- **Ultimate $99/month:** **global coverage**, transcripts, ETF and 13F holdings, bulk | **Elite $299.50/year** ($39.50 monthly): real-time, 8 years of statements, Excel/CSV export "to setup your own Automated Workflow / AI Agents" |
+| Commercial | **Enterprise** (contact sales). "Displaying or redistributing data sourced from FMP requires a specific Data Display and Licensing Agreement" | Not offered on the pricing page. Scraping is generally reported as prohibited (secondary); the terms page was not retrievable |
+| Licence | Personal plans: one **individual**, private and non-commercial use. Sharing, display or building into tools others can use needs written consent (ToS §2.2, via secondary excerpts) | Personal subscription |
+| Where its data comes from | FMP states direct relationships with Nasdaq, LSEG, Cboe and TMX (Trust page, secondary). Fundamentals are serialised from **SEC filings**; international fundamentals are reported to be patchier (secondary) | Upstream provider not stated publicly (`UNVERIFIED`) |
+| Coverage relevant to us | Oslo/Nordic coverage **unconfirmed**: the exchange list needs an API call; a plain `EQNR` resolves to the NYSE ADR. Global coverage only in Ultimate | **US-listed only.** No Nordic or UCITS instruments |
+| Point-in-time | Not advertised; statements as currently stored; estimates history not described as snapshots | No history of screener values; current snapshot only |
+
+**Verdicts:**
+- **FMP: PARTIAL.**
+  - It can serve as a **per-user key** source (DR-7) for US fundamentals and global prices at Ultimate.
+  - It overlaps EODHD. EODHD's Nordic coverage is evidenced (Investwiser, §4.2); FMP's is not.
+  - It is **not a point-in-time source** for S6/S7 back-tests without our own snapshotting.
+  - The free tier (250/day, EOD) suffices for small US research tasks.
+- **Finviz: DOES NOT FIT** the engine.
+  - It is a US-only screening UI with no history and no Nordic or UCITS coverage.
+  - At most, an owner-side manual cross-check for US names.
+- **Why ANG can use them:** ANG's universe is 18 **US-listed** ETF-investable classes (p. 15). Our implementation universe (UCITS, NOK) is not.
+
 ### 4.6 Where the original data comes from (data lineage)
 
 | Data | Original (primary) source | Licensed aggregators seen in this review | Free access to the primary? |

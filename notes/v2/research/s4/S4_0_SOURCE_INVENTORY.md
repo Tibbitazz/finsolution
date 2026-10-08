@@ -134,6 +134,10 @@ Paths are given relative to these roots. Local files are not copied into the rep
 | Aielli (2013), cDCC, *JBES* 31(3):282–299, doi 10.1080/07350015.2013.771027 | MISSING — LOCATED (paywalled) | ResearchGate record |
 | Bollerslev (1986), GARCH | MISSING | Not yet located |
 | Glosten, Jagannathan & Runkle (1993) | MISSING | Not yet located (the local "Glosten" match is Glosten–Milgrom 1985, a false positive) |
+| *Added 2026-10-08 (S4.1 §13.2; `CANDIDATE SOURCE`, bibliographic data unchecked):* Bollerslev (1990), constant-conditional-correlation multivariate GARCH (CCC-GARCH), *REStat* | MISSING | To locate; COV inventory (S4.13 → S10) |
+| J.P. Morgan/Reuters (1996), *RiskMetrics — Technical Document* (EWMA) | MISSING | To locate; COV inventory |
+| Higham (2002), "Computing the nearest correlation matrix", *IMA J. Numer. Anal.* | MISSING | To locate; Assembling Σ from separately estimated rows (ANG-33) |
+| Elton & Gruber (1973), constant-correlation model, *JF* | MISSING | To locate; Constant-correlation shrinkage target |
 
 ## 7. Diagnostics, ensembles, deliberation (S4.16–S4.18 → S12)
 
