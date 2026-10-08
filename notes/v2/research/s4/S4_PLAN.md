@@ -1,6 +1,6 @@
 # S4 plan — Method Library & Eligibility (ANG baseline)
 
-**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 drafted 2026-10-08 (`S4_ANG_BASELINE.md`, awaiting owner review). ADR basis: ADR-0023, ADR-0024, ADR-0025, ADR-0026 (accepted; ADR-0025 on 2026-10-07, ADR-0026 on 2026-10-08). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`; amendment 18: look-ahead contamination and agent-homogeneity literature; `S4_LIT_LOOKAHEAD_2026-10-07.md`).
+**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 drafted and settled 2026-10-08 (`S4_ANG_BASELINE.md`); S4.2 drafted 2026-10-08 (`S4_ANG_ADAPTATION.md`, ADR-0027 PROPOSED; awaiting owner review). ADR basis: ADR-0023, ADR-0024, ADR-0025, ADR-0026 (accepted; ADR-0025 on 2026-10-07, ADR-0026 on 2026-10-08). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`; amendment 18: look-ahead contamination and agent-homogeneity literature; `S4_LIT_LOOKAHEAD_2026-10-07.md`).
 **Basis:** owner instruction of 2026-10-02; full re-read of ANG (version 21 Sep 2026, 40 pp, read in full by text extraction; Exhibits 1, 2, 4 and 5 extracted as images and inspected); accepted S0–S3 (G0–G3).
 **Page numbers:** printed page numbers of the paper (PDF page − 1).
 
@@ -168,6 +168,8 @@ Composite 40% vote / 60% metric; CIO weights 25/15/15/20/15/10; adversarial Shar
 
 ## B. ANG → our application: adaptation map
 
+> **Superseded as the canonical map (2026-10-08)** by [S4_ANG_ADAPTATION.md](S4_ANG_ADAPTATION.md) (S4.2). Rows B-1 … B-23 are retained there with the same IDs; B-24 … B-45 are added. This section is kept as draft history.
+
 Format: `ANG baseline → proposed adaptation → reason → architectural consequence` · class: **U** adopted unchanged · **G** generalized · **A** adapted for individual investors · **D** deferred · **N** not applicable.
 
 | # | ANG baseline | Proposed adaptation | Reason | Consequence | Class |
@@ -204,13 +206,18 @@ Format: `ANG baseline → proposed adaptation → reason → architectural conse
 | C-2 (RESOLVED by ADR-0024 §2) | ANG revisions could mean LLM-edited weights; R1 forbids that | 05 R1 | Six revision categories; parameter classes |
 | C-3 (RESOLVED by ADR-0024 §1) | Researcher methods enter the same run; our funnel requires admission | ADR-0005, 06, R5 | Research lane |
 | C-4 (RESOLVED — ADR-0025 ACCEPTED 2026-10-07; 06 §1/§2 and 02 §D annotated) | Accepted 06/02 define ADMISSIBLE as empirically evaluated; OD-4 makes admission methodological | ADR-0005, 06 §1(3), §2.4, 02 §D | ADR-0025: admission (S4) and evaluation status (S7) as separate axes. The "demonstration mode" proposal is withdrawn |
-| C-5 | Runtime use of backtest Sharpe (vote metric, CIO dimension, ensemble weighting) | ANG §3.4, §4.5 | Runtime diagnostics computed deterministically under the S7-defined protocol. Never used for Method-Library selection in S4 |
-| C-6 | Meta-agent autonomous code changes below threshold | ADR-0022 change control; 05 layer 10 | S17 decides scope; Method-Library and contract changes always gated |
-| C-7 | My 2026-10-01 S8 proposal: "whether to use an LLM at all … default offline deterministic only" | Proposal only (not accepted) | Replaced by B-18 |
-| C-8 | My 2026-10-01 S4 proposal treated S4 as a flat method inventory | Proposal only | Replaced by this plan |
+| C-5 (PROPOSED RESOLUTION — ADR-0027 D4) | Runtime use of backtest Sharpe (vote metric, CIO dimension, ensemble weighting) | ANG §3.4, §4.5 | Runtime diagnostics computed deterministically under the S7-defined protocol. Never used for Method-Library selection in S4 |
+| C-6 (PROPOSED RESOLUTION — ADR-0027 D1–D2; scope S17) | Meta-agent autonomous code changes below threshold | ADR-0022 change control; 05 layer 10 | S17 decides scope; Method-Library and contract changes always gated |
+| C-7 (RESOLVED — superseded proposal) | My 2026-10-01 S8 proposal: "whether to use an LLM at all … default offline deterministic only" | Proposal only (not accepted) | Replaced by B-18 |
+| C-8 (RESOLVED — superseded proposal) | My 2026-10-01 S4 proposal treated S4 as a flat method inventory | Proposal only | Replaced by this plan |
 
 | C-9 (RESOLVED — ADR-0026 ACCEPTED 2026-10-08; 05 annotated) | 05 §2 layer 8, "tactical judgement only if RQ-17 allows", could be read to forbid any implementation judgement | 05 (accepted G0) | Annotation: refers to deviation from w*; implementation judgement inside the mandate is governed by RQ-53 / S13 |
 | C-10 (RESOLVED — ADR-0026 ACCEPTED 2026-10-08; 08 annotated; ADR-0012 §7 read by use per ADR-0026 §8.9) | ADR-0012 §7 can be read as placing all time-series evidence in S13d, conflicting with ANG's AC-level technical signals; 08 S13d presumes several "specialist agents" | ADR-0012; 08 | Read by use (beliefs/regime → S9; timing/tactics → S13d); the S13d list is a function inventory |
+
+| C-11 (PROPOSED RESOLUTION — ADR-0027 D2) | ANG culls PC methods on performance (fn. 4 p. 9; p. 10) vs ADR-0025 (evaluation ≠ admission) and 02 §D (`RETIRED` by ADR only) | ADR-0025; 02 §D | No auto-culling; retirement by ADR; family floor |
+| C-12 (PROPOSED RESOLUTION — ADR-0027 D3) | Three ANG risk inputs (AC vol, AC correlation rows, covariance agent; ANG-33) vs one consistent risk model | S4.13/S10 | One authoritative risk model per declared horizon |
+| C-13 (PROPOSED RESOLUTION — ADR-0027 D5) | ANG CMA units implicit (USD, 3-year, nominal) vs NOK context and D6 | RQ-07 | Declared currency/hedging/horizon/return-convention fields |
+| C-14 (RESOLVED by planning) | ANG data stack (FMP, Finviz, US-listed ETFs) vs licence and universe findings | S6 lead | DR-7, CB-19, S6 |
 
 No conflict found with accepted S1–S3 content. The registries, Policy Statement and authority model are compatible with ANG's IPS-centred governance.
 
@@ -231,7 +238,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 |---|---|---|
 | S4.0 | Source and artefact inventory | DONE — awaiting owner review |
 | S4.1 | Full ANG architectural reconstruction | DRAFTED 2026-10-08: `S4_ANG_BASELINE.md` (page-cited; verified V-1 … V-8; ANG-28 … ANG-36); awaiting owner review |
-| S4.2 | ANG adaptation map + ANG-baseline ADR | NOT STARTED (§B is a draft input) |
+| S4.2 | ANG adaptation map + ANG-baseline ADR | DRAFTED 2026-10-08: `S4_ANG_ADAPTATION.md` (B-1 … B-45; C-11 … C-14) + ADR-0027 PROPOSED; awaiting owner review |
 | S4.2b | Accountability layer (ADR-0026) | DRAFTED 2026-10-02 — `S4_ACCOUNTABILITY.md`; completes with S4.2 |
 | S4.3 | Method taxonomy | NOT STARTED |
 | S4.4 | ANG PC source map | NOT STARTED (§D draft) |

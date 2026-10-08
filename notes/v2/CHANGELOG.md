@@ -1,5 +1,20 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.2 adaptation map drafted; ADR-0027 proposed (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_ANG_ADAPTATION.md` (DRAFT for owner review):
+  - every element of the S4.1 baseline classified U/G/A/D/N with reason, binding source and owning stage;
+  - B-1 … B-23 retained from S4_PLAN §B; **B-24 … B-45 new**: autonomy via ADR-0017; anatomy and skills; non-equity CMAs; CMA units; one risk model; horizon field; heterogeneous PC inputs; candidate cards; dissent; runtime backtest diagnostics; registry evolution; extended learning objects; per-role promotion; data; determinism; security.
+- **Conflicts:** C-7, C-8 resolved (superseded proposals). Proposed resolutions for C-5, C-6 and new C-11 … C-13 via ADR-0027. C-14 resolved by planning.
+- **Issues:** ANG-01 … ANG-37 dispositioned. Developer-facing summary for SYNC-1.
+- **New ADR-0027 (PROPOSED):**
+  - D1: learning adopted as a core component under L-1 … L-7;
+  - D2: no automatic culling; retirement by ADR; family-coverage floor;
+  - D3: one authoritative risk model per declared horizon; AC-level risk outputs are evidence; PSD projection;
+  - D4: runtime backtest diagnostics deterministic, protocol-defined, labelled in-sample, never admission evidence;
+  - D5: declared currency, hedging, horizon and return convention; numéraire per RQ-07.
+- **Updated:** decision register; S4_PLAN (§B superseded; C.2 status; C-5 … C-14); HANDOFF; CHANGELOG. Not pushed.
+
 ## 2026-10-08 — S4.1 settled: owner questions on scoring choice, learning, covariance, FMP/Finviz, external references (branch `stage/s04-method-library`)
 
 - **Sørensen vs Greenblatt** (`S4_SCORING_PEER_METHODS.md` §8):

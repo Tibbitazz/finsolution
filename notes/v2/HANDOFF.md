@@ -94,11 +94,14 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `e9a5aeb` | S6 data-source lead (step 1 of the plan of 2026-10-08); RQ-08, CB-19, DR-7 annotated |
 | `96c163c` | S6 lead extended: Seeking Alpha, S&P Capital IQ (Pro, Financials, Estimates), data lineage, ESEF via filings.xbrl.org; step 1 complete; pushed |
 | `3aa8f34` | Peer scoring methods (Investwiser Greenblatt/O'Shaughnessy/quality; Seeking Alpha factor grades); G-1 … G-3 |
-| (latest) | **S4.1** ANG v2 baseline (`S4_ANG_BASELINE.md`); ANG-28 … ANG-36; ANG-09/11 annotated; §A superseded; FMP/Finviz correction in the S6 lead and RQ-08 |
+| `18d738d` | **S4.1** ANG v2 baseline (`S4_ANG_BASELINE.md`); ANG-28 … ANG-36; §A superseded; FMP/Finviz correction |
+| `d29fad3` | S4.1 settlement: scoring decision protocol; learning × correlation (ANG-37); covariance evidence; FMP/Finviz; external reviews; **pushed** |
+| (latest) | **S4.2** adaptation map (`S4_ANG_ADAPTATION.md`) + ADR-0027 PROPOSED; S4_PLAN §B superseded; C-5 … C-14 statuses |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
 - **0025** (admission ≠ evaluation): **ACCEPTED 2026-10-07** (owner decision D-1). 06 §1/§2 and 02 §D are annotated; ADR-0005 is superseded in part.
+- **0027** (ANG adaptation: governed learning L-1 … L-7, registry evolution without auto-culling, one risk model per declared horizon, runtime diagnostics, declared units): **PROPOSED 2026-10-08** (S4.2).
 - **0026** (Agent Mandate and Decision Record; investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution): **ACCEPTED 2026-10-08** after the owner's mathematical/authority check, with corrections C-1 … C-6 and additions S-1 … S-4 (owner check record in the ADR). 05 §2 layer 8 and 08 S13d are annotated.
 
 ### 3.3 Where things are (`notes/v2/`)
@@ -110,6 +113,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 |---|---|
 | `S4_PLAN.md` | Plan, amendments 1–18, G4 criteria 1–24 |
 | `S4_ANG_BASELINE.md` | **S4.1 (DRAFT, awaiting owner review):** canonical page-cited reconstruction of ANG v2. Stage table; roster reconciliation (44); agent anatomy and skills; data (FMP, Finviz); determinism; IPS governance; limitations; verified exhibit arithmetic (V-1 … V-8; effective N = inverse HHI); lecture cross-check; new issues ANG-28 … ANG-36 |
+| `S4_ANG_ADAPTATION.md` | **S4.2 (DRAFT, awaiting owner review):** every baseline element classified U/G/A/D/N (B-1 … B-45); conflicts C-1 … C-14; ANG-01 … ANG-37 dispositioned; developer summary (SYNC-1); companion ADR-0027 PROPOSED |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
 | `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-37; ABD-1 … ABD-5 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
@@ -218,7 +222,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted 2026-10-08** (`S4_ANG_BASELINE.md`; awaiting review). S4.2b and S4.15b drafted. Inputs recorded (amendments 14–18). **S4.2 onward not started** |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED; awaiting review). S4.2b and S4.15b drafted. **S4.3 onward not started** |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
@@ -247,6 +251,7 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 
 | # | Decision | Recommendation | Where |
 |---|---|---|---|
+| 0 | **S4.2 review:** accept `S4_ANG_ADAPTATION.md`; accept, amend or defer **ADR-0027** (governed learning; no auto-culling; one risk model per horizon; runtime diagnostics; declared units) | Accept ADR-0027 at G4 or earlier | S4.2 |
 | 1 | **S8 start:** circulate the Developer Architecture Brief (S4 plan §I) with DR-1 … DR-10 as interface-only items | After the push | S4 plan §H–§I |
 | 2 | **Sandbox keys:** regenerate/revoke the EODHD and Tiingo keys | Do (owner action) | sandbox D7 |
 | 2b | **Data access (owner, when S6 starts):** free FRED, OpenFIGI and Tiingo keys; whether to take EODHD All World (+ fundamentals); whether the university licence (Bloomberg / FactSet / I/B/E/S) allows personal research use for validation | Decide at S6; nothing needed now | S6 lead §7–§8 |
