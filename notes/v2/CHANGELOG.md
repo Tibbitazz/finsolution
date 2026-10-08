@@ -1,5 +1,24 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S6 data-source lead recorded (owner instruction: step 1; branch `stage/s04-method-library`)
+
+- **New** `research/s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` (DRAFT; lead for S6, not a vendor decision). Contents:
+  - what ANG, the lecture and the third-party code say about data: no vendor; FactSet only as a future extension in the third-party README;
+  - data requirement map D-A … D-H;
+  - a dated source and licence table;
+  - findings F-1 … F-7, open S6 checks and a candidate stack (not adopted).
+- **Vendor identification:**
+  - **Simply Wall St = S&P Global Market Intelligence / Capital IQ** (stated in the help centre, data-sources page and terms; licence personal and non-commercial, no retransmission).
+  - **Investwiser = EODHD** (inferred, high confidence), from fingerprints:
+    - the translation key `unavailableEohd`;
+    - `.INDX`, `.FOREX` and `EUFUND` symbology;
+    - logo paths that resolve only on eodhd.com, including a stale ticker.
+  - Investwiser also states Quartr (transcripts) and Oslo Børs/Nasdaq (announcements).
+- **Norges Bank Datatorg verified:** a keyless test query succeeded; 24 dataflows; reuse with attribution.
+- **EODHD disclaimer recorded:** non-exchange VWAP pricing, so research-grade.
+- **DR-7 refined:** ISIN/FIGI identity; per-user credentials only in the local layer; licence class per source; provenance stamp; no cross-user sharing.
+- **Annotated:** RQ-08, CB-19, S4_PLAN §I DR line and HANDOFF.
+
 ## 2026-10-08 — ADR-0026 accepted after the owner's check; branch pushed (owner option (a); branch `stage/s04-method-library`)
 
 - **ADR-0026 ACCEPTED.** All quotations, pages and M-1 … M-4 were re-verified against the sources.
