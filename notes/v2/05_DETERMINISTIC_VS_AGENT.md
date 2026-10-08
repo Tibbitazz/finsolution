@@ -1,6 +1,6 @@
 # 05 — Deterministic Code vs. Agent Responsibility
 
-**Document status:** STABLE (S0) for rules R1–R8 and §4; layer assignments are the accepted architecture, agent anatomy `PROPOSED` (S8) · **Decision basis:** ADR-0004
+**Document status:** STABLE (S0) for rules R1–R8 and §4; layer assignments are the accepted architecture, agent anatomy `PROPOSED` (S8) · **Decision basis:** ADR-0004 · **Annotated by:** ADR-0026 (2026-10-08; §2 layer 8)
 
 ## 1. Binding rules
 
@@ -31,6 +31,8 @@
 | 8 Tactical & implementation | Costs, taxes, FX, sizing, trade lists | Explanation; tactical judgement only if RQ-17 allows | Executes trades unless an ADR decides otherwise (RQ-19) |
 | 9 Monitoring | All checks and alerts | Summaries | Responds to flags |
 | 10 Learning | Forecast evaluation, shadow tests | Proposes changes | Approves above materiality |
+
+> **Annotation (ADR-0026 §11.1, ACCEPTED 2026-10-08).** In layer 8, "tactical judgement only if RQ-17 allows" refers to **deviation from w\***. Implementation judgement inside an Agent Mandate (when and how, within the approved window and limits) is governed by RQ-53 / S13, under the hybrid Trader of ADR-0026 §5.3. The rebalancing determination and execution are deterministic services (§5.2, §5.5).
 
 ## 3. Proposed agent anatomy (`PROPOSED`, decided at S8)
 

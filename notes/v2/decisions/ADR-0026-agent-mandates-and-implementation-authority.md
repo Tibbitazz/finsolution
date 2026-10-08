@@ -1,13 +1,17 @@
 # ADR-0026 — Agent Mandates, institutional accountability, and implementation authority
 
-- **Status:** PROPOSED
-- **Date proposed:** 2026-10-02 · **Date decided:** —
-- **Decided by:** — (route approved by the owner, D-C, 2026-10-02; final acceptance after the owner's mathematical/authority check, at G4 or earlier) · **Gate:** G4 · **Stage:** S4
+- **Status:** ACCEPTED
+- **Date proposed:** 2026-10-02 · **Date decided:** 2026-10-08
+- **Decided by:** Owner (mathematical/authority check, option (a): accepted with corrections C-1 … C-6 and additions S-1 … S-4, 2026-10-08; route approved as D-C, 2026-10-02) · **Gate:** — (owner decision before G4; reviewed at G4) · **Stage:** S4
 - **Supersedes:** none
 - **Extends:** ADR-0023 (§1 roles, §5 object model). **Annotates the reading of** ADR-0012 §7, 05 §2 layer 8, and 08 S13d. No body edits.
 - **Resolves:** S4 closure gaps G-4, G-6, G-7, G-8, G-12 (`research/s4/S4_PLAN.md` §0, amendment 11)
-- **Spec commit / tag:** —
+- **Spec commit / tag:** acceptance commit on `stage/s04-method-library` (see CHANGELOG 2026-10-08); gate tag at G4
 - **Pre-acceptance amendment (2026-10-07, owner-approved ABD edit 4):** ABD 2014 [SRC] citations added in §4.1, §5.1, §5.3 and the Evidence list. No decision content changed.
+- **Pre-acceptance amendment (2026-10-08, owner check):** six editorial corrections (C-1 … C-6) and four source additions (S-1 … S-4), listed in the *Owner check record* at the end.
+  - S-2 adds one clarifying sentence to §4.4.
+  - S-3 adds one deferred item to §5.9.
+  - No other decision content changed.
 
 ## Basis labels used in this ADR
 Every statement carries one of four labels, so that design choices are never presented as findings.
@@ -65,10 +69,14 @@ Every statement carries one of four labels, so that design choices are never pre
    - **[SRC]** BCD p. 20 and App. C (p. 98) list "specified in advance" among valid benchmark properties, citing Wermers (2011).
    - **[SRC]** Sensoy (2009) finds self-designated prospectus benchmarks mismatched to actual style for almost one-third of funds, consistent with strategic behaviour. Scope: this supports "specification in advance is necessary but not sufficient". It does not address benchmarks chosen after observing performance; that prohibition is **[GR]**.
    - **[SRC]** ABD (2014, p. 92) recommends starting measurement from "a publicly-stated index from an independent index provider", which "provides transparency, accountability, and verifiability". p. 101: the rebalanced weighted benchmark "is entirely owned by the Ministry of Finance and the Storting", i.e. not by the manager evaluated against it. Scope: this supports controls being set independently of, and before, the evaluated role. It does not prescribe our control types.
+   - **[SRC]** BCD p. 20: "shifting from an external benchmark to internally developed benchmarks involves a potential problem of self-selected benchmarks", citing Sensoy (2009). Scope: supports designation of the control by a party other than the evaluated role. *(S-4, 2026-10-08)*
+   - **[SRC]** van Binsbergen, Brandt & Koijen (2008, abstract): when a CIO delegates to asset-class managers, objectives are misaligned (loss of diversification, unobservable risk appetite, different horizons). A benchmark designed by the CIO "can be used to better align incentives within the firm". Scope: a model of delegated human managers; it motivates designation of controls by the delegating authority, not our control types. *(C-6, 2026-10-08)*
 2. **[GR]** Where one role weighs several criteria, the resolution rule or the resolving authority is declared in advance.
-   - **[SRC]** BCD (pp. 6, 80) says two potentially conflicting objectives on one instrument "could lead to organizational challenges". Scope: this motivates explicit resolution. It does **not** establish a rule of one objective per role, and none is adopted.
+   - **[SRC]** BCD (pp. 6, 80), paraphrasing the Tinbergen rule ("for each objective, one needs to have one instrument"), says two potentially conflicting objectives on one instrument "could lead to organizational challenges". Scope: this motivates explicit resolution. It does **not** establish a rule of one objective per role, and none is adopted.
 3. **[AD]** Mathematical objectives and penalties belong in Method Contracts, not in mandates.
 4. **[GR]** Any change to a mandate's owned decisions, prohibited decisions, information rights, limits, escalation rules or control type is **material** and requires human approval (consistent with ADR-0023 §8). Learning-loop outputs (S17) may propose mandate changes; they may not apply them.
+   - **[SRC]** ANG (pp. 27–28): the meta agent may auto-modify "skill and agent prompt descriptions and Python code". Modifications above a materiality threshold need human approval. Changes are limited to a declared set of files "which excludes the IPS and files that involve compliance instructions with the IPS". Scope: supports keeping governance documents outside self-modification. *(S-2, 2026-10-08)*
+   - **[AD] Clarification (S-2):** skills, agent memory and prompts are **not** mandate fields. Their changes follow the S17 materiality and promotion rules (RQ-22), in line with the owner's learning priority. Whether code may be self-modified is not decided here (RQ-22, S17).
 
 ### §5 Authority boundaries: investment decision → rebalancing determination → implementation → execution
 
@@ -93,7 +101,8 @@ Every statement carries one of four labels, so that design choices are never pre
 2. **Rebalancing determination.**
    - **[AD]** Given the approved rule, the determination is **deterministic**: it evaluates the rule on current state and produces either an authorised transition or a no-rebalance Decision Record. It is a service, not an agent role.
    - **Rationale:** reproducibility (04), R2, and the absence of residual judgement once the rule is approved.
-   - **Not a source finding.** No cited source shows that every rebalancing determination must be deterministic.
+   - **Not a general source finding.** No cited source shows that every rebalancing determination must be deterministic.
+   - **[SRC] (partial):** ABD p. 66: under NBIM's framework "there are no ad-hoc decisions to rebalance … the adoption of a rebalancing rule ensures that rebalancing is done automatically". Scope: one fund's rule-based practice. It supports the corollary below, that judgement-dependent rebalancing is an ad hoc decision; it does not establish determinism as a general requirement. *(S-1, 2026-10-08)*
    - **Corollary [AD]:** a rule that requires judgement to evaluate (e.g. "rebalance when warranted") is not a valid approved rule. Such judgement is a portfolio decision and belongs upstream (ANG → CIO → investor).
 3. **Trader / Implementation** is a **hybrid** role **[AD]**.
    - Code computes candidate implementation plans, limits, quantities, cost estimates and implementation statistics.
@@ -104,7 +113,7 @@ Every statement carries one of four labels, so that design choices are never pre
      - escalates.
    - Agent choices are bounded per R1. Hard constraints are deterministic predicates per R3.
    - **[SRC]** Perold (1988, pp. 5–7) motivates judgement over pace: execution cost and opportunity cost are "at opposite ends of a seesaw", and pace of trading is "the chief factor". Scope: the trade-off exists. **Whether discretion adds value is [DEF] (S7/S13) and is never assumed.**
-   - **[SRC]** ABD (2014): because traders can front-run an investor known to be forced to trade, "a fund manager should therefore have some leeway to optimally implement rebalancing" (p. 21). NBIM's framework is praised as one that "allows NBIM leeway to implement the required transactions" with "no ad-hoc decisions to rebalance" (p. 66). Scope: this supports implementation leeway under a rule owned upstream, for a very large fund facing adverse selection. Transfer of that motive to a small investor is **not** established. The leeway rationale here rests on cost/spread/FX/timing, and its value remains [DEF] (RQ-53).
+   - **[SRC]** ABD (2014): because of adverse selection (traders who know an investor is forced to trade "create temporary scarcity"), "a fund manager should therefore have some leeway to optimally implement rebalancing" (p. 21). NBIM's framework is praised as one that "allows NBIM leeway to implement the required transactions without facing undue adverse selection" (p. 66). Scope: this supports implementation leeway under a rule owned upstream, for a very large fund facing adverse selection. Transfer of that motive to a small investor is **not** established. The leeway rationale here rests on cost/spread/FX/timing, and its value remains [DEF] (RQ-53).
 4. **[AD]** The Trader may not:
    - change w*, the investment thesis, the rebalancing rule, the window or the deviation limit;
    - create exposure absent from the authorised transition;
@@ -119,12 +128,15 @@ Every statement carries one of four labels, so that design choices are never pre
 7. **Post-trade evaluation.** **[AD]** Independent of the evaluated role.
 8. **Default posture.**
    - **[AD]** A relatively narrow implementation window, with explicit evaluation status displayed.
-   - Consistent with OD-4 / ADR-0025 (PROPOSED): no new gate before S7, and no assumption that discretion creates alpha.
+   - Consistent with OD-4 / ADR-0025 (ACCEPTED 2026-10-07): no new gate before S7, and no assumption that discretion creates alpha.
 9. **Deferred to S13 (RQ-53) [DEF]:**
    - discretion breadth;
    - default window values;
    - the quantitative boundary between implementation timing and tactical deviation;
    - whether controlled discretion reduces implementation shortfall net of delay cost at this investor's scale.
+   - **Evidence admissibility (S-3, 2026-10-08):** evidence on the value of discretion counts only from periods after the training cutoff of every model involved in the timing decision (clean-window rule, `research/s4/S4_LIT_LOOKAHEAD_2026-10-07.md` §2.4).
+     - Why: LLM recall of daily stock returns rises when market context is supplied (Didisheim, Fraschini & Somoza 2025: trimming share q from 3.0% to 21.4%). Historical replay of timing judgements is therefore contaminated.
+     - Detectability is low in any case: about 1,000 independent legs to detect 10 bp (`S4_INPUTS_2026-10-07.md`, D8).
 
 ### §6 Tactical authority (conditional)
 1. **[AD]** A tactical mandate (w^TAC = w* + Δ^TAC within explicit bounds) exists **only** if RQ-17 admits it at G13c.
@@ -157,7 +169,7 @@ Every statement carries one of four labels, so that design choices are never pre
 6. **[GR]** Agents interpret evidence; they never compute or alter it (R8).
 7. **[AD]** No standalone Technical Agent in roster v0 (owner D-B).
    - Reconsideration requires the decomposition test: a distinct decision or responsibility, plus incremental decision value from independent synthesis.
-   - **[SRC]** ANG p. 28 says to "decompose when the task requires genuinely distinct expertise that benefits from independent reasoning before aggregation".
+   - **[SRC]** ANG p. 29 says to "decompose when the task requires genuinely distinct expertise that benefits from independent reasoning before aggregation".
 8. **[SRC]** ANG computes technical signals inside the AC agents ("momentum, trend, mean reversion, relative momentum"; p. 38, Exh. A.1 step 4). The CMA judge "check[s] signal alignment" within [min_method, max_method] (p. 39, Exh. A.2). Scope: this establishes the AC/CMA placement only. ANG states no technical inputs for PC agents, the CIO, or trading.
 9. **Annotation [AD]:** ADR-0012 §7, "time-series tactical signals are governed in S13d", is read **by use**, not by signal type:
    - time-series evidence used for beliefs or regime → S9;
@@ -188,7 +200,7 @@ Every statement carries one of four labels, so that design choices are never pre
 | # | Claim | Status | Conditions / scope |
 |---|---|---|---|
 | M-1 | For a linear CIO ensemble w = Σ_k λ_k w_k with Σ_k λ_k = 1 held over a period, the period return is r = Σ_k λ_k r_k. So λ-weighted attribution to proposals is an identity | `VERIFIED-DERIVATION` (linearity of portfolio return in weights) | Single period, on the weights held at the period start; no trading inside the period. Not applicable to non-linear ensembles (meta-optimisation, trimmed mean), which allow only counterfactual attribution |
-| M-2 | Under "diversification of judgement" with linear expected-return estimates whose weights sum to 1, the first-best portfolio is the weighted combination of each manager's whole-portfolio optimum, and each manager uses the client's risk tolerance | `VERIFIED-SOURCE` (Sharpe 1981, eq. (20)–(22a), p. 230) | Mean–variance; common risk model; weights sum to 1. Sharpe shows the result fails when weights need not sum to 1 (alpha case, eq. (23)). For heterogeneous ANG methods it is an **analogy**, not a proof |
+| M-2 | Under "diversification of judgement" with linear expected-return estimates whose weights sum to 1, the first-best portfolio is the weighted combination of each manager's whole-portfolio optimum, and each manager uses the client's risk tolerance | `VERIFIED-SOURCE` (Sharpe 1981, eq. (20)–(22a), p. 230) | Mean–variance; common risk model; weights sum to 1. When the weights need not sum to 1 (alpha case, eq. (23), pp. 230–231), the simple allocation would require a short position in the passive portfolio (w_c < 0). Sharpe instead proposes manager objectives that include relative risk (eqs. (24)–(28), p. 231). For heterogeneous ANG methods it is an **analogy**, not a proof |
 | M-3 | Implementation shortfall = Σ_i Σ_j (p_ij − p_i^b) t_ij + Σ_i (p_i^e − p_i^b)(n_i − m_i^e) = execution cost + opportunity cost | `VERIFIED-SOURCE` (Perold 1988, App. B, p. 9) | Measurement period between paper-portfolio trades; no net cash flows; transaction prices include commissions and transfer taxes; paper prices are decision-time midpoints (p. 5); management fees excluded (p. 5) |
 | M-4 | For the paper-portfolio ladder P0 … P5, P5 − P0 equals the sum of adjacent differences | `VERIFIED-DERIVATION` (telescoping identity) | Each adjacent difference depends on the ladder's ordering and contains interaction effects. **Conditional decomposition, not causal effects** (RQ-54) |
 
@@ -199,19 +211,21 @@ Every statement carries one of four labels, so that design choices are never pre
 | Trader with authority to deviate from w* | Flexible | An unaccountable tactical layer, i.e. a container category (BCD) |
 | Rebalancing agent | Symmetry with other roles | Owns no residual judgement once the rule is approved |
 | Standalone Technical Agent | Specialisation | Fails the decomposition test now; adds an unattributable opinion |
-| One-objective-per-role rule | Simple accountability | Not supported by BCD; collides with methods that contain several terms |
+| One-objective-per-role rule | Simple accountability | BCD paraphrases the Tinbergen rule (one instrument per objective; pp. 6, 80) to diagnose one mandate's organisational challenges; it does not prescribe a rule for roles. The rule also collides with methods that contain several terms |
 | Edit ADR-0023 / ADR-0012 / 05 / 08 bodies | Single source of text | Violates change control; annotate instead |
 
 ## Evidence
-- `VERIFIED-SOURCE` (read 2026-10-02):
-  - ANG pp. 5, 14, 28, 38–39;
+- `VERIFIED-SOURCE` (read 2026-10-02; every quotation and page re-verified in the owner's check, 2026-10-07/08):
+  - ANG pp. 5, 14, 27–29, 38–39;
   - BCD pp. 4, 6, 14, 20, 49, 74, 77–80, 98;
-  - Sharpe (1981) pp. 220, 230, 232–233;
-  - van Binsbergen, Brandt & Koijen (2008), abstract and conclusions;
+  - Sharpe (1981) pp. 220, 230–233;
+  - van Binsbergen, Brandt & Koijen (2008), abstract and conclusions (cited in §4.1);
   - Sensoy (2009), abstract;
   - Perold (1988) pp. 4–9;
   - Perold & Sharpe (1988) pp. 16, 26;
-  - Ang, Brandt & Denison (2014) pp. 16, 19, 21, 66, 92, 94, 101; Fig. 14 p. 159 (added 2026-10-07; identity verified).
+  - Ang, Brandt & Denison (2014) pp. 16, 19, 21, 66, 92, 94, 101; Fig. 14 p. 159 (added 2026-10-07; identity verified);
+  - Didisheim, Fraschini & Somoza (2025), *Economics Letters* 256, Tables 1 and 4 (§5.9; added 2026-10-08).
+- `VERIFIED-DERIVATION`: M-3's identity was re-derived (self-financing condition Σ_i t_ij p_ij = 0) on 2026-10-07.
 - `VERIFIED-DERIVATION`: M-1, M-4.
 - `ASSUMED`, i.e. architecture decisions that are not empirical claims:
   - deterministic rebalancing determination;
@@ -240,3 +254,21 @@ Statistical and economic significance of implementation discretion: none claimed
 - The RQ-17 outcome.
 - S8 schema design reveals a missing authority boundary.
 - The owner's mathematical/authority check finds a claim mislabelled.
+
+## Owner check record (2026-10-07/08)
+
+Every quotation, page reference and mathematical claim was re-verified against the sources: ANG v2; BCD; Sensoy; ABD; Perold, read from page images; Perold & Sharpe; Sharpe 1981; van Binsbergen, Brandt & Koijen. The owner accepted with all of the following.
+
+| # | Kind | Change |
+|---|---|---|
+| C-1 | Correction | §8.7: ANG page 28 → 29 |
+| C-2 | Correction | §5.8: ADR-0025 status now ACCEPTED |
+| C-3 | Correction | M-2: Sharpe's alpha case described precisely (short passive position; relative-risk objectives, p. 231) instead of "fails" |
+| C-4 | Correction | §4.2 and Alternatives: BCD's Tinbergen paraphrase stated, with its scope |
+| C-5 | Correction | §5.3: "front-run" replaced by ABD's term "adverse selection", with the source wording |
+| C-6 | Correction | §4.1: van Binsbergen, Brandt & Koijen cited where it supports the decision |
+| S-1 | Addition | §5.2: ABD p. 66 as partial support for rule-based, automatic rebalancing |
+| S-2 | Addition | §4.4: ANG pp. 27–28 on self-modification limits; clarification that skills, memory and prompts are not mandate fields |
+| S-3 | Addition | §5.9: post-cutoff evidence requirement for the value of discretion; detectability (D8) |
+| S-4 | Addition | §4.1: BCD p. 20 on self-selected internal benchmarks |
+

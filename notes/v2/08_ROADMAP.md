@@ -1,6 +1,6 @@
 # 08 — Roadmap (v2)
 
-**Document status:** STABLE (S0; amended at G3 closure 2026-10-01 for parallel tracks) · **Decision basis:** ADR-0011, ADR-0022 · Supersedes every legacy roadmap.
+**Document status:** STABLE (S0; amended at G3 closure 2026-10-01 for parallel tracks) · **Decision basis:** ADR-0011, ADR-0022 · **Annotated by:** ADR-0026 (2026-10-08; S13d) · Supersedes every legacy roadmap.
 
 ## 1. Dependency chain — two coordinated tracks after G3 (ADR-0022)
 
@@ -112,6 +112,8 @@ Fields: **A** objective · **B** decisions · **C** research · **D** Policy Sta
 **S12 — Deliberation & aggregation.** A: one target portfolio. B: whether deliberation is retained; protocol; ensemble rules; decision-relevance test; deterministic control (RQ-16); *[ADR-0012]* agents receive deterministic evidence packets and are bound by rule R8 (RQ-34). C: multi-agent debate, voting, forecast/model combination, LLM-as-judge. D: ensemble menu. E: CRO, CIO. F: S13, S14. G: aggregation specification.
 
 **S13 — Implementation & tactical.** A: target portfolio → per-account trades. B: 13a costs/tax/FX from the account configuration and asset-location rules; 13b rebalancing baseline (RQ-18, RQ-44): admissible approaches and parameter authority for the S1 `REB.*` configuration structure; drift-driven rebalancing (target unchanged) is kept distinct from signal-driven target changes (S13c/d); 13c tactical role — timing-only, bounded tilt, independent overlay, risk scaling, or integrated (RQ-17); 13d tactical specialist agents (trend/momentum, technical, entry, exit, stop/risk conditions, sizing, overlays, execution, costs/liquidity) — detailed later; *[ADR-0012]* time-series tactical signals are registered as candidates only (incl. a 5-day z-score mean-reversion rule), with the distinction between asset time-series state and position-dependent rules (RQ-35); horizon conflicts between cross-sectional and tactical signals are part of RQ-17; 13e sizing and rounding to broker minimum orders and fractional rules from continuous account value; 13f execution protocol per broker (RQ-19). C: dynamic trading with costs, time-series momentum, volatility management, technical-rule data snooping, stop-loss evidence, tax-aware rebalancing. D: tactical ranges, rebalancing policy, asset-location rules. E: tactical, sizing, execution components. F: S14, S15. G: ADRs; per-account trade-list contract.
+
+> **Annotation (ADR-0026 §11.2, ACCEPTED 2026-10-08).** The 13d list of "tactical specialist agents (trend/momentum, technical, entry, exit, …)" is a **function inventory**. A function becomes an agent role only where the decomposition test passes (ADR-0026 §8.7). Time-series evidence is governed **by use**: used for beliefs or regime → S9; used for timing or tactics → S13d (ADR-0026 §8.9).
 
 **S14 — Investment-case report & approval.** A: explain the investment argument before execution. B: contents — Policy Statement compliance, macro view, estimates with dissent, method comparison and exclusion report, target vs. current, per-account trades, costs, FX, tax and kildeskatt impact, soft-target deviations with required responses, "what would make this wrong", fact snapshot and staleness, evidence status (RQ-20). D: approval matrix. E: CIO/report. F: S15. G: report template; approval workflow.
 

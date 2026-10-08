@@ -1,5 +1,28 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — ADR-0026 accepted after the owner's check; branch pushed (owner option (a); branch `stage/s04-method-library`)
+
+- **ADR-0026 ACCEPTED.** All quotations, pages and M-1 … M-4 were re-verified against the sources.
+  - **Corrections:**
+    - C-1: ANG p. 29;
+    - C-2: ADR-0025 status;
+    - C-3: Sharpe's alpha case, p. 231;
+    - C-4: BCD's Tinbergen paraphrase;
+    - C-5: ABD's term "adverse selection";
+    - C-6: van Binsbergen–Brandt–Koijen cited in §4.1.
+  - **Additions:**
+    - S-1: ABD p. 66, rule-based automatic rebalancing;
+    - S-2: ANG pp. 27–28 self-modification limits; skills, memory and prompts are not mandate fields;
+    - S-3: post-cutoff evidence requirement for the value of discretion, plus the D8 detectability point;
+    - S-4: BCD p. 20 on self-selected internal benchmarks.
+  - An owner check record is appended to the ADR.
+- **Annotations** (dated pointer notes; no rewriting):
+  - 05 §2 layer 8: tactical judgement means deviation from w*;
+  - 08 S13d: a function inventory, and evidence governed by use.
+  - Conflicts C-9 and C-10 resolved in S4_PLAN §B.1.
+- **Status lines updated:** decision register, S4_PLAN, S4_ACCOUNTABILITY (F20/F21 stay **candidates** for S4.20), S4_DOWNSTREAM_INVENTORY, S4.0 §10, README, HANDOFF (§3, §4.2, §6).
+- **Branch pushed** to origin (owner authorisation; no PR). Developer visibility of SYNC-1 material follows; the binding rule is unchanged (only `ACCEPTED` ADRs and `STABLE` sections are built against).
+
 ## 2026-10-07 — Look-ahead contamination and agent-homogeneity literature; handoff refresh (owner approval of plan C; branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_LIT_LOOKAHEAD_2026-10-07.md` (DRAFT), with paper-by-paper verdicts:

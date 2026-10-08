@@ -1,6 +1,6 @@
 # S4.2b — Accountability layer: role taxonomy, Agent Mandate schema, mandate stubs, responsibility matrix, escalation
 
-**Document status:** DRAFT (S4.2b; candidate fields F20–F21 added 2026-10-07; companion to [ADR-0026](../../decisions/ADR-0026-agent-mandates-and-implementation-authority.md), PROPOSED) · **Prepared:** 2026-10-02 · **Basis:** owner decisions D-A … D-E (2026-10-02); ADR-0023; ADR-0024; ADR-0017; 05 R1–R8
+**Document status:** DRAFT (S4.2b; candidate fields F20–F21 added 2026-10-07; companion to [ADR-0026](../../decisions/ADR-0026-agent-mandates-and-implementation-authority.md), ACCEPTED 2026-10-08; F20–F21 remain **candidate** fields for S4.20 by owner decision) · **Prepared:** 2026-10-02 · **Basis:** owner decisions D-A … D-E (2026-10-02); ADR-0023; ADR-0024; ADR-0017; 05 R1–R8
 
 **Scope:**
 - Structure only. No mandate *values* are decided here unless they follow from an accepted ADR.

@@ -157,7 +157,7 @@ Paths are given relative to these roots. Local files are not copied into the rep
 
 ## 10. Accountability, implementation and short-horizon sources (added 2026-10-02; NBIM/trading-layer review)
 
-Identity verified against each document's own text, not its filename. These support ADR-0026 (PROPOSED) and the S4.2b / S4.15b work. They are not PC-method sources.
+Identity verified against each document's own text, not its filename. These support ADR-0026 (ACCEPTED 2026-10-08) and the S4.2b / S4.15b work. They are not PC-method sources.
 
 | Source | Status | Location | Supports (scope) |
 |---|---|---|---|

@@ -1,6 +1,6 @@
 # FinSol — working handoff (single entry point)
 
-**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-07 · **Branch:** `stage/s04-method-library` (local; not pushed) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
+**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-08 · **Branch:** `stage/s04-method-library` (pushed to origin 2026-10-08, owner-authorised; no PR) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
 
 **What this file is.** The one document to read first, by the owner, a new assistant session, or the developer. It **indexes and summarises** the authoritative documents; it never overrides them. If this file and a document it points to disagree, the pointed-to document wins:
 - `ACCEPTED` ADRs win over `STABLE` documents, which win over `DRAFT` documents (01 §2);
@@ -76,7 +76,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 
 ### 3.1 Gates and commits
 - G0 … G3 closed (PRs #1–#4; tags `gate-G0` … `gate-G3`). `main` = `dcce874`.
-- Branch `stage/s04-method-library`, local only, **not pushed**:
+- Branch `stage/s04-method-library`, **pushed 2026-10-08** (owner authorisation; no PR):
 
 | Commit | Content |
 |---|---|
@@ -89,12 +89,13 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `f441bcb` | Combined working handoff (this file) |
 | `231c71d` | ADR-0025 ACCEPTED (D-1); 06/02 annotated; D-2, D-3, D-4 recorded; CB-17 … CB-19 adoption at G4 confirmed; `.Rhistory` ignored |
 | `ebc8529` | Sørensen/Storebrand scoring recorded as the owner-designated reference specification (`S4_SCORING_SORENSEN.md`); roster v0 = 23 confirmed |
-| (latest) | Look-ahead and agent-homogeneity literature (`S4_LIT_LOOKAHEAD_2026-10-07.md`); DR-9, DR-10; correction of the bias-direction statement; this refresh |
+| `a46c613` | Look-ahead and agent-homogeneity literature (`S4_LIT_LOOKAHEAD_2026-10-07.md`); DR-9, DR-10; correction of the bias-direction statement; handoff refresh |
+| (latest) | **ADR-0026 ACCEPTED** (owner check, option (a): C-1 … C-6, S-1 … S-4); 05 and 08 annotated; conflicts C-9, C-10 resolved |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
 - **0025** (admission ≠ evaluation): **ACCEPTED 2026-10-07** (owner decision D-1). 06 §1/§2 and 02 §D are annotated; ADR-0005 is superseded in part.
-- **0026** (Agent Mandate and Decision Record; investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution): PROPOSED. The owner is verifying it, using the review given on 2026-10-07. ABD citations were added before acceptance.
+- **0026** (Agent Mandate and Decision Record; investment decision ≠ rebalancing determination ≠ implementation discretion ≠ execution): **ACCEPTED 2026-10-08** after the owner's mathematical/authority check, with corrections C-1 … C-6 and additions S-1 … S-4 (owner check record in the ADR). 05 §2 layer 8 and 08 S13d are annotated.
 
 ### 3.3 Where things are (`notes/v2/`)
 - **Governance:** 00–10; `decisions/`; `facts/` (registry v1, 82 records).
@@ -133,7 +134,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 - the accountability layer and the implementation chain (ADR-0026);
 - the learning design (§4.3).
 
-### 4.2 Decision-to-execution chain (ADR-0026, PROPOSED)
+### 4.2 Decision-to-execution chain (ADR-0026, ACCEPTED 2026-10-08)
 Investor/Policy Statement → accountability layer (mandates, controls set in advance by another party, trace IDs, Decision Records) → deterministic evidence services → ANG organisation → **approved decision** → [conditional tactical mandate] → **deterministic rebalancing determination** → **hybrid Trader** → **deterministic execution** → submission (investor or ADR-0017 grant; dimensions 6–8 locked until S13) → post-trade → monitoring, attribution, learning.
 
 The approved decision carries:
@@ -237,12 +238,12 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 
 | # | Decision | Recommendation | Where |
 |---|---|---|---|
-| 1 | **ADR-0026:** the owner verifies it, then accepts or amends it. Session review of 2026-10-07: every quote, page and M-1 … M-4 checked against the sources. Six editorial corrections are pending: C-1 ANG p. 28 → p. 29 (§8.7); C-2 ADR-0025 now ACCEPTED (§5.8); C-3 M-2 wording on Sharpe's alpha case (p. 231); C-4 BCD's Tinbergen paraphrase in the Alternatives table; C-5 'front-run' → ABD's 'adverse selection'; C-6 cite or drop van Binsbergen–Brandt–Koijen. Optional additions S-1 … S-4: ABD p. 66; ANG pp. 27–28; post-cutoff evidence for discretion; BCD p. 20 | Accept after C-1 … C-6, with F20/F21 kept as S4.20 candidates | ADR-0026; S4_ACCOUNTABILITY |
-| 2 | **Push** `stage/s04-method-library` (no PR) so Track B sees SYNC-1 material | After decision 1 (owner: push depends on it) | 01 §3 |
-| 3 | **S8 start:** circulate the Developer Architecture Brief (S4 plan §I) with DR-1 … DR-10 as interface-only items | After the push | S4 plan §H–§I |
-| 4 | **Sandbox keys:** regenerate/revoke the EODHD and Tiingo keys | Do (owner action) | sandbox D7 |
-| 5 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
-| 6 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
+| 1 | **S8 start:** circulate the Developer Architecture Brief (S4 plan §I) with DR-1 … DR-10 as interface-only items | After the push | S4 plan §H–§I |
+| 2 | **Sandbox keys:** regenerate/revoke the EODHD and Tiingo keys | Do (owner action) | sandbox D7 |
+| 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
+| 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
+
+**Resolved on 2026-10-08:** ADR-0026 accepted with C-1 … C-6 and S-1 … S-4, and F20/F21 kept as candidate fields; branch pushed (no PR).
 
 **Resolved on 2026-10-07:**
 - D-1 (ADR-0025 accepted), D-2 (Michaud IP check before PC-B4), D-3 (SSRN working versions), D-4 (unchanged; two retrievals permitted);

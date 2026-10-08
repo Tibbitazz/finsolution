@@ -1,6 +1,6 @@
 # S4 plan — Method Library & Eligibility (ANG baseline)
 
-**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024, ADR-0025 (accepted; ADR-0025 on 2026-10-07); ADR-0026 (proposed). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`; amendment 18: look-ahead contamination and agent-homogeneity literature; `S4_LIT_LOOKAHEAD_2026-10-07.md`).
+**Status:** APPROVED IN PRINCIPLE by the owner, 2026-10-02, with amendments incorporated below. Execution: S4.0 done (awaiting review); S4.1 not started. ADR basis: ADR-0023, ADR-0024, ADR-0025, ADR-0026 (accepted; ADR-0025 on 2026-10-07, ADR-0026 on 2026-10-08). **Amended 2026-10-02** (amendments 11–13: accountability layer, source authority, TPA source assessment; owner approval of T-0 … T-8). **Amended 2026-10-07** (amendment 14: ABD 2014 obtained; TPA task restated; owner decision D-5; amendment 15: lecture and sandbox inputs, agentic learning as priority, correlated agent errors; `S4_INPUTS_2026-10-07.md`; amendment 16: third-party implementation review; `S4_GITHUB_IMPL_REVIEW.md`; amendment 17: Sørensen/Storebrand scoring as the owner-designated reference specification; `S4_SCORING_SORENSEN.md`; amendment 18: look-ahead contamination and agent-homogeneity literature; `S4_LIT_LOOKAHEAD_2026-10-07.md`).
 **Basis:** owner instruction of 2026-10-02; full re-read of ANG (version 21 Sep 2026, 40 pp, read in full by text extraction; Exhibits 1, 2, 4 and 5 extracted as images and inspected); accepted S0–S3 (G0–G3).
 **Page numbers:** printed page numbers of the paper (PDF page − 1).
 
@@ -27,11 +27,11 @@
 4. **Momentum roles open until S4.8/S4.9:** possible objects are signal · signal-conditioned universe · direction/exposure rule · expected-return mapping · standalone strategy · tactical overlay.
 5. **Portfolio Map broadened** (§J).
 6. **PC roster versioned and extensible.** Reference baseline is ANG's 21; the initial S4 baseline is 23 (+ Simple EPO, Anchored EPO).
-7. **Method / Method Contract / Agent Role / Agent Instance / Portfolio Proposal** kept distinct; extended by ADR-0026 (PROPOSED) with **Agent Mandate** and **Decision Record**.
+7. **Method / Method Contract / Agent Role / Agent Instance / Portfolio Proposal** kept distinct; extended by ADR-0026 (ACCEPTED 2026-10-08) with **Agent Mandate** and **Decision Record**.
 8. **Separation of stages:** method output → proposal → CRO → peer assessment → revision → CIO kept separate in contracts; the peer vote is not a weighting algorithm.
 9. **No ANG rankings or ensemble weights** as priors or defaults.
 10. **Dual (machine + agent-readable) Method Contracts.**
-11. **Accountability layer (owner D-A … D-E, 2026-10-02; ADR-0026 PROPOSED).**
+11. **Accountability layer (owner D-A … D-E, 2026-10-02; ADR-0026 ACCEPTED 2026-10-08).**
     - The NBIM review (Bauer, Christiansen & Døskeland 2022) is used as an accountability framework *around* ANG.
     - Investment decision ≠ deterministic rebalancing determination ≠ hybrid Trader discretion ≠ deterministic execution.
     - The approved decision carries the implementation parameters.
@@ -207,8 +207,8 @@ Format: `ANG baseline → proposed adaptation → reason → architectural conse
 | C-7 | My 2026-10-01 S8 proposal: "whether to use an LLM at all … default offline deterministic only" | Proposal only (not accepted) | Replaced by B-18 |
 | C-8 | My 2026-10-01 S4 proposal treated S4 as a flat method inventory | Proposal only | Replaced by this plan |
 
-| C-9 (ADR-0026 PROPOSED) | 05 §2 layer 8, "tactical judgement only if RQ-17 allows", could be read to forbid any implementation judgement | 05 (accepted G0) | Annotation: refers to deviation from w*; implementation judgement inside the mandate is governed by RQ-53 / S13 |
-| C-10 (ADR-0026 PROPOSED) | ADR-0012 §7 can be read as placing all time-series evidence in S13d, conflicting with ANG's AC-level technical signals; 08 S13d presumes several "specialist agents" | ADR-0012; 08 | Read by use (beliefs/regime → S9; timing/tactics → S13d); the S13d list is a function inventory |
+| C-9 (RESOLVED — ADR-0026 ACCEPTED 2026-10-08; 05 annotated) | 05 §2 layer 8, "tactical judgement only if RQ-17 allows", could be read to forbid any implementation judgement | 05 (accepted G0) | Annotation: refers to deviation from w*; implementation judgement inside the mandate is governed by RQ-53 / S13 |
+| C-10 (RESOLVED — ADR-0026 ACCEPTED 2026-10-08; 08 annotated; ADR-0012 §7 read by use per ADR-0026 §8.9) | ADR-0012 §7 can be read as placing all time-series evidence in S13d, conflicting with ANG's AC-level technical signals; 08 S13d presumes several "specialist agents" | ADR-0012; 08 | Read by use (beliefs/regime → S9; timing/tactics → S13d); the S13d list is a function inventory |
 
 No conflict found with accepted S1–S3 content. The registries, Policy Statement and authority model are compatible with ANG's IPS-centred governance.
 

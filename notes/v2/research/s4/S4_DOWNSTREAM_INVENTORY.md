@@ -1,6 +1,6 @@
 # S4.15b — Downstream method inventory (rebalancing, implementation, timing, tactical)
 
-**Document status:** DRAFT (inventory only; §4–§5 added 2026-10-07) · **Prepared:** 2026-10-02 · **Basis:** ADR-0026 (PROPOSED); ADR-0012; RQ-17, RQ-35, RQ-44, RQ-53
+**Document status:** DRAFT (inventory only; §4–§5 added 2026-10-07) · **Prepared:** 2026-10-02 · **Basis:** ADR-0026 (ACCEPTED 2026-10-08); ADR-0012; RQ-17, RQ-35, RQ-44, RQ-53
 
 **Rules:**
 - **Inventory only.** No method here is admitted, specified or reviewed mathematically in S4.
