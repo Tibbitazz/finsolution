@@ -12,7 +12,7 @@
 |---|---|---|
 | S0–S3 | Charter, inputs, Policy Statement governance, external facts | **Done** (G0–G3) |
 | **S4 Section 1** — foundations (S4.0–S4.4) | Inventory, ANG reconstruction, adaptation and ADR-0027, accountability, taxonomy, source map | **Done** (S4.4 complete 2026-10-08; S4.2 and ADR-0027 await owner review at G4) |
-| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 done 2026-10-08 (owner decided S46-D1); **next: S4.7** |
+| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 done 2026-10-08 (owner decided S46-D1); S4.7 drafted 2026-10-08, awaiting owner decisions S47-D1 … D6 |
 | S4 Section 3 — the process around the methods (S4.15–S4.18) | Upstream CMA inventory, CRO diagnostics and candidate card, deliberation, CIO ensembles | Not started |
 | S4 Section 4 — consolidation (S4.19–S4.24) | Equation Register reconciliation, typed contracts, eligibility, dependency graph, full verification, fixtures | Not started |
 | S4 Section 5 — gate (S4.25–S4.27) | Portfolio Map requirements, library freeze, G4 audit | Not started |
@@ -109,6 +109,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 - **Verification:** θ → 0 recovers MVO; PBL examples where feasible; robust MV as an SOCP; REF with seeded resampling; the BL reproductions.
 - **Deliverable:** `S4_MVO_FAMILY.md` with a lineage diagram (MVO → estimation error → EPO).
 - **Exit:** limits verified; ANG-vs-source differences recorded. If G&I has not arrived, B3 is completed last within the step.
+- *[2026-10-08]* **Drafted:** `S4_MVO_FAMILY.md` (six method records, lineage, decisions S47-D1 … D6); register EQ-MVO-3b, EQ-MVO-5, EQ-EPO-1 … 5, EQ-BL-1 … 3, EQ-ROB-1 … 2, EQ-REF-1; `verification/s47_*.py` (5 scripts, PASS; Michaud Tables 5.1/6.1 and G&I calibration reproduced). New: ANG-48, ANG-49; source issues BL-2, MCH-1, PBL-1, PBL-2. Exit met.
 
 ### S4.8 Momentum signals — SIG-1 XSMOM, SIG-2 TSMOM
 - **Sources:** in hand. Jegadeesh & Titman 1993; Moskowitz, Ooi & Pedersen 2012; Asness, Moskowitz & Pedersen 2013; Hurst, Ooi & Pedersen 2017; Daniel & Moskowitz 2016; Barroso & Santa-Clara 2015.
@@ -215,7 +216,8 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.7 | Black–Litterman convention | Σ vs Σ + M̄⁻¹; Ω rule; closed-form confidence | ANG-41, BL-1, IDZ-1 |
 | S4.7 | EPO shrinkage authority and tuning | Fixed vs system-estimated under the S7 protocol | ADR-0027 D4 |
 | S4.7 | Resampled frontier | IP check (D-2); resampling count and seed | D-2 |
-| S4.7 | Robust MV uncertainty set | Ellipsoidal / box; size authority | — |
+| S4.7 | Robust MV uncertainty set | Ellipsoidal / box; size authority | ANG-48 (S47-D4) |
+| S4.7 | Cash/risky split (carried from S46-D1) | Engine-level rule vs per method | S47-D6 |
 | S4.11 | HRP version | V0 published with canonical order vs V1 tree-split | ANG-42, HRP-1 |
 | S4.11 | Minimum-correlation variant | MinCorr / MinCorr2; rank power | ANG-38, MCA-1 … 3 |
 | S4.11 | GMV constraint set | Long-only vs unconstrained | — |
@@ -247,7 +249,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 |---|---|---|---|---|
 | S4.5 | A1–A5 | **Done** | 2026-10-08 | Owner accepted S45-D1 … D4 as recommended |
 | S4.6 | MVO foundation | **Done** | 2026-10-08 | Owner decided S46-D1 (option (a), refined); BSU idea on hold (RQ-57) |
-| S4.7 | B1, B2, B3, B4, B6, B7 | **Next** (B2 sources reproduced in S4.4) | 2026-10-08 | Start: read sources; carry the cash/risky split question from S46-D1 |
+| S4.7 | B1, B2, B3, B4, B6, B7 | **Drafted — owner review** | 2026-10-08 | Owner decisions S47-D1 … D6 (`S4_MVO_FAMILY.md` §5); then S4.8 |
 | S4.8 | SIG-1, SIG-2 | Not started | — | — |
 | S4.9 | Signal × PC | Not started | — | — |
 | S4.10 | Anchors, benchmarks | Not started | — | — |

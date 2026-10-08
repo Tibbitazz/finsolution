@@ -1,5 +1,18 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.7 mean–variance family drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_MVO_FAMILY.md` (DRAFT): method records for PC-B1 maximum Sharpe, B2 Black–Litterman, B3 robust MV, B4 resampled frontier, B6 simple EPO and B7 anchored EPO; lineage (MVO → estimation error → shrinkage / Bayesian / robust / resampling); owner decisions S47-D1 … S47-D6.
+- **Register:** EQ-MVO-3b, EQ-MVO-5, EQ-EPO-1 … 5, EQ-BL-1 … 3, EQ-ROB-1 … 2, EQ-REF-1.
+- **New** `verification/s47_*.py` (5 scripts, PASS):
+  - constrained maximum Sharpe (caps, group limit, tracking-error cone) as a convex problem = direct maximisation;
+  - PBL EPO: eqs. (5)–(22) and Props. 1–3 (Black–Litterman, MVO, reverse MVO, ridge), Prop. 2 in both regimes;
+  - BL 1992: limits, the full-confidence formula, the appendix misprint, τ cancellation when Ω ∝ τ;
+  - Goldfarb–Iyengar: worst-case formulas against brute force, robust minimum variance and maximum Sharpe, 95% coverage of the regression-calibrated sets;
+  - Michaud & Michaud: Tables 5.1 and 6.1 reproduced (MV exactly up to input rounding; RE within 0.7/1.6/3.0 pp at 500 replications), as a specification check under D-2.
+- **Issues:** ANG-48 (robust MV unspecified; the ellipsoidal-mean variant equals EPO), ANG-49 (resampled-frontier parameters unspecified; patented); ANG-41 and ANG-47 annotated; source issues BL-2, MCH-1, PBL-1, PBL-2.
+- **Updated:** S4_PLAN C.2 and §F, outline tracker, `S4_PC_SOURCE_MAP.md`, `verification/README.md`, HANDOFF. Not pushed.
+
 ## 2026-10-08 — S4.6 done: S46-D1 decided; RQ-57 on hold; pushed (branch `stage/s04-method-library`)
 
 - **Owner decision S46-D1** (`S4_MVO_FOUNDATION.md` §5, now REVIEWED):

@@ -41,3 +41,12 @@
   |---|---|---|
   | `s46_mvo_closed_forms.py` | GMV, frontier, two-fund separation, utility form, tangency and Tobin separation, long-only maximum Sharpe (convex form), Markowitz critical lines, Jagannathan–Ma via KKT, DGNU Prop. 1, condition-number bound, cash in Σ | PC-B1, PC-C1 (foundation) |
   | `s46_estimation_error_jorion.py` | Jorion (1986) Table 1 statistics and Table 2 risk functions and shrinkage factors within the paper's Monte Carlo error | Estimation error; Bayes–Stein |
+- *[2026-10-08, S4.7]* **Mean–variance family scripts** (`S4_MVO_FAMILY.md`):
+
+  | Script | Reproduces / proves | Method |
+  |---|---|---|
+  | `s47_max_sharpe.py` | Constrained maximum Sharpe via homogenisation (caps, group limit, tracking-error cone) = direct maximisation | PC-B1 |
+  | `s47_epo_pbl.py` | PBL eqs. (5)–(22), Props. 1–3 (BL, MVO, reverse MVO, Tikhonov, Lavrentiev), Prop. 2 both regimes (PBL-1), eq. (27), constrained V1 | PC-B6, PC-B7 |
+  | `s47_black_litterman.py` | BL 1992 reverse optimisation, limits, p. 35 formula, BL-2 misprint, τ cancellation | PC-B2 |
+  | `s47_robust_mv.py` | Goldfarb–Iyengar worst cases (eq. 15, Lemma 1, F = κG), robust min variance and max Sharpe, regression-set coverage | PC-B3 |
+  | `s47_resampled_frontier.py` | Michaud & Michaud Tables 5.1 and 6.1 (MV and RE), fn. 7, limits. **Specification check only (D-2 IP check precedes implementation)** | PC-B4 |

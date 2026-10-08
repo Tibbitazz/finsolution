@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 entries added 2026-10-08; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -59,6 +59,19 @@
 | EQ-MVO-4a | Long-only GMV = unconstrained GMV of a shrunk matrix (Jagannathan–Ma); 1-norm equivalence | PC-C1 | DGNU 2009 eq. (3), Proposition 1, p. 802 | EXTRACTED · VERIFIED (S4.6) |
 | EQ-MVO-E1 | Error amplification: relative weight error ≤ κ(Σ) × relative input error | Diagnostic | VERIFIED-DERIVATION; Michaud 1989 (error maximisation) | EXTRACTED · VERIFIED (S4.6) |
 | EQ-MVO-E2 | Bayes–Stein expected returns and predictive covariance | Estimator (→ S4.15/S9); diagnostic | Jorion 1986 eqs. (14)–(18), pp. 285–286 | EXTRACTED · VERIFIED (Tables 1–2 reproduced) |
+| EQ-MVO-3b | Maximum Sharpe under linear and tracking-error constraints (homogenisation) | PC-B1 | VERIFIED-DERIVATION; G&I 2003 eq. (39), p. 13 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-MVO-5 | Problem portfolios: principal components of the correlation matrix | PC-B6/B7; diagnostic | PBL 2021 eqs. (5)–(8), p. 129 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-1 | Shrunk correlation and risk matrices Ω̃, Σ̃, Σ_w | PC-B6/B7 | PBL eqs. (9)–(10), (19), pp. 130, 132 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-2 | General and simple EPO | PC-B6 | PBL eqs. (17), (18), (20), p. 132 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-3 | Anchored EPO with risk-matched γ | PC-B7 | PBL eqs. (21)–(22), p. 133 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-4 | Limits and equivalences: MVO, reverse MVO, Bayesian (BL), robust, ridge | PC-B6/B7 | PBL Props. 1–3, pp. 130–133; proofs pp. 147–148 | EXTRACTED · VERIFIED (S4.7; PBL-1) |
+| EQ-EPO-5 | Signal scaling and the fully shrunk portfolio | PC-B6/B7 | PBL eqs. (23)–(27), pp. 136–137 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-BL-1 | Equilibrium returns Π = δΣW | PC-B2, CMA-3 | BL 1992 Appendix item 6, p. 42 | EXTRACTED · VERIFIED (S4.4, S4.7) |
+| EQ-BL-2 | Posterior mean; full-confidence limit | PC-B2 | BL 1992 Appendix item 8, p. 42; text p. 35 | EXTRACTED · VERIFIED (S4.4, S4.7; BL-2) |
+| EQ-BL-3 | Optimisation on the posterior: Σ (BL 1992, Idzorek) vs Σ + M̄⁻¹ (He & Litterman) | PC-B2 | BL 1992 fn. 4, 6, p. 43; S4.4 reproductions | EXTRACTED · VERIFIED (S4.4) |
+| EQ-ROB-1 | Uncertainty sets and their regression calibration | PC-B3 | G&I 2003 eqs. (2)–(4), p. 4; (61)–(63), pp. 17–18 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-ROB-2 | Robust counterparts: worst cases, robust minimum variance, robust maximum Sharpe | PC-B3 | G&I eqs. (15), (26), (31)–(39), (64)–(68), pp. 7–13, 19–20 | EXTRACTED · VERIFIED (S4.7) |
+| EQ-REF-1 | Resampled efficient frontier: resampling, rank association, averaging | PC-B4 | Michaud & Michaud 2008 pp. 37–39, 42–45, 51–52, 56 | EXTRACTED · VERIFIED (S4.7; specification check under D-2) |
 
 ---
 
@@ -352,4 +365,94 @@ Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1)
   - F_MAX 0.99728 vs 0.99734;
   - Table 2 at T = 25 / 50 / 100 / 200: all 15 testable risk cells within 1.7 of the paper's Monte Carlo standard errors (K = 1,000); the shrinkage mean within 2.5 SE (largest deviation at T = 200: 0.309 vs 0.316);
   - the orderings stated on p. 288 hold (Bayes–Stein < diffuse < certainty equivalence; minimum variance best at small T and worst at T = 200).
+
+---
+
+## S4.7 entries — mean–variance family
+
+## EQ-MVO-3b Maximum Sharpe under Policy Statement constraints
+
+- **Source:** derivation (`VERIFIED-DERIVATION`); the same homogenisation is used by G&I 2003 eq. (39), p. 13, and recommended in `S4_GITHUB_IMPL_REVIEW.md` §7.
+- **Canonical:** max μ′x/√(x′Σx) s.t. 1′x = 1, l ≤ x ≤ u, Gx ≤ h, √((x − b)′Σ(x − b)) ≤ TE ⟺ min y′Σy s.t. μ′y = 1, 1′y = κ, lκ ≤ y ≤ uκ, Gy ≤ hκ, √((y − κb)′Σ(y − κb)) ≤ κ·TE, κ ≥ 0; x = y/κ. Every constraint is linear or a second-order cone, so the problem is convex.
+- **Failure:** infeasible when no feasible portfolio has positive excess return (`NO_POSITIVE_EXCESS_RETURN`).
+- **Numerical tests (`s47_max_sharpe.py`):** 25 problems with caps, a group limit and a tracking-error budget (tracking error binding in 16, caps in 8, group in 3): the convex solution equals multi-start direct maximisation (Sharpe ratios equal to 8 decimals).
+
+## EQ-MVO-5 Problem portfolios
+
+- **Source:** PBL 2021 eqs. (5)–(8), p. 129. Ω = PDP′ (correlation matrix); PC portfolios of unit-volatility assets; z_MVO = D⁻¹s^P/γ, so the risk in PC i is its Sharpe ratio times the leverage 1/√D_i.
+- **Use:** explains error amplification in MVO (links EQ-MVO-E1): the least important PCs have underestimated risk and noisy Sharpe ratios, and get the largest leveraged bets. Diagnostic for S4.16.
+- **Numerical tests:** the PC-space solution maps back to Σ⁻¹s/γ exactly (`s47_epo_pbl.py`).
+
+## EQ-EPO-1 Shrunk risk matrices
+
+- **Source:** PBL eqs. (9)–(10), p. 130: D̃ = (1 − θ)D + θI ⟺ Ω̃ = (1 − θ)Ω + θI, Σ̃ = σΩ̃σ. eq. (19), p. 132: Σ_w = (1 − w)Σ̃ + wV = σ[(1 − w)Ω̃ + wI]σ, V = diag of variances.
+- **Canonical property (verified):** applying θ and then w multiplies every correlation by (1 − θ)(1 − w).
+- **PBL's choices:** θ = 5% in most samples (Table 1, p. 135; Global 2: Ω̃ = 0.95Ω + 0.05I), or a random-matrix-theory estimate (Global 3).
+
+## EQ-EPO-2 General and simple EPO
+
+- **Source:** eq. (17) EPO = (1/γ)(τΣ̃ + Λ)⁻¹(τs + γΛa); with Λ = λV and w = λ/(τ + λ): eq. (18) EPO(w) = Σ_w⁻¹[(1 − w)s/γ + wVa]; with a = V⁻¹s/γ: eq. (20) EPO^s(w) = Σ_w⁻¹s/γ (all p. 132).
+- **Limits:** w = 0 → MVO on Σ̃; w = 1 → V⁻¹s/γ (diagonal MVO; with a TSMOM-type signal this is equal-volatility weighting, eq. 27).
+- **Units:** s must be in expected-excess-return units for a meaningful γ; the simple EPO's Sharpe ratio does not depend on γ (p. 132).
+- **w selection in PBL:** "for each time period, we estimated what choice of w (within a finite grid of possible values) would have produced the highest EPO portfolio Sharpe ratio in the time period up until that date. Then, we used this estimate in the next time period" (Figure 2 notes, p. 138); at least 15 years of data before the first choice (Table 1 notes). The grid is not stated (PBL-2).
+
+## EQ-EPO-3 Anchored EPO
+
+- **Source:** eqs. (21)–(22), p. 133: γ = √(s′Σ_w⁻¹Σ̃Σ_w⁻¹s)/√(a′Σ̃a), which equalises the Σ̃-variance of Σ_w⁻¹s/γ and of the anchor a; EPO^a(w) = Σ_w⁻¹[(1 − w)·(√(a′Σ̃a)/√(s′Σ_w⁻¹Σ̃Σ_w⁻¹s))·s + wVa].
+- **Limits (verified):** w = 1 → the anchor a; w = 0 → the MVO portfolio scaled to the anchor's risk.
+- **PBL's anchors:** 1/N (Equity 6) and 1/σ (Equity 7), Table 1.
+
+## EQ-EPO-4 Limits and equivalences
+
+- **Source:** Prop. 1, eq. (13)–(14), p. 131 (Bayesian posterior with prior μ ~ N(γΣa, τΣ), s|μ ~ N(μ, Λ)); Prop. 2, eqs. (15)–(16) (robust optimisation with an ellipsoidal set for μ); Prop. 3, p. 133 (MVO; reverse MVO; Black–Litterman with Π = γΣa, Q = s, P = I, Ω = Λ; robust; generalised ridge), proofs pp. 147–148 (Tikhonov, Lavrentiev).
+- **PBL-1 (boundary qualification, verified):** Prop. 2 states that the solutions for c ∈ (0, ∞) equal those for τ ∈ (0, ∞). The robust objective has a kink at x = a; for c ≥ c* = √((s − γΣa)′Λ⁻¹(s − γΣa)) the robust solution is exactly the anchor, which corresponds to τ = 0 (Prop. 3 part 2), outside (0, ∞). For c < c* the correspondence holds.
+- **Numerical tests (`s47_epo_pbl.py`):** all equivalences to 1e-8; Prop. 2 in 30 cases below c* and 18 at or above it.
+
+## EQ-EPO-5 Signal scaling
+
+- **Source:** eq. (23) TSMOM s_i = 0.1σ_i·sign(r_{12}); eqs. (24)–(26) XSMOM and its volatility-scaled variants; eq. (27) the fully shrunk EPO weight s_i/(γσ_i²) (pp. 136–137); γ_t = n_t/40% for TSMOM so that w = 1 reproduces the TSMOM factor.
+- **Use:** links to S4.8 (signals) and S4.9 (signal × PC compatibility).
+
+## EQ-BL-1 Equilibrium returns
+
+- **Source:** BL 1992 Appendix item 6, p. 42: Π = δΣW, with W = market-capitalisation weights (items 2–3; currencies via the universal-hedging constant λ).
+- **Canonical:** Π = δΣw_mkt; reverse optimisation (δΣ)⁻¹Π = w_mkt (EQ-H-2a).
+- **Inputs:** w_mkt from PC-A2 data (S45-D3); δ system-estimated (S4.15/S9).
+
+## EQ-BL-2 Posterior
+
+- **Source:** item 7: prior centred on Π with covariance τΣ; views PE[R] = Q + ε, ε ~ N(0, Ω), **Ω diagonal**. Item 8: E[R]‾ = [(τΣ)⁻¹ + P′Ω⁻¹P]⁻¹[(τΣ)⁻¹Π + P′Ω⁻¹Q]. Text p. 35: with 100% confidence, Π + τΣP′(PτΣP′)⁻¹(Q − PΠ).
+- **BL-2 (misprint):** item 8 is printed "[(τΣ⁻¹Π + P′Ω⁻¹Q]" with an unbalanced parenthesis. Read literally (τ·Σ⁻¹·Π) it gives τ²Π with no views instead of Π; the intended term is (τΣ)⁻¹Π.
+- **Properties (verified, `s47_black_litterman.py`):** no-view and consistent-view limits; the full-confidence limit satisfies the views exactly; **when Ω is proportional to τ** (He & Litterman's τ·diag(PΣP′); Idzorek's (1 − C)/C·τ·pΣp′), τ cancels from the posterior mean.
+
+## EQ-BL-3 Optimisation on the posterior
+
+- **Source:** BL 1992 treats covariances as known (fn. 4, p. 43) and optimises with Σ; portfolios are scaled to the equilibrium portfolio's risk, 10.7% (fn. 6, p. 43). He & Litterman use Σ + M̄⁻¹ (BL-1, S4.4); Idzorek uses Σ.
+- **Use:** decision S47-D1.
+
+## EQ-ROB-1 Uncertainty sets
+
+- **Source:** G&I 2003 model (1), p. 3: r = μ + V′f + ε. (2) S_d: d_i ∈ [d̲_i, d̄_i]; (3) S_v: V = V₀ + W, ‖W_i‖_G ≤ ρ_i; (4) S_m: |μ_i − μ₀,i| ≤ γ_i (p. 4).
+- **Calibration (§5, pp. 17–18):** from a factor regression over p periods with design A = [1 B′]: γ_i = √((AᵀA)⁻¹₁₁·c₁(ω)·s_i²), ρ_i = √(m·c_m(ω)·s_i²), G = (Q(AᵀA)⁻¹Qᵀ)⁻¹, with c_J(ω) the ω-quantile of F(J, p − m − 1); d̄_i from a bootstrap or any worst-case residual-variance estimate. "The typical choices of ω lie in the range 0.95–0.99" (p. 18).
+- **Numerical tests:** simulated coverage 0.950 / 0.949 for ω = 0.95.
+
+## EQ-ROB-2 Robust counterparts
+
+- **Worst cases:** mean μ₀′φ − γ′|φ| (eq. 15); residual variance φ′D̄φ; factor variance max over ‖y‖_G ≤ ρ′|φ| of ‖V₀φ + y‖²_F = min over 0 < σ < 1/λ_max(H) of r²/σ + Σw_i²/(1 − σλ_i) (Lemma 1, eq. 26, pp. 8–9); if F = κG, the worst-case factor st. dev. is ‖F^½V₀φ‖ + √κ·ρ′|φ| (eqs. 64–67, pp. 19–20).
+- **Problems:** robust minimum variance (6), (31)–(32), p. 11; robust maximum return (7), (33)–(34); robust maximum Sharpe (8), (35)–(37), p. 12, with general linear constraints (38)–(39), p. 13 (homogenised as in EQ-MVO-3b). The paper assumes long-only after p. 11.
+- **Numerical tests (`s47_robust_mv.py`):** vertex enumeration for (15); Lemma 1 = brute force over the ellipsoid; F = κG closed form; robust minimum variance = Markowitz at zero uncertainty; its worst case is a valid bound and beats the classical portfolio's worst case (8 cases, 0.4–4.2%); robust maximum Sharpe homogenisation = direct maximisation (6 cases).
+
+## EQ-REF-1 Resampled efficient frontier
+
+- **Source:** Michaud & Michaud 2008.
+  - Procedure (pp. 37–38): simulate T periods from the inputs; re-estimate means and covariances; compute 51 efficient portfolios equally spaced in return from minimum variance to maximum return under the same constraints; repeat (500 replications in the text).
+  - RE portfolio (pp. 42–44, fn. 4): average of rank-associated portfolios; App. A (p. 56): λ-association by quadratic utility, "slightly less statistically stable than rank-association".
+  - fn. 7 (p. 44): RE maximum-return weights = probability that each asset is the maximum-return asset.
+  - The number of simulated observations is "a free parameter" modelling forecast confidence (pp. 51–52; the Forecast Confidence level is patent pending, fn. 30). RE optimisation is patented with an exclusive licensee (p. 42, fn. 1) → D-2.
+- **Numerical tests (`s47_resampled_frontier.py`, specification check under D-2):**
+  - classical Table 5.1 maximum Sharpe within 0.6 pp, and minimum variance;
+  - unbounded maximum Sharpe 0.2538 vs 0.253, which input rounding alone moves between 0.245 and 0.264;
+  - Table 6.1 RE minimum-variance / middle / maximum-return portfolios within 0.7 / 1.6 / 3.0 pp (500 replications, T = 216);
+  - the fn. 7 identity; all 51 RE portfolios below the classical frontier; long simulated samples approach MV.
+- **MCH-1 (under-specification):** Table 6.1's "middle" portfolio is not defined. The printed MV middle is efficient on our frontier at rank 24 of 51, not at the return midpoint (rank 26). The printed inputs also tie France and Japan at 0.88, so the classical maximum-return portfolio is not unique in the rounded data (the book shows 100% France).
 

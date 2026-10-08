@@ -244,7 +244,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.4 | ANG PC source map | **DONE 2026-10-08** (owner confirmed): `S4_PC_SOURCE_MAP.md` (all 22 SOURCE LOCATED; 18 governing sources in hand; PC-C3, PC-D2, PC-D3 SOURCE REVIEWED; ANG-13 resolved; ANG-38 … ANG-42); `S4_SOURCE_REVIEWS_2026-10-08.md`; `verification/s44_*.py`; 4 BI items outstanding |
 | S4.5 | Heuristic portfolios (5) | **DONE 2026-10-08** (owner accepted S45-D1 … D4): `S4_HEURISTICS.md` (A1–A5 records), `S4_EQUATION_REGISTER.md` (created), `verification/s45_*.py` (PASS); ANG-43 … ANG-46, MM-1, MM-2 |
 | S4.6 | Classical MVO foundation | **DONE 2026-10-08** (owner decided S46-D1): `S4_MVO_FOUNDATION.md`, register EQ-MVO-1 … 4 (+ sub-equations, E1, E2), `verification/s46_*.py` (PASS); ANG-47 |
-| S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | **NEXT** |
+| S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | **DRAFTED 2026-10-08**: `S4_MVO_FAMILY.md` (six method records; lineage; owner decisions S47-D1 … D6 open), register S4.7 entries, `verification/s47_*.py` (5 scripts, PASS); ANG-48, ANG-49; BL-2, MCH-1, PBL-1, PBL-2 |
 | S4.8 | Momentum signal review (XSMOM, TSMOM) | NOT STARTED |
 | S4.9 | Signal × PC compatibility | NOT STARTED |
 | S4.10 | Anchor and benchmark architecture | NOT STARTED |
@@ -359,18 +359,18 @@ ADRs additionally mark statements as [SRC] / [AD] / [GR] / [DEF] (ADR-0026).
 | EQ-MVO-2 | Unconstrained solution and two-fund representation | MVO family · *[2026-10-08]* EXTRACTED · VERIFIED (also 2a: long-only critical lines) |
 | EQ-MVO-3 | Tangency / maximum-Sharpe portfolio with risk-free asset; constrained variant | PC-B1 · *[2026-10-08]* EXTRACTED · VERIFIED (also 3a: long-only) |
 | EQ-MVO-4 | GMV closed form; long-only variant | PC-C1 · *[2026-10-08]* EXTRACTED · VERIFIED (also 4a: Jagannathan–Ma) |
-| EQ-MVO-5 | Estimation-error characterisation used by EPO (problem portfolios / eigen-structure) | PC-B6/B7 |
-| EQ-EPO-1 | Shrunk risk matrix as a function of θ | PC-B6 |
-| EQ-EPO-2 | Simple EPO weights | PC-B6 |
-| EQ-EPO-3 | Anchored EPO weights; anchor entry | PC-B7 |
-| EQ-EPO-4 | Limiting cases θ → 0 (MVO) and θ → 1; scaling/normalisation | PC-B6/B7 |
-| EQ-EPO-5 | Any signal/variance scaling used in the source | PC-B6/B7 |
-| EQ-BL-1 | Implied equilibrium returns Π = δΣw_mkt | PC-B2, CMA-3 |
-| EQ-BL-2 | Posterior mean and covariance (τ, P, Q, Ω) | PC-B2 |
-| EQ-BL-3 | Optimisation of the posterior | PC-B2 |
-| EQ-ROB-1 | Uncertainty sets (ellipsoidal / box) | PC-B3 |
-| EQ-ROB-2 | Robust counterpart (SOCP) | PC-B3 |
-| EQ-REF-1 | Resampling procedure, frontier averaging, rank association | PC-B4 |
+| EQ-MVO-5 | Estimation-error characterisation used by EPO (problem portfolios / eigen-structure) | PC-B6/B7 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-1 | Shrunk risk matrix as a function of θ | PC-B6 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-2 | Simple EPO weights | PC-B6 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-3 | Anchored EPO weights; anchor entry | PC-B7 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-4 | Limiting cases θ → 0 (MVO) and θ → 1; scaling/normalisation | PC-B6/B7 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-EPO-5 | Any signal/variance scaling used in the source | PC-B6/B7 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-BL-1 | Implied equilibrium returns Π = δΣw_mkt | PC-B2, CMA-3 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-BL-2 | Posterior mean and covariance (τ, P, Q, Ω) | PC-B2 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-BL-3 | Optimisation of the posterior | PC-B2 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-ROB-1 | Uncertainty sets (ellipsoidal / box) | PC-B3 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-ROB-2 | Robust counterpart (SOCP) | PC-B3 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) |
+| EQ-REF-1 | Resampling procedure, frontier averaging, rank association | PC-B4 · *[2026-10-08]* EXTRACTED · VERIFIED (S4.7) (specification check; D-2) |
 | EQ-DS-1 | Downside deviation / semivariance with MAR | PC-B5 |
 | EQ-DS-2 | Optimisation objective (Sortino ratio or mean–semivariance) | PC-B5 |
 | EQ-H-1 | 1/N weights | PC-A1 · *[2026-10-08]* EXTRACTED · VERIFIED (`S4_EQUATION_REGISTER.md`; also EQ-H-1a, EQ-H-1b) |
