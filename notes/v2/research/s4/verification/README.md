@@ -49,4 +49,5 @@
   | `s47_epo_pbl.py` | PBL eqs. (5)–(22), Props. 1–3 (BL, MVO, reverse MVO, Tikhonov, Lavrentiev), Prop. 2 both regimes (PBL-1), eq. (27), constrained V1 | PC-B6, PC-B7 |
   | `s47_black_litterman.py` | BL 1992 reverse optimisation, limits, p. 35 formula, BL-2 misprint, τ cancellation | PC-B2 |
   | `s47_robust_mv.py` | Goldfarb–Iyengar worst cases (eq. 15, Lemma 1, F = κG), robust min variance and max Sharpe, regression-set coverage | PC-B3 |
-  | `s47_resampled_frontier.py` | Michaud & Michaud Tables 5.1 and 6.1 (MV and RE), fn. 7, limits. **Specification check only (D-2 IP check precedes implementation)** | PC-B4 |
+  | `s47_resampled_frontier.py` | Michaud & Michaud Tables 5.1 and 6.1 (MV and RE), fn. 7, limits. Specification check (D-2 closed 2026-10-08: core patent expired) | PC-B4 |
+  | `s47_epo_grid_design_study.py` | **Design study, not a ranking:** grid size and 5% pre-shrink for PBL's past-only w rule (synthetic) | PC-B6 (S47-D2) |

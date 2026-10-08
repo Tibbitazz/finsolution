@@ -1,5 +1,13 @@
 # Changelog — notes/v2
 
+## 2026-10-08 — S4.7 owner decisions (part 1) (branch `stage/s04-method-library`)
+
+- **Decided:** S47-D1 (BL 1992 convention), S47-D2 rule (endogenous w by PBL's past-only trailing-Sharpe rule), S47-D3 (anchor deferred to S4.10, with a reminder to the owner first), S47-D4 (G&I robust maximum Sharpe), S47-D5 (resampled frontier as recommended).
+- **D-2 closed for PC-B4 as specified:** US 6,003,018 listed as "Expired – Lifetime" (anticipated expiration 2018-09-09, Google Patents); related rebalancing and derivative-overlay filings are outside B4; the forecast-confidence level is not adopted.
+- **Owner note recorded:** both long-only and long/short portfolios are allowed according to user preferences and abilities; per-method consequences in `S4_MVO_FAMILY.md` §5 (gap: Michaud's long-short treatment, ch. 9, not yet read).
+- **New** `verification/s47_epo_grid_design_study.py` (synthetic design study, not a ranking): grid size and 5% pre-shrink for the past-only w rule. Basis for the S47-D2 parameter recommendations (θ = 0 on the authoritative risk model; 11-point logit-spaced grid), awaiting owner confirmation.
+- ANG-41, ANG-48, ANG-49 resolved; outline S4.10 row carries the S47-D3 reminder. S47-D6 open (explanation requested).
+
 ## 2026-10-08 — S4.7 mean–variance family drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_MVO_FAMILY.md` (DRAFT): method records for PC-B1 maximum Sharpe, B2 Black–Litterman, B3 robust MV, B4 resampled frontier, B6 simple EPO and B7 anchored EPO; lineage (MVO → estimation error → shrinkage / Bayesian / robust / resampling); owner decisions S47-D1 … S47-D6.

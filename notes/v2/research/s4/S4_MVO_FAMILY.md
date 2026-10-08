@@ -1,6 +1,6 @@
 # S4.7 Mean–variance family — PC-B1, B2, B3, B4, B6, B7: method records
 
-**Document status:** DRAFT (2026-10-08). Awaiting owner decisions S47-D1 … S47-D6 (§5). · **Basis:**
+**Document status:** DRAFT (2026-10-08). Owner decided S47-D1, D3, D4, D5 and the S47-D2 rule; S47-D2's θ and grid, and S47-D6, open (§5). · **Basis:**
 - S4_PLAN §G (step S4.7) and §F (EQ-MVO-5, EQ-EPO-1 … 5, EQ-BL-1 … 3, EQ-ROB-1 … 2, EQ-REF-1);
 - `S4_METHODS_OUTLINE.md` §1–§2;
 - `S4_MVO_FOUNDATION.md` (S4.6; S46-D1);
@@ -262,7 +262,18 @@ Common to all six:
 
 ## 5. Owner decisions (stage 6)
 
+*[2026-10-08]* **Owner note (cross-cutting): the engine allows both long-only and long/short portfolios, according to the user's preferences and abilities** (Policy Statement and account permissions; e.g. short selling at Nordnet only in the aksje- og fondskonto, with tests: `research/S3_FINDINGS.md`). Consequences:
+- **PC-B1:** the homogenised problem handles any linear constraints; long/short adds a gross-exposure limit (linear after splitting x = x⁺ − x⁻).
+- **PC-B2:** the BL posterior is unconstrained by nature; constraints enter the optimisation step.
+- **PC-B3:** G&I assume long-only after p. 11 but give the transformation φ = φ⁺ − φ⁻ (p. 11).
+- **PC-B4:** Michaud's base case is sign-constrained; the long-short treatment is in the book's ch. 9, not yet read (gap for long/short REF).
+- **PC-B6/B7:** PBL's own setting is long/short (unconstrained); long-only uses the constrained V1.
+- **PC-A1 … A4** are long-only by definition.
+
+
 ### S47-D1 — Black–Litterman convention
+
+*[2026-10-08]* **Owner decision: follow the 1992 paper** (weights with Σ; Ω diagonal; Π = δΣw_mkt). BL 1992 leaves the construction of Ω to the investor's confidence; mapping each CMA's confidence to ω via IDZ-1 stays the recommended rule within that framework, to be confirmed when CMA confidences are specified (S4.15/S9).
 - **Options:**
   - (a) BL 1992: optimise with Σ; Ω diagonal.
   - (b) He & Litterman: Σ + M̄⁻¹ in the weight step; Ω = τ·diag(PΣP′).
@@ -281,6 +292,11 @@ Common to all six:
   - Relative views have no source in our pipeline yet (S9).
 
 ### S47-D2 — EPO shrinkage w
+
+*[2026-10-08]* **Owner decision: w is endogenous, chosen by PBL's past-only rule (best trailing Sharpe).** The owner asked (i) raw vs 5%-pre-shrunk risk model and (ii) grid size. Recommendations, from PBL's evidence (Table 2; p. 138) and the design study `verification/s47_epo_grid_design_study.py` (synthetic, protocol resolution only):
+- (i) apply EPO to the **authoritative risk model** of the problem (ADR-0027 D3), with no method-private pre-shrink (θ = 0); θ = 0.05 as sensitivity-only. Reasons: for simple EPO θ is an exact reparametrisation of w (correlations × (1 − θ)(1 − w), verified); pre-shrinking raised plain MVO's Sharpe by 0.014–0.027 but changed the past-only EPO result by only +0.001/+0.004 (within 2 s.e.) and the best fixed w by −0.002/−0.000, as PBL report ("almost no effect" once correlations are shrunk heavily).
+- (ii) an **11-point, logit-spaced grid {0, 0.01, 0.03, 0.1, 0.25, 0.5, 0.75, 0.9, 0.97, 0.99, 1}**, pre-registered at S7, plus a pre-registered switching margin (hysteresis) tested at S7. Reasons: a 3-point grid lost 0.005–0.018 Sharpe; 8–11 points were indistinguishable; 21 or 101 points added at most +0.004 while w changed in 14–56% of months instead of 6–8%. Trailing-Sharpe estimation error over 15 years (≈ 0.27 annualised for SR ≈ 0.5, iid approximation) dwarfs the difference between neighbouring fine-grid values.
+- Awaiting owner confirmation of (i) and (ii).
 - **Options:**
   - (a) system-estimated by PBL's past-only rule (expanding window; maximum trailing Sharpe on a pre-registered grid, e.g. {0, 0.1, 0.25, 0.5, 0.75, 0.9, 1}; at least 15 years of history);
   - (b) a fixed w;
@@ -291,10 +307,14 @@ Common to all six:
   - A fixed w has no transferable value: PBL's best in-sample w varies by sample (Table 2), and our long-only test argues against a large w.
 
 ### S47-D3 — Anchor for PC-B7
+
+*[2026-10-08]* **Owner decision: defer to S4.10, and remind the owner of this decision first when S4.10 starts.**
 - **Recommendation:** defer to S4.10 (anchor and benchmark architecture), as planned.
 - **Candidates:** 1/N (A1; PBL Equity 6), 1/σ (A3; PBL Equity 7), market cap (A2), `POL.benchmark`.
 
 ### S47-D4 — Robust mean–variance
+
+*[2026-10-08]* **Owner decision: accepted as recommended** (option (a)).
 - **Options:**
   - (a) G&I robust maximum Sharpe with factor-model uncertainty sets, calibrated by §5 at ω = 0.95;
   - (b) G&I robust minimum variance with a target return α;
@@ -306,6 +326,8 @@ Common to all six:
 - **Dependency:** B3 needs a factor model and its regression statistics. Either the authoritative risk model for the problem is a factor model that exposes them (S10), or the factors are declared in B3's contract. Otherwise B3 is ineligible for that problem.
 
 ### S47-D5 — Resampled frontier
+
+*[2026-10-08]* **Owner decision: accepted as recommended; the owner considers the patent not an obstacle.** IP check (D-2) evidence: the core patent US 6,003,018 ("Portfolio optimization by means of resampled efficient frontiers"; filed 1998-09-09, priority 1998-03-27, granted 1999-12-14) is listed by Google Patents as "Expired – Lifetime", anticipated expiration 2018-09-09 (Google's legal status is an assumption, not a legal conclusion). Related filings are outside B4 as specified: US 2004/0083150 (RE rebalancing; relevant only if S13 adopts RE-based rebalancing) and US 2012/0246095 (derivative overlays); the forecast-confidence level is not adopted. **D-2 closed for PC-B4 as specified.**
 - **IP check (D-2):** before any implementation.
   - The book says RE optimisation is patented with an exclusive licensee, and the forecast-confidence level is patent pending.
   - Lead to check (UNVERIFIED): a US patent filed around 1998 would normally have expired by about 2018–2019.
@@ -317,6 +339,8 @@ Common to all six:
   - proposal = the maximum-Sharpe RE portfolio on the original inputs.
 
 ### S47-D6 — Cash/risky split (carried from S46-D1)
+
+*[2026-10-08]* Owner asked for a more detailed explanation before deciding (open).
 - **Options:**
   - (a) one engine-level rule: each method proposes its risky portfolio, and one transparent rule sets the cash/risky split from the Policy Statement risk target, the leverage permission and the borrowing rate;
   - (b) each method sets its own split (through γ, δ or its own definition).

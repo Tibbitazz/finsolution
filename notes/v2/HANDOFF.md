@@ -279,7 +279,9 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 2b | **Data access (owner, when S6 starts):** free FRED, OpenFIGI and Tiingo keys; whether to take EODHD All World (+ fundamentals); whether the university licence (Bloomberg / FactSet / I/B/E/S) allows personal research use for validation | Decide at S6; nothing needed now | S6 lead §7–§8 |
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
-| 5 | **S4.7 decisions:** S47-D1 BL convention; S47-D2 EPO w protocol; S47-D3 B7 anchor (→ S4.10); S47-D4 robust-MV specification; S47-D5 resampled frontier (incl. the D-2 IP check); S47-D6 engine-level cash/risky split (consequence for PC-A5) | As recommended in `S4_MVO_FAMILY.md` §5 | S4.7 |
+| 5 | **S4.7 open items:** S47-D2 parameters (θ = 0 on the authoritative risk model; 11-point logit-spaced grid + switching margin at S7) awaiting confirmation; S47-D6 engine-level cash/risky split (explanation given 2026-10-08) | As recommended in `S4_MVO_FAMILY.md` §5 | S4.7 |
+
+**Resolved on 2026-10-08 (S4.7):** S47-D1 (follow BL 1992), S47-D2 rule (endogenous w, past-only best trailing Sharpe), S47-D3 (anchor deferred to S4.10; remind the owner first), S47-D4 (G&I robust maximum Sharpe), S47-D5 (resampled frontier as recommended; **D-2 closed for PC-B4**: core patent US 6,003,018 expired 2018-09-09 per Google Patents). Owner note: the engine allows both long-only and long/short portfolios according to user preferences and abilities.
 
 **Resolved on 2026-10-08 (S4.6):** S46-D1 decided: numéraire cash is the riskless asset; the risk-free rate is the after-tax rate on uninvested cash at the best liquid deposit available to the user, otherwise the broker's cash rate; cash location is an implementation decision (S13); borrowing at a separate rate only if permitted. The BSU / household-advice idea is ON HOLD (RQ-57). Open for S4.7: engine-level vs per-method cash/risky split.
 

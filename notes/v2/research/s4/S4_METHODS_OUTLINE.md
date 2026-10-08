@@ -137,6 +137,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 - **Sync:** **SYNC-3** together with S4.10.
 
 ### S4.10 Anchor and benchmark architecture
+- *[2026-10-08]* **Start by reminding the owner of S47-D3** (anchor for anchored EPO, PC-B7; candidates 1/N, 1/σ, market cap, `POL.benchmark`; `S4_MVO_FAMILY.md` §5).
 - **Scope:** distinguish PC method · anchor source · benchmark definition · benchmark weights · comparison benchmark (taxonomy F-2, F-3). This includes a valid anchor contract (1/N, 1/σ, benchmark weights, other source-supported) and when the anchor equals the comparison benchmark.
 - **Verification:** Anchored EPO with each anchor on synthetic data; anchor-invariance tests.
 - **Deliverable:** `S4_ANCHOR_BENCHMARK.md`.
@@ -252,7 +253,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.7 | B1, B2, B3, B4, B6, B7 | **Drafted — owner review** | 2026-10-08 | Owner decisions S47-D1 … D6 (`S4_MVO_FAMILY.md` §5); then S4.8 |
 | S4.8 | SIG-1, SIG-2 | Not started | — | — |
 | S4.9 | Signal × PC | Not started | — | — |
-| S4.10 | Anchors, benchmarks | Not started | — | — |
+| S4.10 | Anchors, benchmarks | Not started | — | **Remind the owner first: S47-D3, the anchor for anchored EPO (PC-B7)** |
 | S4.11 | C1–C5 | Not started (C2, C3, C5 sources reviewed or reproduced in S4.4) | — | — |
 | S4.12 | D1–D4, B5 | Not started (D2, D3 sources reproduced in S4.4) | — | — |
 | S4.13 | Risk dependencies | Not started | — | — |
