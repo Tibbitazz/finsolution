@@ -257,7 +257,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.6 | Classical MVO foundation | **DONE 2026-10-08** (owner decided S46-D1): `S4_MVO_FOUNDATION.md`, register EQ-MVO-1 … 4 (+ sub-equations, E1, E2), `verification/s46_*.py` (PASS); ANG-47 |
 | S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | **DONE 2026-10-08** (owner decided S47-D1 … D6): `S4_MVO_FAMILY.md` (six method records; lineage), register S4.7 entries + EQ-SPLIT-1, `verification/s47_*.py` (PASS); ANG-48, ANG-49 resolved; B-46 adaptation (engine-level risk target); D-2 closed for B4 |
 | S4.8 | Momentum signal review (XSMOM, TSMOM) | **DONE 2026-10-15** (owner decided S48-D1, D2, D4, D5 in principle, D6; D3 → S4.9) · drafted 2026-10-15 (scope: amendment 19): `S4_MOMENTUM.md` (SIG-1, SIG-2, variants R/F/T, strategy-level scaling), register EQ-SIG-1 … EQ-SIG-5, `verification/s48_*.py` (3 scripts, PASS); ANG-23 annotated; source issues HOP-1, DM-1/2, BHM-1, GK-1, EL-1/2, BRU-1/2, PBL-3; decisions recorded in `S4_MOMENTUM.md` §5.1 |
-| S4.9 | Signal × PC compatibility | **NEXT** (carries S48-D3) |
+| S4.9 | Signal × PC compatibility | **DRAFTED 2026-10-15:** `S4_SIGNAL_PC_COMPATIBILITY.md` (objects O1–O6; matrix of 23 methods × objects; rules R-1 … R-6; §D.1 candidate resolved as composition rules; mappings EQ-MAP-1 … 4 registered for S9d), `verification/s49_signal_pc_compatibility.py` (PASS); awaiting owner decisions S49-D1 … D5 (D2 = S48-D3) |
 | S4.10 | Anchor and benchmark architecture | NOT STARTED |
 | S4.11 | Risk-structured PC methods (5) | NOT STARTED |
 | S4.12 | Non-traditional PC methods (4) + mean–downside placement | NOT STARTED |

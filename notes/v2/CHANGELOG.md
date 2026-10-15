@@ -1,5 +1,22 @@
 # Changelog — notes/v2
 
+## 2026-10-15 (S4.9) — Signal × PC compatibility drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_SIGNAL_PC_COMPATIBILITY.md` (DRAFT):
+  - six objects (O1 evidence; O2 conditioned universe; O3 direction rule; O4 μ mapping; O5 sleeve; O6 tactical overlay);
+  - a compatibility matrix for all 23 roster methods (V / V1 / M / D / —);
+  - rules R-1 … R-6.
+- **Findings:**
+  - TSMOM is PC-A3 with a direction rule;
+  - signal-conditioned heuristics are literature-supported compositions, not new methods (the §D.1 candidate, resolved);
+  - DGU Table 2 supports 1/N across factor portfolios including UMD;
+  - Michaud & Michaud ch. 12 grounds R-1 and R-2.
+- **Specification issue found:** a direction rule must act after the engine-level scaling (EQ-SPLIT-1), or a risk-off state is re-levered (0.19 vs 0.69).
+- **Register:** EQ-MAP-1 … 4 (registered for S9d, not accepted).
+- **New** `verification/s49_signal_pc_compatibility.py` (PASS). RQ-33 annotated.
+- Owner decisions S49-D1 … D5 open (S49-D2 = S48-D3).
+- S4_PLAN C.2, outline, verification README, HANDOFF. Not pushed.
+
 ## 2026-10-15 (S4.8 done) — Owner decisions S48-D1 … D6; universe instruction (branch `stage/s04-method-library`)
 
 - **Decided after discussion** (`S4_MOMENTUM.md` §5.1; draft options kept in §5.2):

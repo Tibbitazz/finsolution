@@ -62,3 +62,8 @@
   |---|---|---|
   | `s48_momentum_constructions.py` | JT overlapping cohorts; AMP eq. (1) invariants; PBL eqs. (24)–(27), PBL-3; MOP eq. (1) (centre of mass 60 d = half-life 41.9 d; no look-ahead); MOP eqs. (6)–(7) exact; JT eq. (3); BHM residual momentum (factor neutrality; BHM-1); G&K eq. (1), GK-1; E&L legs, EL-2; B&SC eqs. (5)–(6); DM eq. (6) vs the exact maximiser (DM-1); HOP combination | SIG-1, SIG-2, variants, EQ-SIG-4 |
   | `s48_trend_filters.py` | Bruder et al.: uniform MA = TSMOM sign; crossover = triangular return weights (BRU-1); Kalman gain = Muth gain = EWMA; HP and L1 two-sided; Mann statistic (BRU-2); Paleologo drift-precision limit | SIG-2T |
+- *[2026-10-15, S4.9]* **Signal × PC compatibility** (`S4_SIGNAL_PC_COMPATIBILITY.md`):
+
+  | Script | Proves | Use |
+  |---|---|---|
+  | `s49_signal_pc_compatibility.py` | Unscaled ranks into MVO are ill-defined (R-1); α = IC·σ·z invariant, benchmark neutrality, unit consistency (R-2); PBL EPO at w = 0 and 1; conditioned-universe constructions; direction rule after the engine-level scaling (R-4: 0.19 vs 0.69) | S4.9, S9d, S4.20 |
