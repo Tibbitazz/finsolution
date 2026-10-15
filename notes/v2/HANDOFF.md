@@ -113,7 +113,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `f28d116` | **S4.7** mean–variance family: `S4_MVO_FAMILY.md` (B1, B2, B3, B4, B6, B7 records; lineage; decisions S47-D1 … D6 incl. the cash/risky split); register S4.7 entries; `verification/s47_*.py` (5 scripts, PASS; Michaud Tables 5.1/6.1 and Goldfarb–Iyengar calibration reproduced; PBL Props. 1–3 verified); ANG-48, ANG-49; BL-2, MCH-1, PBL-1, PBL-2 |
 | `f063e5a` | S4.7 decisions part 1 (D1, D2 rule, D3, D4, D5; D-2 closed); EPO grid design study |
 | `ce32bb1` | S4.7 DONE: S47-D2 parameters (θ = 0; 11-point logit grid) and S47-D6 (engine-level risk target per method type; EQ-SPLIT-1; adaptation B-46) recorded; S4.8 NEXT; pushed with `f28d116`, `f063e5a` (owner authorisation) |
-| (latest) | **S47-D7** (Michaud patent family closed; components enter as candidates); Paleologo 2025 registered with PAL-1 … PAL-8 and `verification/s48_kalman_ewma_paleologo.py` (PASS); S4.8 supporting sources received (7 of 8); **OpenBB decisions OB-1** (ODP as data-access layer) **and OB-2** (Workspace as interface reference; DR-11); RQ-08, RQ-10, RQ-44 annotated; **not pushed** |
+| (latest) | **S47-D7** (Michaud patent family closed; components enter as candidates); Paleologo 2025 registered with PAL-1 … PAL-8 and `verification/s48_kalman_ewma_paleologo.py` (PASS); S4.8 supporting sources received (7 of 8); **OpenBB decisions OB-1** (ODP as data-access layer) **and OB-2** (Workspace as interface reference; DR-11); RQ-08, RQ-10, RQ-44 annotated; **pushed 2026-10-15** (owner authorisation) |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -247,23 +247,17 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`; owner accepted S45-D1 … D4). **S4.6 DONE 2026-10-08** (`S4_MVO_FOUNDATION.md`; owner decided S46-D1). **S4.7 DONE 2026-10-08** (`S4_MVO_FAMILY.md`; owner decided S47-D1 … D6; engine-level risk target B-46; S47-D7 on 2026-10-15). **Next: S4.8** (momentum signals): supporting sources received 2026-10-15 (7 of 8); scope proposal awaits the owner |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`; owner accepted S45-D1 … D4). **S4.6 DONE 2026-10-08** (`S4_MVO_FOUNDATION.md`; owner decided S46-D1). **S4.7 DONE 2026-10-08** (`S4_MVO_FAMILY.md`; owner decided S47-D1 … D6; engine-level risk target B-46; S47-D7 on 2026-10-15). **S4.8 in progress** (momentum signals; scope accepted 2026-10-15, S4_PLAN amendment 19) |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-11 registered as interface items (DR-11: OpenBB Workspace as the interface reference, OB-2); G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08); OpenBB ODP v5 admitted as a data-access layer (OB-1, 2026-10-15) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
 
-**Recommended order:**
-1. **Owner decisions (§6).**
-2. **Push decision** for this branch, so the developer can see SYNC-1 material.
-3. **S4.1 → S4.4 sequentially**, stopping for review after each:
-   - S4.1: page-cited ANG v2 reconstruction including skill anatomy, cross-checked against the lecture (ANG-24 … ANG-27);
-   - S4.2: adaptation map and conflicts;
-   - S4.3: taxonomy, including the ADR-0026 objects and the learning objects;
-   - S4.4: PC source map.
-4. **Paper acquisition** (owner-supplied):
-   - Priority A before S4.5–S4.7 (Kirby–Ostdiek, Kan–Zhou, Jagannathan–Ma, He–Litterman, Idzorek, Goldfarb–Iyengar, Tütüncü–Koenig, Ceria–Stubbs, Michaud 1998, Scherer 2002, EPO author code);
-   - Priority B before S4.8–S4.14, including Maillard–Roncalli–Teïletche (ERC, PC-C2), López de Prado (HRP), Treynor & Black 1973 and Gilmore & Simonian 2025 (S4.12).
-5. **From S4.5:** mathematics and the agent-readable contract are reviewed **together** per method. Reference implementations go in `research/s4/verification/` with invariants I-1 … I-9.
+**Recommended order** *(refreshed 2026-10-15)*:
+1. **S4.8 momentum signals** (in progress; scope = S4_PLAN amendment 19): core XSMOM/TSMOM constructions plus residual momentum, factor momentum and the trend-filter family (one-sided only); stop for owner decisions (lookback and skip; TSMOM volatility estimator).
+2. **S4.9 signal × PC compatibility and S4.10 anchors and benchmarks** (SYNC-3). At S4.10, remind the owner of S47-D3 first (anchor: 1/N, 1/σ, market cap, `POL.benchmark`; the 60/40 question, RQ-09 note).
+3. **S4.11 → S4.14** (risk-structured, non-traditional incl. TPA, risk-dependency inventory incl. the RQ-14 candidates, agentic roles), then Sections 3–5 (S4.15–S4.27) → **G4**.
+4. **Owner items in parallel:** G4 review of S4.2/ADR-0027 and the binding of B-46; S8 start with the developer brief (DR-1 … DR-11, incl. the OpenBB interface reference); sandbox key rotation; papers (§6 item 7).
+5. **Per step:** mathematics and the agent-readable contract are reviewed together per method; reference implementations go in `research/s4/verification/` with invariants I-1 … I-9.
 6. **Discipline:**
    - no architecture expansion without a genuine contradiction;
    - every upload gets a fit verdict;
@@ -283,9 +277,9 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
 | 5 | **G4 binding of B-46** (engine-level risk target, S47-D6): record by ADR at G4 together with the S4.2 adaptation review | Bind at G4 | `S4_ANG_ADAPTATION.md` B-46 |
-| 6 | **S4.8 scope:** how far the sources of 2026-10-15 (residual and factor momentum, trend filters, momentum gap, earnings momentum, trends and cycles) enter S4.8 versus S9/S13 | Proposal at the start of S4.8 | `S4_METHODS_OUTLINE.md` S4.8 |
 | 7 | **Papers:** Levine & Pedersen 2016 (open); Ehsani & Linnainmaa *JF* 2022 (newer than the NBER version in hand) | Supply when convenient; not blocking | `S4_0_SOURCE_INVENTORY.md` §16 |
-| 8 | **Push** of the 2026-10-15 commit | — | — |
+
+**Resolved on 2026-10-15 (later):** S4.8 scope accepted (S4_PLAN amendment 19); `2135803` pushed; discussion findings recorded as dated notes on RQ-09, RQ-11, RQ-14, RQ-15, RQ-16, RQ-28, RQ-31, RQ-32, RQ-33, RQ-35.
 
 **Resolved on 2026-10-15:** S47-D7 (Michaud patent family closed; generic names; implementation from the mathematics; components as candidates); Paleologo registration with PAL-1 … PAL-8 and a verification script; start S4.8 once the papers are in; OB-1 (OpenBB ODP v5 as a data-access layer, provider licences governing) and OB-2 (OpenBB Workspace layout and design as the interface reference for S8).
 

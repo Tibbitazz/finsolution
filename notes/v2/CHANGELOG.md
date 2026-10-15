@@ -1,5 +1,25 @@
 # Changelog — notes/v2
 
+## 2026-10-15 (later) — S4.8 scope accepted (amendment 19); discussion records on ten open questions (branch `stage/s04-method-library`)
+
+- `2135803` pushed (owner authorisation).
+- **S4_PLAN amendment 19 (owner decision):**
+  - residual momentum, factor momentum and the trend-filter family (EWMA, Kalman, HP, moving-average crossovers; one-sided only for live signals) are S4.8 variants of SIG-1/SIG-2;
+  - momentum gap (S9/S13), earnings momentum (S9c) and trends and cycles (S9a) are registered only.
+  - §G S4.8 row, C.2, the outline and the tracker are updated; S4.8 in progress.
+- **Discussion records (owner decision: record now)** in `research/OPEN_QUESTIONS.md`:
+  - RQ-09: 60/40 benchmark;
+  - RQ-11: factor-timing candidates, including the reversed dispersion → momentum sign;
+  - RQ-14: shrinkage and conditional models compose; short-term volatility updating; losses; asynchronous closes;
+  - RQ-15: unconstrained resampling = scaled MV (scratch);
+  - RQ-16: no in-sample frontier debates;
+  - RQ-28: per-factor measure menus and the positioning family;
+  - RQ-31: multi-measure principle;
+  - RQ-32: owner-reported 1/3–1/3–1/6–1/6 composite as a fixed-weight candidate;
+  - RQ-33: α = IC·σ·score;
+  - RQ-35: Kalman inside the trend family.
+- HANDOFF: recommended order refreshed; resolved items moved.
+
 ## 2026-10-15 — Michaud patent family closed (S47-D7); Paleologo registered; S4.8 sources received; OpenBB decisions OB-1, OB-2 (branch `stage/s04-method-library`)
 
 - **S47-D7 (owner decision):** the Michaud patent family no longer restricts the engine. US 6,003,018, 6,928,418, 7,412,414 and 7,624,060 have lapsed and the monitoring application US 2012/0116994 A1 is abandoned (Google Patents, 2026-10-15). Conditions: generic names, implementation from the published mathematics, components enter as candidates (resampled frontier; simulated sample length as a sensitivity-only parameter; need-to-trade probability for signal-driven target changes at S13b; percentile bands for display; resampling dispersion as a candidate "estimation robustness" measure). `S4_MVO_FAMILY.md` §5, §4 and §7–§8 annotated; ANG-49 and RQ-44 annotated.

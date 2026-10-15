@@ -12,7 +12,7 @@
 |---|---|---|
 | S0–S3 | Charter, inputs, Policy Statement governance, external facts | **Done** (G0–G3) |
 | **S4 Section 1** — foundations (S4.0–S4.4) | Inventory, ANG reconstruction, adaptation and ADR-0027, accountability, taxonomy, source map | **Done** (S4.4 complete 2026-10-08; S4.2 and ADR-0027 await owner review at G4) |
-| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 done 2026-10-08 (owner decided S46-D1); S4.7 done 2026-10-08 (owner decided S47-D1 … D6); **next: S4.8** |
+| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 done 2026-10-08 (owner decided S46-D1); S4.7 done 2026-10-08 (owner decided S47-D1 … D6; S47-D7 on 2026-10-15); **S4.8 in progress (scope: amendment 19)** |
 | S4 Section 3 — the process around the methods (S4.15–S4.18) | Upstream CMA inventory, CRO diagnostics and candidate card, deliberation, CIO ensembles | Not started |
 | S4 Section 4 — consolidation (S4.19–S4.24) | Equation Register reconciliation, typed contracts, eligibility, dependency graph, full verification, fixtures | Not started |
 | S4 Section 5 — gate (S4.25–S4.27) | Portfolio Map requirements, library freeze, G4 audit | Not started |
@@ -113,7 +113,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 
 ### S4.8 Momentum signals — SIG-1 XSMOM, SIG-2 TSMOM
 - **Sources:** in hand. Jegadeesh & Titman 1993; Moskowitz, Ooi & Pedersen 2012; Asness, Moskowitz & Pedersen 2013; Hurst, Ooi & Pedersen 2017; Daniel & Moskowitz 2016; Barroso & Santa-Clara 2015.
-  - *[2026-10-15]* **Supporting sources received** (owner upload; `S4_0_SOURCE_INVENTORY.md` §16): Blitz, Huij & Martens 2011 (residual momentum); Gupta & Kelly 2019 and Ehsani & Linnainmaa 2019/2022 (factor momentum); Bruder, Dao, Richard & Roncalli 2011 (trend filters incl. Kalman); Ang 2023 (trends and cycles); Huang 2021/2022 (momentum gap); Novy-Marx 2015 (earnings momentum); Paleologo 2025 ch. 2 (Kalman = EWMA; PAL-1 … PAL-8). Missing: Levine & Pedersen 2016. How far these enter S4.8 is an owner scope decision (proposal at the start of the step).
+  - *[2026-10-15]* **Supporting sources received** (owner upload; `S4_0_SOURCE_INVENTORY.md` §16): Blitz, Huij & Martens 2011 (residual momentum); Gupta & Kelly 2019 and Ehsani & Linnainmaa 2019/2022 (factor momentum); Bruder, Dao, Richard & Roncalli 2011 (trend filters incl. Kalman); Ang 2023 (trends and cycles); Huang 2021/2022 (momentum gap); Novy-Marx 2015 (earnings momentum); Paleologo 2025 ch. 2 (Kalman = EWMA; PAL-1 … PAL-8). Missing: Levine & Pedersen 2016. **Scope accepted 2026-10-15 (S4_PLAN amendment 19):** residual momentum, factor momentum and the trend-filter family (one-sided only for live use) are S4.8 variants; momentum gap (S9/S13), earnings momentum (S9c) and trends and cycles (S9a) are registered only.
 - **Equations:** EQ-SIG-1 … EQ-SIG-3.
 - **Known so far:**
   - the Sørensen 12–1 momentum shares SIG-1's formation (`S4_SCORING_SORENSEN.md` §5);
@@ -253,7 +253,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.5 | A1–A5 | **Done** | 2026-10-08 | Owner accepted S45-D1 … D4 as recommended |
 | S4.6 | MVO foundation | **Done** | 2026-10-08 | Owner decided S46-D1 (option (a), refined); BSU idea on hold (RQ-57) |
 | S4.7 | B1, B2, B3, B4, B6, B7 | **Done** | 2026-10-08 | Owner decided S47-D1 … D6 (engine-level risk target, B-46) |
-| S4.8 | SIG-1, SIG-2 | **Next** | 2026-10-15 | Supporting sources received (7 of 8); owner to confirm the scope proposal; then read MOP 2012, AMP 2013, HOP 2017 and extract SIG constructions |
+| S4.8 | SIG-1, SIG-2 (+ variants, amendment 19) | **In progress** | 2026-10-15 | Scope accepted; stage 1: read JT 1993, MOP 2012, AMP 2013, HOP 2017, DM 2016, B&SC 2015, then the variant sources; extract SIG constructions |
 | S4.9 | Signal × PC | Not started | — | — |
 | S4.10 | Anchors, benchmarks | Not started | — | **Remind the owner first: S47-D3, the anchor for anchored EPO (PC-B7)** |
 | S4.11 | C1–C5 | Not started (C2, C3, C5 sources reviewed or reproduced in S4.4) | — | — |
