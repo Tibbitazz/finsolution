@@ -477,7 +477,7 @@ Notation: R_{i,a:b} = compounded return from the end of month a to the end of mo
 
 - **Source:** Jegadeesh & Titman 1993 §I, p. 68 (J/K strategies; deciles; overlapping cohorts; skip 0 or 1 week); Asness, Moskowitz & Pedersen 2013 p. 936 (MOM2–12), eq. (1) p. 938, eqs. (2)–(3) p. 939; Pedersen, Babu & Levine 2021 eqs. (24)–(25), p. 136.
 - **Canonical:**
-  - formation return M_i = R_{i,t−J−s : t−s} (V0: J = 12, s = 1 month);
+  - formation return M_i = R_{i,t−J−s : t−s} (J = 12; s by asset type per S48-D1: single stocks s = 1 month; index ETFs, futures and asset classes s = 0, with s = 1 as sensitivity);
   - rank form w_i = c_t(rank(M_i) − (N+1)/2), with c_t such that Σ_{w>0} w = 1 = −Σ_{w<0} w;
   - linear form s_i = c_t(R_i − R̄), with positives summing to 1 (PBL);
   - decile form: equal- (JT) or value-weighted (DM) top minus bottom decile;
@@ -503,17 +503,18 @@ Notation: R_{i,a:b} = compounded return from the end of month a to the end of mo
   - cross-sectional (E&L): above- vs below-median prior-year return.
 - **Authority:** j = 12 (E&L) or 1 … 60 (G&K); cap ±2; σ windows 3 or 10 years: fixed V0 (S48-D6).
 - **Limits (verified):** GK-1 (cap binds 0.0% / 4.5% / 37% at j = 1 / 12 / 60); EL-2 (empty leg undefined).
+- **Long-only use (S48-D6):** time-varying weights on the composite's factor blend, or cross-sectional rotation among factor ETFs; time-series signals on long–short or active factor returns.
 
 ## EQ-SIG-2 Time-series momentum (TSMOM)
 
 - **Source:** Moskowitz, Ooi & Pedersen 2012 eq. (1) p. 233, §3.2 pp. 233–234, eq. (5) p. 236; Hurst, Ooi & Pedersen 2017 pp. 4–5, fn. 7; PBL eq. (23) p. 136.
 - **Canonical:**
-  - r^{TSMOM}_{s,t+1} = sign(R^{ex}_{s,t−k:t})·(σ*/σ_{s,t})·r^{ex}_{s,t+1} (MOP: k = 12, σ* = 40%);
+  - r^{TSMOM}_{s,t+1} = sign(R^{ex}_{s,t−k:t})·(σ*/σ_{s,t})·r^{ex}_{s,t+1} (MOP: k = 12, σ* = 40%); single stocks use the window t−12 … t−1 skipped by one month (S48-D1); magnitude variant replaces sign(·) by a capped z or μ̂ (S48-D1);
   - portfolio = mean over available s;
   - σ²_{s,t} = 261·Σ_{i≥0}(1−δ)δ^i (r_{s,d−1−i} − r̄_{s,d})², δ = 60/61 (centre of mass 60 days, half-life 41.9 days);
   - HOP: (1/3)Σ_{k∈{1,3,12}} sign(R_{t−k:t})/σ, scaled to a 10% portfolio target with a 3-year equal-weighted covariance.
 - **Assumptions:** excess returns in the instrument's currency; σ known at t.
-- **Authority:** k, h fixed V0; σ* scale constant (superseded by EQ-SPLIT-1); σ estimator system-estimated (ADR-0027 D3; S48-D2).
+- **Authority:** k, h fixed V0; σ* scale constant (superseded by EQ-SPLIT-1); σ estimator system-estimated (ADR-0027 D3; S48-D2: daily returns where synchronous and liquid, otherwise 2–5-day returns).
 - **Limits and invariants (verified):** no look-ahead in σ; centre-of-mass identity; HOP combined position in {−1, −⅓, ⅓, 1}/σ; PBL-3 (eq. 23 with γ = n/40% is proportional to MOP's weights, factor 0.1).
 
 ## EQ-SIG-2T Trend-filter family (variant; S4_PLAN amendment 19)
@@ -540,7 +541,7 @@ Notation: R_{i,a:b} = compounded return from the end of month a to the end of mo
 - **Canonical:**
   - cvol: σ̂²_t = 21·Σ_{j=0}^{125} r²_{d_{t−1}−j}/126; r^{cvol}_t = (σ_target/σ̂_t)·r_t, σ_target = 12%/yr;
   - dyn: w_t = (1/2λ)·μ_t/σ²_t, μ_t = γ̂₀ + γ̂_int·I_{B,t−1}·σ̂²_{m,t−1} (expanding window), σ²_t = 126-day WML variance (point-in-time form).
-- **Authority:** σ_target and λ are scale constants under EQ-SPLIT-1 (leverage cap L); the windows (126 days, 24-month bear indicator) are fixed V0 (S48-D3).
+- **Authority:** σ_target and λ are scale constants under EQ-SPLIT-1 (leverage cap L); the windows (126 days, 24-month bear indicator) are fixed V0. Placement decided at S4.9 (S48-D3 deferred).
 - **Limits (verified):** no look-ahead; dyn = cvol when μ/σ is constant; DM-1 (exact maximiser μ/(σ² + μ²); gap 0.13% at monthly scale).
 
 ## EQ-SIG-5 Decompositions (diagnostic)

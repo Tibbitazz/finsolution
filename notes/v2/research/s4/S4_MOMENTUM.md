@@ -1,6 +1,6 @@
 # S4.8 Momentum signals — SIG-1 XSMOM, SIG-2 TSMOM, and their variants: construction records
 
-**Document status:** DRAFT (2026-10-15), awaiting owner decisions S48-D1 … S48-D6 (§5). · **Basis:**
+**Document status:** REVIEWED (2026-10-15). Owner decisions S48-D1, D2, D4, D5 and D6 decided 2026-10-15; S48-D3 deferred to S4.9 (§5.1). · **Basis:**
 - S4_PLAN §G (step S4.8; amendment 19, owner decision 2026-10-15) and §F (EQ-SIG-1 … 3);
 - `S4_METHODS_OUTLINE.md` §1 (nine-stage workflow) and §2 (S4.8);
 - `S4_TAXONOMY.md` (M.SIGNAL → A.DESCRIPTOR); ADR-0012 (signals are deterministic descriptors; μ only through an accepted mapping); ADR-0024 §3–§4 (parameter authority, allocation domains); ADR-0025 (admission ≠ evaluation); ADR-0026 §8 (evidence by use); ADR-0027 D3 (one authoritative risk model per problem).
@@ -21,7 +21,7 @@
 2. **Conventions differ by source and domain.**
    - Securities: 12–1 (skip the latest month), as in JT (who skip one week), AMP, DM and BHM, and in our Sørensen score.
    - Futures and asset classes: MOP's TSMOM uses 12–0 (no skip). AMP skip a month in every asset class for uniformity, noting that not skipping is stronger outside equities.
-   - These are owner decision S48-D1.
+   - **Decided (S48-D1, 2026-10-15):** both signals are run in every domain, and the skip follows the asset type, not the signal type: single stocks 12–1 for XSMOM *and* TSMOM; index ETFs, futures and asset classes 12–0 for both, with 12–1 as a sensitivity test. Sign and magnitude forms are registered variants (§5.1).
 3. **Volatility enters three times, and they must not be confused:**
    - (i) **position sizing** inside TSMOM, 40%/σ per asset (MOP eq. 5). This belongs to the short-horizon risk problem (ADR-0027 D3; S48-D2);
    - (ii) **scaling of a whole momentum strategy** (B&SC constant volatility; DM dynamic μ/σ²). This is the same family as PC-A5 (S4.5) and is governed by EQ-SPLIT-1 (S48-D3);
@@ -107,6 +107,7 @@ Common to every record:
   - formation return R_i = P_{i,t−1−s}/P_{i,t−J−s} − 1 over J months, skipping s;
   - JT: J ∈ {3, 6, 9, 12}, holding K ∈ {3, 6, 9, 12}, skip 0 or 1 week;
   - AMP/DM/BHM/Sørensen: J = 12, s = 1 month (MOM2–12).
+  - **Decided V0 (S48-D1):** single stocks 12–1; index ETFs, futures and asset classes 12–0 (12–1 as sensitivity).
 - **Forms of the cross-sectional object:**
   - decile portfolios (JT: equal-weighted; DM: value-weighted);
   - rank weights w_i = c_t(rank(S_i) − mean rank), $1 long and $1 short (AMP eq. 1);
@@ -165,7 +166,7 @@ Common to every record:
 - **PBL eq. (23):** signal s_i = 0.1·σ_i·sign(r_{12}); with γ = n/40% the fully shrunk EPO weights are **proportional** to MOP's (factor 0.1; PBL-3: the paper says "exactly matched"; the Sharpe ratio is unaffected).
 - **Inputs:** daily excess returns (for σ); monthly excess returns (signal); the instrument-currency short rate. σ belongs to the **short-horizon risk problem** (ADR-0027 D3; S48-D2).
 - **Parameters:**
-  - lookback k (12, or the HOP mix) and holding h (1): fixed V0;
+  - lookback k (12, or the HOP mix) and holding h (1): fixed V0; **skip by asset type (S48-D1): single stocks 12–1, index ETFs, futures and asset classes 12–0**; sign (V0) vs magnitude (variant);
   - 40% per instrument and 10% portfolio: scale constants, superseded by the engine-level target EQ-SPLIT-1;
   - σ estimator: system-estimated (S48-D2).
 - **Invariants (verified):**
@@ -217,6 +218,43 @@ Common to every record:
 
 ## 5. Owner decisions (stage 6)
 
+### 5.1 Decisions recorded (owner, 2026-10-15, after discussion)
+
+The draft options are kept in §5.2. The discussion revised D1 and D6 and moved D3 to S4.9.
+
+- **S48-D1 (decided, revised): both signals in every domain; skip by asset type; sign and magnitude.**
+  - The skip month exists to avoid the one-month reversal of single stocks (bid–ask bounce and microstructure; Jegadeesh 1990; AMP p. 936). It applies to TSMOM on a stock as much as to XSMOM. Liquid index products show little of it: AMP (p. 937) report stronger momentum outside equities without the skip, and MOP (fn. 10) say their XSMOM results do not depend on it.
+  - V0:
+    - single stocks (Oslo, US, global): XSMOM and TSMOM 12–1;
+    - index ETFs, futures and asset classes: XSMOM and TSMOM 12–0, with 12–1 as a sensitivity test;
+    - HOP's 1/3/12-month TSMOM mix as a variant;
+    - holding 1 month; JT overlapping cohorts as a turnover variant (S13).
+  - **Sign vs magnitude.** MOP's TSMOM uses only the sign, so among assets with positive trends the weights differ only by volatility (1/σ). Magnitude forms (G&K's capped z; the trend estimate μ̂; expected returns proportional to trend strength) are registered variants; whether magnitude adds to sign is an S7 question (MOP Fig. 1 shows both predict).
+  - **Identity (linear forms):** (1/N)·rᵢ = (1/N)·(rᵢ − r̄) + r̄/N. Magnitude-weighted TSMOM is XSMOM's relative tilt plus a common position sized by the average trend, so "all long, the stronger ones more" comes from the cross-sectional part.
+  - **Cautions recorded:**
+    - single-stock TSMOM partly re-labels average equity returns (the 12μ′μ/N term of MOP eq. 7), so it is evaluated against an always-long control, as MOP do (S7). Goyal & Jegadeesh (2018) on net exposure: MISSING — LOCATED. Huang, Li, Wang & Zhou (2020, *JFE*) on time-series predictability: cited from memory, not verified;
+    - for long-only users, XSMOM *selects* and TSMOM *times* (hold or cash);
+    - XSMOM needs a meaningful cross-section, so a minimum number of assets is declared per universe (S5/S7).
+- **S48-D2 (decided): TSMOM sizing volatility.**
+  - MOP's EWMA (centre of mass 60 days, half-life 41.9 days, demeaned, ×261) is the reference and the reproduction oracle. In production σ comes from the authoritative short-horizon risk model chosen at S10 (ADR-0027 D3).
+  - **Frequency:** daily returns where prices are synchronous and liquid; 2–5-day returns where they are not (different closing times, e.g. Oslo vs New York; stale fund NAVs; thin ETFs; PBL used 3-day returns for correlations). Units must match (annualised σ against an annual target), not frequencies: volatility precision improves with sampling frequency, drift precision does not (Paleologo pp. 38–39; `s48_trend_filters.py`). Daily data understate monthly risk when returns are positively autocorrelated (B&SC fn. 15).
+- **S48-D3 (deferred to S4.9): strategy-level scaling.** Constant-volatility (B&SC) and dynamic (DM) scaling apply only if momentum is held as its own sleeve. When momentum is a return signal, every portfolio is scaled once by the engine-level target (EQ-SPLIT-1, S47-D6). S4.9 decides whether momentum may exist as a sleeve. For long-only accounts a long–short sleeve is not tradable.
+- **S48-D4 (decided): SIG-1 outputs a rank-based score descriptor** (transformation per RQ-29 at S9c).
+  - AMP eq. (1) rank weights are the reference factor-return construction; JT deciles are the reproduction oracle. Weights only through S4.9/S9d mappings.
+  - XSMOM is long–short only as an academic *factor*. As a *signal* it serves long-only portfolios: top-ranked holdings, benchmark-relative tilts, or a long-only optimizer.
+- **S48-D5 (decided in principle): trend filters.** Causal members only. Horizons and half-lives come from a pre-registered grid whose values are set at S7. No likelihood- or cross-validation-calibrated parameters in V0. Two-sided smoothers are for research only.
+- **S48-D6 (decided, revised): variants.**
+  - **Residual momentum:** V0 = BHM's example reading (alpha not subtracted), V1 = alpha subtracted, as a sensitivity test; FF3; 36 months.
+  - **Factor momentum:** stock-level momentum stays an ingredient of the composite score. Factor momentum is admitted for long-only users as:
+    - **time-varying weights on the composite's factor blend** (e.g. the ⅓, ⅓, ⅙, ⅙ weights, RQ-32), bounded and evaluated at S7; or
+    - cross-sectional rotation among factor ETFs.
+  - Time-series factor signals are computed on long–short or active factor returns (ETF minus market), never on a long-only ETF's raw return, which mostly tracks the market.
+  - V0 = Ehsani & Linnainmaa's sign rule; V1 = Gupta & Kelly's capped z; empty-leg rule (EL-2): hold the non-empty leg.
+  - Confirmed against the *JF* 2022 version when it arrives (EL-1).
+  - **The difference from long-only stock XSMOM:** XSMOM decides which stocks; factor momentum decides how much weight each factor gets. The two can disagree (for example, a cheap stock that rose less than an expensive one).
+
+### 5.2 Draft options (as proposed 2026-10-15, before the discussion)
+
 | ID | Decision | Options | Recommendation |
 |---|---|---|---|
 | **S48-D1** | Formation, skip and holding conventions | (a) each signal keeps its governing source's convention as V0: securities 12–1 (SIG-1, BHM, Sørensen); asset-class XSMOM 12–1 (AMP); TSMOM 12–0 (MOP); HOP 1/3/12 mix as a variant; holding 1 month, JT cohorts as a turnover variant (S13) · (b) one uniform 12–1 everywhere · (c) chosen by the S7 grid | **(a)**, with the alternatives pre-registered as sensitivity variants at S7. Choosing by backtest (c) is the overfitting route the S7 protocol exists to prevent |
@@ -244,7 +282,7 @@ No published example is reproduced numerically: the governing papers' results ne
 
 | To | Item |
 |---|---|
-| S4.9 | Which objects each signal may become (signal, conditioned universe, exposure rule, μ mapping, standalone strategy, overlay); PBL eqs. (23)–(27) as the EPO link; factor momentum for long-only users as tilt timing |
+| S4.9 | Which objects each signal may become (signal, conditioned universe, exposure rule, μ mapping, standalone strategy, overlay); PBL eqs. (23)–(27) as the EPO link; **S48-D3** (strategy-level scaling, only if a momentum sleeve is admitted); factor momentum as time-varying blend weights (S48-D6) |
 | S4.13 | SIG-2's σ (short-horizon risk problem); B&SC/DM σ; BHM's factor model |
 | S5 | Universe filters (AMP 90% capitalisation, price floor, history minimums) |
 | S6 | Daily total and excess returns; the instrument-currency short rate; regional factor returns; factor portfolios (French/AQR libraries or S9c-built) |
@@ -259,6 +297,6 @@ No published example is reproduced numerically: the governing papers' results ne
 
 | Signal | Status |
 |---|---|
-| SIG-1 XSMOM (+ variants R, F) | SOURCE REVIEWED · CONSTRUCTION EXTRACTED · construction checks PASS; specification choices pending S48-D1, D4, D6 |
-| SIG-2 TSMOM (+ variants F, T) | SOURCE REVIEWED · CONSTRUCTION EXTRACTED · construction checks PASS; pending S48-D1, D2, D5, D6 |
-| Strategy-level scaling (cvol, dyn) | CONSTRUCTION EXTRACTED; placement pending S48-D3 and S4.9 |
+| SIG-1 XSMOM (+ variants R, F) | SOURCE REVIEWED · CONSTRUCTION EXTRACTED · construction checks PASS; specification decided (S48-D1, D4, D6) |
+| SIG-2 TSMOM (+ variants F, T) | SOURCE REVIEWED · CONSTRUCTION EXTRACTED · construction checks PASS; specification decided (S48-D1, D2, D5 in principle, D6) |
+| Strategy-level scaling (cvol, dyn) | CONSTRUCTION EXTRACTED; placement at S4.9 (S48-D3 deferred) |

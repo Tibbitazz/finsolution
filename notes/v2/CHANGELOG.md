@@ -1,5 +1,18 @@
 # Changelog — notes/v2
 
+## 2026-10-15 (S4.8 done) — Owner decisions S48-D1 … D6; universe instruction (branch `stage/s04-method-library`)
+
+- **Decided after discussion** (`S4_MOMENTUM.md` §5.1; draft options kept in §5.2):
+  - **S48-D1:** both signals in every domain, with the skip by asset type (single stocks 12–1; index ETFs, futures, asset classes 12–0, 12–1 as sensitivity); sign vs magnitude as registered variants; the identity "magnitude TSMOM = XSMOM + common position"; cautions on single-stock TSMOM (always-long control) and on a minimum cross-section.
+  - **S48-D2:** MOP EWMA as oracle; production σ from S10; daily or 2–5-day returns by microstructure; units, not frequencies, must match.
+  - **S48-D4:** rank-based score; XSMOM serves long-only portfolios as a signal.
+  - **S48-D5:** causal filters; grid values at S7.
+  - **S48-D6:** residual momentum readings; factor momentum for long-only users as time-varying weights on the composite's factor blend or cross-sectional factor-ETF rotation, with time-series signals on long–short or active returns.
+  - **S48-D3:** deferred to S4.9 (it matters only if momentum is held as a sleeve).
+- Register EQ-SIG-1, 1F/2F, 2, 4 aligned with the decisions.
+- **OPEN_QUESTIONS:** RQ-07 owner instruction (universe: Norwegian, US and global equities, ETFs; allocation unit both; ASK and PRIIPs constraints from the registry); RQ-32 correction (blend fractions are composite-score weights, not portfolio weights); RQ-11 and RQ-32 S48-D6 notes.
+- S4_PLAN C.2: S4.8 DONE, S4.9 NEXT; outline tracker; HANDOFF. Not pushed.
+
 ## 2026-10-15 (S4.8) — Momentum signals drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_MOMENTUM.md` (DRAFT):
