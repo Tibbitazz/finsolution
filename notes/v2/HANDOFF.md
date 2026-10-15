@@ -1,6 +1,6 @@
 # FinSol — working handoff (single entry point)
 
-**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-08 · **Branch:** `stage/s04-method-library` (pushed to origin 2026-10-08, owner-authorised; no PR) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
+**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-15 · **Branch:** `stage/s04-method-library` (pushed to origin 2026-10-08, owner-authorised; no PR) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
 
 **What this file is.** The one document to read first, by the owner, a new assistant session, or the developer. It **indexes and summarises** the authoritative documents; it never overrides them. If this file and a document it points to disagree, the pointed-to document wins:
 - `ACCEPTED` ADRs win over `STABLE` documents, which win over `DRAFT` documents (01 §2);
@@ -112,7 +112,8 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `b38f1d4` | S4.6 decision S46-D1 recorded (numéraire cash as the riskless asset; risk-free rate = after-tax rate on uninvested cash at the best liquid deposit, otherwise the broker cash rate); S4.6 DONE; RQ-57 (household-level advice incl. BSU) ON HOLD; S4.7 NEXT; pushed with `389eff4` (owner authorisation) |
 | `f28d116` | **S4.7** mean–variance family: `S4_MVO_FAMILY.md` (B1, B2, B3, B4, B6, B7 records; lineage; decisions S47-D1 … D6 incl. the cash/risky split); register S4.7 entries; `verification/s47_*.py` (5 scripts, PASS; Michaud Tables 5.1/6.1 and Goldfarb–Iyengar calibration reproduced; PBL Props. 1–3 verified); ANG-48, ANG-49; BL-2, MCH-1, PBL-1, PBL-2 |
 | `f063e5a` | S4.7 decisions part 1 (D1, D2 rule, D3, D4, D5; D-2 closed); EPO grid design study |
-| (latest) | S4.7 DONE: S47-D2 parameters (θ = 0; 11-point logit grid) and S47-D6 (engine-level risk target per method type; EQ-SPLIT-1; adaptation B-46) recorded; S4.8 NEXT; pushed with `f28d116`, `f063e5a` (owner authorisation) |
+| `ce32bb1` | S4.7 DONE: S47-D2 parameters (θ = 0; 11-point logit grid) and S47-D6 (engine-level risk target per method type; EQ-SPLIT-1; adaptation B-46) recorded; S4.8 NEXT; pushed with `f28d116`, `f063e5a` (owner authorisation) |
+| (latest) | **S47-D7** (Michaud patent family closed; components enter as candidates); Paleologo 2025 registered with PAL-1 … PAL-8 and `verification/s48_kalman_ewma_paleologo.py` (PASS); S4.8 supporting sources received (7 of 8); **OpenBB decisions OB-1** (ODP as data-access layer) **and OB-2** (Workspace as interface reference; DR-11); RQ-08, RQ-10, RQ-44 annotated; **not pushed** |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -136,10 +137,10 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_METHODS_OUTLINE.md` | **Orientation for Section 2 (S4.5–S4.14), LIVING:** where we are across the engine; the nine-stage workflow every method step follows; method record template; per-step plan (methods, sources, equations, known issues, owner decisions, verification, deliverable, exit); decision points; acquisitions; tracker |
 | `S4_HEURISTICS.md` | **S4.5 (REVIEWED; owner decisions accepted 2026-10-08):** method records for PC-A1 … A5 (sources, equations, inputs, parameter authority, invariants, agent-readable summary); ANG vs source; decisions S45-D1 (volatility-targeting specification), D2 (fixed exponents), D3 (capitalisation data requirements), D4 (cash and universe) |
 | `S4_MVO_FOUNDATION.md` | **S4.6 (REVIEWED; S46-D1 decided 2026-10-08):** the shared mean–variance mathematics (problem, closed forms, riskless asset and separation, GMV, long-only variants, estimation error with Jorion reproduced); ANG-47; decision S46-D1 (numéraire cash as the riskless asset) |
-| `S4_MVO_FAMILY.md` | **S4.7 (REVIEWED; S47-D1 … D6 decided 2026-10-08):** maximum Sharpe (constrained convex form), Black–Litterman (BL 1992 conventions; BL-2), robust MV (Goldfarb–Iyengar; ANG-48), resampled frontier (Michaud; D-2; ANG-49), simple and anchored EPO (PBL; Props. 1–3); lineage; decisions S47-D1 … D6 |
+| `S4_MVO_FAMILY.md` | **S4.7 (REVIEWED; S47-D1 … D6 decided 2026-10-08; S47-D7, Michaud patent family closed, 2026-10-15):** maximum Sharpe (constrained convex form), Black–Litterman (BL 1992 conventions; BL-2), robust MV (Goldfarb–Iyengar; ANG-48), resampled frontier (Michaud; D-2; ANG-49), simple and anchored EPO (PBL; Props. 1–3); lineage; decisions S47-D1 … D6 |
 | `S4_EQUATION_REGISTER.md` | **LIVING (created at S4.5):** canonical notation; EQ-H-1 … EQ-H-4 with sub-equations and shared turnover EQ-H-T, each with source page, assumptions, authority, limits and tests; appended at every Section 2 step |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
-| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-46; source issues ABD-1 … ABD-5, MCA-1 … MCA-3, MM-1, MM-2 |
+| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-49; source issues ABD-1 … ABD-5, MCA-1 … MCA-3, MM-1, MM-2, BL-2, MCH-1, PBL-1, PBL-2, **PAL-1 … PAL-8** (Paleologo, 2026-10-15) |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
 | `S4_DOWNSTREAM_INVENTORY.md` | T1–T12; FVG lead; simulation conventions |
 | `S4_INPUTS_2026-10-07.md` | Lecture, sandbox lessons, learning, correlated errors, derivations D1–D10, developer requirements DR-1 … DR-8 |
@@ -148,7 +149,7 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_SCORING_PEER_METHODS.md` | Investwiser scoring (Greenblatt, O'Shaughnessy, quality) traced to originals; Seeking Alpha factor grades; one generic score contract; fit verdicts (FITS / PARTIAL / DOES NOT FIT); results G-1 … G-3 |
 | `S4_EXTERNAL_REVIEWS_2026-10-08.md` | MongoDB Atlas agentic-portfolio demo (DOES NOT FIT as methodology; S8 infrastructure patterns only); Medium "vibe-coded portfolio" (a personal website, DOES NOT FIT) |
 | `S4_LIT_LOOKAHEAD_2026-10-07.md` | Look-ahead contamination and agent homogeneity: four papers (one duplicate removed), bias-direction correction, clean-window rule, diagnostics X-1 … X-5, DR-9, DR-10 |
-| `../s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` | **S6 lead (early):** data needs D-A … D-H; source and licence table; Simply Wall St and Seeking Alpha = S&P Global Market Intelligence (stated; Seeking Alpha prices from Quodd); Investwiser = EODHD (inferred from fingerprints); S&P Capital IQ Pro/Financials/Estimates (enterprise; PIT Estimates Snapshot since Aug 2016); data lineage to primary sources (filings, ESEF via filings.xbrl.org, exchanges, brokers); Norges Bank Datatorg verified; DR-7 refined; candidate stack (not adopted) |
+| `../s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` | **S6 lead (early):** data needs D-A … D-H; source and licence table; Simply Wall St and Seeking Alpha = S&P Global Market Intelligence (stated; Seeking Alpha prices from Quodd); Investwiser = EODHD (inferred from fingerprints); S&P Capital IQ Pro/Financials/Estimates (enterprise; PIT Estimates Snapshot since Aug 2016); data lineage to primary sources (filings, ESEF via filings.xbrl.org, exchanges, brokers); Norges Bank Datatorg verified; DR-7 refined; candidate stack (not adopted). *[2026-10-15]* §4.7 OpenBB: ODP v5 admitted as a data-access layer (OB-1); Workspace as the interface reference (OB-2) |
 
 ---
 
@@ -246,9 +247,9 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`; owner accepted S45-D1 … D4). **S4.6 DONE 2026-10-08** (`S4_MVO_FOUNDATION.md`; owner decided S46-D1). **S4.7 DONE 2026-10-08** (`S4_MVO_FAMILY.md`; owner decided S47-D1 … D6; engine-level risk target B-46). **Next: S4.8** (momentum signals) |
-| S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-10 registered as interface items; G8a not held |
-| S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08) |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`; owner accepted S45-D1 … D4). **S4.6 DONE 2026-10-08** (`S4_MVO_FOUNDATION.md`; owner decided S46-D1). **S4.7 DONE 2026-10-08** (`S4_MVO_FAMILY.md`; owner decided S47-D1 … D6; engine-level risk target B-46; S47-D7 on 2026-10-15). **Next: S4.8** (momentum signals): supporting sources received 2026-10-15 (7 of 8); scope proposal awaits the owner |
+| S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-11 registered as interface items (DR-11: OpenBB Workspace as the interface reference, OB-2); G8a not held |
+| S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08); OpenBB ODP v5 admitted as a data-access layer (OB-1, 2026-10-15) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
 
 **Recommended order:**
@@ -282,6 +283,11 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 3 | **Papers to supply** (§5 step 4) | — | S4.0 checklist |
 | 4 | **Sørensen production default:** V0 (exact) vs V1 (corrected) | V1 as a pre-registered candidate; V0 kept as the oracle; decide at G9 or earlier | S4_SCORING_SORENSEN §4 |
 | 5 | **G4 binding of B-46** (engine-level risk target, S47-D6): record by ADR at G4 together with the S4.2 adaptation review | Bind at G4 | `S4_ANG_ADAPTATION.md` B-46 |
+| 6 | **S4.8 scope:** how far the sources of 2026-10-15 (residual and factor momentum, trend filters, momentum gap, earnings momentum, trends and cycles) enter S4.8 versus S9/S13 | Proposal at the start of S4.8 | `S4_METHODS_OUTLINE.md` S4.8 |
+| 7 | **Papers:** Levine & Pedersen 2016 (open); Ehsani & Linnainmaa *JF* 2022 (newer than the NBER version in hand) | Supply when convenient; not blocking | `S4_0_SOURCE_INVENTORY.md` §16 |
+| 8 | **Push** of the 2026-10-15 commit | — | — |
+
+**Resolved on 2026-10-15:** S47-D7 (Michaud patent family closed; generic names; implementation from the mathematics; components as candidates); Paleologo registration with PAL-1 … PAL-8 and a verification script; start S4.8 once the papers are in; OB-1 (OpenBB ODP v5 as a data-access layer, provider licences governing) and OB-2 (OpenBB Workspace layout and design as the interface reference for S8).
 
 **Resolved on 2026-10-08 (S4.7, part 2):** S47-D2 parameters (EPO on the authoritative risk model, θ = 0; 11-point logit-spaced grid with a switching margin at S7) and S47-D6 (one engine-level risk target and leverage rule, applied per method type: return-based methods along their frontier, others scaled, PC-A5 and absolute-risk-limited methods internally, ensemble rescaled; EQ-SPLIT-1; adaptation B-46).
 
@@ -320,7 +326,7 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 
 | Verdict | Sources |
 |---|---|
-| **FITS** | ANG v2 (architecture only); Sharpe 1981 (narrow: diversification of judgement); Sensoy 2009 (narrow: controls set in advance); Perold 1988 (shortfall identity); Perold & Sharpe 1988 (rebalancing rule reflects risk tolerance); Nordnet price list 2026-10-07 (facts); **Norges Bank Datatorg** (NOK FX and rates; keyless; attribution); public macro and factor sources (FRED, SSB, ECB, French, AQR, Shiller, Damodaran; S6 lead); **Gao, Jiang & Yan 2026 v2** + procedure file (contamination test); **Didisheim, Fraschini & Somoza 2025** (memorisation; q-trimming; rewording dispersion); **Sørensen 2026 / Storebrand 2025** (secondary; owner-designated reference scoring specification) |
+| **FITS** | *[2026-10-15]* **Paleologo 2025** (ch. 2, 5, 6; textbook, secondary for the original papers; PAL-1 … PAL-8); **Michaud & Michaud 2008** (read in full; resampling family free of patents, S47-D7); **OpenBB ODP v5** (data-access layer, OB-1) and **OpenBB Workspace** (interface reference, OB-2). ANG v2 (architecture only); Sharpe 1981 (narrow: diversification of judgement); Sensoy 2009 (narrow: controls set in advance); Perold 1988 (shortfall identity); Perold & Sharpe 1988 (rebalancing rule reflects risk tolerance); Nordnet price list 2026-10-07 (facts); **Norges Bank Datatorg** (NOK FX and rates; keyless; attribution); public macro and factor sources (FRED, SSB, ECB, French, AQR, Shiller, Damodaran; S6 lead); **Gao, Jiang & Yan 2026 v2** + procedure file (contamination test); **Didisheim, Fraschini & Somoza 2025** (memorisation; q-trimming; rewording dispersion); **Sørensen 2026 / Storebrand 2025** (secondary; owner-designated reference scoring specification) |
 | **PARTIAL** | Q Group lecture Oct 2026 (secondary; learning design, candidate cards, skills, verifiability); BCD 2022 (accountability); **ABD 2014** (funding/benchmarking TPA; rebalancing rule upstream; implementation leeway; verification horizons); **AQR 2026** (TPA weight mechanics per D-5; assumes leverage/shorting); van Binsbergen–Brandt–Koijen 2008; Jegadeesh 1990 and Lehmann 1990 (individual-stock reversal only); Glasserman & Lin 2023 (named vs anonymised only; see §4.7); **Henning et al. 2025 v3** (same-model homogeneity; forecast-rationality battery); **Liang 2026** (pre/post-cutoff magnitudes; weak identification); correlated-error literature (Kim et al. 2025; Kleinberg & Raghavan 2021; Panickssery et al. 2024; Liang et al. 2024); **third-party GitHub code** (patterns and verified pieces only); ML specification (candidates only); z-score screenshot (lead) |
 | **DOES NOT FIT** | **Simply Wall St** (S&P Capital IQ data; personal use, no retransmission), **Seeking Alpha** (S&P + Quodd data; no redistribution) and **Investwiser** (EODHD data; personal use) as data sources (peer references only); **S&P Capital IQ** for a distributed engine (enterprise; owner-only validation via university at most); Yahoo/yfinance; Nordnet External API (closed to new subscribers); Tinbergen, Grinold (not needed); misidentified uploads (Jones & Wermers 2011; NBIM news page); Altbridge benchmark; podcast; news items (illustration only) |
 
@@ -346,6 +352,8 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 | Lookahead Propensity after the cutoff | Mean 0.000 (2024) vs 0.18–0.88 (2012–2022) | Literature §1 P3 |
 | RMT eigenvalue clipping vs universe size (unconstrained GMV, synthetic) | 17 asset classes: worst (1.77–1.89× oracle vs sample 1.07–1.39×); 100–300 stocks: best (300 stocks, T = 250: 1.26 vs LW-corr 2.63); long-only 10% cap: all 1.06–1.13× | S4.1 §13.3 |
 | Mean–variance loss from covariance vs return-forecast errors (17 classes, synthetic) | Unconstrained: return error ≈ 1,000 bp/yr, covariance error ≈ 60–70; sample vs shrinkage 1,655 vs 674 bp/yr. Long-only: estimator choice ≤ 2 bp/yr, 2–5% of weights | `S4_RISK_MODEL_CHOICE.md` M-1 |
+| Mean-reverting variance state (Paleologo ch. 2, corrected) | The optimal linear filter is the GARCH(1,1) recursion (α = aK, β = a(1−K), α + β = a), not plain EWMA; the printed recursion has 4–16% higher prediction error (PAL-1) | `s48_kalman_ewma_paleologo.py` |
+| Printed MSE volatility loss (Paleologo ch. 5) | Minimised at σ̂² = √3·h under normality, so not robust; use Σ(r² − σ̂²)² and QLIKE (PAL-6) | `s48_kalman_ewma_paleologo.py` |
 | HRP (López de Prado 2016) | Exhibit 7 reproduced exactly; the published algorithm is order-dependent (weights changed in 127/200 random reorderings; up to 52% of the portfolio); the tree-split variant is invariant | Source reviews §4 |
 | Idzorek confidence method | Closed form ω = (1−C)/C·τ·pΣp′ equals the paper's numerical search (1.6 × 10⁻⁸) | Source reviews §2 |
 
@@ -362,3 +370,4 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 | ANG April draft | `~/Downloads/The Self-Driving Portfolio_ …pdf` (superseded) |
 | Closed sandbox | `~/Desktop/ENGINE_V1/ang_sandbox/` |
 | Legacy | `~/Desktop/ENGINE_V1/` (non-authoritative, ADR-0001) |
+| Paleologo (2025) EPUB | `~/Desktop/The Elements of Quantitative Investing.epub.zip` |

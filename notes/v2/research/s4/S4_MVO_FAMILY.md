@@ -1,6 +1,6 @@
 # S4.7 Mean–variance family — PC-B1, B2, B3, B4, B6, B7: method records
 
-**Document status:** REVIEWED (2026-10-08). Owner decisions S47-D1 … S47-D6 recorded (§5). · **Basis:**
+**Document status:** REVIEWED (2026-10-08). Owner decisions S47-D1 … S47-D6 recorded (§5); S47-D7 added 2026-10-15 (Michaud patent family closed). · **Basis:**
 - S4_PLAN §G (step S4.7) and §F (EQ-MVO-5, EQ-EPO-1 … 5, EQ-BL-1 … 3, EQ-ROB-1 … 2, EQ-REF-1);
 - `S4_METHODS_OUTLINE.md` §1–§2;
 - `S4_MVO_FOUNDATION.md` (S4.6; S46-D1);
@@ -224,7 +224,7 @@ Common to all six:
   - *Intuition:* average many equally plausible optimal portfolios.
   - *Sensitivities:* T (confidence); K (Monte Carlo noise).
   - *Valid comparison:* against the classical frontier on the same inputs.
-- **Ladder:** MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (specification check); implementation blocked until the D-2 check.
+- **Ladder:** MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (specification check); implementation blocked until the D-2 check. *[2026-10-15]* D-2 closed for the family (S47-D7); implementation no longer blocked.
 
 ### PC-B6 Simple EPO
 - **Source:** PBL 2021. Roster extension (ADR-0024 §7). UEPO, SEPO and DEPO are excluded (X-20).
@@ -266,7 +266,7 @@ Common to all six:
 - **PC-B1:** the homogenised problem handles any linear constraints; long/short adds a gross-exposure limit (linear after splitting x = x⁺ − x⁻).
 - **PC-B2:** the BL posterior is unconstrained by nature; constraints enter the optimisation step.
 - **PC-B3:** G&I assume long-only after p. 11 but give the transformation φ = φ⁺ − φ⁻ (p. 11).
-- **PC-B4:** Michaud's base case is sign-constrained; the long-short treatment is in the book's ch. 9, not yet read (gap for long/short REF).
+- **PC-B4:** Michaud's base case is sign-constrained; the long-short treatment is in the book's ch. 9, not yet read (gap for long/short REF). *[2026-10-15]* Ch. 9 (benchmark-relative and long-short, incl. 130/30 resampling, Exh. 9.3) and ch. 7 (rebalancing and monitoring) read; the long/short B4 mathematics is specified when a long/short B4 variant is needed (S47-D7).
 - **PC-B6/B7:** PBL's own setting is long/short (unconstrained); long-only uses the constrained V1.
 - **PC-A1 … A4** are long-only by definition.
 
@@ -363,6 +363,36 @@ Consequences accepted: an ANG adaptation (B-46, `S4_ANG_ADAPTATION.md`; binding 
   2. It is an adaptation of ANG, where cash is one of the asset classes. If accepted, it is recorded as an ANG adaptation (B-46) and in the S4.20 contracts.
   3. With borrowing permitted at a higher rate, the levered risky mix should switch to the borrowing tangency (S4.6 discussion).
 
+### S47-D7 — Michaud patent family: closed; components enter as candidates (owner decision 2026-10-15)
+
+*[2026-10-15]* **Owner decision:** the Michaud patents no longer restrict the engine, and the resampling components will be implemented. **D-2 is closed for the whole family**, not only for PC-B4 as specified in S47-D5.
+
+**Evidence** (Google Patents, accessed 2026-10-15; Google's legal status is an assumption, not a legal conclusion):
+
+| Document | Title | Priority / filing | Status |
+|---|---|---|---|
+| US 6,003,018 | Portfolio optimization by means of resampled efficient frontiers | Priority 1998-03-27; filed 1998-09-09 | Expired – Lifetime (2018-09-09) |
+| US 6,928,418 | Portfolio rebalancing by means of resampled efficient frontiers (application US 2004/0083150) | Filed 2002-10-25 | Expired – Lifetime (anticipated 2022-11-23) |
+| US 7,412,414 | Portfolio rebalancing by means of resampled efficient frontiers with forecast confidence level (continuation-in-part of 10/280,384) | Priority 2002-10-25; filed 2005-06-21 | Expired – Fee Related (adjusted expiration 2024-03-30) |
+| US 7,624,060 | Portfolio optimization by means of meta-resampled efficient frontiers (divisional) | Priority 2002-10-25; filed 2008-07-25 | Expired – Fee Related (anticipated 2022-10-25) |
+| US 2012/0116994 A1 | Dynamic portfolio monitoring (calibration of the need-to-trade threshold for datasets with common information) | Priority 2010-09-17; filed 2011-09-16 | Abandoned (application only; owner upload 2026-10-15) |
+| US 2012/0246095 A1 | Resampled efficient frontiers for portfolios with derivative overlays | — | Abandoned |
+
+The conclusion does not rest on fee status alone: every granted member claims 1998 or 2002 priority, so the 20-year maximum term from filing has passed in the US and Europe (`INFERENCE`; patent-term adjustment is already reflected in the 2024-03-30 date).
+
+**Conditions (owner-accepted):**
+1. **Generic names.** "Resampled frontier", "need-to-trade probability", "meta-resampling", "simulated sample length". New Frontier's trademarks (Resampled Efficiency™, Forecast Confidence™) are not used.
+2. **Implementation from the published mathematics** (the book, the patent texts), never from New Frontier code or text.
+3. **Components enter as candidates** (ADR-0025); none becomes a default here:
+
+| Component | Placement | Status |
+|---|---|---|
+| Resampled frontier (PC-B4) | S4.7 | Specified (S47-D5); implementation no longer blocked |
+| Simulated sample length different from the estimation sample (the book's "forecast confidence") | PC-B4 parameter | Excluded in S47-D5 on IP grounds only. Now a **sensitivity-only** parameter variant; the default stays T = estimation-sample length until S7 decides otherwise |
+| Need-to-trade probability with meta-resampling (ch. 7) | S13b (RQ-44), for **signal-driven target changes** | Candidate. Discussion findings of 2026-10-15 (scratch, to be reproduced in `verification/` at S13b): on the book's data the 90% no-trade region spans a tracking error of roughly 4–6% a year, so as a drift rule it would leave large policy drifts untraded (a 20-point bond-to-equity drift scored 16%); successive estimation windows share data, which the abandoned monitoring application addresses by renormalising the probabilities |
+| Per-asset 25th/75th percentile bands (Table 7.1, Exh. 7.2) | S8 display; S16 diagnostics | Display and diagnostics only. Used as triggers, at least one band is breached for almost every draw from the rule's own null distribution (multiple comparisons; discussion finding, to be reproduced) |
+| Resampling dispersion of any method's weights, measured in Michaud's relative-variance metric (P − P₀)′Σ(P − P₀) | S7 / S12: candidate definition of ANG's "estimation robustness" dimension (ANG-09) | Candidate |
+
 ---
 
 ## 6. Verification (stage 7)
@@ -387,7 +417,7 @@ Consequences accepted: an ANG adaptation (B-46, `S4_ANG_ADAPTATION.md`; binding 
 | S4.13 | B3 needs a factor model with regression statistics; B4 re-estimates μ and Σ inside the method (a method-internal resampling, not a new risk model) |
 | S4.15 / S9 | δ; CMA confidence → Ω (IDZ-1); BL equilibrium as CMA-3 kept distinct from PC-B2 |
 | S4.16 | κ(Σ) and problem-portfolio diagnostics (EQ-MVO-5) |
-| S4.20 | Failure codes; the split rule (S47-D6); the D-2 gate for B4 |
+| S4.20 | Failure codes; the split rule (S47-D6); the D-2 gate for B4 *[2026-10-15: closed for the family, S47-D7]* |
 | S7 | The EPO w protocol (S47-D2); REF Monte Carlo error at the chosen K |
 | S10 | Factor-model availability for B3 |
 
@@ -400,6 +430,6 @@ Consequences accepted: an ANG adaptation (B-46, `S4_ANG_ADAPTATION.md`; binding 
 | PC-B1 | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level) |
 | PC-B2 | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); convention pending S47-D1 |
 | PC-B3 | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification pending S47-D4 |
-| PC-B4 | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (specification check); implementation blocked by D-2 |
+| PC-B4 | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (specification check); implementation blocked by D-2 *[2026-10-15: no longer blocked; D-2 closed for the family (S47-D7)]* |
 | PC-B6 | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); w protocol pending S47-D2 |
 | PC-B7 | MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); anchor pending S4.10 |

@@ -51,3 +51,8 @@
   | `s47_robust_mv.py` | Goldfarb–Iyengar worst cases (eq. 15, Lemma 1, F = κG), robust min variance and max Sharpe, regression-set coverage | PC-B3 |
   | `s47_resampled_frontier.py` | Michaud & Michaud Tables 5.1 and 6.1 (MV and RE), fn. 7, limits. Specification check (D-2 closed 2026-10-08: core patent expired) | PC-B4 |
   | `s47_epo_grid_design_study.py` | **Design study, not a ranking:** grid size and 5% pre-shrink for PBL's past-only w rule (synthetic) | PC-B6 (S47-D2) |
+- *[2026-10-15, before S4.8]* **Source verification for trend and volatility filters** (`ANG_ISSUES_REGISTER.md`, Paleologo section):
+
+  | Script | Reproduces / proves | Used by |
+  |---|---|---|
+  | `s48_kalman_ewma_paleologo.py` | Paleologo (2025) ch. 2: Muth closed form and gain; steady-state Kalman = EWMA; AR(1) Riccati root; PAL-1 (omitted time update; correct filter = GARCH(1,1) recursion), PAL-2 … PAL-5, PAL-8. Ch. 5: PAL-6 (printed MSE minimised at √3·h). Ch. 6: PAL-7 (half-life convention) | S4.8 (EWMA/trend filters), S7, S10 |

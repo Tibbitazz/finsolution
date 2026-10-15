@@ -1,6 +1,6 @@
 # S6 lead — data sources, vendors and licences (review of 2026-10-08)
 
-**Document status:** DRAFT (lead for S6; recorded early at the owner's request; extended the same day with Seeking Alpha, S&P Global Market Intelligence and the original sources) · **Owner stage:** S6 → G6 (RQ-08), S8 design (CB-19, DR-7) · **Basis:** owner requests of 2026-10-08:
+**Document status:** DRAFT (lead for S6; recorded early at the owner's request; extended the same day with Seeking Alpha, S&P Global Market Intelligence and the original sources; extended 2026-10-15 with OpenBB (§4.7; owner decisions OB-1, OB-2)) · **Owner stage:** S6 → G6 (RQ-08), S8 design (CB-19, DR-7) · **Basis:** owner requests of 2026-10-08:
 - review data and key alternatives in the researcher materials;
 - review free API sources;
 - identify the data vendors behind Simply Wall St, Investwiser and Seeking Alpha;
@@ -81,6 +81,7 @@ Limits and prices were observed on 2026-10-08. "Personal" means the free or entr
 | **Nasdaq Data Link** | Assorted free datasets | Free key | 50,000 calls/day | Per dataset | PARTIAL (old docs site retired 31 Aug 2026) |
 | **Stooq** | Free CSV | Unclear (CAPTCHA key claim unverified) | Low daily quota; prices not adjusted | Unclear | Lead only |
 | **Yahoo / yfinance** | Global | None | — | Unofficial; the library's notice says personal use | **DOES NOT FIT** a distributed engine |
+| **OpenBB Open Data Platform (ODP) v5** *(added 2026-10-15)* | An access and normalisation layer over many providers; not itself a source | Per provider | Per provider | Software Apache-2.0 (v5; v4 and earlier AGPL-3.0); each provider's terms govern the data | **FITS** as an adapter layer (owner decision OB-1; §4.7) |
 | **Nordnet External API** | Quotes and trading | — | Closed to new subscribers; from SEK 1,290/month for existing users (FAQ, date unverified) | — | **DOES NOT FIT** now |
 | **Euronext NextHistory** | Official Oslo Børs EOD (SFTP, CSV) | Contract | Commercial | Exchange licence | Reference only |
 | **Bloomberg / FactSet / LSEG I/B/E/S (university)** | Everything incl. consensus history | Institutional | — | Academic, non-commercial | **Owner-only validation**, never a runtime dependency |
@@ -232,6 +233,47 @@ The owner's link (an advertising URL) was opened **without its tracking paramete
 | Classification | GICS (MSCI and S&P) | Licensed to platforms | No (licensed) |
 | FX and NOK rates | Norges Bank (ECB reference rates for EXR) | — | **Yes** (§4.3) |
 
+### 4.7 OpenBB Open Data Platform and OpenBB Workspace (added 2026-10-15) · `VERIFIED-SOURCE` (OpenBB and OpenBQ pages, GitHub API and LICENSE file, accessed 2026-10-15)
+
+**What it is.** The Open Data Platform (ODP; formerly the OpenBB Platform/SDK) is an open-source integration and normalisation layer. A data source is connected once, as a provider extension, and is then served through Python, a local REST API (`openbb-api`, FastAPI on 127.0.0.1:6900), MCP servers and Workspace widgets. **It is not a data source:** the data come from the providers it connects to.
+
+**Repository and steward:**
+- `github.com/OpenBB-finance/OpenBB` returns HTTP 301 to `github.com/openbq-org/OpenBB`: the same repository (id 323048702, created 2020-12-20; homepage openbb.co; last push 2026-10-15). The owner's links to `openbq-org` and `openbq.org` are the current official locations.
+- OpenBB Inc. announced on 2026-08-25 that it is winding down. It committed to release the whole product suite (Workspace, ODP, Copilot, Excel add-in) under a permissive licence, with timing per product to be announced; hosted-product users are to be told timelines directly.
+- An edit of 2026-10-01 names **OpenBQ**, a non-profit led by Jose Plehn (BrightQuery), as steward of the technology, and FINOS (Linux Foundation) as the proposed steward of the Workspace codebase (proposal stage). openbq.org states that BrightQuery funds OpenBQ and that Workspace and the OpenBQ agents are "source release in progress".
+
+**Licence:**
+- The repository's LICENSE file: all files under the Apache License 2.0 (© 2021–2026 OpenBB Inc.).
+- OpenBB's licence FAQ: V4 and earlier releases were AGPL-3.0-only and keep that licence; V5 is Apache-2.0, which permits commercial use and hosted services without a separate licence.
+- Data obtained through ODP remain under each provider's own terms.
+
+**Caution:** the PyPI package `openbq` is an unrelated biometric-quality tool. OpenBB's package is `openbb`.
+
+**Fit:**
+- **Data access: FITS** as an adapter layer for DR-7 (pluggable vendor adapters). It does not settle point-in-time, survivorship, adjustment or licence questions; those stay with S6 and CB-19.
+- **Interface design: FITS** as the reference for S8 (DR-11).
+- **Hosted Workspace with personal data: DOES NOT FIT** (ADR-0014; RQ-40). Self-hosting becomes an option once the Workspace source is released and its licence verified.
+- **Continuity risk:** the company is winding down and the steward is a non-profit funded by a data vendor. Hence version pinning behind our own adapter interface, so ODP can be replaced.
+
+**Owner decision OB-1 (2026-10-15): we can use the OpenBB data that is available to us.**
+- ODP is admitted as a data-access layer for the engine.
+- A dataset obtained through it may be used whenever its provider's licence class permits our use (DR-7; CB-19):
+  - public sources (e.g. FRED, BLS, IMF, SEC EDGAR, ECB) with attribution;
+  - keyed sources with per-user credentials held in the local layer;
+  - unofficial scrapers remain excluded, as for yfinance (§3).
+- ODP v5 (Apache-2.0) only; AGPL releases (v4 and earlier) are not used. The Apache-2.0 notice is retained wherever ODP code is shipped.
+- Installing or running ODP is third-party code: it needs the owner's per-item permission and isolation (handoff §2.3), at S6/S8.
+
+**Owner decision OB-2 (2026-10-15): the OpenBB Workspace layout and design are the reference for the engine's interface**, to be taken up with the developer at S8 (DR-11).
+- Elements seen on OpenBB's own pages:
+  - interactive dashboards built from widgets;
+  - apps;
+  - an AI copilot and custom agents working on the same data;
+  - a "connect your own backend" model (a local API and MCP);
+  - self-hosted deployment.
+- The detailed layout patterns are documented at S8 from the released source or the product itself.
+- Reference only: no copying of proprietary assets or branding. The private UI concept study stays outside GitHub.
+
 ## 5. Findings
 
 | # | Finding | Status |
@@ -261,6 +303,7 @@ DR-7 (`S4_INPUTS_2026-10-07.md` §8) is refined as follows:
 |---|---|---|
 | Public, no key | Norges Bank, SSB, ECB, Ken French, AQR, Shiller, Damodaran, SEC EDGAR, **filings.xbrl.org (ESEF)** | Engine adapters; attribution displayed |
 | Free key (user) | FRED, OpenFIGI, Tiingo (or FMP) | Each user |
+| Access layer *(owner decision OB-1, 2026-10-15)* | OpenBB ODP v5 adapters where a provider extension exists, behind our DR-7 adapter interface | Engine (pinned version); credentials per user |
 | Low-cost subscription (user) | EODHD All World (+ fundamentals if S9c security scoring is enabled) | Each user, optional |
 | Academic (owner only) | Bloomberg, FactSet, **S&P Capital IQ / Compustat (WRDS)** or I/B/E/S via the university | Validation and reproduction oracles (e.g. Sørensen V0; PIT audits of free sources); never shipped |
 | Enterprise (only if the engine becomes a commercial product) | S&P Capital IQ Financials + Estimates Snapshot; or LSEG / FactSet equivalents | Contract; out of scope for a personal engine (CB-19) |
@@ -326,3 +369,11 @@ DR-7 (`S4_INPUTS_2026-10-07.md` §8) is refined as follows:
   - aqr.com data library;
   - pages.stern.nyu.edu/~adamodar.
 - Secondary pages for Tiingo, FMP, Alpha Vantage, Finnhub, Massive, Nasdaq Data Link and Stooq, as cited in the session of 2026-10-08.
+- OpenBB (accessed 2026-10-15):
+  - api.github.com/repos/OpenBB-finance/OpenBB (HTTP 301 to repositories/323048702 = openbq-org/OpenBB);
+  - raw.githubusercontent.com/openbq-org/OpenBB/develop/LICENSE;
+  - github.com/OpenBB-finance/OpenBB README (via redirect);
+  - docs.openbb.co/odp/python/faqs/license;
+  - openbb.co (announcement of 2026-08-25, edited 2026-10-01; pricing page predates the wind-down);
+  - openbq.org;
+  - pypi.org/project/openbq (unrelated package).

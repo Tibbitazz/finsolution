@@ -245,7 +245,7 @@ No conflict found with accepted S1–S3 content. The registries, Policy Statemen
 | S4.5 | Heuristic portfolios (5) | **DONE 2026-10-08** (owner accepted S45-D1 … D4): `S4_HEURISTICS.md` (A1–A5 records), `S4_EQUATION_REGISTER.md` (created), `verification/s45_*.py` (PASS); ANG-43 … ANG-46, MM-1, MM-2 |
 | S4.6 | Classical MVO foundation | **DONE 2026-10-08** (owner decided S46-D1): `S4_MVO_FOUNDATION.md`, register EQ-MVO-1 … 4 (+ sub-equations, E1, E2), `verification/s46_*.py` (PASS); ANG-47 |
 | S4.7 | MVO-family extensions (Max Sharpe, Robust MV, REF, BL, Simple EPO, Anchored EPO) | **DONE 2026-10-08** (owner decided S47-D1 … D6): `S4_MVO_FAMILY.md` (six method records; lineage), register S4.7 entries + EQ-SPLIT-1, `verification/s47_*.py` (PASS); ANG-48, ANG-49 resolved; B-46 adaptation (engine-level risk target); D-2 closed for B4 |
-| S4.8 | Momentum signal review (XSMOM, TSMOM) | **NEXT** |
+| S4.8 | Momentum signal review (XSMOM, TSMOM) | **NEXT** *[2026-10-15]* Supporting sources received (7 of 8 requested; Levine & Pedersen 2016 missing; Ehsani & Linnainmaa as the NBER 2019 version, *JF* 2022 requested); Paleologo ch. 2 verified (`s48_kalman_ewma_paleologo.py`). Scope proposal for the new sources awaits the owner |
 | S4.9 | Signal × PC compatibility | NOT STARTED |
 | S4.10 | Anchor and benchmark architecture | NOT STARTED |
 | S4.11 | Risk-structured PC methods (5) | NOT STARTED |

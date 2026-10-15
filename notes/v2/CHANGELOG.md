@@ -1,5 +1,20 @@
 # Changelog — notes/v2
 
+## 2026-10-15 — Michaud patent family closed (S47-D7); Paleologo registered; S4.8 sources received; OpenBB decisions OB-1, OB-2 (branch `stage/s04-method-library`)
+
+- **S47-D7 (owner decision):** the Michaud patent family no longer restricts the engine. US 6,003,018, 6,928,418, 7,412,414 and 7,624,060 have lapsed and the monitoring application US 2012/0116994 A1 is abandoned (Google Patents, 2026-10-15). Conditions: generic names, implementation from the published mathematics, components enter as candidates (resampled frontier; simulated sample length as a sensitivity-only parameter; need-to-trade probability for signal-driven target changes at S13b; percentile bands for display; resampling dispersion as a candidate "estimation robustness" measure). `S4_MVO_FAMILY.md` §5, §4 and §7–§8 annotated; ANG-49 and RQ-44 annotated.
+- **Paleologo (2025), *The Elements of Quantitative Investing*, registered** (`S4_0_SOURCE_INVENTORY.md` §16). New source-issue section **PAL-1 … PAL-8** in `ANG_ISSUES_REGISTER.md`. The material ones:
+  - PAL-1: the mean-reverting Kalman examples omit the time update; the correct filter is the GARCH(1,1) recursion;
+  - PAL-6: the printed MSE volatility loss is not robust;
+  - PAL-7: the half-life convention.
+- **New** `verification/s48_kalman_ewma_paleologo.py` (PASS).
+- **S4.8 supporting sources received** (7 of 8 requested; identity checked, not yet read): Ang 2023; Bruder et al. 2011; Huang 2021; Blitz, Huij & Martens 2011; Novy-Marx 2015; Gupta & Kelly 2019; Ehsani & Linnainmaa 2019 (the *JF* 2022 version is newer and requested). Levine & Pedersen 2016 is missing. Michaud & Michaud 2008 is now read in full. S4_PLAN C.2 and the outline are updated; the S4.8 scope proposal awaits the owner.
+- **OpenBB (owner decisions):**
+  - OB-1: OpenBB's Open Data Platform v5 (Apache-2.0; now `openbq-org/OpenBB`, OpenBQ steward) is admitted as a data-access layer; provider licences still govern.
+  - OB-2: the OpenBB Workspace layout and design are the S8 interface reference.
+  - Recorded in `research/s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` §4.7; RQ-08 and RQ-10 annotated; DR-11 added (`S4_INPUTS_2026-10-07.md` §8).
+- HANDOFF refreshed. Not pushed.
+
 ## 2026-10-08 — S4.7 done: S47-D2 parameters and S47-D6 decided; pushed (branch `stage/s04-method-library`)
 
 - **S47-D2 parameters (owner confirmed):** EPO uses the authoritative risk model (θ = 0; 5% pre-shrink sensitivity-only); w chosen past-only on the grid {0, 0.01, 0.03, 0.10, 0.25, 0.50, 0.75, 0.90, 0.97, 0.99, 1}, with a switching margin pre-registered at S7.

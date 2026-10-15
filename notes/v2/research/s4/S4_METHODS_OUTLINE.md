@@ -113,6 +113,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 
 ### S4.8 Momentum signals — SIG-1 XSMOM, SIG-2 TSMOM
 - **Sources:** in hand. Jegadeesh & Titman 1993; Moskowitz, Ooi & Pedersen 2012; Asness, Moskowitz & Pedersen 2013; Hurst, Ooi & Pedersen 2017; Daniel & Moskowitz 2016; Barroso & Santa-Clara 2015.
+  - *[2026-10-15]* **Supporting sources received** (owner upload; `S4_0_SOURCE_INVENTORY.md` §16): Blitz, Huij & Martens 2011 (residual momentum); Gupta & Kelly 2019 and Ehsani & Linnainmaa 2019/2022 (factor momentum); Bruder, Dao, Richard & Roncalli 2011 (trend filters incl. Kalman); Ang 2023 (trends and cycles); Huang 2021/2022 (momentum gap); Novy-Marx 2015 (earnings momentum); Paleologo 2025 ch. 2 (Kalman = EWMA; PAL-1 … PAL-8). Missing: Levine & Pedersen 2016. How far these enter S4.8 is an owner scope decision (proposal at the start of the step).
 - **Equations:** EQ-SIG-1 … EQ-SIG-3.
 - **Known so far:**
   - the Sørensen 12–1 momentum shares SIG-1's formation (`S4_SCORING_SORENSEN.md` §5);
@@ -240,6 +241,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.11 | Choueifaty & Coignard (2008), *Toward Maximum Diversification*, JPM 35(1):40–51 | BI library (owner) | **In hand 2026-10-08** |
 | S4.12 | Rockafellar & Uryasev (2000), *Optimization of Conditional Value-at-Risk*, J. Risk 2(3):21–41 | BI library (owner) | **In hand 2026-10-08** (author version; published governs) |
 | S4.12 | Treynor & Black (1973), *How to Use Security Analysis to Improve Portfolio Selection*, J. Business 46(1) | BI / JSTOR | **In hand 2026-10-08** |
+| S4.8 | Levine & Pedersen (2016), *Which Trend Is Your Friend?*, FAJ 72(3):51–66; Ehsani & Linnainmaa (2022), *JF* 77(3) (newer than the NBER version in hand) | Open publisher's version (CBS portal); journal | No (supporting) |
 | Optional | Jagannathan & Ma 2003 (S4.6); Kan & Zhou 2007 (S4.6); Tütüncü & Koenig 2004, Ceria & Stubbs 2006, Scherer 2002 (S4.7); Choueifaty, Froidure & Reynier 2013 (S4.11); Rockafellar & Uryasev 2002, Boudt, Peterson & Croux 2008, Gilmore & Simonian 2025 (S4.12); Bera & Park 2008 (S4.14); Meucci 2009 (open SSRN; S4.16) | BI / SSRN | No |
 
 ---
@@ -251,7 +253,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.5 | A1–A5 | **Done** | 2026-10-08 | Owner accepted S45-D1 … D4 as recommended |
 | S4.6 | MVO foundation | **Done** | 2026-10-08 | Owner decided S46-D1 (option (a), refined); BSU idea on hold (RQ-57) |
 | S4.7 | B1, B2, B3, B4, B6, B7 | **Done** | 2026-10-08 | Owner decided S47-D1 … D6 (engine-level risk target, B-46) |
-| S4.8 | SIG-1, SIG-2 | **Next** | 2026-10-08 | Start: read MOP 2012, AMP 2013, HOP 2017; extract SIG constructions |
+| S4.8 | SIG-1, SIG-2 | **Next** | 2026-10-15 | Supporting sources received (7 of 8); owner to confirm the scope proposal; then read MOP 2012, AMP 2013, HOP 2017 and extract SIG constructions |
 | S4.9 | Signal × PC | Not started | — | — |
 | S4.10 | Anchors, benchmarks | Not started | — | **Remind the owner first: S47-D3, the anchor for anchored EPO (PC-B7)** |
 | S4.11 | C1–C5 | Not started (C2, C3, C5 sources reviewed or reproduced in S4.4) | — | — |
