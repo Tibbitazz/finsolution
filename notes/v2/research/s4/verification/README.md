@@ -56,3 +56,9 @@
   | Script | Reproduces / proves | Used by |
   |---|---|---|
   | `s48_kalman_ewma_paleologo.py` | Paleologo (2025) ch. 2: Muth closed form and gain; steady-state Kalman = EWMA; AR(1) Riccati root; PAL-1 (omitted time update; correct filter = GARCH(1,1) recursion), PAL-2 … PAL-5, PAL-8. Ch. 5: PAL-6 (printed MSE minimised at √3·h). Ch. 6: PAL-7 (half-life convention) | S4.8 (EWMA/trend filters), S7, S10 |
+- *[2026-10-15, S4.8]* **Momentum signal scripts** (`S4_MOMENTUM.md`; equations EQ-SIG-1 … EQ-SIG-5):
+
+  | Script | Reproduces / proves | Signal |
+  |---|---|---|
+  | `s48_momentum_constructions.py` | JT overlapping cohorts; AMP eq. (1) invariants; PBL eqs. (24)–(27), PBL-3; MOP eq. (1) (centre of mass 60 d = half-life 41.9 d; no look-ahead); MOP eqs. (6)–(7) exact; JT eq. (3); BHM residual momentum (factor neutrality; BHM-1); G&K eq. (1), GK-1; E&L legs, EL-2; B&SC eqs. (5)–(6); DM eq. (6) vs the exact maximiser (DM-1); HOP combination | SIG-1, SIG-2, variants, EQ-SIG-4 |
+  | `s48_trend_filters.py` | Bruder et al.: uniform MA = TSMOM sign; crossover = triangular return weights (BRU-1); Kalman gain = Muth gain = EWMA; HP and L1 two-sided; Mann statistic (BRU-2); Paleologo drift-precision limit | SIG-2T |

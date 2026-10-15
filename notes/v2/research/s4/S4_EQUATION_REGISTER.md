@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 entries added 2026-10-15; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -469,3 +469,86 @@ Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1)
 - **Units:** σ* and σ(p) on the same horizon and basis (ADR-0027 D5).
 - **Numerical tests:** separation and the three-segment frontier (`s46_mvo_closed_forms.py`; S4.6 discussion); the scaling rule is arithmetic; the frontier point at σ* uses EQ-MVO-2/2a.
 
+## S4.8 entries — momentum signals (`S4_MOMENTUM.md`)
+
+Notation: R_{i,a:b} = compounded return from the end of month a to the end of month b; r̃ = log return; formation date t (start of month t); all inputs dated ≤ t−1. Units: monthly returns unless stated; volatilities annualised where the source annualises (stated per entry; ADR-0027 D5).
+
+## EQ-SIG-1 Cross-sectional momentum (XSMOM)
+
+- **Source:** Jegadeesh & Titman 1993 §I, p. 68 (J/K strategies; deciles; overlapping cohorts; skip 0 or 1 week); Asness, Moskowitz & Pedersen 2013 p. 936 (MOM2–12), eq. (1) p. 938, eqs. (2)–(3) p. 939; Pedersen, Babu & Levine 2021 eqs. (24)–(25), p. 136.
+- **Canonical:**
+  - formation return M_i = R_{i,t−J−s : t−s} (V0: J = 12, s = 1 month);
+  - rank form w_i = c_t(rank(M_i) − (N+1)/2), with c_t such that Σ_{w>0} w = 1 = −Σ_{w<0} w;
+  - linear form s_i = c_t(R_i − R̄), with positives summing to 1 (PBL);
+  - decile form: equal- (JT) or value-weighted (DM) top minus bottom decile;
+  - JT holding: w_t = (1/K) Σ_{k=0..K−1} w^{(t−k)}.
+- **Assumptions:** total returns; universe fixed at t; ties at average ranks.
+- **Authority:** J, s, K, form: fixed per source (V0); alternatives sensitivity-only (S48-D1, S48-D4).
+- **Limits and invariants:** zero investment; invariant to strictly increasing transforms of M (rank form); the median asset gets zero weight (N odd).
+- **Numerical tests (`s48_momentum_constructions.py`):** cohort average = aggregated weights; 1/K replaced each month; AMP invariants; PBL scaling.
+
+## EQ-SIG-1R Residual momentum (variant)
+
+- **Source:** Blitz, Huij & Martens 2011 (accepted manuscript pp. 10–12), eq. (1).
+- **Canonical:** (α̂_i, β̂_i) from r_{i,τ} = α_i + β_i′f_τ + ε_{i,τ}, τ = t−36 … t−1 (complete history); u_{i,τ} = r_{i,τ} − β̂_i′f_τ (V0, BHM-1) or − α̂_i additionally (V1); score = Σ_{τ=t−12}^{t−2} u_{i,τ} / sd(u_{i,t−12:t−2}).
+- **Authority:** window 36, factor model FF3, formation 12–1: fixed V0.
+- **Properties (verified):** nearly free of factor exposure (corr(score, β) −0.02 vs 0.65 for total momentum); rank invariant to scaling returns; subtracting α̂ lowers the score of stocks with high t−36 … t−13 returns (BHM's example).
+
+## EQ-SIG-1F / EQ-SIG-2F Factor momentum (variants)
+
+- **Source:** Gupta & Kelly 2019 eq. (1) and the aggregation below it (pp. 5–6); Ehsani & Linnainmaa NBER 2019 §3.2 (p. 7; *JF* 2022 governs, EL-1).
+- **Canonical:**
+  - time-series (E&L): w ∝ 1{R_{i,t−12:t} > 0}/n₊ − 1{R ≤ 0}/n₋;
+  - time-series (G&K): s_{i,j,t} = clip(Σ_{τ=1}^{j} f_{i,t−τ+1}/σ^{ann}_{i,j,t}, −2, 2), legs normalised to $1 long and $1 short;
+  - cross-sectional (E&L): above- vs below-median prior-year return.
+- **Authority:** j = 12 (E&L) or 1 … 60 (G&K); cap ±2; σ windows 3 or 10 years: fixed V0 (S48-D6).
+- **Limits (verified):** GK-1 (cap binds 0.0% / 4.5% / 37% at j = 1 / 12 / 60); EL-2 (empty leg undefined).
+
+## EQ-SIG-2 Time-series momentum (TSMOM)
+
+- **Source:** Moskowitz, Ooi & Pedersen 2012 eq. (1) p. 233, §3.2 pp. 233–234, eq. (5) p. 236; Hurst, Ooi & Pedersen 2017 pp. 4–5, fn. 7; PBL eq. (23) p. 136.
+- **Canonical:**
+  - r^{TSMOM}_{s,t+1} = sign(R^{ex}_{s,t−k:t})·(σ*/σ_{s,t})·r^{ex}_{s,t+1} (MOP: k = 12, σ* = 40%);
+  - portfolio = mean over available s;
+  - σ²_{s,t} = 261·Σ_{i≥0}(1−δ)δ^i (r_{s,d−1−i} − r̄_{s,d})², δ = 60/61 (centre of mass 60 days, half-life 41.9 days);
+  - HOP: (1/3)Σ_{k∈{1,3,12}} sign(R_{t−k:t})/σ, scaled to a 10% portfolio target with a 3-year equal-weighted covariance.
+- **Assumptions:** excess returns in the instrument's currency; σ known at t.
+- **Authority:** k, h fixed V0; σ* scale constant (superseded by EQ-SPLIT-1); σ estimator system-estimated (ADR-0027 D3; S48-D2).
+- **Limits and invariants (verified):** no look-ahead in σ; centre-of-mass identity; HOP combined position in {−1, −⅓, ⅓, 1}/σ; PBL-3 (eq. 23 with γ = n/40% is proportional to MOP's weights, factor 0.1).
+
+## EQ-SIG-2T Trend-filter family (variant; S4_PLAN amendment 19)
+
+- **Source:** Bruder, Dao, Richard & Roncalli 2011 §2.2 (eqs. 1–4, pp. 4–7; Kalman pp. 11–12), §2.3.2 (p. 16), §3 (pp. 22–28); Paleologo 2025 §2.3 and App. 2.4 (PAL-1 … PAL-8).
+- **Canonical:** μ̂_t = Σ_{i≥0} a_i r̃_{t−i}:
+  - uniform a_i = 1/n (i < n), whose sign equals TSMOM's;
+  - EWMA a_i = (1 − e^{−λ})e^{−λi} = steady-state Kalman local level with κ = 2σ_η/(σ_η + √(σ_η² + 4σ_ζ²)) = (−q + √(q² + 4q))/2, λ = −ln(1 − κ);
+  - crossover 2/(n₁ − n₂)·(ȳ_{n₂} − ȳ_{n₁}) with a_i = (n₁−1−i)/n₁·1{i ≤ n₁−2} − (n₂−1−i)/n₂·1{i ≤ n₂−2}.
+- **Two-sided (research only):** HP x̂ = (I + 2λD′D)⁻¹y; L1 min ½‖y − x‖² + λ‖Dx‖₁; Kalman smoother. The live value is the end point of an expanding-window fit.
+- **Detection:** Mann S with Var = n(n−1)(2n+5)/18 and |S| ≤ n(n−1)/2 (BRU-2).
+- **Authority:** kernel, horizon and half-life from a pre-registered grid; half-life convention 2^{−s/h} (PAL-7; S48-D5).
+- **Numerical tests (`s48_trend_filters.py`):** all of the above; drift precision independent of sampling frequency (Paleologo pp. 38–39).
+
+## EQ-SIG-3 Score transformations
+
+- **Source:** AMP eq. (1) (ranks); Sørensen (percentiles, `S4_SCORING_SORENSEN.md`); G&K (capped z).
+- **Canonical:** rank, percentile, z-score (optionally winsorised or capped). The choice is RQ-29 (S9c).
+- **Invariants:** rank and percentile forms are invariant to monotone transforms; the z-score is not (GK-1 for horizon dependence).
+
+## EQ-SIG-4 Strategy-level risk management of momentum
+
+- **Source:** Barroso & Santa-Clara 2015 eqs. (5)–(6), p. 115; Daniel & Moskowitz 2016 eq. (6) p. 233, eqs. (7)–(9) pp. 233–234, App. C (p. 245, eqs. 16–23), App. D.
+- **Canonical:**
+  - cvol: σ̂²_t = 21·Σ_{j=0}^{125} r²_{d_{t−1}−j}/126; r^{cvol}_t = (σ_target/σ̂_t)·r_t, σ_target = 12%/yr;
+  - dyn: w_t = (1/2λ)·μ_t/σ²_t, μ_t = γ̂₀ + γ̂_int·I_{B,t−1}·σ̂²_{m,t−1} (expanding window), σ²_t = 126-day WML variance (point-in-time form).
+- **Authority:** σ_target and λ are scale constants under EQ-SPLIT-1 (leverage cap L); the windows (126 days, 24-month bear indicator) are fixed V0 (S48-D3).
+- **Limits (verified):** no look-ahead; dyn = cvol when μ/σ is constant; DM-1 (exact maximiser μ/(σ² + μ²); gap 0.13% at monthly scale).
+
+## EQ-SIG-5 Decompositions (diagnostic)
+
+- **Source:** MOP eqs. (6)–(7), p. 241; JT eq. (3), p. 72.
+- **Canonical:**
+  - linear XSMOM w = (r_lag − r̄_lag)/N: E[π] = (N−1)/N²·tr(Ω) − (1′Ω1 − tr(Ω))/N² + 12σ²_μ;
+  - linear TSMOM w = r_lag/N: E[π] = tr(Ω)/N + 12μ′μ/N;
+  - JT one-factor: E[(r_i − r̄)(r_{i,lag} − r̄_lag)] = σ²_μ + σ²_b Cov(f_t, f_{t−1}) + mean_i Cov(e_{i,t}, e_{i,t−1}) (large N).
+- **Use:** explains residual momentum (removes the σ²_b term) and factor momentum (that term's source); diagnostics for S7/S9.
+- **Numerical tests:** MOP identities exact with sample moments (1e-12); JT ratio 0.9998 by simulation.

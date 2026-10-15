@@ -1,5 +1,20 @@
 # Changelog — notes/v2
 
+## 2026-10-15 (S4.8) — Momentum signals drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_MOMENTUM.md` (DRAFT):
+  - construction records for SIG-1 XSMOM (JT 1993, AMP 2013, PBL eqs. 24–25, Sørensen) and SIG-2 TSMOM (MOP 2012, HOP 2017, PBL eq. 23);
+  - variants per amendment 19: residual momentum (BHM 2011), factor momentum (G&K 2019; E&L NBER 2019), the trend-filter family (Bruder et al. 2011; Paleologo ch. 2: uniform MA = TSMOM, EWMA = Kalman local level, crossovers; two-sided smoothers research-only);
+  - strategy-level scaling (B&SC constant volatility; DM dynamic, point-in-time form only);
+  - lineage; ANG comparison; owner decisions S48-D1 … D6 with recommendations.
+- **Register:** EQ-SIG-1, 1R, 1F/2F, 2, 2T, 3, 4, 5.
+- **New verification** (both PASS):
+  - `s48_momentum_constructions.py`: MOP eqs. (6)–(7) exact; JT eq. (3); centre of mass 60 d = half-life 41.9 d; BHM factor neutrality, 0.65 → −0.02; DM-1 gap 0.13%;
+  - `s48_trend_filters.py`: the filter equivalences; HP and L1 look-ahead; Mann bound; drift-precision limit.
+- **Issues:** ANG-23 annotated (constructions specified; uses open); new source issues HOP-1, DM-1, DM-2, BHM-1, GK-1, EL-1, EL-2, BRU-1, BRU-2; PBL-3.
+- **Inventory:** governing momentum sources marked read with md5; §16 variants read.
+- S4_PLAN C.2 (S4.8 DRAFTED), outline (tracker, decision points), verification README, HANDOFF. Not pushed.
+
 ## 2026-10-15 (later) — S4.8 scope accepted (amendment 19); discussion records on ten open questions (branch `stage/s04-method-library`)
 
 - `2135803` pushed (owner authorisation).
