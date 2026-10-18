@@ -1,8 +1,10 @@
-# S4.12a Scenario and downside methods: PC-D1, PC-D2, PC-D3, PC-B5
+# S4.12 Non-traditional methods: PC-D1 … PC-D4 and PC-B5
 
-**Document status:** REVIEWED · **S4.12a DONE (2026-10-18)**, the first of two stops agreed by the owner on 2026-10-18 (S4.12b = PC-D4 TPA). Owner decisions S412-D1, D2, D3, D5 and the cross-cutting S412-D6 **accepted as recommended, option (a) in each, 2026-10-18** (§4). · **Basis:** S4_PLAN §G (step S4.12); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template) and §2 (S4.12); `S4_SOURCE_REVIEWS_2026-10-08.md` §5–§6 (CUZ, BCP; S4.4); ADR-0024 §1, §3–§6; ADR-0025; ADR-0027 D3; S4.9 (R-3, S49-D1); S4.11 (S411-D4, S411-D5); EQ-SPLIT-1.
+*Part A (§0–§8): S4.12a, scenario and downside methods (DONE). Part B (§9–§10): S4.12b, PC-D4 Total Portfolio Approach (drafted; S412-D4 open).*
 
-**Related files:** `verification/s412_cvar_ru.py`, `s412_drawdown_tail.py`, `s412_downside_b5.py` (all PASS); existing `s44_drawdown_cdd.py`, `s44_cvar_budgets_bcp.py`; register EQ-NT-1 … EQ-NT-3, EQ-DS-1, EQ-DS-2, EQ-SCN-1 (`S4_EQUATION_REGISTER.md`); issues RU-1 … RU-3, SVDM-1, KS-1, BCP-4, BCP-5, CDD-3, CES-1 (`ANG_ISSUES_REGISTER.md`).
+**Document status:** S4.12a REVIEWED · S4.12b DRAFT · **S4.12a DONE (2026-10-18)**, the first of two stops agreed by the owner on 2026-10-18 (S4.12b = PC-D4 TPA). Owner decisions S412-D1, D2, D3, D5 and the cross-cutting S412-D6 **accepted as recommended, option (a) in each, 2026-10-18** (§4). **S4.12b drafted 2026-10-18; decision S412-D4 open (§9.6).** · **Basis:** S4_PLAN §G (step S4.12); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template) and §2 (S4.12); `S4_SOURCE_REVIEWS_2026-10-08.md` §5–§6 (CUZ, BCP; S4.4); ADR-0024 §1, §3–§6; ADR-0025; ADR-0027 D3; S4.9 (R-3, S49-D1); S4.11 (S411-D4, S411-D5); EQ-SPLIT-1.
+
+**Related files:** `verification/s412_cvar_ru.py`, `s412_drawdown_tail.py`, `s412_downside_b5.py`, `s412b_tpa.py` (all PASS); existing `s44_drawdown_cdd.py`, `s44_cvar_budgets_bcp.py`; register EQ-NT-1 … EQ-NT-4, EQ-DS-1, EQ-DS-2, EQ-SCN-1 (`S4_EQUATION_REGISTER.md`); issues RU-1 … RU-3, SVDM-1, KS-1, BCP-4, BCP-5, CDD-3, CES-1, TB-1, TPA-1, TPA-2 (`ANG_ISSUES_REGISTER.md`).
 
 **Scope:** the mathematics of three scenario-based methods (CVaR, drawdown, tail-risk parity) and of mean–downside risk. **Nothing here ranks them** (S7; ADR-0025). Forecastability evidence read at this step is recorded as evaluation evidence, not admission evidence.
 
@@ -394,3 +396,158 @@ Correlations and higher moments come from history. Verified: the recentred set h
 | PC-D1, PC-D2, PC-D3 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification decided (S412-D1 … D3, D6) |
 | PC-B5 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification decided (S412-D5, D6) |
 | PC-D4 | S4.12b |
+
+---
+
+# Part B — S4.12b: PC-D4 Total Portfolio Approach
+
+## 9. PC-D4 (stages 1–7)
+
+### 9.1 Sources read
+
+| Source | Version · md5 | Read | Role |
+|---|---|---|---|
+| Treynor & Black, "How to Use Security Analysis to Improve Portfolio Selection", *J. Business* 46(1):66–86, 1973 | Published (JSTOR) · `4a0b5496a175` | In full 2026-10-18 | Primary for appraisal-ratio sizing and the forecast-to-alpha regression |
+| Ang, Brandt & Denison, *Review of the Active Management of the Norwegian Government Pension Fund Global*, 20 Jan 2014 | Report · `da26aa3090d0` | §III.C and App. B–C re-read 2026-10-18 (in full 2026-10-02) | ANG's cited source: the TPA concept (Reference Portfolio, funding mix, active-risk appetite) |
+| AQR Portfolio Solutions Group, "Total Portfolio Approach: A Quant Lens", *Alternative Thinking* 2026 Issue 2 | `16bf8f961f21` | pp. 3–16 re-read 2026-10-18 | Weight mechanics (owner decision D-5): appraisal ratio, fns. 11–12 |
+| Gerard, BI course note GRA 6531 (13 Jan 2026) | `7295450f59a2` | Read; secondary | Teaching derivation of the single-fund case; nothing beyond T&B and AQR |
+| Gilmore & Simonian 2025 (*JPM* 51(10)); Cavaglia, Han & Seshadri 2026 (*JPM* 52(6), cited by AQR); Elkamhi & Lee 2025 (*JPM* 51(8)) | — | Not in hand | Possible sources for a constrained TPA formulation (§10) |
+
+### 9.2 What each source specifies
+
+- **ANG:** "TPA two-factor (equity, bonds)" and nothing more. There are no factor definitions, exposure estimates, objective or constraints (ANG-15). ANG cites ABD in Exhibit 3 and also Gilmore & Simonian in the text (ANG-22). The name varies between "Approach" and "Allocation" (ANG-06).
+- **ABD (§III.C, App. C):**
+  - The owner sets a Reference Portfolio, "the minimum level of systematic risk" (CPPIB and GIC use 65/35), and an active-risk appetite, e.g. a tracking-error limit (§III.C.1).
+  - Every investment is funded from the Reference Portfolio's assets. Its opportunity cost is a stock/bond mix (eq. 4: β = 1.3 ≡ $1.30 stocks − $0.30 bonds).
+  - The mix is estimated by OLS with the coefficients constrained to sum to one (eq. A.3), which ABD call "a very crude way" (p. 122). The unspanned part (intercept plus residual) is what active management is for.
+  - **No weight-producing rule** (ABD-5).
+- **Treynor & Black:**
+  - Single-index model. Active positions h_i ∝ μ_i/σ_i² on appraisal premiums (eq. 13). A market position completes the desired market exposure (eq. 16). Together these equal the unconstrained Markowitz solution (eq. 17).
+  - The three stages are: maximise the appraisal ratio, blend with the market to maximise Sharpe, then lever or lend. Squared Sharpe = market ratio + appraisal ratio (eq. 19).
+  - Appraisal premiums come from a forecast regression μ = ρ(s_z/s_e)(e + g) with residual variance (1 − ρ²)s_z² (eqs. 28–29). This is EQ-MAP-3 with IC = ρ and ω the residual volatility.
+  - Without short selling, about half the terms of the appraisal ratio vanish (p. 78).
+  - Assumes unlimited borrowing and short sales and no taxes (p. 67).
+- **AQR:**
+  - AR = α/σ_ε from a regression on stock and bond excess returns. SR²_max = SR²_current + AR² (fn. 11).
+  - The allocation is ∝ AR/σ_ε, and existing weights fall by β times the allocation (fn. 12).
+  - AQR says explicitly that it "assumes the investor is unconstrained" (p. 7).
+
+### 9.3 Findings (verified, `s412b_tpa.py`)
+
+| ID | Finding |
+|---|---|
+| — | T&B eqs. (10)–(17) equal the Markowitz tangency exactly; eqs. (19), (20), (25) hold; eqs. (28)–(32) by simulation; the p. 78 halving holds on average (squared ratio × ½, AR × 1/√2). AQR fns. 11–12 exact. ABD eq. (4) and the constrained OLS (A.3) reproduced (closed form = sample regression) |
+| **TB-1** | T&B's "Sharpe ratio" and "appraisal ratio" are **squared** quantities (eq. 19; the paper says so for Sharpe). Modern usage (AQR) is α/σ_ε. Squared ratios add; unsquared ratios do not |
+| **TPA-1** | With ABD's sum-to-one funding, the residuals are correlated with the reference. So total variance ≠ reference variance + tracking-error variance (cross-term nonzero in the solution). Total risk must be constrained explicitly (S410-D6) |
+| **TPA-2** | **The funding set decides the alpha.** With cash as a funding leg (AQR's excess-return regression) an absolute-return asset keeps its 2.0% alpha. With stocks and bonds only (ABD, fully invested), its funding is forced into bonds and the alpha falls to 0.05%. Commodities go from +2.0% to −0.6%. AQR's appraisal ratios assume cash or leverage funding. A household that cannot borrow faces ABD's opportunity cost |
+| **TPA-3** | The reference-relative TPA below **is Roll's benchmark-relative problem plus one linear constraint**: its active set is exactly {x : the funding exposures of x are zero}, and the objectives coincide (μ′Ma = α′a). Verified: same optimum. Solver note: the budget constraint is implied by the neutrality constraints (betas sum to one); stating both stalled SLSQP |
+| **TPA-4** | **Coincidence with PC-B1:** with cash-funded betas, a reference that is the factor tangency (μ_f = λΣ_f w_ref) and no constraints, the tangency equals λ·reference + the funded active portfolio exactly. TPA then equals B1 at the T&B scale. Outside these conditions they differ |
+
+### 9.4 Method record — PC-D4 reference-relative TPA (TPA-R, V1)
+
+- **Identity:** PC-D4 · Total Portfolio Approach, two-factor (equity, bonds) (ANG Exh. 3 and 4; ANG-06) · family D · `M.PC` · roster v0 · **V1 (our specification; ABD has no weight rule)**.
+- **Sources:**
+  - The concept (Reference Portfolio, funding mix, active-risk appetite) is ABD §III.C.1–C.2, eq. (4), App. C (A.3).
+  - Sizing: Treynor & Black eqs. (13)–(19) and AQR fns. 11–12.
+  - The machinery is Roll 1992 and Jorion 2003 (EQ-TEV-1/2, S4.10).
+- **Definition (EQ-NT-4):**
+  - **Reference:** w_ref = `POL.benchmark`, with assets R (two: equity, bonds; three if the benchmark holds cash).
+  - **Funding betas (ABD A.3):** β_i = argmin Var(r_i − β′r_R) s.t. 1′β = 1, computed from the authoritative Σ.
+  - **Alphas:** α_i = μ_i − β_i′μ_R (S9's μ; zero for the reference assets).
+  - **Active vector a ≥ 0 on the non-reference assets:** w = w_ref + Ma, where M subtracts β′a from the reference assets. The weights sum to one automatically, and the funding exposures stay at the reference's.
+  - **Problem:** max α′a s.t. (Ma)′Σ(Ma) ≤ TE², w′Σw ≤ σ*², w ≥ 0, Policy Statement bounds. This is a convex SOCP.
+  - **Unconstrained oracle (V0):** a = TE·Σ_ε⁻¹α/√(α′Σ_ε⁻¹α) (T&B/AQR, multivariate).
+- **Inputs:**
+  - μ (S9) and Σ (authoritative risk model) for betas, alphas and risk.
+  - `POL.benchmark` (S410-D1) and the active-risk budget TE (Policy Statement; ANG's IPS has an active-risk-budget layer).
+  - The signal route stays the S4.9 M cell: α = IC·ω·z with residual ω (EQ-MAP-3; T&B eq. 28 is its primary form).
+- **Parameters:**
+  - TE: user-authorised, required.
+  - Funding set: the reference's assets (S412-D4).
+  - No method parameter beyond these.
+- **Constraints:** native (convex). Long-only applies through a ≥ 0 and w ≥ 0. The p. 78 effect applies: only positive-alpha assets are held, so the squared appraisal ratio is about halved.
+- **Allocation domains:** asset class, fund/ETF. Security level is possible with a factor risk model.
+- **Output and failures:**
+  - Weights, plus a funding report (β, α, AR = α/σ_ε per asset, used TE).
+  - `MISSING_REFERENCE` (no `POL.benchmark`).
+  - `MISSING_ACTIVE_RISK_BUDGET`.
+  - `REFERENCE_INFEASIBLE` (EQ-FEAS-1; S410-D4 handling).
+  - `NO_POSITIVE_ALPHA`: returns the reference, with a record.
+  - `INFEASIBLE_CONSTRAINTS`.
+- **EQ-SPLIT-1:** exception class. The reference sets systematic risk, and σ* enters as a constraint inside (S410-D6). There is no post-scaling: scaling would move the funding exposures.
+- **Invariants:**
+  - Funding exposures equal the reference's.
+  - The weights sum to one.
+  - TE is binding unless no positive alpha remains.
+  - The unconstrained form matches the closed form.
+  - It equals Roll with neutrality (TPA-3), and equals B1 only under TPA-4.
+- **Agent-readable summary:**
+  - *Objective:* keep the owner's equity/bond risk mix and add other asset classes only where they beat the stocks-and-bonds mix that funds them, within the active-risk budget.
+  - *Intuition:* ABD's opportunity-cost model turned into weights.
+  - *Implicit belief:* the reference is the right systematic risk, and value comes only from unspanned returns.
+  - *Sensitivities:*
+    - Alphas are differences of capital-market assumptions (e.g. EM: μ_EM − 1.15μ_E + 0.15μ_F), so errors in μ_E and μ_F propagate through β.
+    - The funding set (TPA-2).
+    - Beta estimates for smoothed or illiquid assets (ABD App. C).
+  - *Failure modes:* concentration in the few positive-alpha assets; nothing to do when no asset beats its funding mix.
+  - *Valid comparisons:* Roll and Anchored EPO at the same TE.
+  - *Invalid:* AQR-style appraisal ratios (cash-funded) for a fully invested portfolio without leverage.
+
+### 9.5 Distinctness test (amendment 14)
+
+Universe: equity and bonds (reference 60/40) plus HY, real estate, commodities, EM, small caps and absolute return. The factor-structured Σ has correlated residuals. TE budget 3%. Maximum absolute weight difference from TPA-R:
+
+| Comparator | Max \|Δw\| | Note |
+|---|---|---|
+| PC-B1 long-only max Sharpe (= factor-MVO here: Σ is factor-structured) | 0.40 | Equity beta 0.14 vs the reference's 0.60 |
+| PC-B1 with TE ≤ 3% vs the reference (EQ-MVO-3b) | 0.21 | Equity exposure drifts to 0.44 |
+| Roll: max expected return s.t. TE ≤ 3% (no neutrality) | 0.44 | Equity exposure 0.77: TE spent on a factor tilt |
+| Anchored EPO, anchor = reference, w set so TE = 3% | 0.40 | Shorts; factor exposures move |
+
+**Result:**
+- TPA-R is **distinct** from every comparator at the same active risk.
+- Its defining content is that the factor exposure is pinned to the owner's reference and the whole active budget goes to unspanned returns.
+- It coincides with B1 only in the unconstrained, cash-funded, factor-efficient-reference case (TPA-4).
+
+### 9.6 Owner decision (stage 6) — open
+
+| ID | Decision | Options | Recommendation |
+|---|---|---|---|
+| **S412-D4** | PC-D4 specification or merge (amendment 14) | (a) **admit TPA-R (V1)** as the family-D candidate as specified in §9.4: reference = `POL.benchmark`, ABD sum-to-one funding over the reference's assets, betas from the authoritative Σ, alphas from S9's μ, max α′a s.t. the Policy Statement active-risk budget and the total-risk constraint, long-only; the unconstrained T&B/AQR form as the oracle; plus the funding report (β, α, AR) as a candidate-card lens for every candidate (S4.16) · (b) **merge**: no D4 candidate; "exposure-neutral TE optimisation" registered as a constraint option for benchmark-relative B-family candidates · (c) **relocate**: no TPA weights; funding decomposition and appraisal ratios only as an S4.16/S14 lens | **(a).** Distinct at matched TE. Every component is sourced: reference, active-risk appetite and funding are ABD; sizing is T&B/AQR; constraints are Roll/Jorion. It gives the ensemble the one candidate that keeps the owner's systematic mix by construction. The funding set follows ABD (no cash leg unless the reference holds cash) because the household cannot borrow (TPA-2) |
+
+### 9.7 Handed forward
+
+| To | Item |
+|---|---|
+| S4.16 | Funding report per candidate: ABD betas, alphas and appraisal ratios against `POL.benchmark`, with the funding set stated (TPA-2) |
+| S4.20 | Failure codes; EQ-SPLIT-1 exception class; total-risk constraint inside (TPA-1); no redundant budget constraint with neutrality (TPA-3) |
+| S9 / S9d | Alphas α = μ − β′μ_R from the CMA vector; the signal route via EQ-MAP-3 with residual ω (T&B eq. 28) |
+| S10 | Betas from the authoritative Σ; unsmoothing for appraisal-based assets (ABD App. C.1) |
+| S7 | Concentration and alpha sensitivity as evaluation hypotheses (no ranking here) |
+
+| Method | Status |
+|---|---|
+| PC-D4 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level and V1); specification open (S412-D4) |
+
+---
+
+## 10. TPA gap memo (amendment 14 deliverable)
+
+1. **ANG gives no formulation** (ANG-15). Its cited source (ABD) is a funding and benchmarking framework without a weight rule (ABD-5).
+2. **What we used, by class:**
+   - **Primary:** Treynor & Black for sizing and the forecast mapping.
+   - **ANG's cited source:** ABD for the concept, the funding regression and the active-risk appetite.
+   - **Practitioner, owner decision D-5:** AQR for the multivariate appraisal-ratio sizing.
+   - **Already verified (S4.10):** Roll and Jorion for the constrained machinery.
+3. **What we had to specify ourselves (V1):**
+   - the combination into one optimisation (TPA-R);
+   - the funding set for an unlevered household (ABD's sum-to-one, TPA-2);
+   - betas from the authoritative Σ rather than separate regressions;
+   - alphas from S9's μ;
+   - the explicit total-risk constraint (TPA-1).
+4. **Gaps that remain (class B: not in hand, not a constraint on proceeding):**
+   - Gilmore & Simonian 2025 (cited in ANG's text) may describe the practice ANG intended.
+   - Cavaglia, Han & Seshadri 2026 and Elkamhi & Lee 2025 may contain a constrained or univariate appraisal-ratio formulation.
+   - None is needed for the mathematics above. If obtained, they are read against §9.4 and may add a variant.
+5. **Distinctness:** passed (§9.5). TPA-R is not a relabelled B1, B7 or factor-MVO. It is Roll's problem with the owner's systematic exposure held fixed (TPA-3).
+

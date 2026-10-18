@@ -1,5 +1,24 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.12b) — Total Portfolio Approach drafted (branch `stage/s04-method-library`)
+
+- `S4_NON_TRADITIONAL.md` Part B. Treynor & Black 1973 read in full. ABD §III.C and App. C and AQR pp. 3–16 re-read. Gerard's course note read (secondary).
+- **PC-D4 TPA-R (V1):**
+  - reference = `POL.benchmark`;
+  - ABD sum-to-one funding over the reference's assets, with betas from the authoritative Σ;
+  - alphas from S9's μ;
+  - max α′a within the Policy Statement active-risk budget and a total-risk constraint, long-only;
+  - the unconstrained T&B/AQR form as the oracle.
+- **Distinctness test passed:** max |Δw| 0.21–0.44 against B1, B1 with a TE budget, Roll and Anchored EPO at TE 3%.
+- **Findings:**
+  - TB-1: T&B's ratios are squared.
+  - TPA-1: total risk is not additive under sum-to-one funding.
+  - TPA-2: the funding set decides the alpha (absolute return 2.0% → 0.05% without a cash leg).
+  - TPA-3: TPA-R = Roll + exposure neutrality.
+  - TPA-4: = B1 only unconstrained, with cash funding and a factor-efficient reference.
+- TPA gap memo (§10): Gilmore & Simonian 2025, Cavaglia et al. 2026 and Elkamhi & Lee 2025 are not in hand (optional).
+- Register EQ-NT-4; `verification/s412b_tpa.py` (PASS); ANG-06/15/22 annotated; inventory §20. Decision **S412-D4 open**. S4_PLAN C.2, outline, README, HANDOFF. Not pushed.
+
 ## 2026-10-18 (S4.12a done) — Owner decisions S412-D1, D2, D3, D5, D6 (branch `stage/s04-method-library`)
 
 - Owner accepted option (a) in each:

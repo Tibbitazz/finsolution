@@ -86,3 +86,9 @@
   | `s412_cvar_ru.py` | Rockafellar & Uryasev Table 3 (exact), eqs. (18)–(19) and Table 4 (10⁻⁶; RU-1), Tables 5–6 within sampling error (Monte Carlo and Sobol LPs), RU-3; RU-2 (LP = quantile-integral CVaR on discrete scenarios with ties); NT-1 (min-CVaR vs GMV by horizon; demeaned → GMV; recentring moves weights); EQ-SCN-1 moments. Runs about 2 minutes | PC-D1; EQ-NT-1, EQ-SCN-1 |
   | `s412_drawdown_tail.py` | Relative drawdown = 1 − e^{−log drawdown}; CDD-1 both directions; γ_min LP (CDD-2); CDD-3 convexity and exact binding of a relative limit; drift moves γ_min; demeaned Gaussian ERC-CVaR = ERC; BCP-4 existence; BCP-1 coincidence and divergence; BCP-3 determinism; BCP-5 modified-CVaR accuracy; historical ERC-CVaR by convex log-barrier; D3 × O2 | PC-D2, PC-D3; EQ-NT-2, EQ-NT-3 |
   | `s412_downside_b5.py` | S&vdM fn. 3 = K&S A7; A9 = A10; KS-1; SVDM-1; MTXY QP = direct convex; convexity; Estrada heuristic exact only under concordant shortfalls; max Sortino by homogenisation = global and on the frontier; EQ-SPLIT-1 invariance at MAR = cash rate; normal reductions (max Sortino = tangency; mean–TSV frontier = MV frontier) | PC-B5; EQ-DS-1, EQ-DS-2 |
+- *[2026-10-18, S4.12b]* **Total Portfolio Approach** (`S4_NON_TRADITIONAL.md` Part B):
+
+  | Script | Proves | Use |
+  |---|---|---|
+  | `s412b_tpa.py` | Treynor & Black eqs. (10)–(17) = Markowitz, (19) squared ratios add (TB-1), (20), (25), (28)–(32), p. 78 halving; AQR fns. 11–12; ABD eq. (4) and constrained OLS (A.3); TPA-1, TPA-2; TPA-R unconstrained closed form; TPA-R = Roll + exposure neutrality (TPA-3); distinctness against B1, B1 + TE, Roll and Anchored EPO; tangency coincidence (TPA-4) | PC-D4; EQ-NT-4 |
+

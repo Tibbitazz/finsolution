@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; S4.12a entries (EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1) added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; S4.12a entries (EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1) and the S4.12b entry EQ-NT-4 added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -740,3 +740,28 @@ Specification choices decided by the owner 2026-10-18, option (a) in each: S412-
   - z is the standardised history (dependence and higher moments); σ from S10; μ = 0 for μ-free uses (demeaned), S9's μ for μ-consuming uses. Raw historical location is never used (S412-D6).
   - Recency weights π_{S−j} = φ^j π_S, 0 < φ < 1.
 - **Properties (verified, `s412_cvar_ru.py`):** the recentred set has exactly the target means and SDs and the historical correlations.
+
+## S4.12b entry — Total Portfolio Approach (`S4_NON_TRADITIONAL.md` §9; decision S412-D4 open)
+
+## EQ-NT-4 Funding decomposition, appraisal-ratio sizing and the reference-relative TPA (PC-D4)
+
+- **Source:**
+  - Ang, Brandt & Denison 2014, eq. (4), p. 74; App. C eq. (A.3), pp. 121–122 (sum-to-one funding regression); §III.C.1 (Reference Portfolio, active-risk appetite).
+  - Treynor & Black 1973, eqs. (10)–(20), (25)–(32), pp. 71–80.
+  - AQR 2026, fns. 11–12, p. 6.
+  - The combination (TPA-R) is our V1 specification.
+- **Canonical:**
+  - Funding betas: β_i = argmin Var(r_i − β′r_R) s.t. 1′β = 1. With two reference assets, β_iE = Cov(r_i − r_F, r_E − r_F)/Var(r_E − r_F).
+  - α_i = μ_i − β_i′μ_R.
+  - w = w_ref + Ma, with M = I − (funding columns on the reference rows).
+  - TPA-R: max α′a s.t. (Ma)′Σ(Ma) ≤ TE², w′Σw ≤ σ*², w ≥ 0, a ≥ 0 on non-reference assets, bounds.
+  - Unconstrained: a = TE·Σ_ε⁻¹α/√(α′Σ_ε⁻¹α), Σ_ε = (M′ΣM) on the non-reference block.
+  - T&B: h_i = λμ_i/σ_i², h_M = λμ_M/σ_M² − Σh_ib_i; (SR)² = μ_M²/σ_M² + Σμ_i²/σ_i² (squared ratios, TB-1). Forecast: μ = ρ(s_z/s_e)(e + g), residual variance (1 − ρ²)s_z², E[μ²/σ²] = ρ²/(1 − ρ²).
+  - AQR: SR²_max = SR²_current + AR²; allocation α/σ_ε²; existing weights − β·allocation.
+- **Properties (verified, `s412b_tpa.py`):**
+  - T&B = Markowitz; eqs. (19), (20), (25), (28)–(32); p. 78 halving.
+  - AQR fns. 11–12; ABD (4), (A.3).
+  - TPA-1 (non-additive total risk); TPA-2 (funding set changes alpha).
+  - TPA-3 (= Roll + exposure neutrality); TPA-4 (= tangency only unconstrained, cash-funded, factor-efficient reference).
+  - Distinct from B1, B1 + TE, Roll and Anchored EPO at TE 3% (max |Δw| 0.21–0.44).
+

@@ -1,6 +1,6 @@
 # S4.0 — Source and artefact inventory
 
-**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources; §19: the S4.12a sources read from the existing library) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
+**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources; §19: the S4.12a sources read from the existing library; §20: the S4.12b TPA sources) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
 
 **Scope of S4.0:**
 - Locate, identify and classify every source and prior artefact S4 needs.
@@ -330,4 +330,14 @@ Identity checked against title page, page count and content; md5 of the PDF insi
 | Sortino & Price, "Performance Measurement in a Downside Risk Framework", *J. Investing* 3(3):59–64, 1994 | MISSING · optional (defines the Sortino ratio; cited by Kahn & Stefek and Nassar & Ephrem) | — | PC-B5 (ratio citation) |
 | Boudt, Peterson & Croux (2008), modified ES | MISSING · optional | — | PC-D3 (modified CVaR) |
 | Hogan & Warren (1974), *JFQA* 9(1):1–11; Cumova & Nawrocki (2014), *J. Econ. Bus.* 71:68–89; Sortino, van der Meer & Plantinga, "The Dutch Triangle", *JPM* Fall 1999 (scan); Landsman, Makov, Yao & Zhou (2022), *Eur. J. Finance*; Nassar & Ephrem (2020 note); Martin, Ulcer Index (web page) | AVAILABLE · identity only (not needed for S4.12a) | RPT/Downside Risk/, RPT/Sortino/; md5 87a2fdc97bc1, b332fbb6b9ca, 98df2daee861, 3321ff3e5148, dc0d83bf1fd7, abc68548f4a5 | PC-B5, PC-D2 context |
+
+## 20. Sources read 2026-10-18 for S4.12b (existing library; no new uploads)
+
+| Source | Status | Location / identity | Maps to |
+|---|---|---|---|
+| Treynor & Black (1973), *J. Business* 46(1):66–86 | AVAILABLE (published, JSTOR) · **read in full 2026-10-18** | `Finsol Research Papers/How to Use Security Analysis to Improve Portfolio Selection.pdf`, 22 pp., md5 4a0b5496a175 | PC-D4 sizing; EQ-NT-4; TB-1; primary form of EQ-MAP-3 (eq. 28) |
+| Ang, Brandt & Denison (2014) | In hand (§ PC-D4 row) · §III.C and App. B–C re-read 2026-10-18 | md5 da26aa3090d0 | EQ-NT-4; TPA-1, TPA-2 |
+| AQR (2026), *Alternative Thinking* Issue 2 | In hand · pp. 3–16 re-read 2026-10-18 | md5 16bf8f961f21 | EQ-NT-4 (fns. 11–12) |
+| Gerard, GRA 6531 note (2026) | SECONDARY · read 2026-10-18 | md5 7295450f59a2 | Teaching derivation; nothing new |
+| Cavaglia, Han & Seshadri (2026), "Applying the Appraisal Ratio and Style Analysis to Total Portfolio Management", *JPM* 52(6); Elkamhi & Lee (2025), "Total Portfolio Approach", *JPM* 51(8) (both cited by AQR) | MISSING · optional | — | PC-D4 variants (gap memo §10) |
 
