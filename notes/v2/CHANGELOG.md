@@ -1,5 +1,10 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.11 done) — Owner decisions S411-D1 … D5 (branch `stage/s04-method-library`)
+
+- Owner accepted S411-D1 … D5 as recommended: GMV long-only with Policy Statement bounds (unconstrained only where shorting is permitted); HRP V1 tree split in production, V0 as the reproduction oracle; MinCorr in production, MinCorr2 as a sensitivity variant; Policy Statement bounds for ERC, HRP and MinCorr by declared post-processing at S4.20, constrained variants as research-lane leads; typed failure records, no silent fallback.
+- `S4_RISK_STRUCTURED.md` (DONE), S4_PLAN C.2 (S4.12 NEXT), outline, HANDOFF. Pushed with `9d4eddb` (owner authorisation).
+
 ## 2026-10-18 (S4.11) — Risk-structured methods drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_RISK_STRUCTURED.md` (DRAFT): method records for PC-C1 GMV, C2 ERC, C3 HRP, C4 MDP, C5 MinCorr; verified relations (uncorrelated, constant-correlation, equal-volatility and two-asset cases; risk ordering) and the implied expected-return belief of each method; decisions S411-D1 … D5.

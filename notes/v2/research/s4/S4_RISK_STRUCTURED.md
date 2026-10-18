@@ -1,6 +1,6 @@
 # S4.11 Risk-structured methods: PC-C1 … PC-C5
 
-**Document status:** DRAFT (2026-10-18), awaiting owner decisions S411-D1 … S411-D5 (§4). · **Basis:** S4_PLAN §G (step S4.11); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template); `S4_PC_SOURCE_MAP.md` (all five sources in hand); ADR-0024 §3–§6; ADR-0025; ADR-0027 D3; invariants I-1 … I-9 (`S4_GITHUB_IMPL_REVIEW.md` §10); S4.9 (C5 × O2 pending cell; S49-D1 research-lane rule); S4.6 (EQ-MVO-4, 4a).
+**Document status:** REVIEWED · **S4.11 DONE (2026-10-18).** Owner decisions S411-D1 … S411-D5 accepted as recommended, 2026-10-18 (§4). · **Basis:** S4_PLAN §G (step S4.11); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template); `S4_PC_SOURCE_MAP.md` (all five sources in hand); ADR-0024 §3–§6; ADR-0025; ADR-0027 D3; invariants I-1 … I-9 (`S4_GITHUB_IMPL_REVIEW.md` §10); S4.9 (C5 × O2 pending cell; S49-D1 research-lane rule); S4.6 (EQ-MVO-4, 4a).
 
 **Related files:** `verification/s411_risk_structured.py` (PASS); existing `s44_risk_parity_spinu.py`, `s44_hrp_lopez_de_prado.py`; register EQ-RS-1 … EQ-RS-5 (`S4_EQUATION_REGISTER.md`); issue MCA-4 (`ANG_ISSUES_REGISTER.md`).
 
@@ -143,6 +143,8 @@ Source details that matter:
 
 ## 4. Owner decisions (stage 6)
 
+*[2026-10-18]* **Owner decision: S411-D1 … D5 accepted as recommended.** GMV long-only with Policy Statement bounds (unconstrained only where shorting is permitted); HRP V1 (tree split) in production with V0 as the reproduction oracle; MinCorr in production with MinCorr2 as a sensitivity variant; Policy Statement bounds for ERC, HRP and MinCorr by declared post-processing (S4.20), constrained variants as research-lane leads; typed failure records, no silent fallback.
+
 | ID | Decision | Options | Recommendation |
 |---|---|---|---|
 | **S411-D1** | GMV constraint set | (a) long-only with Policy Statement bounds, native; the unconstrained (long/short, budget-only) form only where the account permits shorting · (b) long-only without bounds · (c) unconstrained everywhere | **(a).** CdST's base case is long-only with an upper bound; their 3% is a 1,000-stock example, so the bound comes from the Policy Statement |
@@ -179,4 +181,4 @@ Source details that matter:
 
 | Method | Status |
 |---|---|
-| PC-C1 … PC-C5 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification choices pending S411-D1 … D5 |
+| PC-C1 … PC-C5 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification decided (S411-D1 … D5) |
