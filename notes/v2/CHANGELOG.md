@@ -1,5 +1,12 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.10 done) — Owner decisions S410-D1 … D6 (branch `stage/s04-method-library`)
+
+- Owner accepted S410-D1 … D6 as recommended. S47-D3 closed: admissible anchors 1/N, 1/σ, market capitalisation (where data permit), `POL.benchmark` (when feasible); default `POL.benchmark` where declared and feasible, otherwise 1/σ; security sleeves by market capitalisation, otherwise 1/N.
+- S410-D6 noted on EQ-SPLIT-1 (binds at G4 with B-46 and S49-D3): total-risk constraint inside benchmark-relative candidates; TE only as a constraint; IR with total risk and beta.
+- Owner pushback on 60/40: an ASK plus an ordinary account (AF) can hold a combined 60/40 while the AF holds at least 40% of the wealth (household case, EQ-FEAS-1). Recorded on §10 of `S4_ANCHOR_BENCHMARK.md`.
+- S4_PLAN C.2 (S4.10 DONE; S4.11 NEXT), outline, HANDOFF. Not pushed.
+
 ## 2026-10-18 (S4.10) — Anchors and benchmarks drafted (branch `stage/s04-method-library`)
 
 - Owner reminded of S47-D3 first (anchor for PC-B7: 1/N, 1/σ, market capitalisation, `POL.benchmark`; the 60/40 question).

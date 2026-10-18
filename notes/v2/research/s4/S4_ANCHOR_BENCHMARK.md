@@ -1,6 +1,6 @@
 # S4.10 Anchors and benchmarks: what the engine anchors to, what it is judged against, and how they stay feasible
 
-**Document status:** DRAFT (2026-10-18), awaiting owner decisions S410-D1 … S410-D6 (§10). · **Basis:**
+**Document status:** REVIEWED · **S4.10 DONE (2026-10-18).** Owner decisions S410-D1 … S410-D6 accepted as recommended, 2026-10-18 (§10). · **Basis:**
 - S4_PLAN §G (step S4.10; SYNC-3 with S4.9); owner decision S47-D3 (anchor for PC-B7 deferred to this step; reminder given 2026-10-18);
 - taxonomy findings F-2 ("anchor" is a use, not a method type) and F-3 (a benchmark is a definition plus its weights and returns) (`S4_TAXONOMY.md`);
 - ADR-0024 §4 (allocation domains), §7 (EPO in the MVO lineage); ADR-0025 (admission ≠ evaluation); ADR-0027 D3, D5 (one risk model per problem; declared units); EQ-SPLIT-1 (S47-D6) and its S49-D3 note;
@@ -169,6 +169,8 @@ Example (ASK plus an ordinary share account, both with cash): the 60/40 needs 40
 ---
 
 ## 10. Owner decisions (stage 6)
+
+*[2026-10-18]* **Owner decision: S410-D1 … D6 accepted as recommended** ("I agree to the D points"). The owner's follow-up on 60/40 across an ASK and an ordinary account (AF) is the household case of §5.2: feasible while the AF holds at least 40% of the combined wealth.
 
 | ID | Decision | Options | Recommendation |
 |---|---|---|---|

@@ -467,6 +467,7 @@ Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1)
   - Exceptions: PC-A5 (own rule); methods with absolute risk limits (σ* inside their optimisation).
   - Final ensemble rescaled to σ*.
   - *[2026-10-18, owner decision S49-D3; binds at G4 with B-46]* **Direction rules (O3) act after the scaling:** base method → EQ-SPLIT-1 → direction rule. A direction rule may lower exposure below σ*, never raise it (`S4_SIGNAL_PC_COMPATIBILITY.md` R-4).
+  - *[2026-10-18, owner decision S410-D6; binds at G4 with B-46]* **Benchmark-relative candidates carry the total-risk constraint inside their optimisation** (Jorion 2003; EQ-TEV-2); a tracking-error limit is a constraint, never the objective; information ratios are reported with total risk and beta (Roll 1992).
 - **Units:** σ* and σ(p) on the same horizon and basis (ADR-0027 D5).
 - **Numerical tests:** separation and the three-segment frontier (`s46_mvo_closed_forms.py`; S4.6 discussion); the scaling rule is arithmetic; the frontier point at σ* uses EQ-MVO-2/2a.
 
