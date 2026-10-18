@@ -79,3 +79,10 @@
   | Script | Proves | Use |
   |---|---|---|
   | `s411_risk_structured.py` | GMV closed form and CdST 2011 single-index long-only formula = QP; MRT §4.1 tables and eqs. (3)–(8), A.1, A.3, §3.5; ERC uniqueness; HRP V1 invariance, V0 order dependence and canonical determinism, limits; C&C Examples 1–2 and eqs. (4), (6)–(8), (11)–(12), long-only KKT; MinCorr/MinCorr2 worked example, invariances, MCA-4 domain; C5 × O2 | EQ-RS-1 … EQ-RS-5 |
+- *[2026-10-18, S4.12a]* **Scenario and downside methods** (`S4_NON_TRADITIONAL.md`):
+
+  | Script | Proves | Use |
+  |---|---|---|
+  | `s412_cvar_ru.py` | Rockafellar & Uryasev Table 3 (exact), eqs. (18)–(19) and Table 4 (10⁻⁶; RU-1), Tables 5–6 within sampling error (Monte Carlo and Sobol LPs), RU-3; RU-2 (LP = quantile-integral CVaR on discrete scenarios with ties); NT-1 (min-CVaR vs GMV by horizon; demeaned → GMV; recentring moves weights); EQ-SCN-1 moments. Runs about 2 minutes | PC-D1; EQ-NT-1, EQ-SCN-1 |
+  | `s412_drawdown_tail.py` | Relative drawdown = 1 − e^{−log drawdown}; CDD-1 both directions; γ_min LP (CDD-2); CDD-3 convexity and exact binding of a relative limit; drift moves γ_min; demeaned Gaussian ERC-CVaR = ERC; BCP-4 existence; BCP-1 coincidence and divergence; BCP-3 determinism; BCP-5 modified-CVaR accuracy; historical ERC-CVaR by convex log-barrier; D3 × O2 | PC-D2, PC-D3; EQ-NT-2, EQ-NT-3 |
+  | `s412_downside_b5.py` | S&vdM fn. 3 = K&S A7; A9 = A10; KS-1; SVDM-1; MTXY QP = direct convex; convexity; Estrada heuristic exact only under concordant shortfalls; max Sortino by homogenisation = global and on the frontier; EQ-SPLIT-1 invariance at MAR = cash rate; normal reductions (max Sortino = tangency; mean–TSV frontier = MV frontier) | PC-B5; EQ-DS-1, EQ-DS-2 |

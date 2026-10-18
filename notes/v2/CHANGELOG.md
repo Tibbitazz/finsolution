@@ -1,5 +1,24 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.12a) — Scenario and downside methods drafted (branch `stage/s04-method-library`)
+
+- **S4_PLAN amendment 20:** S4.12 split into S4.12a (D1 CVaR, D2 drawdown, D3 tail-risk parity, B5 mean–downside) and S4.12b (D4 TPA), as agreed by the owner ("Yes to both").
+- **New** `research/s4/S4_NON_TRADITIONAL.md` (DRAFT): method records for PC-D1, D2, D3 and B5.
+  - **NT-1:** scenario methods are not location-free. Min-CVaR's gap to GMV grows with the horizon (1.9 to 14 pp from one month to five years), and BCP's contributions contain −w′μ. S4.9's "μ-free" holds only on demeaned scenarios.
+  - **New decision S412-D6** (scenario location rule; Grinold *Advances* ch. 32 eq. 10 as EQ-SCN-1).
+  - Normal limits verified: min-CVaR → GMV; ERC-CVaR → ERC; max Sortino → max Sharpe; mean–TSV frontier → MV frontier.
+  - **CDD-3:** the relative compounded drawdown limit is convex. **CDD-1** quantified in both directions.
+  - Decisions S412-D1, D2, D3, D5, D6 open.
+- **Sources read in full:** Rockafellar & Uryasev 2000 (preprint); Sortino & van der Meer 1991 (scan, page images); Markowitz, Todd, Xu & Yamane 1993; *Advances* ch. 27 (Kahn & Stefek) and ch. 32 (Grinold). Also Cesarone et al. 2026 §1–§5 and Estrada 2008 method sections. CUZ and BCP re-checked. Inventory §19.
+- **Register:** EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1.
+- **New** verification scripts (PASS):
+  - `s412_cvar_ru.py`: R&U Tables 3–6 and the NT-1 profile.
+  - `s412_drawdown_tail.py`: drawdown definitions, γ_min, CDD-3, BCP-1/3/4/5, historical ERC-CVaR, D3 × O2.
+  - `s412_downside_b5.py`: fn. 3, A10, MTXY QP, Estrada, homogenised max Sortino, normal reductions, EQ-SPLIT-1 invariance.
+- **Issues:** RU-1 (eq. 19 reading), RU-2 (continuity assumption; LP verified on discrete scenarios), RU-3 (Table 5 signs), SVDM-1 (Figure 4 arithmetic), KS-1 (√12 target conversion), BCP-4 (ERC-CVaR existence), BCP-5 (modified-CVaR accuracy), CDD-3, CES-1 (text vs table in Cesarone et al.). ANG-02, ANG-18, ANG-39 and ANG-40 annotated.
+- S4.9 matrix: D3 × O2 tested → research lane (S49-D1).
+- S4_PLAN C.2, outline, verification README, HANDOFF. Not pushed.
+
 ## 2026-10-18 — HANDOFF: developer guide (branch `stage/s04-method-library`)
 
 - New HANDOFF §10 at the owner's request: building the engine from scratch. What is binding (ACCEPTED ADRs, STABLE documents) and what is design input; repository, branches and what stays outside; minimum reading path; the accepted architecture (layers, R1–R8, ANG pipeline, six kinds, configuration, facts, reproducibility); build order (S8a → G8a → foundation slice → SYNC-1 … SYNC-6 → gates); interface and data (OB-1, OB-2, DR-7, DR-8, accounts); Method Library status with records, equations, oracle scripts and decisions; cross-cutting rules; what not to build; open items and change control.

@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; S4.12a entries (EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1) added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -671,3 +671,72 @@ GMV itself is EQ-MVO-4 (unconstrained) and EQ-MVO-4a (long-only, Jagannathan–M
 - **Properties (verified):** equals the numerical long-only QP (150 synthetic stocks; 33 held; β_L 0.79, β_LS 1.16).
 - **Use:** verification oracle and agent-readable intuition for PC-C1.
 
+
+## S4.12a entries — scenario and downside methods (`S4_NON_TRADITIONAL.md`)
+
+Specification choices are open (S412-D1, D2, D3, D5, D6). The entries record the mathematics and its verification only.
+
+## EQ-NT-1 CVaR and its scenario linear programme (PC-D1)
+
+- **Source:** Rockafellar & Uryasev (preprint 5 Sep 1999; *J. Risk* 2(3) 2000 governs), Theorems 1–2 (eqs. 4–10), eq. (17), Proposition with eqs. (18)–(19), pp. 3–10.
+- **Canonical:**
+  - Loss f(x, y) = −y′x.
+  - F_β(x, α) = α + (1/(q(1−β)))Σ_k[−y_k′x − α]⁺; CVaR_β(x) = min_α F_β(x, α); VaR_β(x) = the left end of the argmin set.
+  - LP: min α + (1/(q(1−β)))Σu_k s.t. u_k ≥ −y_k′x − α, u ≥ 0, x ∈ X. V1 adds μ′x ≥ R.
+  - Normal losses: VaR = −μ′x + c₁σ, CVaR = −μ′x + c₂σ, with c₁ = √2 erf⁻¹(2β−1) and c₂ = [√(2π) exp([erf⁻¹(2β−1)]²)(1−β)]⁻¹ = φ(Φ⁻¹β)/(1−β) (RU-1).
+- **Discrete scenarios (RU-2):** the LP value equals (1/(1−β))∫_β^1 VaR_u du with VaR_u the empirical quantile, including ties and non-integer βq. The naive mean beyond VaR does not.
+- **Properties (verified, `s412_cvar_ru.py`):** Tables 3–4 (exact / 10⁻⁶); Tables 5–6 within sampling error; NT-1 (location dependence; demeaned normal → GMV).
+
+## EQ-NT-2 Drawdown measures and drawdown-constrained portfolios (PC-D2)
+
+- **Source:** Chekhlov, Uryasev & Zabarankin (UF report 2003-15; *IJTAF* 8(1) 2005 governs), eqs. 6–7, 14, 16–17, 25, 30–31, 47, 49, 55–56. The relative form is a derivation (CDD-3).
+- **Canonical:**
+  - CUZ: w_k = Σ_{t≤k} r_t′x; ξ_k = max_{j≤k} w_j − w_k; CDD_α = CVaR_α(ξ); path LP via y_k ≥ y_{k−1} − r_k′x, y ≥ 0; problem max mean s.t. CDD_α ≤ γ.
+  - Relative: L_k = Σ_{t≤k} ln(1 + r_t′x); D_k = max_{j≤k} L_j − L_k; relative drawdown 1 − e^{−D_k}.
+  - MaxDD_rel ≤ γ ⇔ −Σ_{t∈(j,k]} ln(1 + r_t′x) ≤ −ln(1 − γ) for all j < k (convex).
+  - γ_min = min_{x∈X} MaxDD(x): one LP (CUZ) or one convex programme (relative).
+- **Properties (verified, `s44_drawdown_cdd.py`, `s412_drawdown_tail.py`):** CUZ equivalences; relative = 1 − e^{−log DD}; log DD ≥ CUZ DD; no bound between CUZ and relative in either direction (CDD-1); feasibility iff γ ≥ γ_min (CDD-2); midpoint convexity of log MaxDD and log CDD; exact binding.
+
+## EQ-NT-3 CVaR contributions, tail-risk parity and modified CVaR (PC-D3)
+
+- **Source:** Boudt, Carl & Peterson (version 24 May 2012; *J. Risk* 15(3) 2013 governs), eqs. 2–7, 10, 11, 14, 15; Appendix eqs. 21–22.
+- **Canonical:**
+  - Contributions: C_i = w_i ∂CVaR/∂w_i; Σ_i C_i = CVaR; scenario form C_i = w_i E[−r_i | loss ≥ VaR].
+  - ERC-CVaR: C_i = CVaR/N. MCC: argmin max_i C_i = argmin CVaR · max_i(C_i/CVaR).
+  - Convex ERC form on scenario CVaR (derivation): y* = argmin CVaR(y) − (1/N)Σ ln y_i, w = y*/1′y*.
+  - Modified CVaR: Cornish–Fisher quantile (21) and Edgeworth expectation (22) from skewness and excess kurtosis of w′r (co-moments M3, M4).
+- **Existence (BCP-4):** (Σw)_i/σ_p ≤ σ_i ⇒ C_i ≤ w_i(−μ_i + c₂σ_i). If μ_i ≥ c₂σ_i, then C_i < 0 for all w_i > 0 and no long-only ERC-CVaR exists. On demeaned, non-degenerate scenarios a unique solution exists.
+- **Properties (verified):** Euler; Gaussian limit; Prop. (15) (S4.4); demeaned Gaussian ERC-CVaR = ERC; BCP-1 coincidence and divergence; BCP-5 accuracy; determinism (BCP-3).
+
+## EQ-DS-1 Target semivariance, downside deviation and the Sortino ratio (PC-B5)
+
+- **Source:** Sortino & van der Meer 1991, fn. 3, p. 31; MTXY 1993 eqs. (3.1a)–(3.1b), p. 311; Kahn & Stefek (*Advances* ch. 27) eqs. A5–A10; Cesarone et al. 2026 eqs. (1)–(2). Ratio: Sortino & Price 1994 (not in hand).
+- **Canonical:**
+  - TSV_c(x) = (1/T)Σ_t[(c − r_t′x)⁺]² (divisor T, all periods).
+  - Below-mean semivariance S_E: target = the portfolio mean (MTXY 3.1a).
+  - DD_c = √TSV_c; SoR_c = (μ′x − c)/DD_c.
+  - Normal: TSV = (σ² + d²)N(−d/σ) − σd φ(d/σ), d = μ − c (K&S A10); TSV at c = μ equals σ²/2.
+- **Not adopted:** Estrada's exogenous Σ_B,ij = (1/T)Σ min(R_it − B, 0)·min(R_jt − B, 0), exact only under concordant shortfalls.
+- **Properties (verified, `s412_downside_b5.py`):** fn. 3 = A7; A9 = A10; convex in x; SVDM-1; KS-1.
+
+## EQ-DS-2 Mean–downside objectives (PC-B5)
+
+- **Source:** MTXY 1993 eqs. (3.2)–(3.8), pp. 311–313 (exact QP); Cesarone et al. 2026 eqs. (14)–(16), Prop. 5; S&vdM 1991 (risk-aversion test form). Homogenisation of the ratio is a derivation (as EQ-MVO-3b).
+- **Canonical:**
+  - (a) max SoR_c: min (1/T)Σ[((c − r_t)′y)⁺]² s.t. (μ − c1)′y = 1, y ≥ 0; x = y/1′y.
+  - (b) min TSV_c s.t. μ′x ≥ η, x ∈ X; QP form min ΣZ_t² s.t. Bx + Z ≥ 0, Z ≥ 0, with B = (R − c)/√T.
+  - (c′) min λTSV_c − μ′x.
+- **Properties (verified):**
+  - (b) QP = direct convex at three targets.
+  - (a) = the global maximum and lies on the (b) frontier.
+  - Normal: (a) with c = the cash rate = tangency; (b) = MV frontier.
+  - With c = the cash rate, SoR is invariant to scaling with cash (EQ-SPLIT-1).
+
+## EQ-SCN-1 Scenario location and scale harmonisation (all scenario methods; proposed rule S412-D6)
+
+- **Source:** Grinold, *Advances* ch. 32, eq. (10) and §IV, PDF p. 671.
+- **Canonical:**
+  - r_{n,s} = r_F + μ_nΔt + σ_n z_{n,s}√Δt, with Σ_s π_s z_{n,s} = 0 and Σ_s π_s z²_{n,s} = 1.
+  - z is the standardised history (dependence and higher moments); σ from S10; μ = 0 for μ-free uses (demeaned), S9's μ for μ-consuming uses.
+  - Recency weights π_{S−j} = φ^j π_S, 0 < φ < 1.
+- **Properties (verified, `s412_cvar_ru.py`):** the recentred set has exactly the target means and SDs and the historical correlations.

@@ -1,6 +1,6 @@
 # S4.0 — Source and artefact inventory
 
-**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
+**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources; §19: the S4.12a sources read from the existing library) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
 
 **Scope of S4.0:**
 - Locate, identify and classify every source and prior artefact S4 needs.
@@ -315,4 +315,19 @@ Identity checked against title page, page count and content; md5 of the PDF insi
 | Grinold & Kahn, *Advances*, ch. 20 "Are Benchmark Portfolios Efficient?" (Grinold 1992, revised October 2018) | In hand (§17) · read 2026-10-18 | — | EQ-GRS-1; issue GKA-1 |
 | Gibbons, Ross & Shanken (1989), "A Test of the Efficiency of a Given Portfolio", *Econometrica* 57 | MISSING · optional (only if the GRS diagnostic is adopted at S7/S16) | — | EQ-GRS-1 |
 | Global multi-asset market-portfolio weights (lead from memory, not verified: Doeswijk, Lam & Swinkels 2014) | NOT LOCATED · needed only for an asset-class market-capitalisation anchor | — | S410-D2/D3; S6 |
+
+## 19. Sources read 2026-10-18 for S4.12a (existing library; no new uploads)
+
+| Source | Status | Location / identity | Maps to |
+|---|---|---|---|
+| Rockafellar & Uryasev, "Optimization of Conditional Value-at-Risk", *J. Risk* 2(3), 2000 | AVAILABLE (preprint dated 5 Sep 1999; the published version governs) · read in full 2026-10-18 | `Finsol Research Papers/Optimization of Conditional Value-at-Risk.pdf`, 26 pp., md5 ee8f86ef5b31 | PC-D1; EQ-NT-1; RU-1 … RU-3 |
+| Rockafellar & Uryasev, "Conditional value-at-risk for general loss distributions", *J. Banking & Finance* 26, 2002 | MISSING · optional (formal result for discrete scenarios; RU-2 verified numerically) | — | EQ-NT-1 |
+| Sortino & van der Meer, "Downside Risk", *JPM* 17(4) (Summer 1991):27–31 | AVAILABLE (scan) · read in full from page images 2026-10-18 | RPT/Downside Risk/Downside Risk.pdf, md5 b1756aecbd53 | PC-B5; EQ-DS-1; SVDM-1 |
+| Markowitz, Todd, Xu & Yamane, "Computation of mean-semivariance efficient sets by the Critical Line Algorithm", *Ann. Oper. Res.* 45:307–317, 1993 | AVAILABLE (published) · read in full | RPT/Portfolio Optimization /Computation of mean-semivariance efficient sets.pdf, 12 pp., md5 edc9c17c056a | PC-B5; EQ-DS-1, EQ-DS-2 |
+| Cesarone, Corradini, Giunta & Lampariello, "Semivariance, semicovariance matrix and lower partial moments for portfolio selection: Analytical and numerical results", *Finance Research Letters* 91:109424, 2026 (CC BY) | AVAILABLE (published) · §1–§5 read | RPT/Portfolio Optimization /Semivariance, semicovariance matrix and lower partial moments for portfolio selection.pdf, 12 pp., md5 1807243dfd4b | PC-B5; EQ-DS-2 |
+| Estrada, "Mean-Semivariance Optimization: A Heuristic Approach", *J. Appl. Finance* 18(1), 2008 | AVAILABLE (published) · method sections read | RPT/Portfolio Optimization /Mean-Semivariance Optimization- A Heuristic Approach.pdf, 16 pp., md5 5e1e193381c9 | PC-B5 (heuristic, not adopted) |
+| Grinold & Kahn, *Advances*, ch. 26–28 intros; ch. 27 Kahn & Stefek "Heat, Light, and Downside Risk" (BARRA white paper, Dec 1996); ch. 32 Grinold "Mean-Variance and Scenario-Based Approaches to Portfolio Selection" (revision of *JPM* Winter 1999:10–22) | In hand (§17) · read in full 2026-10-18 | PDF pp. 559–591, 592–595, 664–686 | EQ-DS-1 (A5–A10); EQ-SCN-1; KS-1 |
+| Sortino & Price, "Performance Measurement in a Downside Risk Framework", *J. Investing* 3(3):59–64, 1994 | MISSING · optional (defines the Sortino ratio; cited by Kahn & Stefek and Nassar & Ephrem) | — | PC-B5 (ratio citation) |
+| Boudt, Peterson & Croux (2008), modified ES | MISSING · optional | — | PC-D3 (modified CVaR) |
+| Hogan & Warren (1974), *JFQA* 9(1):1–11; Cumova & Nawrocki (2014), *J. Econ. Bus.* 71:68–89; Sortino, van der Meer & Plantinga, "The Dutch Triangle", *JPM* Fall 1999 (scan); Landsman, Makov, Yao & Zhou (2022), *Eur. J. Finance*; Nassar & Ephrem (2020 note); Martin, Ulcer Index (web page) | AVAILABLE · identity only (not needed for S4.12a) | RPT/Downside Risk/, RPT/Sortino/; md5 87a2fdc97bc1, b332fbb6b9ca, 98df2daee861, 3321ff3e5148, dc0d83bf1fd7, abc68548f4a5 | PC-B5, PC-D2 context |
 
