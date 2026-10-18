@@ -6,6 +6,8 @@
 - `ACCEPTED` ADRs win over `STABLE` documents, which win over `DRAFT` documents (01 §2);
 - `main` wins over open branches.
 
+**Developer: start with §10** (building the engine from scratch: what is binding, reading path, architecture, build order, method-library status, rules and invariants, what not to build, open items).
+
 **Developer binding rule (README):** build only against `ACCEPTED` ADRs and `STABLE` sections. Everything on this branch since G3 is `DRAFT` or `PROPOSED` until the owner accepts it at a gate, and is invisible to the developer until pushed.
 
 ---
@@ -150,10 +152,13 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_MVO_FOUNDATION.md` | **S4.6 (REVIEWED; S46-D1 decided 2026-10-08):** the shared mean–variance mathematics (problem, closed forms, riskless asset and separation, GMV, long-only variants, estimation error with Jorion reproduced); ANG-47; decision S46-D1 (numéraire cash as the riskless asset) |
 | `S4_MVO_FAMILY.md` | **S4.7 (REVIEWED; S47-D1 … D6 decided 2026-10-08; S47-D7, Michaud patent family closed, 2026-10-15):** maximum Sharpe (constrained convex form), Black–Litterman (BL 1992 conventions; BL-2), robust MV (Goldfarb–Iyengar; ANG-48), resampled frontier (Michaud; D-2; ANG-49), simple and anchored EPO (PBL; Props. 1–3); lineage; decisions S47-D1 … D6 |
 | `S4_MOMENTUM.md` | **S4.8 (REVIEWED 2026-10-15; scope = S4_PLAN amendment 19; decisions S48-D1, D2, D4, D5, D6; D3 → S4.9):** SIG-1 XSMOM and SIG-2 TSMOM construction records with variants (residual momentum, factor momentum, trend-filter family incl. Kalman = EWMA) and strategy-level scaling (constant volatility; DM dynamic); both signals in every domain with the skip by asset type; factor momentum for long-only users as time-varying blend weights |
-| `S4_SIGNAL_PC_COMPATIBILITY.md` | **S4.9 (DRAFT 2026-10-15):** objects O1–O6 (evidence, conditioned universe, direction rule, μ mapping, sleeve, overlay); compatibility matrix for the 23 methods; rules R-1 … R-6 (no unscaled scores into optimizers; units and benchmark neutrality; direction rules after the engine-level scaling); signal-conditioned heuristics = composition rules (no roster change); mappings EQ-MAP-1 … 4 for S9d; decisions S49-D1 … D5 open |
-| `S4_EQUATION_REGISTER.md` | **LIVING (created at S4.5):** canonical notation; EQ-H-1 … EQ-H-4 with sub-equations and shared turnover EQ-H-T, each with source page, assumptions, authority, limits and tests; appended at every Section 2 step |
+| `S4_SIGNAL_PC_COMPATIBILITY.md` | **S4.9 (DONE 2026-10-18; S49-D1 … D5):** objects O1–O6; compatibility matrix for the 23 methods (V / V1 / M / R / D / —); rules R-1 … R-7 (no unscaled scores into optimizers, EPO included; units; direction rules after the engine-level scaling; no double counting); transfer coefficient EQ-TC-1; research-lane constructions; composition rules fixed per run |
+| `S4_ANCHOR_BENCHMARK.md` | **S4.10 (DONE 2026-10-18; S410-D1 … D6):** six objects (anchor slot, anchor source, benchmark definition, benchmark weights/returns, comparison benchmark, simple control); anchor contract AC-1 … AC-7; account and household feasibility (EQ-FEAS-1); tracking error (Roll 1992, Jorion 2003); GRS benchmark efficiency |
+| `S4_RISK_STRUCTURED.md` | **S4.11 (DONE 2026-10-18; S411-D1 … D5):** GMV, ERC, HRP (V1 tree split), MDP, MinCorr records; verified relations and implied beliefs; failure records |
+| `S4_EQUATION_REGISTER.md` | **LIVING (created at S4.5):** canonical notation; EQ-H (heuristics), EQ-MVO, EQ-EPO, EQ-BL, EQ-ROB, EQ-REF, EQ-SPLIT-1, EQ-SIG (momentum), EQ-MAP (signal → μ), EQ-TC-1, EQ-ANC/FEAS/TEV/GRS (anchors and benchmarks), EQ-RS (risk-structured); each with source page, assumptions, authority, limits and tests |
+| `verification/` | **Reference implementations (oracles, not production code; ADR-0024 §8):** 26 self-asserting scripts that print PASS; index in `verification/README.md` |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
-| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-49; source issues ABD-1 … ABD-5, MCA-1 … MCA-3, MM-1, MM-2, BL-2, MCH-1, PBL-1, PBL-2, **PAL-1 … PAL-8** (Paleologo, 2026-10-15) |
+| `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-49; source issues ABD-1 … ABD-5, MCA-1 … MCA-4, MM-1, MM-2, BL-2, MCH-1, PBL-1 … PBL-3, PAL-1 … PAL-8, the S4.8 momentum set (HOP-1, DM-1/2, BHM-1, GK-1, EL-1/2, BRU-1/2), GRI-1, GRI-2, LEC-1, ROLL-1, GKA-1 |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
 | `S4_DOWNSTREAM_INVENTORY.md` | T1–T12; FVG lead; simulation conventions |
 | `S4_INPUTS_2026-10-07.md` | Lecture, sandbox lessons, learning, correlated errors, derivations D1–D10, developer requirements DR-1 … DR-8 |
@@ -399,3 +404,149 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 | Closed sandbox | `~/Desktop/ENGINE_V1/ang_sandbox/` |
 | Legacy | `~/Desktop/ENGINE_V1/` (non-authoritative, ADR-0001) |
 | Paleologo (2025) EPUB | `~/Desktop/The Elements of Quantitative Investing.epub.zip` |
+
+---
+
+## 10. Developer guide: building the engine from scratch
+
+*Written 2026-10-18 at the owner's request. It summarises; the documents it points to govern (01 §2). Everything below that is not an `ACCEPTED` ADR or a `STABLE` document is design input, not a build instruction.*
+
+### 10.1 What is binding today
+
+| Status | What | Build against it? |
+|---|---|---|
+| **ACCEPTED ADRs** | ADR-0001 … ADR-0026 (`decisions/README.md`) | **Yes** |
+| **PROPOSED ADR** | ADR-0027 (governed learning L-1 … L-7; no auto-culling; one authoritative risk model per problem; runtime diagnostics; declared units). Owner review at G4 or earlier | Interfaces only |
+| **STABLE documents** | 00–10 (open parts marked inside); `research/S1_INPUT_SPECIFICATION.md`, `S2_CONFIGURATION_MACHINERY.md`, `S2_G2_DECISIONS.md`, `S3_REGISTRY_ARCHITECTURE.md`, `S3_FINDINGS.md`, `S3_G3_PACKAGE.md`; the S1–S3 synthetic fixtures; `facts/` (registry v1, accepted at G3) | **Yes** |
+| **S4 documents** (`research/s4/`) | DRAFT or REVIEWED; owner decisions recorded per step; nothing is a Method Library baseline until G4 (library manifest v1) | Interfaces and stubs only (ADR-0022 §4); reference implementations are oracles |
+| **S6 lead** | `research/s6/S6_LEAD_DATA_SOURCES_2026-10-08.md` (DRAFT); OB-1, OB-2 owner decisions | Design input for data adapters and the UI reference |
+| **Legacy** | Repository-root `SPECIFICATION.md`, `MATHEMATICAL_APPENDIX.md`, everything in `ENGINE_V1/` | **Never** (ADR-0001; 09) |
+
+If a build step needs a choice no accepted decision covers, raise a spec question; never decide methodology in code (README; ADR-0022 §3–§5).
+
+### 10.2 Repository, branches and what stays outside
+
+- **Repository:** `Tibbitazz/finsolution`. `main` = `dcce874` (G3). S4 work is on `stage/s04-method-library` (pushed; no PR until G4). Gate workflow: stage branch → gate PR → owner merges → tag `gate-GNN` (ADR-0002).
+- **Never in the repository:**
+  - personal data: the local user layer lives in git-ignored `finsolution/local/` (ADR-0014; `.gitignore` excludes `/local/`, `*.local.*`);
+  - credentials and vendor keys: user-supplied, stored only in the local layer, never in logs or run manifests (DR-7);
+  - the owner's UI concept prototype and the ANG sandbox (`ENGINE_V1/ang_sandbox`), which never touch the repository.
+- **Development and tests use synthetic data only** (ADR-0022 §4; S1–S3 fixtures).
+- **Third-party code** is never executed without isolation; reusable pieces are ported and verified (`S4_GITHUB_IMPL_REVIEW.md` §10–§11).
+
+### 10.3 Reading path for a developer (minimum)
+
+1. `README.md` → `00_CHARTER.md` → `01_SOURCE_OF_TRUTH_AND_WORKFLOW.md` → `02_EVIDENCE_AND_STATUS.md`.
+2. `04_REPRODUCIBILITY.md` (run manifest, two reproducibility classes, validation standard) and `05_DETERMINISTIC_VS_AGENT.md` (layer assignment; rules R1–R8).
+3. `06_MODEL_ELIGIBILITY_GOVERNANCE.md` (Feasible → Eligible → Admissible → Deliberable; ADR-0025 redefines Admissible) and `07_POLICY_STATEMENT_GOVERNANCE.md` (hierarchy Investor → Goal/Portfolio → Account; precedence).
+4. `08_ROADMAP.md` (two tracks; what each gate delivers to Track B) and `10_SCOPE_EXCLUSIONS.md`.
+5. The platform ADRs: 0004 (layers), 0006 (configuration hierarchy and registries), 0014 (reusable engine, local user layer, data classes, value origins), 0015 (configuration machinery), 0016 (interaction taxonomy), 0017 (authority model), 0019 (external-fact registry), 0022 (parallel track), 0023 (ANG baseline), 0024 (method governance), 0025 (admission ≠ evaluation), 0026 (mandates and decision chain).
+6. The STABLE S1–S3 specifications and `facts/`.
+7. For the investment process: `S4_ANG_BASELINE.md` (the pipeline), `S4_ANG_ADAPTATION.md` §5 (**SYNC-1 developer summary**), `S4_TAXONOMY.md` §1 and §14 (**SYNC-2**: six kinds and registries), `S4_SIGNAL_PC_COMPATIBILITY.md` and `S4_ANCHOR_BENCHMARK.md` (**SYNC-3**), `S4_ACCOUNTABILITY.md`, `S4_GITHUB_IMPL_REVIEW.md` §10 (invariants I-1 … I-9), `S4_EQUATION_REGISTER.md` and `verification/README.md`.
+
+### 10.4 What the engine is (accepted architecture)
+
+**Purpose (00 §1–§2):** a personal agentic investment engine that runs locally on a server with a browser interface, is governed by an interactive Policy Statement, and takes the investor from preferences and research evidence through data and signals, risk, portfolio construction, multi-agent deliberation and a target portfolio to implementation decisions, a pre-trade investment-case report, monitoring, rebalancing and controlled improvement. Reusable by several local users with private profiles (ADR-0014), tax-resident initially in Norway; brokers Nordnet and eToro, neither preferred (ADR-0007); one or more accounts with continuous capital; pension products and wealth tax out of scope (ADR-0020, ADR-0021). The specification must be precise enough that the developer makes no undocumented financial or methodological assumption.
+
+**Layers (05 §2; ADR-0004).** Deterministic code computes; agents interpret within bounds; humans approve:
+
+| Layer | Code | Agent | Human |
+|---|---|---|---|
+| 0 Governance (Policy Statement) / 0b Registries | Validation, feasibility, storage, staleness | Draft/explain; never sets values | Writes, approves |
+| 1 Data · 2 Universe · 2b Method Library and Feasibility Engine | All | — (text extraction only, flagged) | Preferences, thresholds |
+| 3 Beliefs · 4 Risk · 5 Portfolio construction | All estimates and optimisers | Bounded judgement where admitted (RQ-12); narrative | — |
+| 6 Deliberation · 7 Decision and investment case | Metrics, tallies, ensembles, compliance | Critique, vote, bounded selection, report narrative | Approves |
+| 8 Implementation · 9 Monitoring · 10 Learning | Costs, taxes, FX, sizing, trade lists, checks, forecast evaluation | Explanation; implementation discretion within an Agent Mandate (ADR-0026) | Executes (until S13 safeguards); approves changes |
+
+**Rules every component obeys (05):** R1 no LLM-produced number enters a calculation (except a logged bounded choice among code-computed candidates); R2 every agent decision point has a deterministic fallback, and the whole pipeline runs in **deterministic-only mode**; R3 hard constraints are deterministic predicates checked after every agent step; R4 Policy Statement, compliance, approvals, eligibility and registries are read-only to agents; R5 agents see only the deliberable method set; R6 beliefs ⊥ preferences; R7 every agent output archived with inputs and model identifiers; R8 every number in agent narrative cites a deterministic descriptor.
+
+**Investment process (ADR-0023, the ANG baseline):** Policy Statement → macro → asset-class/CMA agents → risk (one authoritative model per problem, ADR-0027 D3, proposed) → **parallel PC proposals** (roster v0 = 23 methods) → CRO (neutral risk reports; enforces hard constraints) → peer review, vote, revision → CIO (bounded choice among code-computed ensembles) → investment-case report → investor approval → rebalancing determination → hybrid Trader (when and how, within mandate) → execution (ADR-0026). Never collapse PC → CRO → deliberation → CIO into one optimiser (ADR-0023). Role ≠ runtime; Method ≠ Agent.
+
+**Objects (S4_TAXONOMY, SYNC-2):** six kinds, each with its own registry: Method (Method Library; dual contracts), Artefact (content-addressed store), Role (mandates, skill versions, memory states), Control (Policy Statement items, limits, benchmarks; effective-dated), Record (append-only: Decision, Forecast, Outcome, Change Proposal), Input (point-in-time snapshots).
+
+**Configuration (S1, S2; ADR-0014/0015/0016/0017):** immutable content-addressed objects with `id@version`; typed values with unit, basis and period; Declared Policy Statement never modified, Effective derived by the resolution algorithm with conflict records; dependency graph with input-version cache keys; schema evolution by appending versions; authority grants in eight dimensions (dimensions 6–8, staging, submitting and unattended execution, are schema capabilities only until S13 safeguards exist).
+
+**Facts (ADR-0019; S3):** bitemporal point-in-time facts (`Fact(t | k)`), two status axes, admissibility layers legal ∩ wrapper ∩ broker ∩ methodological ∩ user, unknown ≠ unsupported, staleness re-check policy.
+
+**Reproducibility (04):** every run writes a manifest (data snapshot, facts snapshot, Policy Statement version, spec commit, code commit, Method Library version, eligibility hash, LLM provider/model/version/parameters/prompt hashes, seeds, environment lockfile); its hash is the run ID; cache keys include the code commit. Deterministic layer bit-identical on one environment; agentic layer archived and replayable.
+
+### 10.5 Build order (Track B, ADR-0022; S4_PLAN §H–§I; 08 S18)
+
+1. **S8a, now:** circulate the Developer Architecture Brief (S4_PLAN §I) with interface items DR-1 … DR-11 → developer feedback → architecture alternatives → owner decisions → **G8a** (architecture, stack, data boundaries, change control). Not yet done.
+2. **Foundation slice (after G8a; 08 S18 "first slice"):** Policy Statement editor (S1 fields, S2 validation and Declared → Effective resolution, conflict records); registries (facts v1, point-in-time queries, staleness); Feasibility Engine with exclusion report (06; ADR-0019 admissibility layers); one deterministic path to a report (deterministic-only mode); run manifest and replay (04); local user layer and privacy boundary (ADR-0014); authority grants (ADR-0017). From the first slice also: learning capture (Forecast/Outcome Records, DR-2), mode stamp (DR-5), as-of gate with a look-ahead test (DR-1), model provenance on agent outputs (DR-9).
+3. **Progressive contracts by sync point:**
+
+| Sync | Track A delivers | Track B builds | State |
+|---|---|---|---|
+| SYNC-1 | Pipeline, roles, authority boundaries, mandates, Decision Records (interfaces) | Module boundaries and orchestration; roles separable | Delivered (S4.1–S4.2b; S4.2/ADR-0027 await owner review) |
+| SYNC-2 | Six kinds, type catalogue, relations, identity rules | Registries and plugin categories | Delivered (S4.3 reviewed) |
+| SYNC-3 | Signal → belief → PC relationships; anchor and benchmark objects | Data flows; anchor/benchmark entities; account and household feasibility | **Delivered 2026-10-18** (S4.9, S4.10 done) |
+| SYNC-4 | PC → CRO → deliberation → CIO information flow (S4.16–S4.18) | Evidence-packet storage, review records, run structure | Pending |
+| SYNC-5 | Typed Method Contracts, schema, reference oracles, mandate schema (S4.20) | The real Method Registry and method host | Pending |
+| SYNC-6 | Accepted Method Library baseline v1 (G4) | Methods behind contracts | Pending |
+
+4. **After G4, gate by gate:** G5/G6 → universe, instrument and data contracts (S5, S6); G7 → evaluation harness (pre-registered protocol); G9–G12 → belief, risk, construction and aggregation modules; G13 → cost, tax, FX, rebalancing, tactical and execution modules; G14 → report and approval UI; S15 validation; S16 monitoring; S17 learning; S18 final handoff.
+
+### 10.6 Interface and data
+
+- **UI reference (OB-2, DR-11):** the OpenBB Workspace layout and design: dashboards of widgets, apps, an AI copilot and agents on the same data, a connect-your-own-backend model (local API, MCP). Reference only; no OpenBB branding.
+- **Data access (OB-1):** OpenBB ODP v5 (Apache-2.0; pinned; never the AGPL v4 or earlier) may be wrapped behind our own data-access adapters; each provider's licence governs (DR-7, CB-19). Installing or running it needs owner permission per item.
+- **Identity and credentials (DR-7):** ISIN/FIGI identity with vendor symbology mapped; user-supplied keys only in the local layer; licence class and provenance stamp per datum; no cross-user sharing.
+- **Cost model (DR-8; CB-17, CB-18):** account price class and currency-account flags; FX conversion flows.
+- **Accounts:** one target portfolio at portfolio level, placed across accounts by asset location (07 §2; S13a). Feasibility of a target, anchor or benchmark across accounts is a transportation check (EQ-FEAS-1). ASK eligibility comes from the registry (`no.wrapper.ask.eligible_holdings`).
+
+### 10.7 Method Library status (S4; specification decided by the owner, not yet admitted)
+
+| Group | Methods | Record | Equations | Oracle scripts | Decisions |
+|---|---|---|---|---|---|
+| A heuristics | 1/N, market cap, 1/σ, 1/σ², volatility targeting | `S4_HEURISTICS.md` | EQ-H-1 … 4, EQ-H-T | `s45_*` | S45-D1 … D4 |
+| MVO foundation | problem, closed forms, riskless asset, GMV, estimation error | `S4_MVO_FOUNDATION.md` | EQ-MVO-1 … 5, E1, E2 | `s46_*` | S46-D1 |
+| B MVO family | max Sharpe, Black–Litterman, robust MV, resampled frontier, simple and anchored EPO | `S4_MVO_FAMILY.md` | EQ-MVO-3b, EQ-BL, EQ-ROB, EQ-REF, EQ-EPO, **EQ-SPLIT-1** | `s47_*` | S47-D1 … D7 |
+| Signals | XSMOM, TSMOM (+ residual, factor, trend-filter variants) | `S4_MOMENTUM.md` | EQ-SIG-1 … 5 | `s48_*` | S48-D1 … D6 |
+| Signal × PC | objects O1–O6; rules R-1 … R-7; EQ-MAP-1 … 4 (registered for S9d); EQ-TC-1 | `S4_SIGNAL_PC_COMPATIBILITY.md` | EQ-MAP, EQ-TC-1 | `s49_*` | S49-D1 … D5 |
+| Anchors, benchmarks | anchor contract; feasibility; tracking error | `S4_ANCHOR_BENCHMARK.md` | EQ-ANC-1, EQ-FEAS-1, EQ-TEV-1/2, EQ-GRS-1 | `s410_*` | S410-D1 … D6 |
+| C risk-structured | GMV, ERC, HRP (tree split), MDP, MinCorr | `S4_RISK_STRUCTURED.md` | EQ-RS-1 … 5 | `s411_*`, `s44_*` | S411-D1 … D5 |
+| D non-traditional | CVaR, drawdown, tail-risk parity, TPA | S4.12 (next) | — | `s44_cvar_budgets_bcp.py`, `s44_drawdown_cdd.py` (source reviews) | — |
+| E agentic | Researcher (research lane), Adversarial Diversifier | S4.14 | — | — | — |
+
+**Using the oracles:** the scripts in `research/s4/verification/` reproduce each source's published examples and assert invariants on synthetic data. They are reference implementations for testing production code (04 §3), not production code (ADR-0024 §8). Environment used: Python 3.9.6, numpy 2.0.2, scipy 1.13.1, pandas 2.3.3; run each script with `python3 <script>`; every script prints a line starting with `PASS`. The production stack is the developer's choice after G8a.
+
+### 10.8 Cross-cutting rules the implementation must enforce
+
+| Rule | Content | Source |
+|---|---|---|
+| I-1 … I-9 | numbers pass by reference; typed failure records, no silent fallback; duplicate detection by portfolio distance; one declared CMA basis; one Sharpe definition per use; missing returns never filled; invariance fixtures (e.g. permutation); revisions only within contract authority; in-sample labels | `S4_GITHUB_IMPL_REVIEW.md` §10 |
+| EQ-SPLIT-1 | One engine-level risk target σ* and leverage cap; μ-free methods scaled, return-based methods along their frontier, ensemble rescaled. Notes binding at G4: direction rules act after the scaling (S49-D3); benchmark-relative candidates carry the total-risk constraint inside (S410-D6) | `S4_EQUATION_REGISTER.md`; S47-D6 |
+| R-1 … R-7 | No unscaled score into any μ-consuming method (EPO included); units; μ-free methods use signals only by selection, direction (separable bases) or sleeve; direction after scaling; sleeves only where permitted; overlays never change w*; no double counting (sleeves inside the host class; look-through risk; one channel per signal) | `S4_SIGNAL_PC_COMPATIBILITY.md` §4 |
+| Composition rules | V/V1 compositions are separate candidates declared before the run; never toggled by an agent | S49-D5 |
+| Anchor contract | AC-1 … AC-7; no hard-coded index; benchmark only from `POL.benchmark` | S410-D1 … D5 |
+| Constraints | Methods without native constraints get Policy Statement bounds by a declared post-processing step (S4.20) with the distance moved reported | S45-D4; S411-D4 |
+| Failure records | Typed reason codes (e.g. `DEGENERATE_CORRELATION`, `NOT_POSITIVE_DEFINITE`, `INFEASIBLE_CONSTRAINTS`, `CONSTRAINT_CONFLICT`) | S411-D5; I-2 |
+| Admission vs evaluation | Admission needs a primary source, clear mathematics, deterministic implementability, verified reproduction, explicit inputs, a role and an accepted contract; backtests are never admission evidence | ADR-0025 |
+| Research lane | Discovered or unsourced constructions run experimentally with no production CIO allocation until admitted | ADR-0024 §1; S49-D1 |
+| Look-ahead | As-of gate on all agent tool and data access; clean-window rule | DR-1; `S4_LIT_LOOKAHEAD_2026-10-07.md` |
+
+### 10.9 What not to build or decide in code
+
+- No investment method, parameter, threshold, benchmark, anchor or index chosen in code; unresolved methodology stays behind typed interfaces (ADR-0022 §4).
+- No LLM edits weights or produces numbers that enter calculations (R1; ADR-0024 §2).
+- No auto-retirement of methods or agents (ADR-0027 D2, proposed).
+- No execution authority beyond grants; dimensions 6–8 not grantable before S13 safeguards (ADR-0017).
+- No personal data, credentials or real profiles in the repository or fixtures (ADR-0014).
+- No backtest result used to admit a method (ADR-0025); runtime backtest diagnostics are labelled in-sample (ADR-0027 D4, proposed).
+- No silent fallback to another method under a method's name (I-2).
+- No Yahoo/yfinance or other sources whose licence does not fit (S6 lead).
+
+### 10.10 Open items that affect the developer
+
+| Item | Owner of the next step | Where |
+|---|---|---|
+| Circulate the Developer Architecture Brief; hold G8a | Owner, with the developer | S4_PLAN §I; §6 item 1 |
+| ADR-0027 and the S4.2 adaptation map: review | Owner (G4 or earlier) | §6 item 0 |
+| B-46 binding of EQ-SPLIT-1 with the S49-D3 and S410-D6 notes | Owner at G4 | §6 item 5 |
+| S4.12 – S4.27 (remaining methods, inventories, CRO/deliberation/CIO requirements, typed contracts, eligibility framework, verification, freeze, G4 audit) | Track A | S4_PLAN C.2 |
+| S5 universe and allocation hierarchy (account vs household problems); S6 data contracts; S7 evaluation protocol | Track A after G4 | 08 |
+| Regulatory status of the application (RQ-49) | Open | OPEN_QUESTIONS |
+
+**Change control (ADR-0022 §5):** developer findings (ambiguities, impossible contracts, missing data types, security or performance constraints, schema changes) return through the process fixed at G8; material changes go through an ADR, schema change or gate, never silently in code.
+

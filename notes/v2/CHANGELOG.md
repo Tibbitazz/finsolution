@@ -1,5 +1,10 @@
 # Changelog — notes/v2
 
+## 2026-10-18 — HANDOFF: developer guide (branch `stage/s04-method-library`)
+
+- New HANDOFF §10 at the owner's request: building the engine from scratch. What is binding (ACCEPTED ADRs, STABLE documents) and what is design input; repository, branches and what stays outside; minimum reading path; the accepted architecture (layers, R1–R8, ANG pipeline, six kinds, configuration, facts, reproducibility); build order (S8a → G8a → foundation slice → SYNC-1 … SYNC-6 → gates); interface and data (OB-1, OB-2, DR-7, DR-8, accounts); Method Library status with records, equations, oracle scripts and decisions; cross-cutting rules; what not to build; open items and change control.
+- §3.3 file table refreshed (S4.9 … S4.11 documents, register contents, verification folder, issues). Not pushed.
+
 ## 2026-10-18 (S4.11 done) — Owner decisions S411-D1 … D5 (branch `stage/s04-method-library`)
 
 - Owner accepted S411-D1 … D5 as recommended: GMV long-only with Policy Statement bounds (unconstrained only where shorting is permitted); HRP V1 tree split in production, V0 as the reproduction oracle; MinCorr in production, MinCorr2 as a sensitivity variant; Policy Statement bounds for ERC, HRP and MinCorr by declared post-processing at S4.20, constrained variants as research-lane leads; typed failure records, no silent fallback.
