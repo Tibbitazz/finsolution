@@ -1,6 +1,6 @@
 # ANG interpretation / issues register
 
-**Document status:** LIVING REGISTER (opened at S4.0, 2026-10-02; ABD section added 2026-10-07; ANG-24 … ANG-27 and lecture annotations added 2026-10-07; ANG-28 … ANG-37 added and ANG-09/ANG-11/ANG-33 annotated at S4.1, 2026-10-08; ANG-13 resolved, ANG-35 recorded and ANG-38 … ANG-42 added at S4.4, 2026-10-08; ANG-14 sharpened, ANG-43 … ANG-46 and the Moreira & Muir section added at S4.5, 2026-10-08; ANG-44 extended and ANG-47 added at S4.6, 2026-10-08; ANG-41/47 annotated, ANG-48/49 and the BL 1992, Michaud & Michaud and PBL sections added at S4.7, 2026-10-08; ANG-49 annotated (S47-D7) and the Paleologo section added, 2026-10-15; ANG-23 annotated, PBL-3 and the S4.8 momentum-source section added, 2026-10-15; the S4.9 alpha-source section added, 2026-10-18) · **Source:** Ang, Azimbayev & Kim, version 21 Sep 2026 (40 pp). Page numbers are printed page numbers (PDF page − 1).
+**Document status:** LIVING REGISTER (opened at S4.0, 2026-10-02; ABD section added 2026-10-07; ANG-24 … ANG-27 and lecture annotations added 2026-10-07; ANG-28 … ANG-37 added and ANG-09/ANG-11/ANG-33 annotated at S4.1, 2026-10-08; ANG-13 resolved, ANG-35 recorded and ANG-38 … ANG-42 added at S4.4, 2026-10-08; ANG-14 sharpened, ANG-43 … ANG-46 and the Moreira & Muir section added at S4.5, 2026-10-08; ANG-44 extended and ANG-47 added at S4.6, 2026-10-08; ANG-41/47 annotated, ANG-48/49 and the BL 1992, Michaud & Michaud and PBL sections added at S4.7, 2026-10-08; ANG-49 annotated (S47-D7) and the Paleologo section added, 2026-10-15; ANG-23 annotated, PBL-3 and the S4.8 momentum-source section added, 2026-10-15; the S4.9 alpha-source section added, 2026-10-18; the S4.10 benchmark-source section added, 2026-10-18) · **Source:** Ang, Azimbayev & Kim, version 21 Sep 2026 (40 pp). Page numbers are printed page numbers (PDF page − 1).
 
 **Rules:**
 - The source is never silently repaired.
@@ -164,4 +164,13 @@ Recorded because Grinold 1994 is the primary predecessor of the alpha form in EQ
 | GRI-1 | Grinold 1994, p. 14, eqs. (3)–(4) example | IC(h)* printed 0.0176; (0.04 − 0.35·0.07)/(1 − 0.35²) = 0.01766 (truncated, not rounded). IC(g)* = 0.0638 is correct | L | None |
 | GRI-2 | Grinold 1994, fn. 9, p. 15 | k printed 3.4369 while 23.42/6.81 = 3.4391; the printed inputs are rounded. The formula ρ = m/√(1 + k²(1 − m²)) with the printed k gives the printed 0.34682 | L | None; the formula is verified by simulation |
 | LEC-1 | Gallego, IEOR4706 Lecture 7 (2000), p. 1 and sec. 1.5 | Calls portfolios with beta equal to one "beta-neutral"; the usual meaning of beta-neutral is β = 0. The algebra (secs. 1.4–1.7) is correct | L | Terminology only; secondary source |
+
+## Issues found in S4.10 benchmark sources: Roll (1992); Grinold & Kahn, *Advances*, ch. 20
+
+Recorded because both enter the anchor and benchmark architecture (`S4_ANCHOR_BENCHMARK.md` §6–§7). Jorion 2003 showed no issue: Tables 1–3 and Theorems 2a–2d reproduce with σ_B = 13.76%, within the rounding of the printed 13.8%. Verified in `verification/s410_anchor_benchmark.py` (PASS).
+
+| ID | Location | Issue | Materiality | Handling |
+|---|---|---|---|---|
+| ROLL-1 | Roll 1992, Appendix A.6, eq. (A-10), p. 21 | Printed x = γ₁q₁ + γ₀q₀ − γ_Bq_B; eq. (5), fn. 8 and the γ formulas as printed (which sum to zero) require + γ_Bq_B. With "+" the formula equals the numerical solution; with "−" it does not | L | Use eq. (5) |
+| GKA-1 | Grinold & Kahn, *Advances*, ch. 20, Exhibit 6 and fn. 3 (2018 revision of Grinold 1992) | The revision counts the benchmark among the N assets (N = 5, T − N − 1 accordingly). In the GRS test the benchmark is not a test asset (its alpha is zero by construction), so N = 4 as in the 1992 original. The printed F statistics match N = 4 (within 5%); with N = 5 they would be about 20% lower. The PROB column matches neither (e.g. Germany: printed 0.49; F = 1.52 gives about 0.2). A null simulation confirms N = 4 has the correct size and N = 5 under-rejects. Conclusions unchanged | M (if the test is adopted at S7/S16) | N = number of test assets excluding the benchmark (EQ-GRS-1) |
 

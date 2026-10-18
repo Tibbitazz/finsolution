@@ -1,6 +1,6 @@
 # S4.0 — Source and artefact inventory
 
-**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
+**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
 
 **Scope of S4.0:**
 - Locate, identify and classify every source and prior artefact S4 needs.
@@ -305,4 +305,14 @@ Identity checked against title page, page count and content; md5 of the PDF insi
 | Grinold (1989), "The Fundamental Law of Active Management", *JPM* 15(3):30–37 | MISSING · low priority (proof reproduced in CdST App. A) | — | EQ-TC-1 |
 | Leads for the research-lane constructions (S49-D1), from memory, not verified: Baltas (2015) on trend following with correlation-aware risk parity; Bai, Scheinberg & Tütüncü (2016) on risk parity by orthant | NOT LOCATED | — | Admissibility review of the research-lane constructions (S4.14) |
 | Faber (2007), "A Quantitative Approach to Tactical Asset Allocation" (equal-weight trend timing; from memory, not verified) | NOT LOCATED · optional | — | Supporting the V1 cell A1 × O3, long-only version |
+
+## 18. Sources added 2026-10-18, second round (owner uploads: S4.10 benchmark sources)
+
+| Source | Status | Location / identity | Maps to |
+|---|---|---|---|
+| Roll (1992), "A Mean/Variance Analysis of Tracking Error", *JPM* 18(4) (Summer):13–22 | AVAILABLE (published; scan) · read in full 2026-10-18 | `Finsol Research Papers/A Mean:Variance Analysis of Tracking Error.pdf.zip`, 10 pp., md5 72aacfe8d9c7 (zip 6035a5943b58) | EQ-TEV-1; S410-D6; issue ROLL-1 |
+| Jorion (2003), "Portfolio Optimization with Tracking-Error Constraints", *FAJ* 59(5):70–82 | AVAILABLE (published) · read in full 2026-10-18 | `…/Portfolio Optimization with Tracking-Error Constraints.pdf.zip`, 13 pp., md5 95459d8a7589 (zip 321bd35eb785) | EQ-TEV-2; S410-D6 |
+| Grinold & Kahn, *Advances*, ch. 20 "Are Benchmark Portfolios Efficient?" (Grinold 1992, revised October 2018) | In hand (§17) · read 2026-10-18 | — | EQ-GRS-1; issue GKA-1 |
+| Gibbons, Ross & Shanken (1989), "A Test of the Efficiency of a Given Portfolio", *Econometrica* 57 | MISSING · optional (only if the GRS diagnostic is adopted at S7/S16) | — | EQ-GRS-1 |
+| Global multi-asset market-portfolio weights (lead from memory, not verified: Doeswijk, Lam & Swinkels 2014) | NOT LOCATED · needed only for an asset-class market-capitalisation anchor | — | S410-D2/D3; S6 |
 

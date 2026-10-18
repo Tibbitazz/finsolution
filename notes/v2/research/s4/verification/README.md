@@ -69,3 +69,8 @@
   | `s49_signal_pc_compatibility.py` | Unscaled ranks into MVO are ill-defined (R-1); α = IC·ω·z with Grinold's volatility step invariant, benchmark neutrality, unit consistency (R-2); PBL EPO at w = 0 and 1; conditioned-universe constructions; direction rule after the engine-level scaling (R-4: 0.19 vs 0.69). Revised 2026-10-18 | S4.9, S9d, S4.20 |
   | `s49_double_counting_dcells.py` | EPO = MVO on shrunk mean and covariance (PBL eq. 22 removes scale, not location); double counting R-7 (unit-counting inflation, singular redundancy, tilt inside the host class, long-only active-sleeve bound, history vs holdings beta); D-cell tests (V1 identities; O2 re-solves; O3 zeroing/flipping breaks GMV/ERC; signed GMV and signed ERC); transfer coefficient of momentum compositions | S4.9, S4.13, S4.16, S4.20 |
   | `s49_alpha_sources.py` | Grinold 1994 (Exhibits 3–5, Exhibit 7 claims, eqs. 1–4, fns. 6, 8, 9; GRI-1, GRI-2); Grinold & Kahn *Advances* ch. 3 (eqs. 35–37, sign-only TC, Exhibit 11, four examples); CdST 2002 (Table 1, long-only reproduction, ex post R² ≈ TC²); Gallego lecture secs. 1.4–1.7 | EQ-MAP-3, EQ-TC-1 |
+- *[2026-10-18, S4.10]* **Anchors and benchmarks** (`S4_ANCHOR_BENCHMARK.md`):
+
+  | Script | Proves | Use |
+  |---|---|---|
+  | `s410_anchor_benchmark.py` | Anchored EPO with four anchors (w = 1, anchor-consistent signals, eq. 21, w = 0, level for centred signals); ASK infeasibility of 60/40 and projections; household feasibility LP = cut condition; Roll 1992 eqs. (1)–(5), A.4–A.6 (ROLL-1); Jorion 2003 (B3)–(B6), (C6), (C17), Tables 1–3, Theorems 2a–2d; GRS identity and Exhibit 6 (GKA-1), null-size simulation | EQ-ANC-1, EQ-FEAS-1, EQ-TEV-1/2, EQ-GRS-1 |

@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 entries added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -599,3 +599,39 @@ Admissibility conditions for every mapping (R-1, R-2): output in return units pe
 - **Use:** a construction diagnostic, reported ex ante for μ-consuming candidates and compositions (handed to S4.16), and an ex post decomposition separating signal success from constraint noise (S17). Never an admission criterion (ADR-0025).
 - **Reference values (verified, `s49_alpha_sources.py`):** sign-only positions TC = √(2/π) ≈ 0.80; long-only at 5% tracking error ≈ 0.53–0.58 (CdST Table 1: 0.58); G&K Exhibit 11 (dropping the smallest positions) reproduced analytically; the four G&K investment examples (e.g. tactical asset allocation: IC 0.1, 12 bets a year, TC 0.5 → IR 0.17).
 - **Requires a reference portfolio:** a benchmark (security domain) or, for SAA problems, the anchor (S4.10).
+
+## S4.10 entries — anchors and benchmarks (`S4_ANCHOR_BENCHMARK.md`)
+
+## EQ-ANC-1 Anchor slot and anchor contract
+
+- **Source:** PBL 2021 eqs. (18)–(22), Prop. 3 (pp. 131–133); anchors 1/N and 1/σ in Table 1 (p. 135) and p. 136; BL 1992 (EQ-BL-1); taxonomy F-2, F-3.
+- **Canonical:** μ̃ = (1 − w)s + wγVa with Σ_w = (1 − w)Σ̃ + wV; EPO^a(w) = Σ_w⁻¹μ̃/γ; γ from eq. (21) (EQ-EPO-3). The anchor a is a weight artefact from a declared source satisfying AC-1 … AC-7 (`S4_ANCHOR_BENCHMARK.md` §4).
+- **Properties (verified, `s410_anchor_benchmark.py`):** w = 1 → a; for s = γΣa (anchor-implied returns) EPO^a(w) = a for every w (θ = 0); eq. (21) equalises σ(Σ_w⁻¹s/γ) and σ(a); at w = 0 the direction is anchor-free and the scale is σ(a); with a centred signal and the 1/N anchor, a′μ̃ = wγa′Va (the level comes from the anchor).
+- **Projection of an infeasible anchor (S410-D4 options):** (i) renormalise eligible weights; (ii) ineligible weight to cash; (iii) risk-matched eligible mix + cash.
+
+## EQ-FEAS-1 Household feasibility of an anchor or benchmark
+
+- **Source:** VERIFIED-DERIVATION (transportation feasibility; supply–demand theorem, bibliographic source not in hand); account eligibility from the S3 registry.
+- **Canonical:** classes j with target weights a_j (cash included, eligible everywhere), accounts k with wealth shares W_k and eligibility E_kj. Feasible ⇔ ∃ y_kj ≥ 0 with Σ_j y_kj = W_k, Σ_k y_kj = a_j, y_kj = 0 where E_kj = 0 ⇔ for every set J of classes, Σ_{j∈J} a_j ≤ Σ_{k: E_kj = 1 for some j ∈ J} W_k.
+- **Numerical tests:** LP feasibility equals the cut condition in 300 random cases; ASK + ordinary account with a 60/40 anchor: infeasible at 70% of wealth in the ASK, feasible at 60% and 50%.
+
+## EQ-TEV-1 Minimum tracking-error-variance portfolios (Roll 1992)
+
+- **Source:** Roll 1992, eqs. (1)–(5), Appendix A.1–A.6, pp. 15–22.
+- **Canonical:** a = R′V⁻¹R, b = R′V⁻¹1, c = 1′V⁻¹1; q₀ = V⁻¹1/c (R₀ = b/c, σ₀² = 1/c); q₁ = V⁻¹R/b (R₁ = a/b, σ₁² = a/b²). Deviation x = D(q₁ − q₀), D = G/(R₁ − R₀); T = D²(σ₁² − σ₀²); σ²_P = σ²_B + T + 2Dσ₀²(R_B/R₀ − 1); β_P|B = 1 + D(σ₀²/σ²_B)(R_B/R₀ − 1). With a beta constraint, x = γ₁q₁ + γ₀q₀ + γ_Bq_B, γ₁ + γ₀ + γ_B = 0 (ROLL-1: the "−γ_B" in (A-10) is a sign slip).
+- **Properties (verified):** x independent of the benchmark; β > 1 when R_B > R₀ and G > 0; dominating portfolios have β < 1; constant variance distance to the efficient frontier; fn. 10 condition.
+
+## EQ-TEV-2 Constant-TEV frontier and the total-risk constraint (Jorion 2003)
+
+- **Source:** Jorion 2003, eqs. (B3)–(B6), (C6), (C17), Theorems 2a–2d, Tables 1–3, pp. 71–80.
+- **Canonical:** d = a − b²/c; TEV frontier x = √(T/d)V⁻¹(E − μ_MV1), μ_ε = √(dT), σ²_P = σ²_B + 2√(T/d)Δ₁ + T, with Δ₁ = μ_B − μ_MV, Δ₂ = σ²_B − σ²_MV. Constant-TEV ellipse: dy² + 4Δ₂z² − 4Δ₁yz − 4T(dΔ₂ − Δ₁²) = 0, y = σ²_P − σ²_B − T, z = μ_P − μ_B. With σ_P = σ_B: z = −TΔ₁/(2Δ₂) + √(T(d − Δ₁²/Δ₂)(1 − T/(4Δ₂))).
+- **Properties (verified):** (B3)–(B6) exact; (C6) and (C17) against numerical optimisation; Tables 1–3 and Theorems 2a–2d reproduced with σ_B = 13.76% (Table 1 prints 13.8%).
+- **Use:** S410-D6 (total-risk constraint inside benchmark-relative candidates).
+
+## EQ-GRS-1 Benchmark efficiency (diagnostic candidate)
+
+- **Source:** Grinold & Kahn, *Advances*, ch. 20 (Grinold 1992, revised 2018), eq. (4) and fn. 8; Gibbons, Ross & Shanken 1989 (not in hand).
+- **Canonical:** SR²_H = SR²_B + IR²_H; F = ((T − N − 1)/N)·IR²_H·Δt/(1 + SR²_B·Δt) ~ F(N, T − N − 1) under benchmark efficiency, **N = number of test assets excluding the benchmark** (GKA-1).
+- **Properties (verified):** identity ex ante and in Exhibit 5; Exhibit 6 F statistics consistent with N = 4; null simulation: N = 4 has size ≈ 5%, N = 5 under-rejects.
+- **Use:** candidate for S7 evaluation design and S16 monitoring; not adopted.
+

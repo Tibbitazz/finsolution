@@ -1,5 +1,14 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.10) — Anchors and benchmarks drafted (branch `stage/s04-method-library`)
+
+- Owner reminded of S47-D3 first (anchor for PC-B7: 1/N, 1/σ, market capitalisation, `POL.benchmark`; the 60/40 question).
+- **New** `research/s4/S4_ANCHOR_BENCHMARK.md` (DRAFT): six objects (anchor slot, anchor source, benchmark definition, benchmark weights and returns, comparison benchmark, simple control); anchor slots by method; anchor contract AC-1 … AC-7; feasibility (60/40 is not ASK-eligible: bond, high-yield and bond-ETF funds fall below the 80% share rule; household feasibility as a transportation problem); Roll 1992 and Jorion 2003 on tracking error; GRS benchmark efficiency; anchor candidates; roles of 60/40; decisions S410-D1 … D6.
+- **Register:** EQ-ANC-1, EQ-FEAS-1, EQ-TEV-1, EQ-TEV-2, EQ-GRS-1.
+- **New** `verification/s410_anchor_benchmark.py` (PASS): anchored EPO properties with four anchors; projections; LP = cut condition (300 cases); Roll eqs. (1)–(5), A.4–A.6; Jorion (B3)–(B6), (C6), (C17), Tables 1–3, Theorems 2a–2d; GRS identity, Exhibit 6, null-size simulation.
+- **Sources §18:** Roll 1992, Jorion 2003 (owner uploads); Advances ch. 20 read. Issues ROLL-1 (sign slip in A-10), GKA-1 (N = 5 in the 2018 revision should be 4).
+- RQ-09 annotated (owner remark on 60/40 in an ASK; registry fact). S4_PLAN C.2, outline, verification README, HANDOFF. Not pushed.
+
 ## 2026-10-18 (S4.9 done) — Owner decisions S49-D2 and S49-D5 (branch `stage/s04-method-library`)
 
 - **S49-D2 (= S48-D3), option (a):** momentum sleeves follow R-7. Long-only sleeves (winners, positive-trend set, factor-ETF rotation) are tilts inside the host class (0 ≤ x ≤ e). Zero-investment long–short sleeves only where shorting is permitted, and then they may be units of their own (DGU dataset 7): new R-7a exception, verified (no net class exposure added; gross positions and beta by look-through). Risk by look-through of current holdings. Base case without sleeve-level scaling (EQ-SPLIT-1 only; tilt size x set at S11 within the Policy Statement's active-risk bounds). Constant volatility a registered variant (long–short as published; long-only on the tilt size, derived V1). DM's dynamic weight a timing model for S13c, point-in-time only. ETF sleeves need constituent holdings (S6/S11).
