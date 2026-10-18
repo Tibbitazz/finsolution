@@ -1,5 +1,20 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.9 reviewed) — Owner review: EPO correction, double counting (R-7), D cells tested, Grinold-based alpha mapping (branch `stage/s04-method-library`)
+
+- **Owner decisions:** S49-D1 (V/V1 admissible; M once an S9d mapping is accepted; the seven tested-but-unsourced constructions to the **research lane**, ADR-0024 §1; C5 × O2 and D3 × O2 tested at S4.11/S4.12), S49-D3 (direction rules after the engine-level scaling; noted on EQ-SPLIT-1, binds at G4 with B-46), S49-D4 (register EQ-MAP-1 … 4; choose at S9d). S49-D2 and S49-D5 open.
+- **`S4_SIGNAL_PC_COMPATIBILITY.md` revised (REVIEWED):**
+  - EPO consumes expected returns (MVO with a shrunk mean and a shrunk covariance; PBL p. 127, eq. 18). The draft's "signal-native" wording was wrong and contradicted ADR-0024 §7. B6/B7 O4 cells V → M;
+  - new §3a and rule **R-7** (no double counting): an overlapping sleeve is a tilt inside its host class or a zero-investment active sleeve (long-only 0 ≤ x ≤ e), never a unit beside it; sleeve risk by look-through of current holdings (the draft's "return history enters the risk model" corrected); one channel per signal unless the combined weight is explicit; look-through exposure reports. Data dependency: ETF constituent holdings (S6);
+  - new §3b: D cells tested before any decision. A1 × O3, A4 × O2, A4 × O3 → V1 (sign × σ^(k−2) = EPO w = 1 with s ∝ σ^k sign). C1–C4 × O2, D1 × O2, B1 × O2 and signed ERC → R (research lane). C1/C2 × O3 reclassified ("sign × base" breaks correlation-aware methods). C5 × O2, D3 × O2 untested;
+  - new §4a: transfer coefficient (diagnostic, EQ-TC-1) with a composition table;
+  - R-1, R-2, R-3 bases extended; codes R and D redefined; §6, §7, §9, §10 updated.
+- **Register:** EQ-MAP-1 (= Grinold's direction-only form), EQ-MAP-2 (k = 0 is the constant-IC member), **EQ-MAP-3 corrected** (ω = volatility of the return forecast; volatility step for vol-proportional raw forecasts such as momentum; several signals add; governing source Grinold & Kahn *Advances* ch. 3), **EQ-TC-1** added; S49-D3 note on EQ-SPLIT-1.
+- **Verification:** `s49_signal_pc_compatibility.py` revised (alpha mapping with the volatility step); **new** `s49_double_counting_dcells.py` and `s49_alpha_sources.py` (Grinold 1994 exhibits and equations; *Advances* ch. 3; CdST 2002 Table 1 and reproduction; Gallego lecture). All PASS.
+- **Sources (§17):** Grinold 1994, Clarke, de Silva & Thorley 2002, Grinold & Kahn *Advances in Active Portfolio Management*, Gallego lecture note (secondary; not the Grinold & Kahn book). Issues GRI-1, GRI-2, LEC-1 (rounding and terminology only).
+- **OPEN_QUESTIONS:** RQ-28 (owner: "EP" = economic profit; E/P = earnings–price ratio), RQ-32 (combining signals; re-standardising fixed-weight composites), RQ-33 (mapping corrections).
+- S4_PLAN C.2, outline, verification README, HANDOFF. **Pushed** with `e32458a`, `31d18c3`, `0f94d14`, `86c1ace` (owner authorisation 2026-10-18).
+
 ## 2026-10-15 (S4.9) — Signal × PC compatibility drafted (branch `stage/s04-method-library`)
 
 - **New** `research/s4/S4_SIGNAL_PC_COMPATIBILITY.md` (DRAFT):

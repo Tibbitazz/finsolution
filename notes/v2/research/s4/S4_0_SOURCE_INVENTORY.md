@@ -1,6 +1,6 @@
 # S4.0 — Source and artefact inventory
 
-**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
+**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
 
 **Scope of S4.0:**
 - Locate, identify and classify every source and prior artefact S4 needs.
@@ -290,3 +290,19 @@ Identity checked against title page, version and page count; md5 of the PDF insi
 | Levine & Pedersen (2016), "Which Trend Is Your Friend?", *FAJ* 72(3):51–66 | **MISSING — LOCATED** (open publisher's version on the CBS research portal) | — | S4.8 (equivalence of trend filters incl. Kalman and HP) |
 
 Patent texts for the closed Michaud family (US 6,003,018; 6,928,418; 7,412,414; 7,624,060) are public on Google Patents and are read when S13b specifies the need-to-trade rule (S47-D7).
+
+## 17. Sources added 2026-10-18 (owner uploads: S4.9 alpha mapping and transfer coefficient)
+
+Identity checked against title page, page count and content; md5 of the PDF inside each zip (zip md5 in brackets). Scanned or font-garbled pages were read from rendered page images.
+
+| Source | Status | Location / identity | Maps to |
+|---|---|---|---|
+| Grinold (1994), "Alpha is Volatility Times IC Times Score", *JPM* 20(4) (Summer):9–16 | AVAILABLE (published; ProQuest scan) · read in full 2026-10-18 | `Finsol Research Papers/Alpha is volatility times IC times score.pdf.zip`, 8 pp., md5 65257025e2d7 (zip 751c1e63bc57) | EQ-MAP-3 (primary predecessor); R-1, R-2, R-7c; issues GRI-1, GRI-2; `verification/s49_alpha_sources.py` (PASS) |
+| Clarke, de Silva & Thorley (2002), "Portfolio Constraints and the Fundamental Law of Active Management", *FAJ* 58(5):48–66 | AVAILABLE (published; Taylor & Francis re-host) · read in full 2026-10-18 | `…/Portfolio Constraints and the Fundamental Law ofActive Management.pdf.zip`, 20 pp., md5 259e5b289c0e (zip 01cb1ee3427f) | EQ-TC-1; R-7a; S4.16 (diagnostic), S13 (turnover), S17 (ex post decomposition) |
+| Grinold & Kahn, *Advances in Active Portfolio Management* (McGraw-Hill; companion and successor to *Active Portfolio Management*; publication year to confirm, the copy has no copyright page; text written about 2019) | AVAILABLE (printed to PDF; equations and exhibits are images) · read: ch. 3 Insights 4–5 (incl. eqs. 19–20, 35–37, Exhibit 11, the four examples); ch. 6–7 and ch. 9 introductions; contents. Other chapters not read | `…/Advances in Active Portfolio Management.pdf.zip`, 801 pp., md5 096bdb504af3 (zip e821d8c6b641) | **Governing version** for EQ-MAP-3 and EQ-TC-1. Later steps: ch. 9 Signal Weighting (S9d, RQ-32, S48-D6); ch. 20 benchmark efficiency (S4.10); ch. 32 mean–variance vs scenarios (S4.12); ch. 27 downside risk (S4.12); ch. 29 optimal gearing (EQ-SPLIT-1); ch. 7–11 dynamic portfolios and trading rules (S13); ch. 13 attribution (S17); ch. 16 equity premium (S9b); ch. 21–25 smart beta (RQ-28, RQ-32) |
+| Gallego, IEOR4706 Financial Engineering I, Lecture 7 "Active Portfolio Management" (Columbia, Autumn 2000) | AVAILABLE · secondary teaching note "based on" Grinold & Kahn; **not** the book · read in full 2026-10-18 | `…/Active Portfolio Management.pdf.zip`, 7 pp., md5 b46f3e4e3379 (zip 9a5127fd6e6a) | R-2 (benchmark alpha-neutrality), secondary; issue LEC-1 |
+| Grinold & Kahn, *Active Portfolio Management*, 2nd ed. (McGraw-Hill, 1999/2000) | MISSING · low priority (forecasting rule and fundamental law now covered by Grinold 1994, *Advances* ch. 3 and CdST App. A; still useful for alpha refinement: trimming, factor and cash neutralisation) | — | R-2 (S9d) |
+| Grinold (1989), "The Fundamental Law of Active Management", *JPM* 15(3):30–37 | MISSING · low priority (proof reproduced in CdST App. A) | — | EQ-TC-1 |
+| Leads for the research-lane constructions (S49-D1), from memory, not verified: Baltas (2015) on trend following with correlation-aware risk parity; Bai, Scheinberg & Tütüncü (2016) on risk parity by orthant | NOT LOCATED | — | Admissibility review of the research-lane constructions (S4.14) |
+| Faber (2007), "A Quantitative Approach to Tactical Asset Allocation" (equal-weight trend timing; from memory, not verified) | NOT LOCATED · optional | — | Supporting the V1 cell A1 × O3, long-only version |
+

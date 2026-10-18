@@ -1,7 +1,10 @@
 """S4.9 signal x PC compatibility: toy examples showing which constructions are well defined, and unit checks.
-Sources: Michaud & Michaud 2008 ch. 12 pp. 109-111 (forecasts need scaling: IC x volatility; consistent units; index-weighted
-active returns sum to zero); PBL 2021 eqs. (8), (23)-(27) and Prop. 3; JT 1993 (equal-weighted deciles); AMP 2013
-(terciles; rank weights); MOP 2012 eq. (5) (sign x 1/sigma); EQ-SPLIT-1 (S47-D6). Synthetic data only; prints PASS."""
+Sources: Grinold 1994 eq. (1) and Example 3 (alpha = volatility x IC x score; divide vol-proportional raw forecasts by
+volatility first); Grinold & Kahn, Advances in Active Portfolio Management, ch. 3 eqs. (19)-(20) (governing, newest version);
+Michaud & Michaud 2008 ch. 12 pp. 109-111 (forecasts need scaling; consistent units; index-weighted active returns sum to
+zero); PBL 2021 eqs. (8), (18), (23)-(27) and Prop. 3; JT 1993 (equal-weighted deciles); AMP 2013 (terciles; rank weights);
+MOP 2012 eq. (5) (sign x 1/sigma); EQ-SPLIT-1 (S47-D6). Synthetic data only; prints PASS. Revised 2026-10-18: the alpha
+mapping gains Grinold's volatility step (EQ-MAP-3); EPO is described as a consumer of expected returns."""
 import numpy as np, warnings
 from scipy.stats import rankdata
 warnings.filterwarnings('ignore'); np.seterr(all='ignore')   # spurious numpy/Accelerate matmul warnings on macOS
@@ -20,12 +23,17 @@ rk = rankdata(score)
 w_a, w_b, w_c = mvo(rk, Sig), mvo(rk - 1, Sig), mvo(rk - rk.mean(), Sig)
 assert np.abs(w_a - w_b).max() > 0.1 and np.abs(w_a - w_c).max() > 0.1
 
-# 2. VALID after a mapping: alpha = IC * sigma * z (Michaud p. 110; Ambachtsheer 1977). z removes location and scale, so
-#    the mapped alpha is invariant to every affine relabelling of the raw score and, for ranks, to any monotone transform.
-def alpha_map(raw, ic=0.05, vol=sig):
-    z = (raw - raw.mean()) / raw.std(); return ic * vol * z
+# 2. VALID after a mapping: alpha = IC * vol * z (Grinold 1994 eq. (1); Grinold & Kahn ch. 3 eq. (20); Michaud p. 110).
+#    vol = volatility of the return being forecast (residual for benchmark-relative alpha, total for an absolute forecast).
+#    z is standardised. When the raw forecast's dispersion is proportional to volatility (past returns; Grinold 1994
+#    Example 3), divide by volatility before standardising. z removes location and scale, so the mapped alpha is invariant
+#    to affine relabelling of a raw score, to monotone transforms of ranks, and to the scale of a vol-proportional forecast.
+def alpha_map(raw, ic=0.05, vol=sig, vol_proportional=False):
+    x = raw / vol if vol_proportional else raw
+    z = (x - x.mean()) / x.std(); return ic * vol * z
 assert np.allclose(alpha_map(score), alpha_map(7 + 3 * score))
 assert np.allclose(alpha_map(rankdata(score)), alpha_map(rankdata(np.exp(score))))
+assert np.allclose(alpha_map(sig * score, vol_proportional=True), alpha_map(3 * sig * score, vol_proportional=True))
 
 # 3. Benchmark neutrality (Michaud p. 111): index-weighted active returns sum to zero. Adjust alpha - (w_b'alpha)*1
 #    (w_b sums to 1) so that w_b'alpha = 0.
@@ -37,7 +45,9 @@ assert abs(wb @ a_adj) < 1e-15
 mu_ann = alpha_map(score); mu_m, Sig_m = mu_ann / 12, Sig / 12
 assert np.allclose(mvo(mu_ann, Sig), mvo(mu_m, Sig_m)) and np.allclose(mvo(mu_m, Sig), mvo(mu_ann, Sig) / 12)
 
-# 5. VALID, source-native: PBL signals into EPO. EPO_s(w) = (1/gamma) [(1-w) Sigma + w V]^{-1} s (eq. 8):
+# 5. VALID: PBL signals into EPO. EPO consumes expected returns: PBL take the signal as already scaled to the conditional
+#    expected excess return (p. 127), and eq. (18) is MVO on a shrunk mean and a shrunk covariance (verified in
+#    s49_double_counting_dcells.py). PBL's mappings (eqs. 23-27) are EQ-MAP-1/2. EPO_s(w) = (1/gamma) [(1-w) Sigma + w V]^{-1} s:
 #    w = 0 is MVO on s (Prop. 3); w = 1 with the TSMOM signal s = 0.1 sigma sign(r) is proportional to MOP's
 #    sign x 1/sigma (PBL-3), i.e. PC-A3 with a direction rule.
 def epo(s, wsh, gam=3.0): return np.linalg.solve((1 - wsh) * Sig + wsh * np.diag(np.diag(Sig)), s) / gam
@@ -77,8 +87,8 @@ w_all_down = np.where(np.zeros(n, bool), scale_to(base), 0.0); assert w_all_down
 rr = rng.normal(0.05, 0.2, n)
 assert np.allclose(rr / n, (rr - rr.mean()) / n + rr.mean() / n)
 
-print("PASS S4.9 signal x PC compatibility: unscaled ranks into MVO ill-defined; alpha = IC*sigma*z invariant to "
-      "relabelling; benchmark-neutral alpha; unit consistency (factor 12); PBL EPO w=0 = MVO on s, w=1 = sign x 1/sigma; "
+print("PASS S4.9 signal x PC compatibility: unscaled ranks into MVO ill-defined; alpha = IC*vol*z (with Grinold's "
+      "volatility step) invariant to relabelling; benchmark-neutral alpha; unit consistency (factor 12); PBL EPO w=0 = MVO on s, w=1 = sign x 1/sigma; "
       "conditioned universes with 1/N, cap and 1/sigma well defined; direction rule must follow the engine-level "
       f"scaling (risk-off exposure {w_scale_then_rule.sum():.2f} vs {w_rule_then_scale.sum():.2f} if scaled after); "
       "S48-D1 identity")

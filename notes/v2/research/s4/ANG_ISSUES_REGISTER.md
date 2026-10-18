@@ -1,6 +1,6 @@
 # ANG interpretation / issues register
 
-**Document status:** LIVING REGISTER (opened at S4.0, 2026-10-02; ABD section added 2026-10-07; ANG-24 … ANG-27 and lecture annotations added 2026-10-07; ANG-28 … ANG-37 added and ANG-09/ANG-11/ANG-33 annotated at S4.1, 2026-10-08; ANG-13 resolved, ANG-35 recorded and ANG-38 … ANG-42 added at S4.4, 2026-10-08; ANG-14 sharpened, ANG-43 … ANG-46 and the Moreira & Muir section added at S4.5, 2026-10-08; ANG-44 extended and ANG-47 added at S4.6, 2026-10-08; ANG-41/47 annotated, ANG-48/49 and the BL 1992, Michaud & Michaud and PBL sections added at S4.7, 2026-10-08; ANG-49 annotated (S47-D7) and the Paleologo section added, 2026-10-15; ANG-23 annotated, PBL-3 and the S4.8 momentum-source section added, 2026-10-15) · **Source:** Ang, Azimbayev & Kim, version 21 Sep 2026 (40 pp). Page numbers are printed page numbers (PDF page − 1).
+**Document status:** LIVING REGISTER (opened at S4.0, 2026-10-02; ABD section added 2026-10-07; ANG-24 … ANG-27 and lecture annotations added 2026-10-07; ANG-28 … ANG-37 added and ANG-09/ANG-11/ANG-33 annotated at S4.1, 2026-10-08; ANG-13 resolved, ANG-35 recorded and ANG-38 … ANG-42 added at S4.4, 2026-10-08; ANG-14 sharpened, ANG-43 … ANG-46 and the Moreira & Muir section added at S4.5, 2026-10-08; ANG-44 extended and ANG-47 added at S4.6, 2026-10-08; ANG-41/47 annotated, ANG-48/49 and the BL 1992, Michaud & Michaud and PBL sections added at S4.7, 2026-10-08; ANG-49 annotated (S47-D7) and the Paleologo section added, 2026-10-15; ANG-23 annotated, PBL-3 and the S4.8 momentum-source section added, 2026-10-15; the S4.9 alpha-source section added, 2026-10-18) · **Source:** Ang, Azimbayev & Kim, version 21 Sep 2026 (40 pp). Page numbers are printed page numbers (PDF page − 1).
 
 **Rules:**
 - The source is never silently repaired.
@@ -154,3 +154,14 @@ Recorded because the book's state-space treatment of variance (ch. 2), its volat
 | PAL-6 | Ch. 5 §5.1.1, p. 96 | MSE is printed as (1/T)Σ σ̂ₜ²(rₜ²/σ̂ₜ² − 1)², i.e. Σ(r² − σ̂²)²/σ̂². Under rₜ ~ N(0, h) its expectation is minimised at σ̂² = √3·h, so it is not a robust (consistent) loss. The robust MSE is Σ(rₜ² − σ̂ₜ²)² (weight σ̂⁴), consistent with Patton (2011); QLIKE as printed is correct | M | Use (r² − σ̂²)² and QLIKE in the S7/S10 risk-accuracy protocol (`S4_RISK_MODEL_CHOICE.md` §3, selection rule 1) |
 | PAL-7 | Ch. 6, pp. 122, 124–126 (also ch. 7, p. 176) | Weights e^(−s/τ) are labelled "half-life τ"; the half-life of e^(−s/τ) is τ·ln 2 (0.69τ). Ch. 2, p. 41 fn. a defines the half-life correctly (Kᵗ = ½) | M (parameter values) | Every half-life parameter in our registries states its convention: weights 2^(−s/h) for half-life h |
 | PAL-8 | Ch. 2, pp. 40–42 | K denotes the decay (weight on the past) in eq. (2.20) and Insight 2.2, but the gain (weight on the new observation) in the Kalman recursions two pages later. The half-life formula τ = −log 2/log K (p. 41 fn. a) applies to the decay, i.e. to 1 − K_gain (gain 0.095 gives 6.9 periods, not 0.3) | L | Separate symbols in our register (decay λ, gain K) |
+
+## Issues found in S4.9 alpha sources: Grinold (1994); Gallego lecture note (2000)
+
+Recorded because Grinold 1994 is the primary predecessor of the alpha form in EQ-MAP-3 (governing version: Grinold & Kahn, *Advances in Active Portfolio Management*, ch. 3) and the lecture note is a secondary source on the same framework (`S4_0_SOURCE_INVENTORY.md` §17). Clarke, de Silva & Thorley 2002 and the *Advances* chapters read so far (ch. 3) showed no issue: CdST Table 1 states that its IR and expected-return columns are computed from the generalised law (eq. 6), and they reproduce. All items verified in `verification/s49_alpha_sources.py` (PASS).
+
+| ID | Location | Issue | Materiality | Handling |
+|---|---|---|---|---|
+| GRI-1 | Grinold 1994, p. 14, eqs. (3)–(4) example | IC(h)* printed 0.0176; (0.04 − 0.35·0.07)/(1 − 0.35²) = 0.01766 (truncated, not rounded). IC(g)* = 0.0638 is correct | L | None |
+| GRI-2 | Grinold 1994, fn. 9, p. 15 | k printed 3.4369 while 23.42/6.81 = 3.4391; the printed inputs are rounded. The formula ρ = m/√(1 + k²(1 − m²)) with the printed k gives the printed 0.34682 | L | None; the formula is verified by simulation |
+| LEC-1 | Gallego, IEOR4706 Lecture 7 (2000), p. 1 and sec. 1.5 | Calls portfolios with beta equal to one "beta-neutral"; the usual meaning of beta-neutral is β = 0. The algebra (secs. 1.4–1.7) is correct | L | Terminology only; secondary source |
+

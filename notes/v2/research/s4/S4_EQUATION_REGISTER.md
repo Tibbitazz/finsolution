@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -466,6 +466,7 @@ Notation: μ = expected returns in excess of the cash rate r_f (decision S46-D1)
   - Return-based methods: the efficient portfolio at σ* under the same constraints (lending tangency + cash if σ* ≤ σ_tan; a riskier efficient mix with no cash if borrowing is not permitted; the borrowing tangency levered at r_b if it is).
   - Exceptions: PC-A5 (own rule); methods with absolute risk limits (σ* inside their optimisation).
   - Final ensemble rescaled to σ*.
+  - *[2026-10-18, owner decision S49-D3; binds at G4 with B-46]* **Direction rules (O3) act after the scaling:** base method → EQ-SPLIT-1 → direction rule. A direction rule may lower exposure below σ*, never raise it (`S4_SIGNAL_PC_COMPATIBILITY.md` R-4).
 - **Units:** σ* and σ(p) on the same horizon and basis (ADR-0027 D5).
 - **Numerical tests:** separation and the three-segment frontier (`s46_mvo_closed_forms.py`; S4.6 discussion); the scaling rule is arithmetic; the frontier point at σ* uses EQ-MVO-2/2a.
 
@@ -554,30 +555,47 @@ Notation: R_{i,a:b} = compounded return from the end of month a to the end of mo
 - **Use:** explains residual momentum (removes the σ²_b term) and factor momentum (that term's source); diagnostics for S7/S9.
 - **Numerical tests:** MOP identities exact with sample moments (1e-12); JT ratio 0.9998 by simulation.
 
-## S4.9 entries — signal → expected-return mappings (`S4_SIGNAL_PC_COMPATIBILITY.md` §6; registered for S9d, not accepted)
+## S4.9 entries — signal → expected-return mappings (`S4_SIGNAL_PC_COMPATIBILITY.md` §6; registered for S9d, not accepted; owner decision S49-D4, 2026-10-18)
 
-Admissibility conditions for every mapping (R-1, R-2): output in return units per period of Σ; no unscaled score reaches a μ-consuming method; active α benchmark-neutral (w_b′α = 0).
+Admissibility conditions for every mapping (R-1, R-2): output in return units per period of Σ; no unscaled score reaches a μ-consuming method, EPO included (PBL take the signal as already scaled to the conditional expected excess return, p. 127; PBL eq. (21) removes the scale of a proportional signal, never its location); active α benchmark-neutral (w_b′α = 0).
+
+**Governing source for the alpha form (newest version):** Grinold & Kahn, *Advances in Active Portfolio Management*, ch. 3 ("Seven Insights", Insight 4), eqs. (19)–(20): α = IC·ω·z as the best linear unbiased estimate of the residual return. Primary predecessor: Grinold 1994, eq. (1) and Examples 1–5. Michaud & Michaud 2008 ch. 12 is a secondary statement.
 
 ## EQ-MAP-1 TSMOM signal
 
 - **Source:** PBL 2021 eq. (23), p. 136.
 - **Canonical:** s_i = SR₀·σ_i·sign(R_i) (constant Sharpe SR₀ per asset; PBL SR₀ = 0.1 monthly); magnitude variant s_i = SR₀·σ_i·clip(z_i, −c, c) (S48-D1).
 - **Property (verified):** EPO with w = 1 gives weights ∝ sign/σ (MOP's TSMOM; PBL-3); with w = 0, MVO on s.
+- **Cross-check (2026-10-18):** the same form as Grinold's direction-only forecast (1994 fn. 11: α = ±IC × volatility), with SR₀ in the role of IC and total σ because TSMOM forecasts the total excess return. Family: sign × σ^(k−2) weights = EPO(w = 1) with s ∝ σ^k·sign; k = 2 → 1/N, k = 1 → 1/σ (PBL), k = 0 → 1/σ² (`s49_double_counting_dcells.py`).
 
 ## EQ-MAP-2 XSMOM signal
 
 - **Source:** PBL 2021 eqs. (24)–(27), pp. 136–137.
 - **Canonical:** s_i = c_t(R_i − R̄)·σ_i^k, k ∈ {0, 1, 2}, with c_t such that the positive signals sum to 1.
 - **Property (verified at S4.8):** k = 1 gives fully shrunk EPO weights XSMOM/(γσ) with constant total risk weight 2/γ; k = 2 gives weights XSMOM/γ.
+- **Cross-check against Grinold (2026-10-18):** past outperformance R_i − R̄ has dispersion proportional to σ_i, so s_i/σ_i is independent of σ_i only for **k = 0**, the member consistent with a constant IC. k = 1 and k = 2 imply forecasting skill rising with volatility (correlation of |s/σ| with σ 0.40 and 0.57 in simulation). Grinold allows IC to differ by group (1994 fn. 7), so k = 1, 2 are hypotheses for S7 (IC by volatility bucket), not errors (`s49_alpha_sources.py`).
 
-## EQ-MAP-3 Score to alpha
+## EQ-MAP-3 Score to alpha (revised 2026-10-18)
 
-- **Source:** Michaud & Michaud 2008 ch. 12, pp. 109–111 (after Ambachtsheer 1977): scaling = IC × expected volatility; consistent units; index-weighted active returns sum to zero.
-- **Canonical:** α_i = IC·σ_i·z_i, z = cross-sectional standardised score; neutralised α_i − w_b′α.
-- **Authority:** IC assumed or estimated out of sample under S7 (never fitted in-sample); σ total or residual to match the consuming method (residual for PC-D4).
-- **Properties (verified, `s49_signal_pc_compatibility.py`):** invariant to affine relabelling and, with ranks, to monotone transforms; w_b′α = 0 after neutralisation.
+- **Source:** Grinold & Kahn, *Advances*, ch. 3 eqs. (19)–(20) (governing); Grinold 1994 eq. (1), Example 3 (raw forecasts proportional to volatility), eqs. (2)–(4) (several signals), Example 5 (alpha eating); Michaud & Michaud 2008 ch. 12, pp. 109–111 (secondary); Clarke, de Silva & Thorley 2002 eq. (9) (same form).
+- **Canonical:**
+  - α_i = IC·ω_i·z_i, where ω_i is the volatility **of the return being forecast**: residual volatility for a benchmark-relative alpha (PC-D4, active α), total volatility for an absolute forecast.
+  - z is standardised (mean 0, standard deviation 1, across assets and over time).
+  - **Volatility step (Grinold 1994 Example 3):** when the raw forecast's dispersion is proportional to volatility, standardise g_i/ω_i, not g_i. Diagnostic: the correlation of |g_i| with ω_i against Grinold's fn. 9 benchmark m/√(1 + k²(1 − m²)), m = √(2/π), k = mean(ω)/sd(ω). Past returns (momentum) are this case (simulation: 0.40 against 0.40). Ranks and bounded categorical scores are not.
+  - **Several signals:** α_i = ω_i·Σ_j IC*_j·z_{ij} (alphas add; they are not averaged). For correlated signals IC* are the regression weights (Grinold 1994 eqs. (3)–(4) for two signals). A fixed-weight composite score must be re-standardised and given its own IC: averaging four scores with pairwise correlation 0.2 leaves a dispersion of 0.63. The after-cost combination method is Grinold & Kahn ch. 9 ("Signal Weighting"), read at S9d.
+  - Neutralised α_i − w_b′α (benchmark-relative use).
+- **Authority:** IC assumed or estimated out of sample under S7, never fitted in-sample. Typical magnitudes: 0.05 good, 0.10 great (G&K ch. 3 Exhibit 5); IC ≈ IR/√N as a rough guide (Grinold 1994 fn. 6).
+- **Properties (verified, `s49_signal_pc_compatibility.py`, `s49_alpha_sources.py`):** invariant to affine relabelling of a raw score, to monotone transforms of ranks and to the scale of a volatility-proportional forecast; w_b′α = 0 after neutralisation; Grinold 1994 Exhibits 3–5 reproduced; eqs. (3)–(4) equal the bivariate regression weights. Without the volatility step, momentum alphas imply a per-asset skill dispersion about 2.3 times as high in the most volatile third as in the least volatile third (1.0 with the step).
 
 ## EQ-MAP-4 Signals as Black–Litterman views
 
 - **Source:** BL 1992; PBL 2021 Prop. 3 (EPO ≡ BL with Π = γΣa, Q = s, P = I, Ω = Λ).
 - **Canonical:** Q from EQ-MAP-1/2/3; P = I (absolute views) or relative (long–short) view portfolios; Ω from confidence (He–Litterman τ·diag(PΣP′); Idzorek, IDZ-1).
+
+## EQ-TC-1 Transfer coefficient and the generalised fundamental law (diagnostic; added 2026-10-18)
+
+- **Source:** Grinold & Kahn, *Advances*, ch. 3 eqs. (35)–(37) (governing): IR_P = IR_Q·ρ_PQ for any portfolio P, where Q is the unconstrained optimal "paper" portfolio and ρ_PQ the correlation of their residual returns. Clarke, de Silva & Thorley 2002 eqs. (6), (8), (11)–(12): TC = cross-sectional correlation of ω_i·Δw_i with α_i/ω_i; IR ≈ TC·IC·√N; ex post ρ_Δw,r ≈ TC·ρ_α,r + √(1 − TC²)·ρ_c,r.
+- **Canonical:** TC = ρ_PQ. Under diagonal residual covariance and the zero-mean approximation it equals the CdST cross-sectional form (verified: difference < 0.02).
+- **Use:** a construction diagnostic, reported ex ante for μ-consuming candidates and compositions (handed to S4.16), and an ex post decomposition separating signal success from constraint noise (S17). Never an admission criterion (ADR-0025).
+- **Reference values (verified, `s49_alpha_sources.py`):** sign-only positions TC = √(2/π) ≈ 0.80; long-only at 5% tracking error ≈ 0.53–0.58 (CdST Table 1: 0.58); G&K Exhibit 11 (dropping the smallest positions) reproduced analytically; the four G&K investment examples (e.g. tactical asset allocation: IC 0.1, 12 bets a year, TC 0.5 → IR 0.17).
+- **Requires a reference portfolio:** a benchmark (security domain) or, for SAA problems, the anchor (S4.10).
