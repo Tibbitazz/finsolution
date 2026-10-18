@@ -94,7 +94,7 @@ Codes: **V** = defined and source-supported · **V1** = defined, derived from a 
 | PC-C2 ERC | Σ only | **R** | reclassified: long-only → O2 (**R**); long–short → signed ERC (**R**) | — | V |
 | PC-C3 HRP | Σ only | **R** | — | — | V |
 | PC-C4 max diversification | Σ only | **R** | — | — | V |
-| PC-C5 min correlation | Σ only | **D** (test at S4.11) | — | — | V |
+| PC-C5 min correlation | Σ only | **R** (tested at S4.11, 2026-10-18; research lane under S49-D1) | — | — | V |
 | PC-D1 CVaR | scenarios (± μ) | **R** (min-CVaR) | — | M (mean–CVaR; ANG-02 open) | V / M |
 | PC-D2 drawdown-constrained | μ + paths | — | — | M | M |
 | PC-D3 tail-risk parity | scenarios | **D** (test at S4.12) | — | — | V |
@@ -146,7 +146,7 @@ Specification tests only (`s49_double_counting_dcells.py`): is the construction 
 | C1, C2, C3, C4 × O2; D1 (min-CVaR) × O2 | Re-solved on the selected sub-matrix (from the authoritative model, never re-estimated): well defined, non-negative, sums to 1; identical under three monotone transforms of the score; ERC keeps equal risk contributions within the set | **R** (research lane) |
 | B1 × O2 | MVO with an exclusion constraint; not the same as truncating μ (excluded assets would otherwise serve as hedges). With momentum μ it double counts (R-7c) | **R** (research lane) |
 | C1 × O3, C2 × O3 | "Sign × base weight" breaks correlation-aware methods: zeroing GMV differs from GMV on the up-trend set (up to 0.06 in weight); zeroing ERC leaves contributions of 7.8–9.0% instead of an equal 8.3%; flipping ERC signs gives negative contributions (−5.7% to 10.7%); flipped GMV differs from signed GMV by up to 0.11. Correct constructions: long-only → re-solve on the up-trend set (= O2); long–short GMV → min variance with signed budget d′w = 1, which is MVO with μ ∝ sign (O4); long–short ERC → signed ERC = D·ERC(DΣD), equal contributions with the prescribed signs, unique because long-only ERC of DΣD is unique | **Reclassified**: C1 → O2 (R) / B1-M; C2 → O2 (R) / signed ERC (**R**) |
-| C5 × O2; D3 × O2 | Not yet tested (need their own implementations) | **D** → S4.11, S4.12 |
+| C5 × O2; D3 × O2 | Not yet tested (need their own implementations). *[2026-10-18]* C5 × O2 tested at S4.11: defined for ≥ 3 selected assets with non-degenerate correlations, rank-only (`s411_risk_structured.py`) | C5 × O2 → **R** (research lane); D3 × O2 **D** → S4.12 |
 
 **Research lane (ADR-0024 §1):** the seven R constructions (C1, C2, C3, C4, D1 and B1 on a selected set; signed ERC) may run experimentally and in research peer review; no production CIO allocation until an admissibility review admits them (ADR-0025 requires an identifiable primary source). Leads for that review, from memory and not in hand: Baltas (2015) on trend following with correlation-aware risk parity; Bai, Scheinberg & Tütüncü (2016) on risk parity by orthant.
 

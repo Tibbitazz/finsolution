@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 entries added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -635,4 +635,39 @@ Admissibility conditions for every mapping (R-1, R-2): output in return units pe
 - **Canonical:** SR²_H = SR²_B + IR²_H; F = ((T − N − 1)/N)·IR²_H·Δt/(1 + SR²_B·Δt) ~ F(N, T − N − 1) under benchmark efficiency, **N = number of test assets excluding the benchmark** (GKA-1).
 - **Properties (verified):** identity ex ante and in Exhibit 5; Exhibit 6 F statistics consistent with N = 4; null simulation: N = 4 has size ≈ 5%, N = 5 under-rejects.
 - **Use:** candidate for S7 evaluation design and S16 monitoring; not adopted.
+
+## S4.11 entries — risk-structured methods (`S4_RISK_STRUCTURED.md`)
+
+GMV itself is EQ-MVO-4 (unconstrained) and EQ-MVO-4a (long-only, Jagannathan–Ma); the constraint set follows S411-D1.
+
+## EQ-RS-1 Risk contributions and equal risk contribution (PC-C2)
+
+- **Source:** Maillard, Roncalli & Teïletche (working version May 2009; *JPM* 36(4) 2010 governs), eqs. (1)–(8), §3.5, App. A.1, A.3; Spinu 2013 eqs. (3)–(4), Thm 3.4.
+- **Canonical:** σ(x) = √(x′Σx); marginal risk ∂σ/∂x_i = (Σx)_i/σ(x); risk contribution σ_i(x) = x_i(Σx)_i/σ(x), Σσ_i = σ (Euler). ERC: x ∈ [0, 1]ⁿ, 1′x = 1, x_i(Σx)_i equal for all i ⇔ x_i = 1/(nβ_i), β_i = (Σx)_i/σ²(x) ⇔ argmin σ(x) s.t. Σ ln x_i ≥ c, 1′x = 1 (c set by the ERC portfolio). Constant correlation: x_i ∝ 1/σ_i. Equal volatilities: x_i ∝ 1/Σ_k x_kρ_ik.
+- **Properties (verified, `s411_risk_structured.py`):** MRT §4.1 tables; unique long-only solution; σ_GMV ≤ σ_ERC ≤ σ_1/N; ERC = GMV at ρ = −1/(n−1); ERC = MSR under constant correlation and equal Sharpe ratios.
+
+## EQ-RS-2 Hierarchical risk parity (PC-C3)
+
+- **Source:** López de Prado 2016, pp. 5–8, Appendix A.3–A.4, p. 11 (tree split).
+- **Canonical:** d_ij = √(½(1 − ρ_ij)) (ρ clipped to [−1, 1], HRP-2); d̃ = Euclidean distance between columns of d; single linkage. V0: quasi-diagonal order, bisection of the ordered list. V1: bisection along the dendrogram's children. At each split: V_k = w̃′Σ_k w̃ with inverse-variance w̃ in cluster k; α = 1 − V₁/(V₁ + V₂).
+- **Properties (verified):** Exhibit 7 (V0, exact; S4.4); V1 permutation-invariant; V0 order-dependent (HRP-1); uncorrelated assets → 1/σ²; two assets → inverse variance.
+
+## EQ-RS-3 Diversification ratio and most-diversified portfolio (PC-C4)
+
+- **Source:** Choueifaty & Coignard 2008, eqs. (1)–(9), (11)–(12), pp. 41–43, 47–48.
+- **Canonical:** DR(w) = w′σ/√(w′Σw); MDP = argmax DR under the constraint set; unconstrained MDP ∝ σ⁻¹C⁻¹1; long-only: min y′Cy s.t. 1′y = 1, y ≥ 0, w ∝ y/σ. ρ(P, M) = DR(P)/DR(M); ρ(i, M) = 1/DR(M) for held assets.
+- **Properties (verified):** Examples 1–2; MDP = GMV with equal volatilities; MDP = 1/σ with constant correlation; implied returns: MDP ⇔ μ ∝ σ, GMV ⇔ μ constant, cap weights ⇔ μ_i ∝ ρ_iBσ_i.
+
+## EQ-RS-4 Minimum correlation (PC-C5)
+
+- **Source:** Varadi, Kapler, Bee & Rittenhouse 2012, pp. 13–16; Kapler's `min.corr`, `min.corr2` (issues MCA-1 … MCA-4).
+- **Canonical:** MinCorr: m, s = mean and sample SD of the off-diagonal ρ_ij; A_ij = 1 − Φ((ρ_ij − m)/s) (A_ii = 0); a_i = Σ_j A_ij/(n − 1); rank weights r = rank_desc(a)^p/Σ (p = 1); w = r′A, normalised; x_i ∝ w_i/σ_i. MinCorr2: ρ̄_i = row means with the diagonal set to 0; t_i = 1 − Φ((ρ̄_i − m₀)/s₀); r = rank_desc(t)^p/Σ; w = r′(1 − C) with C's diagonal 0, normalised; x_i ∝ w_i/σ_i.
+- **Domain (MCA-4):** s > 0 required: N ≥ 3 and non-constant correlations (MinCorr); for MinCorr2 also unequal row means.
+
+## EQ-RS-5 Long-only minimum variance under a single-index model (supporting PC-C1)
+
+- **Source:** Clarke, de Silva & Thorley 2011, eqs. (1)–(2), (A-2)–(A-7), pp. 34, 43–44.
+- **Canonical:** Σ = σ²_M ββ′ + diag(σ²_ε); β_LS = (1 + σ²_M Σβ_i²/σ²_εi)/(σ²_M Σβ_i/σ²_εi); unconstrained w_i = (σ²_MV/σ²_εi)(1 − β_i/β_LS); long-only w_i = (σ²_LMV/σ²_εi)(1 − β_i/β_L) for β_i < β_L, else 0, with β_L from (A-6) over held securities (running sums from the lowest beta); β_MV = σ²_MV/(σ²_M β_LS).
+- **Properties (verified):** equals the numerical long-only QP (150 synthetic stocks; 33 held; β_L 0.79, β_LS 1.16).
+- **Use:** verification oracle and agent-readable intuition for PC-C1.
 

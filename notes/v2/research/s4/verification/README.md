@@ -74,3 +74,8 @@
   | Script | Proves | Use |
   |---|---|---|
   | `s410_anchor_benchmark.py` | Anchored EPO with four anchors (w = 1, anchor-consistent signals, eq. 21, w = 0, level for centred signals); ASK infeasibility of 60/40 and projections; household feasibility LP = cut condition; Roll 1992 eqs. (1)–(5), A.4–A.6 (ROLL-1); Jorion 2003 (B3)–(B6), (C6), (C17), Tables 1–3, Theorems 2a–2d; GRS identity and Exhibit 6 (GKA-1), null-size simulation | EQ-ANC-1, EQ-FEAS-1, EQ-TEV-1/2, EQ-GRS-1 |
+- *[2026-10-18, S4.11]* **Risk-structured methods** (`S4_RISK_STRUCTURED.md`):
+
+  | Script | Proves | Use |
+  |---|---|---|
+  | `s411_risk_structured.py` | GMV closed form and CdST 2011 single-index long-only formula = QP; MRT §4.1 tables and eqs. (3)–(8), A.1, A.3, §3.5; ERC uniqueness; HRP V1 invariance, V0 order dependence and canonical determinism, limits; C&C Examples 1–2 and eqs. (4), (6)–(8), (11)–(12), long-only KKT; MinCorr/MinCorr2 worked example, invariances, MCA-4 domain; C5 × O2 | EQ-RS-1 … EQ-RS-5 |

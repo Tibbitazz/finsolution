@@ -1,5 +1,14 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.11) — Risk-structured methods drafted (branch `stage/s04-method-library`)
+
+- **New** `research/s4/S4_RISK_STRUCTURED.md` (DRAFT): method records for PC-C1 GMV, C2 ERC, C3 HRP, C4 MDP, C5 MinCorr; verified relations (uncorrelated, constant-correlation, equal-volatility and two-asset cases; risk ordering) and the implied expected-return belief of each method; decisions S411-D1 … D5.
+- Sources read in full: Clarke, de Silva & Thorley 2006 (scan) and 2011 (supporting), Choueifaty & Coignard 2008, Maillard–Roncalli–Teïletche (working version); Varadi et al.'s comparison section.
+- **Register:** EQ-RS-1 … EQ-RS-5.
+- **New** `verification/s411_risk_structured.py` (PASS): MRT §4.1 tables reproduced in full; C&C Examples 1–2; CdST 2011 single-index closed form = QP; HRP invariance (V1) and order dependence (V0); MinCorr worked example and degeneracy cases.
+- **Issue MCA-4** (MinCorr undefined for N = 2 or constant correlations; MinCorr2 also for equal average correlations). S4_PLAN's S4.11 example equivalence annotated (MD = GMV when volatilities, not correlations, are equal); outline corrected.
+- S4.9 matrix: C5 × O2 tested → research lane (S49-D1). S4_PLAN C.2, outline, verification README, HANDOFF. Not pushed.
+
 ## 2026-10-18 — RQ-18 discussion record (branch `stage/s04-method-library`)
 
 - RQ-18 annotated at the owner's request: one target across accounts placed by asset location; cross-account rebalancing friction (ASK withdrawal and transfer rules); swing position; measurement at combined level; pre-tax allocation with tax-aware location as baseline; cash outside the ASK. Pushed with `2972c46`, `562e10d`, `3c27e0a` (owner authorisation).
