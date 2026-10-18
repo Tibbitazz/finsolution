@@ -674,7 +674,7 @@ GMV itself is EQ-MVO-4 (unconstrained) and EQ-MVO-4a (long-only, Jagannathan–M
 
 ## S4.12a entries — scenario and downside methods (`S4_NON_TRADITIONAL.md`)
 
-Specification choices are open (S412-D1, D2, D3, D5, D6). The entries record the mathematics and its verification only.
+Specification choices decided by the owner 2026-10-18, option (a) in each: S412-D1 (V0 min-CVaR on demeaned scenarios, β = 0.95), S412-D2 (relative compounded MaxDD, convex form), S412-D3 (ERC-CVaR, convex form), S412-D5 (max Sortino, MAR = cash rate), S412-D6 (EQ-SCN-1 location rule).
 
 ## EQ-NT-1 CVaR and its scenario linear programme (PC-D1)
 
@@ -732,11 +732,11 @@ Specification choices are open (S412-D1, D2, D3, D5, D6). The entries record the
   - Normal: (a) with c = the cash rate = tangency; (b) = MV frontier.
   - With c = the cash rate, SoR is invariant to scaling with cash (EQ-SPLIT-1).
 
-## EQ-SCN-1 Scenario location and scale harmonisation (all scenario methods; proposed rule S412-D6)
+## EQ-SCN-1 Scenario location and scale harmonisation (all scenario methods; rule S412-D6, owner decision 2026-10-18)
 
 - **Source:** Grinold, *Advances* ch. 32, eq. (10) and §IV, PDF p. 671.
 - **Canonical:**
   - r_{n,s} = r_F + μ_nΔt + σ_n z_{n,s}√Δt, with Σ_s π_s z_{n,s} = 0 and Σ_s π_s z²_{n,s} = 1.
-  - z is the standardised history (dependence and higher moments); σ from S10; μ = 0 for μ-free uses (demeaned), S9's μ for μ-consuming uses.
+  - z is the standardised history (dependence and higher moments); σ from S10; μ = 0 for μ-free uses (demeaned), S9's μ for μ-consuming uses. Raw historical location is never used (S412-D6).
   - Recency weights π_{S−j} = φ^j π_S, 0 < φ < 1.
 - **Properties (verified, `s412_cvar_ru.py`):** the recentred set has exactly the target means and SDs and the historical correlations.

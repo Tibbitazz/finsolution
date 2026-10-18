@@ -1,6 +1,6 @@
 # S4.12a Scenario and downside methods: PC-D1, PC-D2, PC-D3, PC-B5
 
-**Document status:** DRAFT · **S4.12a (2026-10-18)**, the first of two stops agreed by the owner on 2026-10-18 (S4.12b = PC-D4 TPA). Owner decisions S412-D1, D2, D3, D5 and the new cross-cutting S412-D6 are **open** (§4). · **Basis:** S4_PLAN §G (step S4.12); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template) and §2 (S4.12); `S4_SOURCE_REVIEWS_2026-10-08.md` §5–§6 (CUZ, BCP; S4.4); ADR-0024 §1, §3–§6; ADR-0025; ADR-0027 D3; S4.9 (R-3, S49-D1); S4.11 (S411-D4, S411-D5); EQ-SPLIT-1.
+**Document status:** REVIEWED · **S4.12a DONE (2026-10-18)**, the first of two stops agreed by the owner on 2026-10-18 (S4.12b = PC-D4 TPA). Owner decisions S412-D1, D2, D3, D5 and the cross-cutting S412-D6 **accepted as recommended, option (a) in each, 2026-10-18** (§4). · **Basis:** S4_PLAN §G (step S4.12); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template) and §2 (S4.12); `S4_SOURCE_REVIEWS_2026-10-08.md` §5–§6 (CUZ, BCP; S4.4); ADR-0024 §1, §3–§6; ADR-0025; ADR-0027 D3; S4.9 (R-3, S49-D1); S4.11 (S411-D4, S411-D5); EQ-SPLIT-1.
 
 **Related files:** `verification/s412_cvar_ru.py`, `s412_drawdown_tail.py`, `s412_downside_b5.py` (all PASS); existing `s44_drawdown_cdd.py`, `s44_cvar_budgets_bcp.py`; register EQ-NT-1 … EQ-NT-3, EQ-DS-1, EQ-DS-2, EQ-SCN-1 (`S4_EQUATION_REGISTER.md`); issues RU-1 … RU-3, SVDM-1, KS-1, BCP-4, BCP-5, CDD-3, CES-1 (`ANG_ISSUES_REGISTER.md`).
 
@@ -24,7 +24,7 @@
    - CVaR includes the scenario mean. So min-CVaR equals GMV only when the scenarios have zero mean.
    - With raw scenarios, min-CVaR silently uses the historical mean as an expected return. The weight gap from GMV grows with the horizon: 1.9 pp at one month, 6.2 pp at one year, 14 pp at five years (R&U data).
    - The same holds for D3, where BCP's eqs. (2) and (7) contain −w′μ.
-   - S4.9 listed min-CVaR and D3 as μ-free. That is true only under a demeaning convention that was never declared. Proposed rule S412-D6 fixes this: demeaned scenarios for μ-free uses, and scenarios centred on S9's μ for μ-consuming uses (Grinold's eq. 10 construction).
+   - S4.9 listed min-CVaR and D3 as μ-free. That is true only under a demeaning convention that was never declared. Rule S412-D6 (accepted 2026-10-18) fixes this: demeaned scenarios for μ-free uses, and scenarios centred on S9's μ for μ-consuming uses (Grinold's eq. 10 construction).
 4. **Every method reduces to a mean–variance or risk-parity method under normality** (§2.2, verified):
    - **D1:** min-CVaR on demeaned scenarios = GMV.
    - **D1 with an active return constraint:** mean–CVaR = the MV frontier (R&U Proposition).
@@ -37,12 +37,12 @@
    - **BCP-4 (ERC-CVaR existence):** long-only ERC-CVaR does not exist when an asset's expected return is at least c₂(β)·σ. Cash in a total-return CVaR is such an asset. On demeaned scenarios a unique solution exists through a convex log-barrier.
    - **BCP-5 (modified CVaR accuracy):** errors of 6–12% at β = 95% under fat tails, up to 86% at 97.5%, and not monotone in the tail level.
    - **B5 citation gap:** the Sortino *ratio* is not in Sortino & van der Meer 1991. It is in Sortino & Price 1994 (not in hand).
-6. **Open decisions (§4):**
-   - **S412-D1:** CVaR objective and β.
-   - **S412-D2:** drawdown definition, γ mapping, objective and α.
-   - **S412-D3:** tail-risk object, CVaR estimator, determinism.
-   - **S412-D5:** B5 objective, MAR, placement.
-   - **S412-D6:** the scenario-location rule.
+6. **Decisions (§4), all option (a), accepted by the owner 2026-10-18:**
+   - **S412-D1:** min-CVaR on demeaned scenarios, β = 0.95; R&U's mean–CVaR (P1) a registered variant.
+   - **S412-D2:** relative compounded maximum drawdown in its convex form, γ = the Policy Statement limit, maximise expected return, α = 1; CUZ's LP the reproduction oracle.
+   - **S412-D3:** ERC-CVaR on demeaned scenario CVaR by the convex form; MCC a variant with a recorded seed or start set; modified CVaR not the default.
+   - **S412-D5:** maximum Sortino ratio, MAR = the cash rate per period, exact target semivariance; family B, a separate candidate.
+   - **S412-D6:** demeaned scenarios for μ-free uses, scenarios centred on S9's μ for μ-consuming uses; raw historical location never.
 7. **D3 × O2 (the last pending S4.9 cell):** defined and rank-only. It goes to the **research lane** under S49-D1.
 
 ---
@@ -330,7 +330,9 @@ Correlations and higher moments come from history. Verified: the recentred set h
 
 ---
 
-## 4. Owner decisions (stage 6) — open
+## 4. Owner decisions (stage 6)
+
+*[2026-10-18]* **Owner decision: S412-D2, D3, D5 and D6 accepted as recommended (option (a)); S412-D1 option (a) accepted after the owner asked how (a) differs from (b).** The owner also asked why historical means are never the scenario location (D6). The answer given: S9 is the only source of μ (one declared CMA basis, I-4); an implicit sample mean would differ by method and window, carry a risk aversion set by the scenario horizon, and add estimation error; a historical-average CMA, if S9 adopts one, enters through S9 like any other. History still supplies dependence, tails and paths.
 
 | ID | Decision | Options | Recommendation |
 |---|---|---|---|
@@ -374,7 +376,7 @@ Correlations and higher moments come from history. Verified: the recentred set h
 | To | Item |
 |---|---|
 | S4.12b | PC-D4 TPA: distinctness test, gap memo, S412-D4 |
-| S4.9 (annotation on acceptance of S412-D6) | Min-CVaR and D3 are μ-free only on demeaned scenarios |
+| S4.9 (annotated 2026-10-18 under S412-D6) | Min-CVaR and D3 are μ-free only on demeaned scenarios |
 | S4.13 | Risk objects: scenario set (q × N, horizon, probabilities, location rule), paths (T × N, bootstrap block), co-moments M3/M4 (BCP-2); minimum tail count q(1 − β) |
 | S9 | μ injected into scenarios by EQ-SCN-1 for μ-consuming scenario methods |
 | S10 | Scenario generation: standardised history z, recency weights π_{S−j} = φ^j π_S (Grinold), block bootstrap (CUZ); estimator caution BCP-5 |
@@ -389,6 +391,6 @@ Correlations and higher moments come from history. Verified: the recentred set h
 
 | Method | Status |
 |---|---|
-| PC-D1, PC-D2, PC-D3 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification open (S412-D1 … D3, D6) |
-| PC-B5 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification open (S412-D5, D6) |
+| PC-D1, PC-D2, PC-D3 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification decided (S412-D1 … D3, D6) |
+| PC-B5 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level); specification decided (S412-D5, D6) |
 | PC-D4 | S4.12b |

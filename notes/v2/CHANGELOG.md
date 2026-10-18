@@ -1,5 +1,16 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.12a done) — Owner decisions S412-D1, D2, D3, D5, D6 (branch `stage/s04-method-library`)
+
+- Owner accepted option (a) in each:
+  - **S412-D1:** min-CVaR on demeaned scenarios, β = 0.95; R&U's mean–CVaR as V1. Accepted after the owner asked how (a) differs from (b).
+  - **S412-D2:** relative compounded maximum drawdown in its convex form, γ = the Policy Statement limit, maximise expected return, α = 1; CUZ's LP as the oracle.
+  - **S412-D3:** ERC-CVaR on demeaned scenario CVaR by the convex form; MCC a variant with a recorded seed or start set; modified CVaR not the default.
+  - **S412-D5:** maximum Sortino ratio, MAR = the cash rate, exact target semivariance; family B, separate candidate.
+  - **S412-D6:** scenario location rule (EQ-SCN-1). Demeaned for μ-free uses, centred on S9's μ for μ-consuming uses, never raw historical. The owner's question on historical means was answered: S9 is the only source of μ; an implicit sample mean adds estimation error and a horizon-set risk aversion.
+- S4.9 annotated under S412-D6 (§2 item 3, R-3, D1 row). ANG-02, ANG-18, ANG-39 and ANG-40 resolved. Register note and EQ-SCN-1 updated. HANDOFF §10.8 gains the scenario-location rule.
+- `S4_NON_TRADITIONAL.md` (REVIEWED, S4.12a DONE), S4_PLAN C.2 (S4.12b NEXT), outline, HANDOFF. Not pushed.
+
 ## 2026-10-18 (S4.12a) — Scenario and downside methods drafted (branch `stage/s04-method-library`)
 
 - **S4_PLAN amendment 20:** S4.12 split into S4.12a (D1 CVaR, D2 drawdown, D3 tail-risk parity, B5 mean–downside) and S4.12b (D4 TPA), as agreed by the owner ("Yes to both").

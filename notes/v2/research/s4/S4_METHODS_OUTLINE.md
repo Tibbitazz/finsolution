@@ -12,7 +12,7 @@
 |---|---|---|
 | S0–S3 | Charter, inputs, Policy Statement governance, external facts | **Done** (G0–G3) |
 | **S4 Section 1** — foundations (S4.0–S4.4) | Inventory, ANG reconstruction, adaptation and ADR-0027, accountability, taxonomy, source map | **Done** (S4.4 complete 2026-10-08; S4.2 and ADR-0027 await owner review at G4) |
-| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 done 2026-10-08 (owner decided S46-D1); S4.7 done 2026-10-08 (owner decided S47-D1 … D6; S47-D7 on 2026-10-15); S4.8 done 2026-10-15 (owner decided S48-D1, D2, D4, D5, D6; D3 → S4.9); **S4.9 done 2026-10-18** (revised after owner review; S49-D1 … D5 decided: seven tested-but-unsourced constructions to the research lane; sleeves under R-7; composition rules fixed per run); **S4.10 done 2026-10-18** (owner accepted S410-D1 … D6); **S4.11 done 2026-10-18** (owner accepted S411-D1 … D5); **S4.12a drafted 2026-10-18** (S4_PLAN amendment 20; decisions S412-D1, D2, D3, D5, D6 open); S4.12b (TPA) after those decisions |
+| **S4 Section 2 — method mathematics (S4.5–S4.14)** | The mathematics of every roster method, verified with our own reference code | **In progress:** S4.5 done 2026-10-08 (owner accepted S45-D1 … D4); S4.6 done 2026-10-08 (owner decided S46-D1); S4.7 done 2026-10-08 (owner decided S47-D1 … D6; S47-D7 on 2026-10-15); S4.8 done 2026-10-15 (owner decided S48-D1, D2, D4, D5, D6; D3 → S4.9); **S4.9 done 2026-10-18** (revised after owner review; S49-D1 … D5 decided: seven tested-but-unsourced constructions to the research lane; sleeves under R-7; composition rules fixed per run); **S4.10 done 2026-10-18** (owner accepted S410-D1 … D6); **S4.11 done 2026-10-18** (owner accepted S411-D1 … D5); **S4.12a done 2026-10-18** (S4_PLAN amendment 20; owner accepted S412-D1, D2, D3, D5, D6, option (a) in each); **S4.12b (TPA) next** |
 | S4 Section 3 — the process around the methods (S4.15–S4.18) | Upstream CMA inventory, CRO diagnostics and candidate card, deliberation, CIO ensembles | Not started |
 | S4 Section 4 — consolidation (S4.19–S4.24) | Equation Register reconciliation, typed contracts, eligibility, dependency graph, full verification, fixtures | Not started |
 | S4 Section 5 — gate (S4.25–S4.27) | Portfolio Map requirements, library freeze, G4 audit | Not started |
@@ -188,7 +188,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 - **Verification:** LP formulations on synthetic scenarios; CVaR → GMV under normality; the existing `s44_*` scripts; the TPA distinctness test.
 - **Deliverables:** `S4_NON_TRADITIONAL.md`; TPA gap memo.
 - **Exit:** verified, or an explicit gap.
-- *[2026-10-18]* **Split (amendment 20):** S4.12a = D1, D2, D3, B5; S4.12b = D4 TPA. **S4.12a drafted:** `S4_NON_TRADITIONAL.md` (four records), register EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1, `verification/s412_*.py` (3 scripts, PASS). Findings: NT-1 (scenario methods are not location-free; new decision S412-D6), normal-limit relations (GMV, ERC, max Sharpe, MV frontier), CDD-3 (relative drawdown limit is convex), BCP-4, BCP-5, RU-1 … 3, SVDM-1, KS-1; D3 × O2 → research lane. Exit met at source level; decisions open.
+- *[2026-10-18]* **Split (amendment 20):** S4.12a = D1, D2, D3, B5; S4.12b = D4 TPA. **S4.12a drafted:** `S4_NON_TRADITIONAL.md` (four records), register EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1, `verification/s412_*.py` (3 scripts, PASS). Findings: NT-1 (scenario methods are not location-free; new decision S412-D6), normal-limit relations (GMV, ERC, max Sharpe, MV frontier), CDD-3 (relative drawdown limit is convex), BCP-4, BCP-5, RU-1 … 3, SVDM-1, KS-1; D3 × O2 → research lane. Exit met at source level. *[2026-10-18]* **Owner accepted S412-D1, D2, D3, D5, D6 (option (a) in each)**; S4.9 annotated under S412-D6.
 
 ### S4.13 Risk and covariance dependency inventory
 - **Scope:** per PC method, the required risk representation (Σ, σ, semicovariance, scenarios, paths, factors, **coskewness and cokurtosis**), registered as risk objects per problem (ADR-0027 D3 r3). Estimator candidates are registered only; S10 selects.
@@ -234,7 +234,7 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.9 *(added 2026-10-15)* | Admissible compositions; momentum sleeves and their scaling; direction rule vs engine-level scaling; mapping candidates; signal-conditioned heuristics | S49-D1 … D5 (`S4_SIGNAL_PC_COMPATIBILITY.md` §7); all decided 2026-10-18 | §D.1; S48-D3 |
 | S4.10 *(added 2026-10-18)* | Object separation and anchor contract; admissible anchor sources; default anchor and authority; infeasible anchors and benchmarks; roles of 60/40; benchmark-relative candidates | S410-D1 … D6 (`S4_ANCHOR_BENCHMARK.md` §10) | S47-D3; RQ-09 |
 | S4.11 *(added 2026-10-18)* | GMV constraint set; HRP variant; minimum-correlation variant; constraints for C2/C3/C5; failure behaviour | S411-D1 … D5 (`S4_RISK_STRUCTURED.md` §4) | ANG-38, ANG-42; I-2, I-7 |
-| S4.12a *(added 2026-10-18)* | CVaR objective and β; drawdown definition, γ, objective and α; tail-risk object, CVaR estimator and determinism; B5 objective, MAR and placement; scenario location rule (new) | S412-D1, D2, D3, D5, D6 (`S4_NON_TRADITIONAL.md` §4); open | ANG-02, ANG-18, ANG-39, ANG-40; NT-1, CDD-1 … 3, BCP-1 … 5 |
+| S4.12a *(added 2026-10-18)* | CVaR objective and β; drawdown definition, γ, objective and α; tail-risk object, CVaR estimator and determinism; B5 objective, MAR and placement; scenario location rule (new) | S412-D1, D2, D3, D5, D6 (`S4_NON_TRADITIONAL.md` §4); all decided 2026-10-18, option (a) | ANG-02, ANG-18, ANG-39, ANG-40; NT-1, CDD-1 … 3, BCP-1 … 5 |
 | S4.8 *(added 2026-10-15)* | Formation, skip, holding; TSMOM σ; strategy-level scaling; SIG-1 output; trend-filter grid; variant choices | S48-D1 … D6 (`S4_MOMENTUM.md` §5) | ANG-23; HOP-1, DM-1, BHM-1, GK-1, EL-1/2 |
 
 ---
@@ -264,8 +264,8 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.9 | Signal × PC | **Done** | 2026-10-15 / 2026-10-18 | `S4_SIGNAL_PC_COMPATIBILITY.md` (revised 2026-10-18: EPO consumes μ; R-7 double counting; D cells tested; EQ-MAP-3 per Grinold; EQ-TC-1); owner decided S49-D1 … D5 |
 | S4.10 | Anchors, benchmarks | **Done** | 2026-10-18 | `S4_ANCHOR_BENCHMARK.md`; owner reminded of S47-D3 first; owner accepted S410-D1 … D6 |
 | S4.11 | C1–C5 | **Done** | 2026-10-18 | `S4_RISK_STRUCTURED.md`; owner accepted S411-D1 … D5 |
-| S4.12a | D1–D3, B5 | **Drafted; decisions open** | 2026-10-18 | `S4_NON_TRADITIONAL.md`; S412-D1, D2, D3, D5, D6 |
-| S4.12b | D4 TPA | **Next** after the S4.12a decisions | — | — |
+| S4.12a | D1–D3, B5 | **Done** | 2026-10-18 | `S4_NON_TRADITIONAL.md`; owner accepted S412-D1, D2, D3, D5, D6 |
+| S4.12b | D4 TPA | **Next** | — | — |
 | S4.13 | Risk dependencies | Not started | — | — |
 | S4.14 | E1 role, E2 | Not started | — | — |
 

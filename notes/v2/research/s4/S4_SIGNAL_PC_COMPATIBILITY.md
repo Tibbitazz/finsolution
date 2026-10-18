@@ -1,6 +1,6 @@
 # S4.9 Signal × PC compatibility: what a momentum signal may become, method by method
 
-**Document status:** REVIEWED · **S4.9 DONE (2026-10-18).** Drafted 2026-10-15; revised 2026-10-18 after the owner's review. Owner decisions **S49-D1 … S49-D5 all recorded 2026-10-18** (§7). · **Basis:**
+**Document status:** REVIEWED · **S4.9 DONE (2026-10-18).** *Annotated 2026-10-18 under S412-D6 (μ-free scenario methods; D3 × O2 tested).* Drafted 2026-10-15; revised 2026-10-18 after the owner's review. Owner decisions **S49-D1 … S49-D5 all recorded 2026-10-18** (§7). · **Basis:**
 - S4_PLAN §G (step S4.9), amendment 4 (momentum roles open until S4.8/S4.9), §D.1 (candidate "signal-conditioned heuristics"), SYNC-3 (with S4.10);
 - `S4_MOMENTUM.md` (S4.8; decisions S48-D1 … D6; S48-D3 carried here);
 - ADR-0012 (signals are descriptors; μ only through an accepted mapping, §3); ADR-0024 §1, §4, §7 (research lane; allocation domains; EPO in the MVO lineage); ADR-0025 (admission ≠ evaluation; admission requires an identifiable primary source); ADR-0026 §8 (evidence by use); ADR-0027 D3; EQ-SPLIT-1 (S47-D6).
@@ -23,6 +23,7 @@
 1. **Six objects** (amendment 4), each with its own semantics: O1 evidence descriptor · O2 signal-conditioned universe · O3 direction/exposure rule · O4 expected-return mapping · O5 standalone sleeve · O6 tactical overlay (§2).
 2. **The roster splits by input.**
    - **μ-free methods** (A1–A5, C1–C5, D3, min-CVaR) can use a signal only through *selection* (O2), *direction* (O3) or as a *sleeve* (O5), never through μ.
+     - *[2026-10-18, owner decision S412-D6]* D3 and min-CVaR are μ-free **only on demeaned scenarios**. CVaR contains the scenario mean, so on raw or μ-centred scenarios they consume μ (finding NT-1, `S4_NON_TRADITIONAL.md` §2.1). S412-D1 and D6 fix the demeaned form for both.
    - **μ-consuming methods** (B1–B7, D2, D4, mean–CVaR, E2) can use it only through a *mapping* to returns (O4). **EPO (B6/B7) is one of them:** PBL take the signal as already scaled to the conditional expected excess return (p. 127), and eq. (18) is MVO with the mean shrunk toward the anchor-implied returns and the correlations shrunk toward zero (verified). PBL supply tested mappings (eqs. 23–27 = EQ-MAP-1/2) and a scale calibration for proportional signals (eq. 21), which removes scale but not location. Every μ-consumer, EPO included, needs a mapping accepted at S9d.
 3. **Source-supported compositions** (§3):
    - 1/N or cap weights within a momentum-selected set (JT deciles; AMP terciles);
@@ -95,7 +96,7 @@ Codes: **V** = defined and source-supported · **V1** = defined, derived from a 
 | PC-C3 HRP | Σ only | **R** | — | — | V |
 | PC-C4 max diversification | Σ only | **R** | — | — | V |
 | PC-C5 min correlation | Σ only | **R** (tested at S4.11, 2026-10-18; research lane under S49-D1) | — | — | V |
-| PC-D1 CVaR | scenarios (± μ) | **R** (min-CVaR) | — | M (mean–CVaR; ANG-02 open) | V / M |
+| PC-D1 CVaR | scenarios (± μ) | **R** (min-CVaR) | — | M (mean–CVaR; ANG-02 open) *[2026-10-18: ANG-02 decided by S412-D1: V0 min-CVaR on demeaned scenarios (μ-free); mean–CVaR is variant V1, scenarios centred on S9's μ]* | V / M |
 | PC-D2 drawdown-constrained | μ + paths | — | — | M | M |
 | PC-D3 tail-risk parity | scenarios | **R** (tested at S4.12a, 2026-10-18; research lane under S49-D1) | — | — | V |
 | PC-D4 TPA | α + residual risk | — | — | **M** (Treynor–Black α/σ²_ε with α = IC·ω·z, residual ω) | — |
@@ -158,7 +159,7 @@ Specification tests only (`s49_double_counting_dcells.py`): is the construction 
 |---|---|---|---|
 | R-1 | **No unscaled score enters a μ-consuming method, EPO included.** Ranks or raw scores fed as μ give weights that depend on arbitrary choices (rank origin, centring). Alphas not proportional to volatility tilt the optimizer toward low-volatility assets ("alpha eating") | Michaud & Michaud p. 109; Grinold 1994 Example 5; G&K ch. 3 Insight 4; PBL p. 127 and eq. (21) (scale calibration removes scale, not location) | MVO weights on ranks 1…N, 0…N−1 and centred ranks differ by > 0.1; PBL eq. (22) weights differ for ranks and centred ranks |
 | R-2 | **Mappings are in return units, per period consistent with Σ, scaled by the volatility of the return being forecast, and benchmark-neutral when used as active α** | Grinold 1994 eq. (1), Example 3; G&K ch. 3 eqs. (19)–(20); Michaud & Michaud pp. 110–111 | α = IC·ω·z invariant to relabelling; volatility step for vol-proportional forecasts; units factor 12; w_b′α = 0 |
-| R-3 | **μ-free methods use a signal only through O2, O3 or O5;** O3 only on separable base weights (A1, A3, A4) | Input classes (§3); §3b | Zeroing or flipping breaks GMV and ERC |
+| R-3 | **μ-free methods use a signal only through O2, O3 or O5;** O3 only on separable base weights (A1, A3, A4). *[2026-10-18, S412-D6]* Scenario methods count as μ-free only on demeaned scenarios | Input classes (§3); §3b; NT-1 | Zeroing or flipping breaks GMV and ERC |
 | R-4 | **A direction rule acts after the engine-level scaling (EQ-SPLIT-1): it may lower risk below σ*, never raise it** (owner decision S49-D3) | EQ-SPLIT-1 rescales the risky mix to σ*; applied after a trend rule it re-levers the remaining positions | 2 of 10 assets up: exposure 0.19 (rule after scaling) vs 0.69 (rule before) |
 | R-5 | **A sleeve (O5) exists only where the account permits its positions** (shorting for long–short), and needs a CMA when allocated by a μ-based method | Nordnet shorting only in the ordinary share account, with tests (`research/S3_FINDINGS.md`); S9b | — |
 | R-6 | **Tactical overlays (O6) never change w*;** they are logged timing evidence within the Trader's mandate | ADR-0026 §5, §8.9 | — |
