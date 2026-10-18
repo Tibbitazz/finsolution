@@ -103,6 +103,13 @@ reg = np.r_[(np.arange(T - 24) // 30) % 2, np.ones(24, int)]                    
 sleeve = np.array([R[t, hi].mean() if reg[t] else R[t, lo].mean() for t in range(T)])
 beta_hist = np.cov(sleeve, mkt)[0, 1] / mkt.var(ddof=1); beta_now = b2[hi].mean()
 assert beta_now - beta_hist > 0.3
+# B5 (R-7a clarification, owner decision S49-D2, 2026-10-18) a zero-investment long-short sleeve (winners minus losers)
+#    carries no net class exposure: held as a unit (DGU dataset 7 style) it adds no net equity weight beyond the host's;
+#    its gross positions and its equity beta are counted by look-through (R-7b, R-7d)
+los = (rankdata(score) <= 10).astype(float); los /= los.sum(); wml = unit(h - los); assert abs(wml.sum()) < 1e-12
+lt5 = np.column_stack([E, Bv, Cv, wml]) @ (np.ones(4) / 4)
+assert abs(lt5[:ns].sum() - 0.25) < 1e-12 and abs(np.abs(lt5[:ns]).sum() - 0.25) > 0.05      # net = host weight; gross larger
+beta_wml = (wml @ S @ E) / (E @ S @ E)                                                   # look-through beta of the sleeve on equity
 
 # ===== C. Signal double counting (R-7c) =====
 sg10 = rng.uniform(.1, .35, 10); sign = np.where(rng.standard_normal(10) > 0, 1, -1)
@@ -163,7 +170,8 @@ assert max(tcm[k][1] for k in ('1/N (V)', '1/sigma (V1)', 'ERC')) < min(tcm[k][1
 print("PASS S4.9 addendum: EPO = MVO on shrunk mean and covariance; PBL eq. 22 removes scale, not location; "
       f"sleeve as a unit: equity 1/N weight 0.33 -> 0.50, ERC risk share 0.33 -> 0.50, 1/sigma risk share {b3['1/sig'][1]:.2f} -> "
       f"{b4['1/sig'][1]:.2f}; tilt inside the host class leaves both unchanged; long-only active sleeve iff 0 <= x <= e; "
-      f"history beta {beta_hist:.2f} vs holdings beta {beta_now:.2f}; sign rule on a signed output erases the trend; "
+      f"history beta {beta_hist:.2f} vs holdings beta {beta_now:.2f}; long-short sleeve as a unit adds no net equity "
+      f"(look-through beta {beta_wml:.2f}); sign rule on a signed output erases the trend; "
       "sign x 1/N, 1/sigma, 1/sigma^2 = EPO(w=1) with s ~ sigma^k sign (k = 2, 1, 0); O2 re-solves well defined and rank-only; "
       "O3 zeroing/flipping breaks GMV and ERC (signed GMV = MVO on sign; signed ERC = D x ERC(D Sigma D), equal contributions); TC "
       + ", ".join(f"{k} {v[0]:.2f}" for k, v in tcm.items()))

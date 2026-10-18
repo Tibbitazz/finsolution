@@ -1,6 +1,6 @@
 # S4.9 Signal × PC compatibility: what a momentum signal may become, method by method
 
-**Document status:** REVIEWED. Drafted 2026-10-15; revised 2026-10-18 after the owner's review. Owner decisions **S49-D1, S49-D3, S49-D4 recorded 2026-10-18** (§7); **S49-D2 and S49-D5 open**. · **Basis:**
+**Document status:** REVIEWED · **S4.9 DONE (2026-10-18).** Drafted 2026-10-15; revised 2026-10-18 after the owner's review. Owner decisions **S49-D1 … S49-D5 all recorded 2026-10-18** (§7). · **Basis:**
 - S4_PLAN §G (step S4.9), amendment 4 (momentum roles open until S4.8/S4.9), §D.1 (candidate "signal-conditioned heuristics"), SYNC-3 (with S4.10);
 - `S4_MOMENTUM.md` (S4.8; decisions S48-D1 … D6; S48-D3 carried here);
 - ADR-0012 (signals are descriptors; μ only through an accepted mapping, §3); ADR-0024 §1, §4, §7 (research lane; allocation domains; EPO in the MVO lineage); ADR-0025 (admission ≠ evaluation; admission requires an identifiable primary source); ADR-0026 §8 (evidence by use); ADR-0027 D3; EQ-SPLIT-1 (S47-D6).
@@ -35,7 +35,8 @@
    - **a direction rule acts after the engine-level risk scaling** (R-4; owner decision S49-D3). With 2 of 10 assets in an uptrend, exposure is 0.19 if the rule follows the scaling and 0.69 if it precedes it;
    - **no double counting** (R-7, §3a): a sleeve overlapping a class is never a separate unit beside it; sleeve risk by look-through of current holdings; one channel per signal unless the combined weight is explicit.
 6. **D cells tested** (§3b): three become V1 (derived from PBL); seven are defined and tested but unsourced and go to the **research lane** (owner decision S49-D1); two remain untested (S4.11, S4.12).
-7. **S48-D3 proposal (S49-D2, open):** strategy-level scaling (B&SC, DM) applies only to O5 sleeves, which follow R-7; a long–short sleeve exists only where the account permits shorting.
+7. **S48-D3 decided as S49-D2:** sleeves follow R-7. Long-only sleeves are tilts inside their host class; long–short (zero-investment) sleeves only where shorting is permitted, and then they may be units of their own. No sleeve-level scaling in the base case; constant volatility as a registered variant; DM's dynamic rule is a timing model (S13c).
+8. **Signal-conditioned heuristics (S49-D5):** composition rules for V/V1 cells, fixed per run and never agent-selectable; no roster change.
 
 ---
 
@@ -64,7 +65,7 @@ Secondary only: Gallego, IEOR4706 Lecture 7 (Columbia, Autumn 2000), a teaching 
 | O2 | **Signal-conditioned universe** | The signal selects the set (e.g. top tercile or decile by XSMOM; positive TSMOM); a μ-free method weights within it, re-solved on the selected sub-matrix | JT 1993 (equal-weighted deciles); AMP 2013 (terciles: value-weighted for stocks, equal-weighted otherwise); DM 2016 (value-weighted deciles) | S4.9 → S11 |
 | O3 | **Direction / exposure rule** | Per asset, the signal sets the sign (long/short) or, long-only, hold vs cash, applied to a base weight. Defined only for separable base weights (A1, A3, A4; §3b) | MOP 2012 eq. (5); HOP 2017 (sign × equal volatility); long-only cash version derived (shorts → 0) | S4.9 → S11; timing use → S13c |
 | O4 | **Expected-return mapping** | The signal becomes μ (or α) in return units, consumed by a μ-based method, EPO included | PBL eqs. (21), (23)–(27); Grinold 1994 / G&K ch. 3 (α = IC·ω·z); Michaud & Michaud ch. 12; BL views (PBL Prop. 3) | S9d (RQ-33) |
-| O5 | **Standalone sleeve** | A momentum portfolio (WML, TSMOM factor, long-only winners, factor-momentum rotation) held under R-7: a tilt inside its host class or a zero-investment active sleeve, never a separate unit beside the class it overlaps | DGU Table 2 (factor portfolios incl. UMD as assets); MOP/AMP factor portfolios; B&SC/DM scaling; CdST fn. 7 (long–short plus market exposure) | S4.9 → S11; account permissions |
+| O5 | **Standalone sleeve** | A momentum portfolio (WML, TSMOM factor, long-only winners, factor-momentum rotation) held under R-7: long-only, a tilt inside its host class (never a separate unit beside it); zero-investment long–short, a unit of its own where shorting is permitted (S49-D2) | DGU Table 2 (factor portfolios incl. UMD as assets); MOP/AMP factor portfolios; B&SC/DM scaling; CdST fn. 7 (long–short plus market exposure) | S4.9 → S11; account permissions |
 | O6 | **Tactical overlay / timing evidence** | The signal informs *when and how* to implement an approved target, inside the Trader's mandate; never changes w* | ADR-0026 §5, §8.9; HANDOFF §4.6 (TSMOM as logged timing evidence) | S13c–d (RQ-17, RQ-35) |
 
 The **blend-weight layer** (factor momentum varying the composite's factor weights, S48-D6) sits *before* any PC method, in score aggregation (RQ-32). It is not a pairing with a method.
@@ -124,7 +125,8 @@ Four distinct problems:
 4. **Signal double counting.** One signal entering through two channels: O2 + O4 with the same signal; an agent adjusting a μ that already contains it (O1 + O4); a composite score containing momentum plus a momentum sleeve. A direction rule applied to an output that already carries the sign turns every position long (excluded by the "—" cells).
 
 **Rule R-7 (no double counting):**
-- **R-7a (exposure).** A sleeve that overlaps a class in the same problem is never a separate unit beside it. It is either a tilt inside the host class (hierarchical: allocation domain "strategy/sleeve" inside the class, ADR-0024 §4) or a zero-investment active sleeve h − w_host held at size x within the host's weight e; long-only, 0 ≤ x ≤ e (verified). With the tilt inside the host, the class weight under 1/N and the class risk share under ERC do not move with the tilt (verified). This is the long-only bound Clarke, de Silva & Thorley measure (active weight ≥ −benchmark weight); their fn. 7 structure (long–short plus market exposure) needs shorting (R-5).
+- **R-7a (exposure).** A long-only sleeve that overlaps a class in the same problem is never a separate unit beside it. It is either a tilt inside the host class (hierarchical: allocation domain "strategy/sleeve" inside the class, ADR-0024 §4) or a zero-investment active sleeve h − w_host held at size x within the host's weight e; long-only, 0 ≤ x ≤ e (verified). With the tilt inside the host, the class weight under 1/N and the class risk share under ERC do not move with the tilt (verified). This is the long-only bound Clarke, de Silva & Thorley measure (active weight ≥ −benchmark weight); their fn. 7 structure (long–short plus market exposure) needs shorting (R-5).
+  - *[2026-10-18, owner decision S49-D2]* **Exception: zero-investment long–short sleeves** (winners minus losers; TSMOM factor) carry no net class exposure and may be units of their own where shorting is permitted, as in DGU dataset 7 (1/N across MKT, SMB, HML, UMD). Held as a unit, such a sleeve adds no net equity weight beyond the host's (verified); its gross positions and its beta are counted by look-through (R-7b, R-7d).
 - **R-7b (risk).** Sleeve risk always comes from looking through to its current holdings in the authoritative risk model (ADR-0027 D3), at every problem level. The sleeve's return history is for evaluation (S7) only.
 - **R-7c (signals).** Each signal declares its channels per problem. One signal through two channels requires an explicit, recorded weight for each; for correlated signals the combination follows the regression weights (Grinold 1994 eqs. (3)–(4); after costs: G&K ch. 9 at S9d).
 - **R-7d (reporting).** Every candidate reports its look-through exposure by asset class, by signal and by size (long-only constraints create an unintended small-cap tilt; CdST Fig. 4). Contract predicate at S4.20; report at S4.16.
@@ -160,7 +162,7 @@ Specification tests only (`s49_double_counting_dcells.py`): is the construction 
 | R-4 | **A direction rule acts after the engine-level scaling (EQ-SPLIT-1): it may lower risk below σ*, never raise it** (owner decision S49-D3) | EQ-SPLIT-1 rescales the risky mix to σ*; applied after a trend rule it re-levers the remaining positions | 2 of 10 assets up: exposure 0.19 (rule after scaling) vs 0.69 (rule before) |
 | R-5 | **A sleeve (O5) exists only where the account permits its positions** (shorting for long–short), and needs a CMA when allocated by a μ-based method | Nordnet shorting only in the ordinary share account, with tests (`research/S3_FINDINGS.md`); S9b | — |
 | R-6 | **Tactical overlays (O6) never change w*;** they are logged timing evidence within the Trader's mandate | ADR-0026 §5, §8.9 | — |
-| R-7 | **No double counting:** (a) an overlapping sleeve is a tilt inside its host class or a zero-investment active sleeve (long-only 0 ≤ x ≤ e), never a unit beside it; (b) sleeve risk by look-through of current holdings; (c) one channel per signal unless the combined weight is explicit; (d) look-through exposure reported by class, signal and size | §3a; DM 2016 §3; Grinold 1994 eqs. (3)–(4); CdST 2002 | 1/N equity 0.33 → 0.50 as a separate unit, unchanged as a tilt; beta 1.09 vs 1.50; singular joint covariance |
+| R-7 | **No double counting:** (a) an overlapping long-only sleeve is a tilt inside its host class or a zero-investment active sleeve (long-only 0 ≤ x ≤ e), never a unit beside it; a zero-investment long–short sleeve may be a unit where shorting is permitted (S49-D2); (b) sleeve risk by look-through of current holdings; (c) one channel per signal unless the combined weight is explicit; (d) look-through exposure reported by class, signal and size | §3a; DM 2016 §3; Grinold 1994 eqs. (3)–(4); CdST 2002 | 1/N equity 0.33 → 0.50 as a separate unit, unchanged as a tilt; beta 1.09 vs 1.50; singular joint covariance |
 
 PBL links verified: EPO eq. (18) = MVO on μ̃ = (1 − w)s + wγVa with Σ_w; EPO w = 0 equals MVO on the signal; EPO w = 1 with s = 0.1·σ·sign(r) is proportional to MOP's sign × 1/σ (PBL-3).
 
@@ -202,7 +204,13 @@ S4_PLAN §D.1 admits it "only if S4.9 shows it is a distinct, literature-support
   - sign × 1/σ is MOP's TSMOM.
 - **Distinct:** no. Each is a composition of an existing signal (SIG-1/SIG-2) with an existing heuristic (A1/A2/A3/A4) through O2 or O3.
 
-**Proposal (S49-D5, open):** no new roster item. The V/V1 compositions are registered as **composition rules**, typed at S4.20 (a method plus a conditioning or direction rule). The R constructions stay in the research lane (S49-D1).
+**Decision (S49-D5, 2026-10-18): no new roster item.** The V/V1 compositions are registered as **composition rules**, with four conditions:
+1. **Typed at S4.20** as composition rules: base method, signal variant (SIG-1/SIG-2 and variant), selection fraction or sign rule, and order of operations (a direction rule acts after the engine-level scaling, R-4).
+2. **Fixed per run, never agent-selectable.** Each admitted composition is a separately declared candidate, fixed before the run at S11. A PC agent may not switch momentum conditioning on or off for its method (no specification search; ADR-0026 §4.1, ADR-0027 D3.4 by analogy).
+3. **Duplicate detection.** Compositions sit close to their base method; the S4.16 distance check flags near-duplicate proposals before review and voting.
+4. **Research-lane constructions are excluded.** The seven R constructions stay in the research lane (S49-D1).
+
+Admitted compositions: A1 × O2 and A2 × O2 (V); A3 × O3 (V); A3 × O2, A1 × O3, A4 × O2, A4 × O3 (V1). Their transfer coefficients in the synthetic test (0.43–0.49) are close to long-only max Sharpe (0.51; §4a).
 
 ---
 
@@ -224,10 +232,10 @@ All four are **registered, not accepted**. S9d chooses, under the S7 protocol. R
 | ID | Decision | Options | Recommendation | Owner decision |
 |---|---|---|---|---|
 | **S49-D1** | The matrix (§3) as the admissible-compositions list | (a) V and V1 admissible; M once an S9d mapping or sleeve CMA is accepted; tested-but-unsourced cells to the research lane; untested cells tested first; — excluded · (b) admit tested-but-unsourced cells under a composition ruling on ADR-0025 · (c) admit all D cells untested | (a) after testing (the draft's untested (a) was rejected by the owner) | **2026-10-18: (a).** "Put all seven in research lane." V/V1 admissible; M once mapped; the seven R constructions → research lane; C5 × O2 and D3 × O2 tested at S4.11/S4.12, research lane unless a source is found; — excluded |
-| **S49-D2** (= S48-D3) | Momentum sleeves and their scaling | (a) O5 sleeves under R-7: long-only sleeves (winners, positive-trend, factor-ETF rotation) as tilts inside the host class or zero-investment active sleeves within the host weight (0 ≤ x ≤ e) for every account; long–short only where `POL.instrument_permissions` permit shorting; risk by look-through. Scaling: constant volatility (B&SC) as a variant under EQ-SPLIT-1 and the leverage cap; DM's dynamic rule as a timing model in point-in-time form (RQ-17) · (b) no sleeves: momentum only as O2–O4 | **(a)**, with the evaluation at S7 | OPEN |
+| **S49-D2** (= S48-D3) | Momentum sleeves and their scaling | (a) sleeves under R-7 · (b) no sleeves: momentum only as O2–O4 · (c) sleeves as free-standing units beside their class (excluded by R-7) | **(a)** | **2026-10-18: (a).** Long-only sleeves (winners, positive-trend set, factor-ETF rotation) are tilts inside the host class (0 ≤ x ≤ e; class weight set by the class-level method). Zero-investment long–short sleeves only where `POL.instrument_permissions` permit shorting; they may be units of their own (DGU dataset 7; R-7a exception). Risk always by look-through of current holdings (R-7b). Base case: no sleeve-level scaling; tilt size x set at S11 within the Policy Statement's active-risk bounds; EQ-SPLIT-1 scales the whole portfolio. Constant-volatility variant: long–short as published (B&SC: 126-day variance, 12% target, leverage cap); long-only applied to the tilt size x, not to the whole sleeve (derived, V1). DM's dynamic weight is a timing model (S13c; RQ-17), point-in-time only. ETF sleeves need constituent holdings (S6/S11; gap class B). Evaluation at S7 |
 | **S49-D3** | Order of operations for direction rules (R-4) | (a) base method → engine-level scaling → direction rule (risk may fall below σ*, never rise) · (b) direction rule → scaling (re-levers remaining positions) · (c) direction rules exempt from EQ-SPLIT-1 like PC-A5 | **(a)** | **2026-10-18: (a).** Noted on EQ-SPLIT-1; binds at G4 with B-46 |
 | **S49-D4** | Mapping candidates for S9d | (a) register EQ-MAP-1 … 4 with R-1/R-2 as admissibility conditions; choose at S9d · (b) choose one now | **(a)** | **2026-10-18: (a)** |
-| **S49-D5** | Signal-conditioned heuristics (§D.1) | (a) composition rules for V/V1, no roster change · (b) new roster items | **(a)** | OPEN |
+| **S49-D5** | Signal-conditioned heuristics (§D.1) | (a) composition rules for V/V1, no roster change · (b) new roster items | **(a)** | **2026-10-18: (a)**, with the four conditions of §5 (typed at S4.20; fixed per run, never agent-selectable; duplicate detection at S4.16; research-lane constructions excluded) |
 
 ---
 
@@ -236,7 +244,7 @@ All four are **registered, not accepted**. S9d chooses, under the S7 protocol. R
 | Script | Proves | Result |
 |---|---|---|
 | `s49_signal_pc_compatibility.py` (revised 2026-10-18) | R-1 (ranks into MVO ill-defined); R-2 (α = IC·ω·z with the volatility step, invariant to relabelling; benchmark neutrality; units factor 12); PBL EPO at w = 0 and w = 1; O2 constructions (1/N, cap, 1/σ within a selected set) well defined and rank-only; R-4 ordering (0.19 vs 0.69); the S48-D1 identity | PASS |
-| `s49_double_counting_dcells.py` | EPO = MVO on shrunk mean and covariance; PBL eq. (22) removes scale, not location; R-7 (exposure, redundancy, look-through risk, signal); the D-cell tests of §3b; the TC table of §4a | PASS |
+| `s49_double_counting_dcells.py` | EPO = MVO on shrunk mean and covariance; PBL eq. (22) removes scale, not location; R-7 (exposure, redundancy, look-through risk, signal; zero-investment long–short sleeve as a unit adds no net class exposure); the D-cell tests of §3b; the TC table of §4a | PASS |
 | `s49_alpha_sources.py` | Grinold 1994 Exhibits 3–5, Exhibit 7 claims, eqs. (1)–(4) as regressions, fns. 6, 8, 9 (GRI-1, GRI-2: rounding only); momentum needs the volatility step; PBL k = 0 is the constant-IC member; G&K ch. 3 eqs. (35)–(37), sign-only TC √(2/π), Exhibit 11, four examples; CdST Table 1 = eq. (6), long-only TC reproduction, ex post R² ≈ TC²; Gallego secs. 1.4–1.7 | PASS |
 
 ---
@@ -250,12 +258,12 @@ All four are **registered, not accepted**. S9d chooses, under the S7 protocol. R
 | S4.12 | D3 × O2 test; PC-D4 TPA with EQ-MAP-3 (residual ω); mean–CVaR (D1) and drawdown (D2) as μ-consuming |
 | S4.13 | R-7b: look-through risk for sleeves at every problem level |
 | S4.14 | PC-E1 Researcher: the seven research-lane constructions |
-| S4.16 | EQ-TC-1 as a reported construction diagnostic; R-7d exposure reports |
-| S4.20 | Composition rules typed (method + conditioning / direction rule); R-1 … R-7 as contract predicates |
+| S4.16 | EQ-TC-1 as a reported construction diagnostic; R-7d exposure reports; duplicate detection for compositions near their base method (S49-D5) |
+| S4.20 | Composition rules typed (method + conditioning / direction rule; fixed per run, never agent-selectable; S49-D5); R-1 … R-7 as contract predicates; sleeve forms of S49-D2 |
 | S6 | ETF constituent holdings for R-7 look-through (gap class B) |
 | S9d | EQ-MAP-1 … 4; G&K ch. 9 signal weighting; RQ-32 re-standardisation; blend-weight timing (S48-D6) |
-| S11 | Which compositions enter the candidate set; sleeves under R-7 |
-| S13c–d | O6 overlays; DM timing; JT cohorts for turnover; TC cost of turnover limits and need-to-trade regions |
+| S11 | Which compositions enter the candidate set (declared before the run); sleeves under R-7; tilt size x within the Policy Statement's active-risk bounds |
+| S13c–d | O6 overlays; DM dynamic weight as a timing model (S49-D2, point-in-time); JT cohorts for turnover; TC cost of turnover limits and need-to-trade regions |
 | S17 | CdST ex post decomposition (signal vs constraint noise) for the learning loop |
 | G4 | EQ-SPLIT-1 amendment for direction rules (S49-D3) with B-46 |
 
@@ -265,4 +273,5 @@ All four are **registered, not accepted**. S9d chooses, under the S7 protocol. R
 
 | Signal | Status |
 |---|---|
-| SIG-1, SIG-2 and variants | CONSTRUCTION EXTRACTED · **PLACEMENT DETERMINED** · **PC-COMPATIBILITY DETERMINED** (S49-D1, D3, D4 decided 2026-10-18; D2, D5 open) |
+| SIG-1, SIG-2 and variants | CONSTRUCTION EXTRACTED · **PLACEMENT DETERMINED** · **PC-COMPATIBILITY DETERMINED** (S49-D1 … D5 decided 2026-10-18) |
+| Strategy-level scaling (cvol, dyn) | **PLACEMENT DETERMINED** (S49-D2): cvol as a sleeve variant; dyn as a timing model (S13c) |

@@ -1,5 +1,11 @@
 # Changelog — notes/v2
 
+## 2026-10-18 (S4.9 done) — Owner decisions S49-D2 and S49-D5 (branch `stage/s04-method-library`)
+
+- **S49-D2 (= S48-D3), option (a):** momentum sleeves follow R-7. Long-only sleeves (winners, positive-trend set, factor-ETF rotation) are tilts inside the host class (0 ≤ x ≤ e). Zero-investment long–short sleeves only where shorting is permitted, and then they may be units of their own (DGU dataset 7): new R-7a exception, verified (no net class exposure added; gross positions and beta by look-through). Risk by look-through of current holdings. Base case without sleeve-level scaling (EQ-SPLIT-1 only; tilt size x set at S11 within the Policy Statement's active-risk bounds). Constant volatility a registered variant (long–short as published; long-only on the tilt size, derived V1). DM's dynamic weight a timing model for S13c, point-in-time only. ETF sleeves need constituent holdings (S6/S11).
+- **S49-D5, option (a):** signal-conditioned heuristics are composition rules for the V/V1 cells (no roster change), typed at S4.20, fixed per run and never agent-selectable, with duplicate detection at S4.16; research-lane constructions excluded.
+- `S4_SIGNAL_PC_COMPATIBILITY.md` (status DONE), `S4_MOMENTUM.md` (S48-D3 closed; strategy-level scaling placed), register EQ-SIG-4, `verification/s49_double_counting_dcells.py` (B5 added; PASS), RQ-17 annotated, S4_PLAN C.2 (S4.9 DONE; S4.10 NEXT), outline, HANDOFF. Not pushed.
+
 ## 2026-10-18 (S4.9 reviewed) — Owner review: EPO correction, double counting (R-7), D cells tested, Grinold-based alpha mapping (branch `stage/s04-method-library`)
 
 - **Owner decisions:** S49-D1 (V/V1 admissible; M once an S9d mapping is accepted; the seven tested-but-unsourced constructions to the **research lane**, ADR-0024 §1; C5 × O2 and D3 × O2 tested at S4.11/S4.12), S49-D3 (direction rules after the engine-level scaling; noted on EQ-SPLIT-1, binds at G4 with B-46), S49-D4 (register EQ-MAP-1 … 4; choose at S9d). S49-D2 and S49-D5 open.

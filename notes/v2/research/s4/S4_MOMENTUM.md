@@ -1,6 +1,6 @@
 # S4.8 Momentum signals — SIG-1 XSMOM, SIG-2 TSMOM, and their variants: construction records
 
-**Document status:** REVIEWED (2026-10-15). Owner decisions S48-D1, D2, D4, D5 and D6 decided 2026-10-15; S48-D3 deferred to S4.9 (§5.1). · **Basis:**
+**Document status:** REVIEWED (2026-10-15). Owner decisions S48-D1, D2, D4, D5 and D6 decided 2026-10-15; S48-D3 deferred to S4.9 (§5.1) and decided there as S49-D2 (2026-10-18). · **Basis:**
 - S4_PLAN §G (step S4.8; amendment 19, owner decision 2026-10-15) and §F (EQ-SIG-1 … 3);
 - `S4_METHODS_OUTLINE.md` §1 (nine-stage workflow) and §2 (S4.8);
 - `S4_TAXONOMY.md` (M.SIGNAL → A.DESCRIPTOR); ADR-0012 (signals are deterministic descriptors; μ only through an accepted mapping); ADR-0024 §3–§4 (parameter authority, allocation domains); ADR-0025 (admission ≠ evaluation); ADR-0026 §8 (evidence by use); ADR-0027 D3 (one authoritative risk model per problem).
@@ -238,7 +238,7 @@ The draft options are kept in §5.2. The discussion revised D1 and D6 and moved 
 - **S48-D2 (decided): TSMOM sizing volatility.**
   - MOP's EWMA (centre of mass 60 days, half-life 41.9 days, demeaned, ×261) is the reference and the reproduction oracle. In production σ comes from the authoritative short-horizon risk model chosen at S10 (ADR-0027 D3).
   - **Frequency:** daily returns where prices are synchronous and liquid; 2–5-day returns where they are not (different closing times, e.g. Oslo vs New York; stale fund NAVs; thin ETFs; PBL used 3-day returns for correlations). Units must match (annualised σ against an annual target), not frequencies: volatility precision improves with sampling frequency, drift precision does not (Paleologo pp. 38–39; `s48_trend_filters.py`). Daily data understate monthly risk when returns are positively autocorrelated (B&SC fn. 15).
-- **S48-D3 (deferred to S4.9): strategy-level scaling.** Constant-volatility (B&SC) and dynamic (DM) scaling apply only if momentum is held as its own sleeve. When momentum is a return signal, every portfolio is scaled once by the engine-level target (EQ-SPLIT-1, S47-D6). S4.9 decides whether momentum may exist as a sleeve. For long-only accounts a long–short sleeve is not tradable.
+- **S48-D3 (deferred to S4.9): strategy-level scaling.** Constant-volatility (B&SC) and dynamic (DM) scaling apply only if momentum is held as its own sleeve. When momentum is a return signal, every portfolio is scaled once by the engine-level target (EQ-SPLIT-1, S47-D6). S4.9 decides whether momentum may exist as a sleeve. For long-only accounts a long–short sleeve is not tradable. *[2026-10-18, decided as S49-D2]* Sleeves follow R-7 (`S4_SIGNAL_PC_COMPATIBILITY.md` §3a, §7): long-only sleeves are tilts inside their host class; zero-investment long–short sleeves only where shorting is permitted. Base case without sleeve-level scaling; constant volatility (B&SC) a registered variant (long–short as published; long-only on the tilt size); DM's dynamic weight a timing model (S13c), point-in-time only.
 - **S48-D4 (decided): SIG-1 outputs a rank-based score descriptor** (transformation per RQ-29 at S9c).
   - AMP eq. (1) rank weights are the reference factor-return construction; JT deciles are the reproduction oracle. Weights only through S4.9/S9d mappings.
   - XSMOM is long–short only as an academic *factor*. As a *signal* it serves long-only portfolios: top-ranked holdings, benchmark-relative tilts, or a long-only optimizer.
@@ -299,4 +299,4 @@ No published example is reproduced numerically: the governing papers' results ne
 |---|---|
 | SIG-1 XSMOM (+ variants R, F) | SOURCE REVIEWED · CONSTRUCTION EXTRACTED · construction checks PASS; specification decided (S48-D1, D4, D6) |
 | SIG-2 TSMOM (+ variants F, T) | SOURCE REVIEWED · CONSTRUCTION EXTRACTED · construction checks PASS; specification decided (S48-D1, D2, D5 in principle, D6) |
-| Strategy-level scaling (cvol, dyn) | CONSTRUCTION EXTRACTED; placement at S4.9 (S48-D3 deferred) |
+| Strategy-level scaling (cvol, dyn) | CONSTRUCTION EXTRACTED · **PLACEMENT DETERMINED** (S49-D2, 2026-10-18): cvol as a sleeve variant; dyn as a timing model (S13c) |

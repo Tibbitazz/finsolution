@@ -542,7 +542,7 @@ Notation: R_{i,a:b} = compounded return from the end of month a to the end of mo
 - **Canonical:**
   - cvol: σ̂²_t = 21·Σ_{j=0}^{125} r²_{d_{t−1}−j}/126; r^{cvol}_t = (σ_target/σ̂_t)·r_t, σ_target = 12%/yr;
   - dyn: w_t = (1/2λ)·μ_t/σ²_t, μ_t = γ̂₀ + γ̂_int·I_{B,t−1}·σ̂²_{m,t−1} (expanding window), σ²_t = 126-day WML variance (point-in-time form).
-- **Authority:** σ_target and λ are scale constants under EQ-SPLIT-1 (leverage cap L); the windows (126 days, 24-month bear indicator) are fixed V0. Placement decided at S4.9 (S48-D3 deferred).
+- **Authority:** σ_target and λ are scale constants under EQ-SPLIT-1 (leverage cap L); the windows (126 days, 24-month bear indicator) are fixed V0. Placement decided at S4.9 as S49-D2 (2026-10-18): constant volatility is a sleeve variant (long–short as published; long-only applied to the tilt size x inside the host class, derived V1); the dynamic rule is a timing model (S13c), point-in-time only. The base case has no sleeve-level scaling (EQ-SPLIT-1 only).
 - **Limits (verified):** no look-ahead; dyn = cvol when μ/σ is constant; DM-1 (exact maximiser μ/(σ² + μ²); gap 0.13% at monthly scale).
 
 ## EQ-SIG-5 Decompositions (diagnostic)
