@@ -1,5 +1,9 @@
 # Changelog — notes/v2
 
+## 2026-10-18 — RQ-18 discussion record (branch `stage/s04-method-library`)
+
+- RQ-18 annotated at the owner's request: one target across accounts placed by asset location; cross-account rebalancing friction (ASK withdrawal and transfer rules); swing position; measurement at combined level; pre-tax allocation with tax-aware location as baseline; cash outside the ASK. Pushed with `2972c46`, `562e10d`, `3c27e0a` (owner authorisation).
+
 ## 2026-10-18 (S4.10 done) — Owner decisions S410-D1 … D6 (branch `stage/s04-method-library`)
 
 - Owner accepted S410-D1 … D6 as recommended. S47-D3 closed: admissible anchors 1/N, 1/σ, market capitalisation (where data permit), `POL.benchmark` (when feasible); default `POL.benchmark` where declared and feasible, otherwise 1/σ; security sleeves by market capitalisation, otherwise 1/N.
