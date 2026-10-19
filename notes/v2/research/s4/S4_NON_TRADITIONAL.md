@@ -1,8 +1,8 @@
 # S4.12 Non-traditional methods: PC-D1 … PC-D4 and PC-B5
 
-*Part A (§0–§8): S4.12a, scenario and downside methods (DONE). Part B (§9–§10): S4.12b, PC-D4 Total Portfolio Approach (drafted; S412-D4 open).*
+*Part A (§0–§8): S4.12a, scenario and downside methods (DONE). Part B (§9–§10): S4.12b, PC-D4 Total Portfolio Approach (DONE; S412-D4 decided).*
 
-**Document status:** S4.12a REVIEWED · S4.12b DRAFT · **S4.12a DONE (2026-10-18)**, the first of two stops agreed by the owner on 2026-10-18 (S4.12b = PC-D4 TPA). Owner decisions S412-D1, D2, D3, D5 and the cross-cutting S412-D6 **accepted as recommended, option (a) in each, 2026-10-18** (§4). **S4.12b drafted 2026-10-18; decision S412-D4 open (§9.6).** · **Basis:** S4_PLAN §G (step S4.12); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template) and §2 (S4.12); `S4_SOURCE_REVIEWS_2026-10-08.md` §5–§6 (CUZ, BCP; S4.4); ADR-0024 §1, §3–§6; ADR-0025; ADR-0027 D3; S4.9 (R-3, S49-D1); S4.11 (S411-D4, S411-D5); EQ-SPLIT-1.
+**Document status:** S4.12a REVIEWED · S4.12b REVIEWED · **S4.12a DONE (2026-10-18)**, the first of two stops agreed by the owner on 2026-10-18 (S4.12b = PC-D4 TPA). Owner decisions S412-D1, D2, D3, D5 and the cross-cutting S412-D6 **accepted as recommended, option (a) in each, 2026-10-18** (§4). **S4.12b drafted 2026-10-18 and DONE 2026-10-19:** owner decision S412-D4 = option (a) (§9.6); the three TPA papers read after drafting (§9.8). · **Basis:** S4_PLAN §G (step S4.12); `S4_METHODS_OUTLINE.md` §1 (workflow, method-record template) and §2 (S4.12); `S4_SOURCE_REVIEWS_2026-10-08.md` §5–§6 (CUZ, BCP; S4.4); ADR-0024 §1, §3–§6; ADR-0025; ADR-0027 D3; S4.9 (R-3, S49-D1); S4.11 (S411-D4, S411-D5); EQ-SPLIT-1.
 
 **Related files:** `verification/s412_cvar_ru.py`, `s412_drawdown_tail.py`, `s412_downside_b5.py`, `s412b_tpa.py` (all PASS); existing `s44_drawdown_cdd.py`, `s44_cvar_budgets_bcp.py`; register EQ-NT-1 … EQ-NT-4, EQ-DS-1, EQ-DS-2, EQ-SCN-1 (`S4_EQUATION_REGISTER.md`); issues RU-1 … RU-3, SVDM-1, KS-1, BCP-4, BCP-5, CDD-3, CES-1, TB-1, TPA-1, TPA-2 (`ANG_ISSUES_REGISTER.md`).
 
@@ -411,7 +411,7 @@ Correlations and higher moments come from history. Verified: the recentred set h
 | Ang, Brandt & Denison, *Review of the Active Management of the Norwegian Government Pension Fund Global*, 20 Jan 2014 | Report · `da26aa3090d0` | §III.C and App. B–C re-read 2026-10-18 (in full 2026-10-02) | ANG's cited source: the TPA concept (Reference Portfolio, funding mix, active-risk appetite) |
 | AQR Portfolio Solutions Group, "Total Portfolio Approach: A Quant Lens", *Alternative Thinking* 2026 Issue 2 | `16bf8f961f21` | pp. 3–16 re-read 2026-10-18 | Weight mechanics (owner decision D-5): appraisal ratio, fns. 11–12 |
 | Gerard, BI course note GRA 6531 (13 Jan 2026) | `7295450f59a2` | Read; secondary | Teaching derivation of the single-fund case; nothing beyond T&B and AQR |
-| Gilmore & Simonian 2025 (*JPM* 51(10)); Cavaglia, Han & Seshadri 2026 (*JPM* 52(6), cited by AQR); Elkamhi & Lee 2025 (*JPM* 51(8)) | — | Not in hand | Possible sources for a constrained TPA formulation (§10) |
+| Gilmore & Simonian 2025 (*JPM* 51(10)); Cavaglia, Han & Seshadri 2026 (*JPM* 52(6), cited by AQR); Elkamhi & Lee 2025 (*JPM* 51(8)) | — | Not in hand | Possible sources for a constrained TPA formulation (§10) *[2026-10-19]* Obtained (owner upload) and read after drafting: §9.8 |
 
 ### 9.2 What each source specifies
 
@@ -509,7 +509,9 @@ Universe: equity and bonds (reference 60/40) plus HY, real estate, commodities, 
 - Its defining content is that the factor exposure is pinned to the owner's reference and the whole active budget goes to unspanned returns.
 - It coincides with B1 only in the unconstrained, cash-funded, factor-efficient-reference case (TPA-4).
 
-### 9.6 Owner decision (stage 6) — open
+### 9.6 Owner decision (stage 6)
+
+*[2026-10-19]* **Owner decision: S412-D4 option (a).** TPA-R (V1) is the family-D candidate as specified in §9.4 (formal admission at G4 under ADR-0025, like every roster method), and the funding report (β, α, AR against `POL.benchmark`, funding set stated) becomes a lens on every candidate card (S4.16). In the discussion the owner first proposed following Gilmore & Simonian. After the three uploaded papers and ANG's own use of TPA were reviewed (§9.8), the choice was restated as A (framework and funding lens only), B (A plus the TPA-R candidate) and C (a Gilmore & Simonian multi-objective candidate; not recommended, because it duplicates the CIO's multi-criteria role and its objectives and weights are unspecified). The owner chose **B**, which is option (a) below; the letters differ only because of that restatement.
 
 | ID | Decision | Options | Recommendation |
 |---|---|---|---|
@@ -527,7 +529,26 @@ Universe: equity and bonds (reference 60/40) plus HY, real estate, commodities, 
 
 | Method | Status |
 |---|---|
-| PC-D4 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level and V1); specification open (S412-D4) |
+| PC-D4 | SOURCE REVIEWED · MATHEMATICS EXTRACTED · COMPUTATION VERIFIED (source level and V1); specification decided (S412-D4 (a), 2026-10-19) |
+
+### 9.8 Sources read after drafting: the three TPA papers and ANG's own use (2026-10-18/19)
+
+The owner uploaded the three papers the gap memo listed as optional (§10 item 4). They were read in full, with ANG's own treatment of TPA re-checked against both paper versions, before S412-D4 was decided.
+
+| Source | Version · md5 (zip / pdf) | What it says about TPA | Effect on §9.4 |
+|---|---|---|---|
+| Gilmore & Simonian, "Some Practical Considerations for the Total Portfolio Approach to Pension Fund Management", *JPM* 51(10):40–48, 2025 (*Future of Asset Management 2025*) | Owner upload · `9f42284f7dd0` / `a2598d982802` | A holistic framework: one team, total-portfolio objectives, risk factors throughout. Its tools are multi-objective optimisation (a Pareto frontier over plan goals), dimension reduction and factor investing. It gives no TPA weight rule, and it cautions that anchoring to a reference portfolio, and trying to beat it, can pull attention from the plan's own goals | None. A multi-objective candidate would duplicate the CIO's multi-criteria role and needs objectives and importance weights the paper does not give (option C, not chosen) |
+| Elkamhi & Lee, "Total Portfolio Approach", *JPM* 51(8), 2025 (*Portfolio Manager Perspectives 2025*, pp. 110 ff.) | Owner upload · `9a04b3d83470` / `8f7d10133090` | TPA as a mindset of preparedness rather than a strategy: governance through guardrails and ranges, dynamic positioning, factor-based tools. No weight rule | None. Guardrails and ranges are Policy Statement bounds; dynamic, regime-aware positioning stays in S9 and S13 |
+| Cavaglia, Han & Seshadri, "Applying the Appraisal Ratio and Style Analysis to Total Portfolio Management", *JPM* 52(6), April 2026 (pp. 74 ff.) | Owner upload · `debdd580831d` / `017eb7e9302a` | A reference portfolio set by the board; the appraisal ratio of a candidate regressed on the reference as the key TPA metric, with SR² additivity; the single-candidate weight w\* = w₀/(1 + (1 − β)w₀), w₀ = (AR/SR_P)(σ_P/σ_ε); style analysis as a complement. The reference need not be efficient. The AR section (pp. 75–76) cites Hecht (2014) and Kepos (2018) for extending the base portfolio to any mix of return drivers | Supports the funding-report lens directly: per-asset AR against the reference. The weight is T&B's one-asset case, funded from the reference; verified against the mix's Sharpe ratio (`s412b_tpa.py`, 453 cases). No new variant |
+
+**ANG's own use of TPA (re-checked in both versions):**
+- **v2 (21 Sep 2026):** one Exhibit 3 row, "Total Portfolio Approach (TPA) two-factor (equity and bonds)", cited to ABD 2014. One sentence in §3.3 (p. 10) says TPA is gaining popularity with institutions and is not bound by traditional asset classes, citing ABD and Gilmore & Simonian. No formulation and no code.
+- **April 2026 draft:** the same roster row (Exhibit 4 there), named "Total Portfolio Allocation" (ANG-06); the text cites ABD only. Vote and weight results identical.
+- **Results:** 6th of 21 in the agents' vote; 2.7% of the final ensemble (Exhibit 8), the lowest weight, tied with the Adversarial Diversifier. No TPA weights are shown.
+- **IPS:** ex-ante tracking error against the 60/40 benchmark must not exceed 6%, a hard constraint on the final portfolio. The engine's counterpart is `POL.benchmark` with the Policy Statement active-risk budget, which TPA-R uses.
+- **Third-party implementation:** TPA is missing (`S4_GITHUB_IMPL_REVIEW.md`, PC roster row).
+
+**Conclusion.** All three papers treat TPA as a framework, not a construction method; none gives a constrained TPA weight rule. ANG's label is reproducible only through ABD. Nothing read here changes TPA-R (V1); Cavaglia et al. strengthen the case for the funding-report lens.
 
 ---
 
@@ -549,5 +570,6 @@ Universe: equity and bonds (reference 60/40) plus HY, real estate, commodities, 
    - Gilmore & Simonian 2025 (cited in ANG's text) may describe the practice ANG intended.
    - Cavaglia, Han & Seshadri 2026 and Elkamhi & Lee 2025 may contain a constrained or univariate appraisal-ratio formulation.
    - None is needed for the mathematics above. If obtained, they are read against §9.4 and may add a variant.
+   - *[2026-10-19]* **Closed.** All three obtained (owner upload) and read (§9.8). None gives a constrained TPA weight rule; Cavaglia et al.'s single-candidate weight is T&B's one-asset case (verified). No variant added.
 5. **Distinctness:** passed (§9.5). TPA-R is not a relabelled B1, B7 or factor-MVO. It is Roll's problem with the owner's systematic exposure held fixed (TPA-3).
 

@@ -1,5 +1,17 @@
 # Changelog — notes/v2
 
+## 2026-10-19 (S4.12b done) — Owner decision S412-D4; methodological review records (branch `stage/s04-method-library`)
+
+- **S412-D4 = option (a)** (chosen as "B" in the discussion, where the options were restated as A framework and lens only, B A plus the TPA-R candidate, C a Gilmore & Simonian multi-objective candidate): TPA-R (V1) is the family-D candidate as specified in `S4_NON_TRADITIONAL.md` §9.4, and the funding report (β, α, AR against `POL.benchmark`, funding set stated) becomes a lens on every candidate card (S4.16). Formal admission at G4 (ADR-0025).
+- **The three TPA papers** (owner uploads) read and recorded: Gilmore & Simonian 2025, Elkamhi & Lee 2025, Cavaglia, Han & Seshadri 2026 (`S4_NON_TRADITIONAL.md` §9.8; inventory §21). All treat TPA as a framework, and none gives a constrained weight rule. Cavaglia et al.'s single-candidate weight is T&B's one-asset case, now verified in `verification/s412b_tpa.py` (PASS, 453 cases). ANG's own use re-checked in both versions (one roster row, one sentence, no formulation or code; 6th of 21 in the vote, 2.7% of the ensemble). Gap memo §10 item 4 closed; ANG-15 and ANG-22 resolved.
+- **Owner's methodological review (2026-10-19), recorded only where it adds to existing governance:**
+  - RQ-08: no text-to-signal capability is built and none is prohibited; three revisit triggers.
+  - RQ-28: cash-based operating profitability registered as a quality candidate.
+  - RQ-30: within- and across-industry components registered as a comparison-universe candidate.
+  - S4.15b T6 and T12: sources located (inventory §22, bibliographic records only).
+  - The remaining proposals are covered by existing governance or held for a later stage, and are not recorded here.
+- S4_PLAN C.2 (S4.12b DONE; S4.13 NEXT), outline, verification README, HANDOFF. Pushed with `e50fed5`, `11c6fd0` and `5e671fe` (owner authorisation).
+
 ## 2026-10-18 (S4.12b) — Total Portfolio Approach drafted (branch `stage/s04-method-library`)
 
 - `S4_NON_TRADITIONAL.md` Part B. Treynor & Black 1973 read in full. ABD §III.C and App. C and AQR pp. 3–16 re-read. Gerard's course note read (secondary).

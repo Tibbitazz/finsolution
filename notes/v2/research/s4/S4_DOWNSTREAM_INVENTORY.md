@@ -1,6 +1,6 @@
 # S4.15b — Downstream method inventory (rebalancing, implementation, timing, tactical)
 
-**Document status:** DRAFT (inventory only; §4–§5 added 2026-10-07) · **Prepared:** 2026-10-02 · **Basis:** ADR-0026 (ACCEPTED 2026-10-08); ADR-0012; RQ-17, RQ-35, RQ-44, RQ-53
+**Document status:** DRAFT (inventory only; §4–§5 added 2026-10-07; T6/T12 source leads added 2026-10-19) · **Prepared:** 2026-10-02 · **Basis:** ADR-0026 (ACCEPTED 2026-10-08); ADR-0012; RQ-17, RQ-35, RQ-44, RQ-53
 
 **Rules:**
 - **Inventory only.** No method here is admitted, specified or reviewed mathematically in S4.
@@ -17,13 +17,13 @@
 | T3 | Short-horizon reversal / mean reversion | Timing evidence · tactical rule | Jegadeesh 1990 and Lehmann 1990 (AVAILABLE, located; individual stocks only) | S13d | Registered — **family question first** (§3) |
 | T4 | Volatility-conditioned scaling | Exposure rule | Moreira–Muir 2017 (AVAILABLE); Barroso–Santa-Clara 2015 (status per S4.0) | S11, S13c | Registered |
 | T5 | Transaction-cost-aware implementation | Implementation method | Perold 1988 (AVAILABLE); Gârleanu–Pedersen 2013 (AVAILABLE, not re-read); others not obtained | S13b–e | Registered *[2026-10-07]* Candidate plan menu and controls: `S4_INPUTS_2026-10-07.md` §6.7. |
-| T6 | Moving-average / trend filters | Timing evidence · regime evidence | Not obtained | S9a / S13d | Registered |
+| T6 | Moving-average / trend filters | Timing evidence · regime evidence | Not obtained *[2026-10-19]* Located, not obtained (`S4_0_SOURCE_INVENTORY.md` §22): Brock, Lakonishok & LeBaron 1992; Sullivan, Timmermann & White 1999 and Bajgrowicz & Scaillet 2012 (data-snooping-corrected re-tests, the latter net of costs); Lo, Mamaysky & Wang 2000 (patterns); Zhu & Zhou 2009; Neely et al. 2014; Han, Yang & Zhou 2013; survey Park & Irwin 2007 | S9a / S13d | Registered |
 | T7 | Event-aware implementation | Implementation constraint | Not identified | S13e | Registered (source gap) *[2026-10-07]* Rule candidate: scheduled events fixed in advance only; outcome-selected events stay descriptive (§6.9 of the memo). |
 | T8 | Statistical / ML timing evidence | Timing-evidence model | Not obtained | S13d, S7 | Registered; **only if a defined decision problem survives the family screen** |
 | T9 | Staged execution | Implementation method | Not obtained | S13e | Registered *[2026-10-07]* Staged and conditional-with-deadline plans are in the candidate menu (memo §6.7). |
 | T10 | Deterministic rebalancing rules | Rebalancing rule | Perold & Sharpe 1988 (AVAILABLE); Gârleanu–Pedersen 2013 (local) | S13b (RQ-44) | Registered |
 | T11 | Stop-loss / exit rules | Tactical rule (tactical mandate only) | Not obtained | S13d | Registered |
-| T12 | Backtest-overfitting controls | Evaluation method | Harvey–Liu–Zhu (AVAILABLE); others not obtained | S7 | Registered |
+| T12 | Backtest-overfitting controls | Evaluation method | Harvey–Liu–Zhu (AVAILABLE); others not obtained *[2026-10-19]* Located, not obtained (§22 of the source inventory): White 2000; Hansen 2005; Romano & Wolf 2005; Benjamini & Hochberg 1995; Bailey & López de Prado 2014 (deflated Sharpe ratio); Bailey et al. 2017 (probability of backtest overfitting) | S7 | Registered |
 
 ## 2. ML trading specification (owner-supplied, 2026-10-02): disposition (owner D-D)
 

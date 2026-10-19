@@ -1,6 +1,6 @@
 # S4.0 — Source and artefact inventory
 
-**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources; §19: the S4.12a sources read from the existing library; §20: the S4.12b TPA sources) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
+**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources; §19: the S4.12a sources read from the existing library; §20: the S4.12b TPA sources); 2026-10-19 (§21: the three TPA papers, owner uploads; §22: sources located for S4.15b families T6 and T12 and two S9c candidates) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
 
 **Scope of S4.0:**
 - Locate, identify and classify every source and prior artefact S4 needs.
@@ -339,5 +339,39 @@ Identity checked against title page, page count and content; md5 of the PDF insi
 | Ang, Brandt & Denison (2014) | In hand (§ PC-D4 row) · §III.C and App. B–C re-read 2026-10-18 | md5 da26aa3090d0 | EQ-NT-4; TPA-1, TPA-2 |
 | AQR (2026), *Alternative Thinking* Issue 2 | In hand · pp. 3–16 re-read 2026-10-18 | md5 16bf8f961f21 | EQ-NT-4 (fns. 11–12) |
 | Gerard, GRA 6531 note (2026) | SECONDARY · read 2026-10-18 | md5 7295450f59a2 | Teaching derivation; nothing new |
-| Cavaglia, Han & Seshadri (2026), "Applying the Appraisal Ratio and Style Analysis to Total Portfolio Management", *JPM* 52(6); Elkamhi & Lee (2025), "Total Portfolio Approach", *JPM* 51(8) (both cited by AQR) | MISSING · optional | — | PC-D4 variants (gap memo §10) |
+| Cavaglia, Han & Seshadri (2026), "Applying the Appraisal Ratio and Style Analysis to Total Portfolio Management", *JPM* 52(6); Elkamhi & Lee (2025), "Total Portfolio Approach", *JPM* 51(8) (both cited by AQR) | MISSING · optional | — | PC-D4 variants (gap memo §10) *[2026-10-19]* Obtained with Gilmore & Simonian 2025: §21 |
 
+## 21. Sources added 2026-10-19 (owner uploads: the three TPA papers; S4.12b)
+
+Each arrived as a zip and was extracted into its own empty scratch directory before reading. Read 2026-10-18 for the S412-D4 discussion; findings in `S4_NON_TRADITIONAL.md` §9.8.
+
+| Source | Status | Location / identity (md5 zip / pdf) | Maps to |
+|---|---|---|---|
+| Gilmore & Simonian (2025), "Some Practical Considerations for the Total Portfolio Approach to Pension Fund Management", *JPM* 51(10):40–48 (*Future of Asset Management 2025*) | AVAILABLE (published) · read in full | `Finsol Research Papers/Some Practical Considerations for the Total Portfolio Approach to Pension Fund Management.pdf.zip`, 10 pp., `9f42284f7dd0` / `a2598d982802` | PC-D4 (§9.8); ANG-15, ANG-22 (cited in ANG §3.3) |
+| Elkamhi & Lee (2025), "Total Portfolio Approach", *JPM* 51(8) (*Portfolio Manager Perspectives 2025*, pp. 110 ff.) | AVAILABLE (published) · read in full | `Finsol Research Papers/Total Portfolio Approach.pdf.zip`, 20 pp., `9a04b3d83470` / `8f7d10133090` | PC-D4 (§9.8) |
+| Cavaglia, Han & Seshadri (2026), "Applying the Appraisal Ratio and Style Analysis to Total Portfolio Management", *JPM* 52(6), April 2026 (pp. 74 ff.) | AVAILABLE (published) · read in full; AR section pp. 75–76 re-checked 2026-10-19 | `Finsol Research Papers/Applying the Appraisal Ratio and Style Analysis to Total Portfolio Management.pdf.zip`, 26 pp., `debdd580831d` / `017eb7e9302a` | PC-D4 (§9.8); funding-report lens (S4.16); single-candidate weight verified (`s412b_tpa.py`) |
+
+## 22. Sources located 2026-10-19 (bibliographic records only; not obtained, not read)
+
+Identified during the owner's methodological review of 2026-10-19 (areas 3, 5 and 8). Status `MISSING — LOCATED`: identity and venue checked against a publisher, index or author record; no copy in the library. They are evidence leads for the stages named, not adopted methods.
+
+| Source | Status | Location | Maps to |
+|---|---|---|---|
+| Brock, Lakonishok & LeBaron (1992), "Simple Technical Trading Rules and the Stochastic Properties of Stock Returns", *JF* 47(5):1731–1764 | MISSING — LOCATED | [RePEc](https://ideas.repec.org/a/bla/jfinan/v47y1992i5p1731-64.html) | S4.15b T6; RQ-35 |
+| Sullivan, Timmermann & White (1999), "Data-Snooping, Technical Trading Rule Performance, and the Bootstrap", *JF* 54(5):1647–1691 | MISSING — LOCATED | [LSE FMG discussion paper 303](https://ideas.repec.org/p/fmg/fmgdps/dp303.html) | T6, T12; RQ-35 |
+| Lo, Mamaysky & Wang (2000), "Foundations of Technical Analysis", *JF* 55(4):1705–1765 | MISSING — LOCATED | [NBER w7613](https://www.nber.org/papers/w7613) | T6 (chart patterns); RQ-35 |
+| Park & Irwin (2007), "What Do We Know About the Profitability of Technical Analysis?", *J. Economic Surveys* 21(4):786–826 | MISSING — LOCATED | [RePEc](https://ideas.repec.org/a/bla/jecsur/v21y2007i4p786-826.html) | T6 (survey) |
+| Zhu & Zhou (2009), "Technical Analysis: An Asset Allocation Perspective on the Use of Moving Averages", *JFE* 92(3):519–544 | MISSING — LOCATED | [Author record](https://profiles.wustl.edu/en/publications/technical-analysis-an-asset-allocation-perspective-on-the-use-of-/) | T6 |
+| Bajgrowicz & Scaillet (2012), "Technical Trading Revisited: False Discoveries, Persistence Tests, and Transaction Costs", *JFE* 106(3):473–491 | MISSING — LOCATED | [RePEc](https://ideas.repec.org/a/eee/jfinec/v106y2012i3p473-491.html) | T6, T12; RQ-35 |
+| Han, Yang & Zhou (2013), "A New Anomaly: The Cross-Sectional Profitability of Technical Analysis", *JFQA* 48(5):1433–1461 | MISSING — LOCATED | [RePEc](https://ideas.repec.org/a/cup/jfinqa/v48y2013i05p1433-1461_00.html) | T6 |
+| Neely, Rapach, Tu & Zhou (2014), "Forecasting the Equity Risk Premium: The Role of Technical Indicators", *Management Science* 60(7):1772–1791 | MISSING — LOCATED | [Author record](https://profiles.wustl.edu/en/publications/forecasting-the-equity-risk-premium-the-role-of-technical-indicat/) | T6; S9a |
+| White (2000), "A Reality Check for Data Snooping", *Econometrica* 68(5):1097–1126 | MISSING — LOCATED | Index record (Econometrica) | T12; S7 |
+| Hansen (2005), "A Test for Superior Predictive Ability", *J. Business & Economic Statistics* 23(4):365–380 | MISSING — LOCATED | Index record (JBES) | T12; S7 |
+| Romano & Wolf (2005), "Stepwise Multiple Testing as Formalized Data Snooping", *Econometrica* 73(4):1237–1282 | MISSING — LOCATED | [Econometric Society](https://www.econometricsociety.org/publications/econometrica/browse/2005/07/01/stepwise-multiple-testing-formalized-data-snooping) | T12; S7 |
+| Benjamini & Hochberg (1995), "Controlling the False Discovery Rate", *JRSS B* 57(1):289–300 | MISSING — LOCATED | Index record (JRSS B) | T12; S7 |
+| Bailey & López de Prado (2014), "The Deflated Sharpe Ratio", *JPM* 40(5):94–107 | MISSING — LOCATED (open working paper) | [SSRN 2460551](https://papers.ssrn.com/abstract=2460551) | T12; RQ-37 D-4 |
+| Bailey, Borwein, López de Prado & Zhu (2017), "The Probability of Backtest Overfitting", *J. Computational Finance* 20(4):39–69 | MISSING — LOCATED (open working paper) | [SSRN 2326253](https://papers.ssrn.com/abstract=2326253) | T12; S7 |
+| Alford (1992), "The Effect of the Set of Comparable Firms on the Accuracy of the Price-Earnings Valuation Method", *J. Accounting Research* 30(1):94–108 | MISSING — LOCATED | [RePEc](https://ideas.repec.org/a/bla/joares/v30y1992i1p94-108.html) | RQ-30 note (pricing accuracy, not return prediction) |
+| Liu, Nissim & Thomas (2002), "Equity Valuation Using Multiples", *J. Accounting Research* 40(1):135–172 | MISSING — LOCATED | [RePEc](https://ideas.repec.org/a/bla/joares/v40y2002i1p135-172.html) | RQ-30 note (pricing accuracy, not return prediction) |
+| Asness, Porter & Stevens (2000), "Predicting Stock Returns Using Industry-Relative Firm Characteristics", AQR working paper (not peer-reviewed) | MISSING — LOCATED (open) | [AQR](https://www.aqr.com/Insights/Research/Working-Paper/Predicting-Stock-Returns-Using-IndustryRelative-Firm-Characteristics) | S9c candidate: within- and across-industry components (RQ-30) |
+| Ball, Gerakos, Linnainmaa & Nikolaev (2016), "Accruals, Cash Flows, and Operating Profitability in the Cross Section of Stock Returns", *JFE* 121(1):28–45 | MISSING — LOCATED (author copy) | [Author copy](https://faculty.tuck.dartmouth.edu/images/uploads/faculty/joseph-gerakos/Ball,_Gerakos,_Linnainmaa,_et_al._2016.pdf) | S9c candidate: cash-based operating profitability (RQ-28) |

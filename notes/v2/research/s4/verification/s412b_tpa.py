@@ -1,7 +1,8 @@
 """S4.12b source reproduction and distinctness test for PC-D4 (Total Portfolio Approach): Treynor & Black (J. Business
 46(1), 1973) eqs. (10)-(32) and p. 78; AQR (Alternative Thinking 2026 Issue 2) fns. 11-12; Ang, Brandt & Denison (2014)
 eq. (4) and App. C (A.3); the reference-relative TPA candidate (TPA-R) and its comparison with PC-B1, B1 with a tracking-error
-budget, Roll's benchmark-relative optimum and Anchored EPO. Findings TB-1, TPA-1, TPA-2."""
+budget, Roll's benchmark-relative optimum and Anchored EPO. Findings TB-1, TPA-1, TPA-2. Added 2026-10-19: Cavaglia, Han &
+Seshadri (JPM, April 2026) p. 76 single-candidate appraisal-ratio weight."""
 import numpy as np, warnings
 from scipy.optimize import minimize, brentq
 warnings.filterwarnings('ignore'); np.seterr(all='ignore')
@@ -117,7 +118,21 @@ lam_ = 2.5; mf_t = lam_ * Sf @ np.array([.6, .4]); mu_t = Bm @ mf_t + alpha_mode
 x_tan = np.linalg.solve(S, mu_t)
 Dnr = D[2:, 2:]; act = np.zeros(N); act[2:] = np.linalg.solve(Dnr, alpha_model[2:]); act[:2] = -Bm[2:].T @ act[2:]
 assert np.allclose(x_tan, lam_ * wref + act)                                   # tangency = lam * reference + funded active portfolio
+# [2026-10-19] Cavaglia, Han & Seshadri (JPM, April 2026) p. 76: one candidate A against a reference P, r_A = alpha + beta R_P + eps.
+# The optimised mix has SR^2 = SR_P^2 + AR^2, at w* = w0 / (1 + (1 - beta) w0) with w0 = (AR / SR_P)(sigma_P / sigma_eps):
+# T&B's single-asset case, funded from the reference (no new variant). Checked against the mix's Sharpe ratio directly.
+n_cav = 0
+for _ in range(500):
+    mP, sP, b_, a_, se_ = rng.uniform(.02, .08), rng.uniform(.08, .2), rng.uniform(-.5, 2), rng.uniform(-.03, .05), rng.uniform(.03, .25)
+    w0 = (a_ / se_) / (mP / sP) * sP / se_
+    if 1 + (1 - b_) * w0 < .1: continue                                         # normalisation to a sum-to-one mix must be positive
+    ws = w0 / (1 + (1 - b_) * w0)
+    sr = lambda w: (w * (a_ + b_ * mP) + (1 - w) * mP) / np.sqrt(((1 - w + w * b_) * sP) ** 2 + (w * se_) ** 2)
+    assert abs(sr(ws) ** 2 - ((mP / sP) ** 2 + (a_ / se_) ** 2)) < 1e-12 and sr(ws) >= max(sr(ws - 1e-4), sr(ws + 1e-4))
+    n_cav += 1
+assert n_cav > 300
 print(f"PASS TPA S4.12b: T&B (10)-(17) = Markowitz, (19) squared ratios add (TB-1), (20), (25), (28)-(32), p. 78 halving; "
       f"AQR fns. 11-12; ABD (4), (A.3); TPA-1 (non-additive total risk), TPA-2 (funding set changes alpha: AR "
       f"{alpha_model[7]:.3f} -> {alpha_abd[7]:.4f}); TPA-R = Roll + exposure neutrality; distinct at TE 3%: "
-      f"{ {k: round(v, 2) for k, v in gaps.items()} }; = tangency only unconstrained with a factor-efficient reference and cash funding")
+      f"{ {k: round(v, 2) for k, v in gaps.items()} }; = tangency only unconstrained with a factor-efficient reference and cash funding; "
+      f"Cavaglia et al. p. 76 single-candidate weight = T&B one-asset case ({n_cav} cases)")
