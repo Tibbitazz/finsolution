@@ -1,5 +1,10 @@
 # Changelog — notes/v2
 
+## 2026-10-19 — HANDOFF refreshed for hand-over (branch `stage/s04-method-library`)
+
+- Stale entries corrected: last push date; the `2135803` commit hash (was "(latest)"); RQ-57 in the register range; S4_PLAN amendments 1–20; the S4.12 source issues, equations and oracle script in the file table and §10.7; DR-11 in §6 item 1.
+- S4.12b carried through: TPA-R and the funding report in §4.6 and as a §10.8 rule; fit verdicts for the three TPA uploads in §7 (Cavaglia et al. FITS; Gilmore & Simonian and Elkamhi & Lee PARTIAL); S4.12 governing sources in §7; the TPA results (TB-1, TPA-2, distinctness) in §8. No decision changed. Pushed (owner authorisation).
+
 ## 2026-10-19 (S4.12b done) — Owner decision S412-D4; methodological review records (branch `stage/s04-method-library`)
 
 - **S412-D4 = option (a)** (chosen as "B" in the discussion, where the options were restated as A framework and lens only, B A plus the TPA-R candidate, C a Gilmore & Simonian multi-objective candidate): TPA-R (V1) is the family-D candidate as specified in `S4_NON_TRADITIONAL.md` §9.4, and the funding report (β, α, AR against `POL.benchmark`, funding set stated) becomes a lens on every candidate card (S4.16). Formal admission at G4 (ADR-0025).
