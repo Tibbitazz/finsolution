@@ -1,6 +1,8 @@
 # FinSol — working handoff (single entry point)
 
-**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-19 · **Branch:** `stage/s04-method-library` (pushed to origin 2026-10-19, owner-authorised; no PR) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
+**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-24 · **Branch:** `stage/s04-method-library` (this handoff pushed to origin 2026-10-24, owner-authorised; no PR) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
+
+**Committed versus uncommitted work.** This handoff is committed. §11 records work done after `76068d8` that is **not in the repository yet**: two untracked S4.13 drafts on the owner's machine, their read-only review, a correction plan awaiting authorisation, analyses delivered to the owner, and owner decisions that are pending. Nothing in §11 is binding; the documents it points to still govern (01 §2). Updates inside §1–§10 are dated *[2026-10-21]* or later.
 
 **What this file is.** The one document to read first, by the owner, a new assistant session, or the developer. It **indexes and summarises** the authoritative documents; it never overrides them. If this file and a document it points to disagree, the pointed-to document wins:
 - `ACCEPTED` ADRs win over `STABLE` documents, which win over `DRAFT` documents (01 §2);
@@ -53,6 +55,10 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 - **Agentic learning is a priority (2026-10-07).** Design it in from S4/S8; keep gated promotion (§4.3).
 - **Claim labels:** `VERIFIED-SOURCE` (page cited; scope never wider than the source) · `VERIFIED-SECONDARY` · `VERIFIED-DERIVATION` · `VERIFIED-REPO` · `INFERENCE` · `HYPOTHESIS` · `UNVERIFIED`.
 - **ADR statement labels:** [SRC] / [AD] / [GR] / [DEF].
+- *[2026-10-21]* **Questions are for opinion (2026-10-08).** An owner question gets a sourced opinion, not a document change; change documents only when the owner asks or approves an option, and say explicitly when the existing plan already covers something.
+- *[2026-10-21]* **Check coverage before proposing (2026-10-19).** Before labelling any research-derived enhancement "Adopt", check the actual governance text (ADRs, 06 §5 contract fields, RQ notes, S4_PLAN rows, the S4.15b inventory, equation lists), not titles. On 2026-10-19 nearly all of eight proposals (E-1 … E-8) duplicated existing rules, and some were bans on things nobody had proposed.
+- *[2026-10-21]* **Structural checks are not methodological validity (2026-10-20).** A passing registry checker or a complete table does not show that the methodological choices are right; verify definitions and mathematics first, and say what a checker cannot check.
+- *[2026-10-21]* **Read-only reviews stay read-only.** When the owner asks for a review or a plan, change nothing until the owner authorises the plan.
 
 ### 2.3 Security and isolation (never violate)
 - **No personal financial data in the repository.** The local profile lives in git-ignored `local/`. Use synthetic data for tests. Do not resume the owner's questionnaire unless asked. Illustrations use synthetic capital values.
@@ -132,7 +138,9 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `11c6fd0` | **S4.12a DONE:** owner accepted S412-D1, D2, D3, D5, D6, option (a) in each (min-CVaR on demeaned scenarios, β = 0.95; relative compounded MaxDD in convex form; ERC-CVaR by the convex form, MCC a variant; max Sortino with MAR = cash rate; scenario location rule: demeaned for μ-free uses, centred on S9's μ otherwise, never raw historical); S4.9 annotated; ANG-02/18/39/40 resolved; S4.12b NEXT. **pushed 2026-10-19** with the S4.12b decision commit |
 | `5e671fe` | **S4.12b drafted:** `S4_NON_TRADITIONAL.md` Part B (PC-D4 TPA-R record; distinctness test passed against B1, B1 + TE, Roll and Anchored EPO; TPA gap memo); register EQ-NT-4; `verification/s412b_tpa.py` (PASS); TB-1, TPA-1, TPA-2; ANG-06/15/22 annotated; inventory §20; decision S412-D4 open. **pushed 2026-10-19** with the S4.12b decision commit |
 | `a9a2689` | **S4.12b DONE:** owner decision S412-D4 = option (a) (chosen as "B" in the discussion): TPA-R (V1) plus the funding report on every candidate card; Gilmore & Simonian 2025, Elkamhi & Lee 2025 and Cavaglia, Han & Seshadri 2026 read (`S4_NON_TRADITIONAL.md` §9.8; inventory §21; Cavaglia's single-candidate weight verified in `s412b_tpa.py`); ANG-15/22 resolved. Discussion records from the owner's methodological review (2026-10-19): RQ-08 (no text-to-signal capability, three revisit triggers), RQ-28/RQ-30 (two S9c candidates), S4.15b T6/T12 sources located (inventory §22). S4.13 NEXT. **Pushed 2026-10-19 with `e50fed5`, `11c6fd0`, `5e671fe`** (owner authorisation) |
-| (latest) | HANDOFF refreshed for hand-over: last push date; `2135803` hash; RQ-57; amendments 1–20; S4.12 issues, equations and scripts; TPA in §4.6, §7 (fit verdicts for the three TPA uploads), §8, §10.7 and §10.8 (funding report rule); DR-11 in §6. **Pushed 2026-10-19** (owner authorisation) |
+| `76068d8` | HANDOFF refreshed for hand-over: last push date; `2135803` hash; RQ-57; amendments 1–20; S4.12 issues, equations and scripts; TPA in §4.6, §7 (fit verdicts for the three TPA uploads), §8, §10.7 and §10.8 (funding report rule); DR-11 in §6. **Pushed 2026-10-19** (owner authorisation) |
+| *(uncommitted, 2026-10-21)* | **S4.13 drafted 2026-10-19:** `research/s4/S4_RISK_DEPENDENCIES.md` and `research/s4/verification/s413_risk_dependencies.py` (PASS), both untracked. Read-only review 2026-10-20: defensible after corrections, not acceptable as drafted. Correction plan awaiting owner authorisation (§11.4). Nothing committed or pushed since `76068d8` |
+| (latest) | **HANDOFF published 2026-10-24** (owner request): §11 adds the work since `76068d8` (methodological review E-1 … E-8, Hecht 2014 check, F-1 analysis, S4.13 draft, review and correction plan, checker limitations, the two 2026-10-24 analyses). Only `notes/v2/HANDOFF.md` changed; the S4.13 drafts remain uncommitted |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -162,8 +170,9 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `S4_ANCHOR_BENCHMARK.md` | **S4.10 (DONE 2026-10-18; S410-D1 … D6):** six objects (anchor slot, anchor source, benchmark definition, benchmark weights/returns, comparison benchmark, simple control); anchor contract AC-1 … AC-7; account and household feasibility (EQ-FEAS-1); tracking error (Roll 1992, Jorion 2003); GRS benchmark efficiency |
 | `S4_RISK_STRUCTURED.md` | **S4.11 (DONE 2026-10-18; S411-D1 … D5):** GMV, ERC, HRP (V1 tree split), MDP, MinCorr records; verified relations and implied beliefs; failure records |
 | `S4_NON_TRADITIONAL.md` | **S4.12a (DONE 2026-10-18; S412-D1, D2, D3, D5, D6, option (a)); S4.12b Part B (DONE 2026-10-19; S412-D4 option (a): TPA-R, distinctness test, gap memo, the three TPA papers §9.8):** CVaR, drawdown, tail-risk parity and mean–downside records; scenario location (NT-1) and the location rule (S412-D6, EQ-SCN-1); relations under normality (GMV, ERC, max Sharpe, MV frontier); convex relative drawdown (CDD-3); failure codes |
+| `S4_RISK_DEPENDENCIES.md` | *[2026-10-21]* **S4.13 (DRAFT, untracked; correction plan pending, §11.4):** method → risk-input map (28 method records in 32 rows, plus 6 cross-cutting consumers); 8 shared risk objects RO-1 … RO-8; 23 estimator candidates COV-1 … COV-23, none selected; findings F-1 … F-10; status markers established / provisional / unresolved; ADR-0027 treated as PROPOSED |
 | `S4_EQUATION_REGISTER.md` | **LIVING (created at S4.5):** canonical notation; EQ-H (heuristics), EQ-MVO, EQ-EPO, EQ-BL, EQ-ROB, EQ-REF, EQ-SPLIT-1, EQ-SIG (momentum), EQ-MAP (signal → μ), EQ-TC-1, EQ-ANC/FEAS/TEV/GRS (anchors and benchmarks), EQ-RS (risk-structured), EQ-NT-1 … 3, EQ-DS, EQ-SCN-1 (scenario and downside methods, S4.12a), EQ-NT-4 (TPA-R, S4.12b); each with source page, assumptions, authority, limits and tests |
-| `verification/` | **Reference implementations (oracles, not production code; ADR-0024 §8):** 30 self-asserting scripts that print PASS; index in `verification/README.md` |
+| `verification/` | **Reference implementations (oracles, not production code; ADR-0024 §8):** 30 committed self-asserting scripts that print PASS, plus the untracked S4.13 registry checker `s413_risk_dependencies.py` (31 when committed); index in `verification/README.md` |
 | `S4_0_SOURCE_INVENTORY.md`, `S4_0_ACQUISITION_CHECKLIST.md` | Sources |
 | `ANG_ISSUES_REGISTER.md` | ANG-01 … ANG-49; source issues ABD-1 … ABD-5, MCA-1 … MCA-4, MM-1, MM-2, BL-2, MCH-1, PBL-1 … PBL-3, PAL-1 … PAL-8, the S4.8 momentum set (HOP-1, DM-1/2, BHM-1, GK-1, EL-1/2, BRU-1/2), GRI-1, GRI-2, LEC-1, ROLL-1, GKA-1, and the S4.12 set (RU-1 … RU-3, SVDM-1, KS-1, BCP-4, BCP-5, CDD-3, CES-1, TB-1, TPA-1, TPA-2) |
 | `S4_ACCOUNTABILITY.md` | Mandate schema F1–F19 + candidates F20–F21; stubs |
@@ -272,14 +281,14 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | Stage | Status |
 |---|---|
 | S0–S3 | Done (G0–G3) |
-| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`; owner accepted S45-D1 … D4). **S4.6 DONE 2026-10-08** (`S4_MVO_FOUNDATION.md`; owner decided S46-D1). **S4.7 DONE 2026-10-08** (`S4_MVO_FAMILY.md`; owner decided S47-D1 … D6; engine-level risk target B-46; S47-D7 on 2026-10-15). **S4.8 DONE 2026-10-15** (`S4_MOMENTUM.md`; owner decided S48-D1, D2, D4, D5 in principle, D6; D3 → S4.9). **S4.9 DONE 2026-10-18** (`S4_SIGNAL_PC_COMPATIBILITY.md`; owner decided S49-D1 … D5). **S4.10 DONE 2026-10-18** (`S4_ANCHOR_BENCHMARK.md`; owner accepted S410-D1 … D6). **S4.11 DONE 2026-10-18** (`S4_RISK_STRUCTURED.md`; owner accepted S411-D1 … D5). **S4.12 split (amendment 20): S4.12a DONE 2026-10-18** (`S4_NON_TRADITIONAL.md`; owner accepted S412-D1, D2, D3, D5, D6). **S4.12b DONE 2026-10-19** (TPA-R; owner decided S412-D4, option (a)). **S4.13 NEXT** |
+| S4 | S4.0 done. **S4.1 drafted and settled 2026-10-08** (`S4_ANG_BASELINE.md`, pushed). **S4.2 drafted 2026-10-08** (`S4_ANG_ADAPTATION.md`; ADR-0027 PROPOSED, D3 = r3, Option A, decided by the owner 2026-10-08; awaiting review). S4.2b and S4.15b drafted. **S4.3 reviewed 2026-10-08** (`S4_TAXONOMY.md`; owner confirmed O-1 … O-4; SYNC-2). **S4.4 DONE 2026-10-08** (`S4_PC_SOURCE_MAP.md`; all 22 sources located, 18 in hand; six SSRN sources reviewed and reproduced). **Section 2 (S4.5–S4.14) under way; orientation in `S4_METHODS_OUTLINE.md`.** **S4.5 DONE 2026-10-08** (`S4_HEURISTICS.md`; owner accepted S45-D1 … D4). **S4.6 DONE 2026-10-08** (`S4_MVO_FOUNDATION.md`; owner decided S46-D1). **S4.7 DONE 2026-10-08** (`S4_MVO_FAMILY.md`; owner decided S47-D1 … D6; engine-level risk target B-46; S47-D7 on 2026-10-15). **S4.8 DONE 2026-10-15** (`S4_MOMENTUM.md`; owner decided S48-D1, D2, D4, D5 in principle, D6; D3 → S4.9). **S4.9 DONE 2026-10-18** (`S4_SIGNAL_PC_COMPATIBILITY.md`; owner decided S49-D1 … D5). **S4.10 DONE 2026-10-18** (`S4_ANCHOR_BENCHMARK.md`; owner accepted S410-D1 … D6). **S4.11 DONE 2026-10-18** (`S4_RISK_STRUCTURED.md`; owner accepted S411-D1 … D5). **S4.12 split (amendment 20): S4.12a DONE 2026-10-18** (`S4_NON_TRADITIONAL.md`; owner accepted S412-D1, D2, D3, D5, D6). **S4.12b DONE 2026-10-19** (TPA-R; owner decided S412-D4, option (a)). *[2026-10-21]* **S4.13 DRAFTED 2026-10-19 (uncommitted); read-only review 2026-10-20: correct before acceptance; correction plan awaiting authorisation (§11.4)** |
 | S8 (Track B) | May start after G3. Developer Architecture Brief (S4 plan §I) plus DR-1 … DR-11 registered as interface items (DR-11: OpenBB Workspace as the interface reference, OB-2); G8a not held |
 | S6 | Not started as a stage; **data-source lead recorded early** (2026-10-08); OpenBB ODP v5 admitted as a data-access layer (OB-1, 2026-10-15) |
 | S5, S7, S9–S18 | Not started (08_ROADMAP) |
 
-**Recommended order** *(refreshed 2026-10-19)*:
+**Recommended order** *(refreshed 2026-10-24)*:
 1. **SYNC-3 reached** (S4.9 and S4.10 done): circulate the developer brief when the owner is ready.
-2. **S4.13 → S4.14** (risk-dependency inventory incl. the RQ-14 candidates and the S4.12a scenario objects; agentic roles), then Sections 3–5 (S4.15–S4.27) → **G4**.
+2. *[2026-10-21]* **S4.13 corrections (on authorisation, §11.4) → owner decisions F-1, Hecht fixes and bookkeeping (§6 items 10–14) → commit and push on authorisation → S4.14** (agentic roles), then Sections 3–5 (S4.15–S4.27) → **G4**.
 3. **Owner items in parallel** (review S4.0, S4.1, S4.2/ADR-0027 before S4.16; developer brief after S4.10): G4 review of S4.2/ADR-0027 and the binding of B-46; S8 start with the developer brief (DR-1 … DR-11, incl. the OpenBB interface reference); sandbox key rotation; papers (§6 item 7).
 4. **Per step:** mathematics and the agent-readable contract are reviewed together per method; reference implementations go in `research/s4/verification/` with invariants I-1 … I-9.
 5. **Discipline:**
@@ -303,6 +312,15 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 5 | **G4 binding of B-46** (engine-level risk target, S47-D6): record by ADR at G4 together with the S4.2 adaptation review | Bind at G4 | `S4_ANG_ADAPTATION.md` B-46 |
 | 7 | **Papers:** Levine & Pedersen 2016 (open); Ehsani & Linnainmaa *JF* 2022 (newer than the NBER version in hand; EL-1) | Supply when convenient; not blocking | `S4_0_SOURCE_INVENTORY.md` §16 |
 | 9 | **Optional papers (S4.12a):** R&U 2002 (discrete distributions; RU-2 verified numerically); Sortino & Price 1994 (the Sortino ratio); Boudt, Peterson & Croux 2008 (modified ES) | Not blocking | `S4_0_SOURCE_INVENTORY.md` §19 |
+| 10 | *[2026-10-21]* **S4.13 correction plan** (packages A–E, §11.4), including whether to add a sixth candidate kind, MEASURE, for modified CVaR | Authorise; MEASURE recommended over the fallback | `S4_RISK_DEPENDENCIES.md` (untracked) |
+| 11 | *[2026-10-21]* **F-1 scenario return basis** (clarify S412-D6 / EQ-SCN-1) | Option (a): zero-location excess-return scenarios for μ-free methods (D1 V0, D3); every μ-consuming method declares its basis. Evidence supports (a); not yet decided | §11.3 |
+| 12 | *[2026-10-21]* **Hecht (2014) record fixes:** S4.12b §9.8 wording; source-inventory entry; Cavaglia citation issue | Approve the three small edits | §11.2 |
+| 13 | *[2026-10-21]* **Bookkeeping after S4.13:** S4_PLAN C.2, outline tracker, verification README (31 scripts), source inventory (Wang, Chen & Wu 2025; Hecht 2014), RQ-14 note, HANDOFF, CHANGELOG; then commit and push | Approve together with the corrections | §11.4 |
+| 14 | *[2026-10-21]* **Admission route for internally discovered signals** (E-3; ADR-0025's "primary source" criterion is undefined for them) | Owner decision at S4.21/G4; not recorded here until then | §11.1 |
+| 15 | *[2026-10-24]* **Chief Total Portfolio Agent alongside the CIO?** Analysis delivered (§11.8) | No new agent; make the CIO's total-portfolio mandate explicit and add a deterministic total-portfolio evidence packet (S4.16/S4.18) | §11.8 |
+| 16 | *[2026-10-24]* **Historical means combined with momentum as expected returns?** Analysis delivered (§11.8) | No blend; Bayes–Stein shrinkage stays an S9b candidate; momentum reaches μ only through a registered mapping under an explicit model, validated at S7/S9 | §11.8 |
+
+**Resolved on 2026-10-19 (methodological review, E-1 … E-8):** E-1, E-2, E-6 and E-7 withdrawn as covered by existing governance; E-4, E-5 and E-8 recorded as discussion notes or source leads (`a9a2689`); E-3 held for an owner decision at S4.21/G4 (§11.1).
 
 **Resolved on 2026-10-19 (S4.12b done):** S412-D4 option (a): TPA-R (V1) as the family-D candidate, plus the funding report (β, α, AR against `POL.benchmark`) on every candidate card. The three TPA papers were supplied and read (`S4_NON_TRADITIONAL.md` §9.8).
 
@@ -361,7 +379,7 @@ The session reviews of 2026-10-02 (previous handoff §10) are now reflected in t
 
 | Verdict | Sources |
 |---|---|
-| **FITS** | *[2026-10-19]* **Cavaglia, Han & Seshadri 2026** (appraisal ratio against a reference portfolio: supports the funding-report lens; their single-candidate weight is Treynor & Black's one-asset case, verified). *[2026-10-18]* S4.12 governing sources, reproduced: **Rockafellar & Uryasev 2000**; **Chekhlov, Uryasev & Zabarankin 2005**; **Boudt, Carl & Peterson 2013**; **Sortino & van der Meer 1991** with Markowitz, Todd, Xu & Yamane 1993; **Cesarone et al. 2026**; Grinold & Kahn *Advances* ch. 27 (Kahn & Stefek) and ch. 32 (Grinold); **Treynor & Black 1973**. **Roll 1992** (tracking-error optimisation; ROLL-1 sign slip only); **Jorion 2003** (total-risk constraint; Tables 1–3 reproduced). **Grinold 1994** (alpha = volatility × IC × score; GRI-1, GRI-2 rounding only); **Grinold & Kahn, *Advances in Active Portfolio Management*** (governing version of the forecasting rule and the fundamental law with the transfer coefficient; ch. 9 for S9d); **Clarke, de Silva & Thorley 2002** (transfer coefficient; long-only TC ≈ 0.58). *[2026-10-15]* **Paleologo 2025** (ch. 2, 5, 6; textbook, secondary for the original papers; PAL-1 … PAL-8); **Michaud & Michaud 2008** (read in full; resampling family free of patents, S47-D7); **OpenBB ODP v5** (data-access layer, OB-1) and **OpenBB Workspace** (interface reference, OB-2). ANG v2 (architecture only); Sharpe 1981 (narrow: diversification of judgement); Sensoy 2009 (narrow: controls set in advance); Perold 1988 (shortfall identity); Perold & Sharpe 1988 (rebalancing rule reflects risk tolerance); Nordnet price list 2026-10-07 (facts); **Norges Bank Datatorg** (NOK FX and rates; keyless; attribution); public macro and factor sources (FRED, SSB, ECB, French, AQR, Shiller, Damodaran; S6 lead); **Gao, Jiang & Yan 2026 v2** + procedure file (contamination test); **Didisheim, Fraschini & Somoza 2025** (memorisation; q-trimming; rewording dispersion); **Sørensen 2026 / Storebrand 2025** (secondary; owner-designated reference scoring specification) |
+| **FITS** | *[2026-10-21]* **Hecht (2014)**, "Evaluating Hedge Funds – Alphas, Sharpe Ratios & the Underappreciated Appraisal Ratio" (Evanston Capital Management; hedgefundinsight.org, 18 Dec 2014; read in full): secondary practitioner source, no new mathematics (§11.2). **Ledoit & Wolf 2003** (*JEF* 10:603–621) and **2004** (*JMVA* 88:365–411): abstracts and the shrinkage-intensity lemmas checked (S4.13 review). **Grinold, *Advances* ch. 32 p. 671:** eq. (10) is a total-return scenario (§11.3). *[2026-10-19]* **Cavaglia, Han & Seshadri 2026** (appraisal ratio against a reference portfolio: supports the funding-report lens; their single-candidate weight is Treynor & Black's one-asset case, verified). *[2026-10-18]* S4.12 governing sources, reproduced: **Rockafellar & Uryasev 2000**; **Chekhlov, Uryasev & Zabarankin 2005**; **Boudt, Carl & Peterson 2013**; **Sortino & van der Meer 1991** with Markowitz, Todd, Xu & Yamane 1993; **Cesarone et al. 2026**; Grinold & Kahn *Advances* ch. 27 (Kahn & Stefek) and ch. 32 (Grinold); **Treynor & Black 1973**. **Roll 1992** (tracking-error optimisation; ROLL-1 sign slip only); **Jorion 2003** (total-risk constraint; Tables 1–3 reproduced). **Grinold 1994** (alpha = volatility × IC × score; GRI-1, GRI-2 rounding only); **Grinold & Kahn, *Advances in Active Portfolio Management*** (governing version of the forecasting rule and the fundamental law with the transfer coefficient; ch. 9 for S9d); **Clarke, de Silva & Thorley 2002** (transfer coefficient; long-only TC ≈ 0.58). *[2026-10-15]* **Paleologo 2025** (ch. 2, 5, 6; textbook, secondary for the original papers; PAL-1 … PAL-8); **Michaud & Michaud 2008** (read in full; resampling family free of patents, S47-D7); **OpenBB ODP v5** (data-access layer, OB-1) and **OpenBB Workspace** (interface reference, OB-2). ANG v2 (architecture only); Sharpe 1981 (narrow: diversification of judgement); Sensoy 2009 (narrow: controls set in advance); Perold 1988 (shortfall identity); Perold & Sharpe 1988 (rebalancing rule reflects risk tolerance); Nordnet price list 2026-10-07 (facts); **Norges Bank Datatorg** (NOK FX and rates; keyless; attribution); public macro and factor sources (FRED, SSB, ECB, French, AQR, Shiller, Damodaran; S6 lead); **Gao, Jiang & Yan 2026 v2** + procedure file (contamination test); **Didisheim, Fraschini & Somoza 2025** (memorisation; q-trimming; rewording dispersion); **Sørensen 2026 / Storebrand 2025** (secondary; owner-designated reference scoring specification) |
 | **PARTIAL** | *[2026-10-19]* **Gilmore & Simonian 2025** (TPA as a framework; their multi-objective candidate would duplicate the CIO and lacks stated objectives and weights); **Elkamhi & Lee 2025** (TPA as a mindset; guardrails map to Policy Statement bounds; no method). *[2026-10-18]* Gallego, Columbia IEOR4706 Lecture 7 (2000; secondary teaching note on Grinold & Kahn; LEC-1). Q Group lecture Oct 2026 (secondary; learning design, candidate cards, skills, verifiability); BCD 2022 (accountability); **ABD 2014** (funding/benchmarking TPA; rebalancing rule upstream; implementation leeway; verification horizons); **AQR 2026** (TPA weight mechanics per D-5; assumes leverage/shorting); van Binsbergen–Brandt–Koijen 2008; Jegadeesh 1990 and Lehmann 1990 (individual-stock reversal only); Glasserman & Lin 2023 (named vs anonymised only; see §4.7); **Henning et al. 2025 v3** (same-model homogeneity; forecast-rationality battery); **Liang 2026** (pre/post-cutoff magnitudes; weak identification); correlated-error literature (Kim et al. 2025; Kleinberg & Raghavan 2021; Panickssery et al. 2024; Liang et al. 2024); **third-party GitHub code** (patterns and verified pieces only); ML specification (candidates only); z-score screenshot (lead) |
 | **DOES NOT FIT** | **Simply Wall St** (S&P Capital IQ data; personal use, no retransmission), **Seeking Alpha** (S&P + Quodd data; no redistribution) and **Investwiser** (EODHD data; personal use) as data sources (peer references only); **S&P Capital IQ** for a distributed engine (enterprise; owner-only validation via university at most); Yahoo/yfinance; Nordnet External API (closed to new subscribers); Tinbergen; Grinold (not needed at the time; superseded 2026-10-18, see FITS); misidentified uploads (Jones & Wermers 2011; NBIM news page); Altbridge benchmark; podcast; news items (illustration only) |
 
@@ -525,6 +543,7 @@ If a build step needs a choice no accepted decision covers, raise a spec questio
 | C risk-structured | GMV, ERC, HRP (tree split), MDP, MinCorr | `S4_RISK_STRUCTURED.md` | EQ-RS-1 … 5 | `s411_*`, `s44_*` | S411-D1 … D5 |
 | D non-traditional | CVaR, drawdown, tail-risk parity (S4.12a done); TPA-R (S4.12b done) | `S4_NON_TRADITIONAL.md` | EQ-NT-1 … 4, EQ-SCN-1 | `s412_cvar_ru.py`, `s412_drawdown_tail.py`, `s412b_tpa.py`, `s44_cvar_budgets_bcp.py`, `s44_drawdown_cdd.py` | S412-D1, D2, D3, D6; S412-D4 (a) |
 | B5 mean–downside | max Sortino / mean–target-semivariance | `S4_NON_TRADITIONAL.md` | EQ-DS-1, EQ-DS-2 | `s412_downside_b5.py` | S412-D5, D6 |
+| Risk dependencies (S4.13) | Method → risk-object map; estimator candidates registered, none selected | `S4_RISK_DEPENDENCIES.md` (untracked; under correction) | — | `s413_risk_dependencies.py` (untracked) | F-1 owner decision pending |
 | E agentic | Researcher (research lane), Adversarial Diversifier | S4.14 | — | — | — |
 
 **Using the oracles:** the scripts in `research/s4/verification/` reproduce each source's published examples and assert invariants on synthetic data. They are reference implementations for testing production code (04 §3), not production code (ADR-0024 §8). Environment used: Python 3.9.6, numpy 2.0.2, scipy 1.13.1, pandas 2.3.3; run each script with `python3 <script>`; every script prints a line starting with `PASS`. The production stack is the developer's choice after G8a.
@@ -564,9 +583,261 @@ If a build step needs a choice no accepted decision covers, raise a spec questio
 | Circulate the Developer Architecture Brief; hold G8a | Owner, with the developer | S4_PLAN §I; §6 item 1 |
 | ADR-0027 and the S4.2 adaptation map: review | Owner (G4 or earlier) | §6 item 0 |
 | B-46 binding of EQ-SPLIT-1 with the S49-D3 and S410-D6 notes | Owner at G4 | §6 item 5 |
-| S4.13 – S4.27 (inventories, CRO/deliberation/CIO requirements, typed contracts, eligibility framework, verification, freeze, G4 audit) | Track A | S4_PLAN C.2 |
+| S4.13 corrections, then S4.14 – S4.27 (inventories, CRO/deliberation/CIO requirements, typed contracts, eligibility framework, verification, freeze, G4 audit) | Track A | S4_PLAN C.2 |
 | S5 universe and allocation hierarchy (account vs household problems); S6 data contracts; S7 evaluation protocol | Track A after G4 | 08 |
 | Regulatory status of the application (RQ-49) | Open | OPEN_QUESTIONS |
 
 **Change control (ADR-0022 §5):** developer findings (ambiguities, impossible contracts, missing data types, security or performance constraints, schema changes) return through the process fixed at G8; material changes go through an ADR, schema change or gate, never silently in code.
 
+---
+
+## 11. Work since `76068d8` (2026-10-19 → 2026-10-21)
+
+Nothing in this section is binding. The two S4.13 files described in §11.4 are untracked drafts on the owner's machine, not in the repository; every other item is a proposal, an analysis or a pending owner decision.
+
+### 11.1 Owner's methodological review of eight proposals (2026-10-19)
+
+**Context.** After S4.12b the owner asked for research on eight areas: portfolio-context evaluation of new investments; alpha and risk-adjusted metrics; peer-relative valuation; turning text into signals; thesis-driven signal discovery; nonlinearity and machine learning; volatility drag; and technical analysis. Many of the ideas came from Pete Hecht (AQR) on the *How I Invest* podcast. The research produced proposals E-1 … E-8. The owner then asked for a critical re-check against the existing governance, which found that nearly all of them duplicated existing rules.
+
+| Proposal | Owner outcome | Where recorded |
+|---|---|---|
+| E-1 portfolio-context report | Withdrawn; covered by the S412-D4 funding report, EQ-DIAG-6 (risk contributions), Portfolio Map PM-1, RQ-44's certainty-equivalent cost test, S14 | Not recorded |
+| E-2 metric panel | Withdrawn; covered by invariants I-5 and I-9, ADR-0027 D4, EQ-DIAG-1 … 8, RQ-37 D-4 (deflated Sharpe) | Not recorded |
+| E-3 signal evidence protocol | Withdrawn as a separate protocol. The gap it exposed remains open: ADR-0025's "primary source" criterion is undefined for internally discovered signals. The owner will decide the admission route at S4.21/G4 | Not recorded until the owner decides |
+| E-4 peer-relative valuation | Two optional S9c candidates: cash-based operating profitability (Ball et al. 2016); within- and across-industry components (Asness, Porter & Stevens 2000) | RQ-28 and RQ-30 notes (`a9a2689`) |
+| E-5 text-to-signal | No capability built; none prohibited. Revisit only if S9c finds a material gap text could fill, credible evidence appears for a deterministic text descriptor in the engine's markets, or a long, point-in-time, licensable Oslo document source becomes available | RQ-08 note (`a9a2689`) |
+| E-6 nonlinear / ML policy | Withdrawn. Owner decision D-D (2026-10-02, `S4_DOWNSTREAM_INVENTORY.md` §2) already sets the ML admission bar. No separate ML policy and no restriction by asset class or model type. A nested-model comparison may be considered within S7/RQ-09/RQ-37, subject to verification | Not recorded |
+| E-7 return basis and volatility drag | Withdrawn; covered by ADR-0027 D5, I-4, RQ-12, EQ-SPLIT-1, 07 §5 and the Kelly family row; its two bans had nothing to ban | Not recorded |
+| E-8 technical evidence cards | Withdrawn; the useful part filled two registered source gaps (families T6 and T12, located only) | S4.15b T6/T12 rows; source inventory §22 (`a9a2689`) |
+
+### 11.2 The Hecht (2014) reference (review 2026-10-20)
+
+- **What it is.** Cavaglia, Han & Seshadri (2026) cite "Hecht (2014)" for extending the appraisal ratio to any reference portfolio. The owner identified the source: Peter Hecht, "Evaluating Hedge Funds – Alphas, Sharpe Ratios & the Underappreciated Appraisal Ratio", hedgefundinsight.org, 18 December 2014. It was read in full over plain HTTP because the site's HTTPS certificate had expired.
+- **Author.** Written while Hecht was at Evanston Capital Management. He is the same person as AQR's Pete Hecht in the podcast: the article's bio and the podcast both give a Chicago PhD under Fama, a Harvard Business School assistant professorship and allocator roles. Cavaglia et al. list the piece as an AQR working paper. That is a citation discrepancy; no AQR version was found, though the search was not exhaustive.
+- **Content.**
+  - The appraisal ratio comes from regressing a new investment's excess return on the investor's existing total portfolio.
+  - (max Sharpe)² = AR² + (existing Sharpe)², stated without proof, crediting Treynor & Black 1973.
+  - No weight formula: Cavaglia's single-candidate weight is their own, Treynor & Black's one-asset case, verified in `s412b_tpa.py`.
+  - Worked example on a 60/40: emerging-market equities have the highest return but the lowest AR; catastrophe bonds have the highest AR.
+- **Verdict.** FITS as a secondary practitioner source; it adds no new mathematics. Note that Hecht measures against the current portfolio with cash funding, whereas the S412-D4 funding report uses `POL.benchmark` with stock/bond funding. TPA-2 shows that the funding set changes the alpha.
+- **Pending owner approval (three small edits):**
+  1. `S4_NON_TRADITIONAL.md` §9.8: Cavaglia et al. credit Hecht and Kepos with extending the *candidate* to any mix of assets, factors or return drivers and the base to a reference portfolio. The current text says "base portfolio to any mix".
+  2. Add Hecht (2014) to the source inventory as read (secondary).
+  3. Record the affiliation discrepancy as a Cavaglia citation issue (proposed ID CHS-1).
+
+### 11.3 F-1 — the scenario return basis (analysis 2026-10-20; owner decision pending)
+
+**Definitions (verified):**
+- Grinold, *Advances* ch. 32, eq. (10), p. 671: with probability π_s the **total** return on asset n is r_F + μ_nΔt + σ_n z_{n,s}√Δt. Here r_F is the total return on a risk-free investment over [0, Δt], μ_n the annual expected **excess** return, σ_n the annual volatility, and z is built from asset n's excess-return history, demeaned and standardised. Grinold's setting is expected-utility maximisation over fully invested portfolios.
+- EQ-SCN-1 (S4.12a register) reproduces this, with μ = 0 for μ-free uses ("demeaned") and S9's μ for μ-consuming uses. Its μ-free scenarios therefore have mean r_F, not zero.
+- S4.6 §4: μ and Σ are both in excess of the numéraire cash rate.
+- S412-D6 (a): μ-free D1 V0 and D3 use demeaned scenarios; μ-consuming D1 V1, D2 and B5 use scenarios centred on S9's μ. Its rationale: keep S9 as the only source of μ, remove a horizon-dependent hidden risk aversion, and make the normal limits (GMV, ERC) hold.
+- **The S4.12a verification used zero location throughout:** `s412_cvar_ru.py` recentres with `target_mu + zs*sd` and no r_F; the Gaussian D3 tests in `s412_drawdown_tail.py` use μ = 0; the scenario test demeans with `Y -= Y.mean(0)`.
+- So the register's canonical form and the verified implementation disagree.
+
+**D3 exactly** (record and S412-D3):
+- the risk measure is scenario CVaR at β = 0.95 (EQ-NT-1) of the loss −y′w;
+- Euler contributions C_i = w_i·E[−r_i | tail];
+- ERC-CVaR means equal shares, solved by the convex log-barrier y* = argmin CVaR(y) − (1/N)Σ ln y_i, with w = y*/1′y*;
+- the result is long-only and fully invested by construction; bounds are applied by post-processing (S411-D4).
+
+S412-D3's own rationale: "The convex form removes the stochastic optimiser and the existence failure". BCP-4 names "cash in a total-return CVaR" as the failure case.
+
+**Exact existence condition (derivation):**
+1. CVaR(y; Y + c·1) = CVaR(y; Y) − c·1′y, by translation equivariance and positive homogeneity.
+2. The barrier objective is convex. If CVaR(y₀) < 0 for some y₀ ≥ 0, the objective tends to −∞ along t·y₀. It then has no minimiser, and because a stationary point of a convex function is its global minimiser, no portfolio with equal positive contributions exists.
+3. If CVaR(y) > 0 for every nonzero y ≥ 0, the objective is coercive and its minimiser is unique.
+
+With a common per-period cash return in the location, then, **ERC-CVaR exists if and only if the long-only minimum CVaR on zero-location scenarios (D1 V0's optimum) exceeds the period cash return.**
+
+- **Normal special case.** CVaR⁰(w) = c₂·σ(w)·√Δt, with c₂ = φ(z)/(1 − β) = 2.0627 at β = 0.95. ERC-CVaR then exists if and only if the long-only minimum-variance volatility exceeds r_F√Δt / c₂. That bound is 1.94% annual at r_F = 4% and 0.56% monthly, and it grows with √Δt (3.36% at three years).
+- **Sufficient single-asset bounds.** Gaussian (BCP-4): any asset with σ_i ≤ r_F√Δt / c₂. Distribution-free, by Cauchy–Schwarz: any asset with σ_i ≤ r_F·√Δt·√(1 − β), i.e. 0.89% annual.
+- **The S4.13 draft states only the single-asset Gaussian form.** That form is sufficient but not necessary.
+
+**Numerical reproduction** (S4.12a's Gaussian functions copied verbatim, plus the decided barrier form; scratch, 2026-10-20):
+
+| Case | Result |
+|---|---|
+| Volatilities 16%, 6%, 1.5%; correlations 0.1, 0, 0.2; annual; cash rate in the location | No solution: S4.12a least-squares residual 0.52; the barrier objective diverges. The long-only GMV volatility is 1.49%, below 1.94% |
+| Same, zero location | (0.0733, 0.1777, 0.7490), equal to volatility-ERC |
+| Same, monthly | Zero location (0.0733, 0.1777, 0.7490); with the cash rate (0.0560, 0.1382, 0.8058); shares equal in both |
+| 16%, 2.5%, 2.5%, uncorrelated, annual | No solution, although no asset is below 1.94%: the long-only GMV volatility is 1.76% |
+| 16%, 3%, 3%, annual | Solution exists: the long-only GMV volatility is 2.10% |
+| Fat-tailed scenarios (t4 with a crash jump), scenario CVaR | Annual: min CVaR⁰ 3.37% < 4%, no solution. Monthly: 0.97% > 0.33%, solution exists, weights (0.0724, 0.1717, 0.7559) → (0.0562, 0.1331, 0.8108) |
+| D1 V0 (min-CVaR LP), with and without the shift | Identical weights; CVaR shifts by exactly −r_FΔt |
+
+**Mechanism.** The cash return enters each Euler contribution as −r·w_i, in proportion to weight rather than risk. Parity therefore shifts toward low-risk assets, and once the cash return exceeds the smallest achievable tail loss no parity point exists. D1 V0 is unaffected because, over 1′w = 1, the objective only shifts by a constant. Two things guarantee this: the D1 record's invariant ("a uniform shift of the scenarios by c changes CVaR by −c for a fully invested x") and S47-D6 (μ-free methods produce a fully invested risky mix), given one common r_F. The S4.13 draft wrongly cites S45-D4 for this.
+
+**Return basis needed by each consumer:**
+
+| Method | Basis | Status of the claim |
+|---|---|---|
+| D1 V0 | Either basis | Derivation, verified |
+| D3 | Zero-location excess returns, for existence and the ERC limit as verified and decided | Source-supported (S412-D3 rationale; BCP-4) |
+| D1 V1 | Target R and the scenario mean on one basis | Derivation; no source preference |
+| D2 | Total returns (a compounded wealth drawdown) | Inference from CDD-3 and `INV.max_one_year_decline` (S1); not pinned by a source |
+| B5 | Total returns with MAR = the cash rate (as verified in `s412_downside_b5.py`), or excess returns with MAR = 0 | Source-supported |
+
+**Options:**
+- **(a)** Zero-location excess-return scenarios for μ-free methods, with each μ-consuming method declaring its basis. Consistent with all S4.12a results, S412-D3's rationale, S412-D6's rationale and S4.6. EQ-SCN-1's total-return form stays valid for μ-consuming uses.
+- **(b)** Keep r_F everywhere. D3's existence and weights would then depend on the cash rate and the horizon, which S412-D6 set out to remove; the S4.12a D3 evidence would no longer apply.
+- **(c)** Defer to S10. This leaves D3 without "a clear mathematical definition" (an ADR-0025 admission criterion) and blocks its S4.20 contract.
+
+**Recommendation: (a).** Note that D3 is *not* invariant to a common cash return under EQ-SCN-1 as written; that is the defect. Option (a) makes it invariant by construction.
+
+**Owner instruction (2026-10-21):** the recommendation is not an approved decision. Do not edit S412-D6 or EQ-SCN-1, and do not alter any method record to make the convention look settled. The decision stays outside the S4.13 corrections until the owner authorises it.
+
+### 11.4 S4.13 — risk and covariance dependency inventory
+
+**Drafted 2026-10-19** (owner authorised S4.13 with safeguards: read-only reconciliation first, no estimator selection, no invented thresholds, ADR-0027 kept PROPOSED, no commit). Two untracked files:
+- `notes/v2/research/s4/S4_RISK_DEPENDENCIES.md`:
+  - 28 method records (21 PC methods: A1–A5, B1–B7, C1–C5, D1–D4; SIG-1, SIG-2 and four variants; EQ-SIG-4), in 32 rows, plus 6 cross-cutting consumers (EQ-SPLIT-1, EQ-MAP-3, EQ-TC-1, R-7, AC-5, S412-D4);
+  - 3 provisional problems (P-STRAT, P-SEC, P-SHORT);
+  - 8 objects: RO-1 Σ strategic, RO-2 Σ security sleeve, RO-3 short horizon, RO-4 demeaned scenarios, RO-5 μ-centred scenarios, RO-6 paths, RO-7 co-moments, RO-8 factor model;
+  - 23 candidates COV-1 … COV-23, all "candidate", "No threshold set";
+  - findings F-1 … F-10; Binding: 6 established, 32 unresolved.
+- `notes/v2/research/s4/verification/s413_risk_dependencies.py`: a registry checker that prints PASS (re-verified 2026-10-20). The ten reported mutations all reproduced as failures.
+
+**Read-only review 2026-10-20 (owner-requested). Verdict: defensible with limited corrections, not acceptable as drafted.** Findings:
+- **Objects:**
+  - RO-1, RO-2, RO-4, RO-5 and RO-6 are justified.
+  - RO-3 groups instrument volatility (SIG-2), base-portfolio volatility (A5) and strategy-return volatility (EQ-SIG-4); S48-D2's frequency rule is over-attributed to all of them.
+  - RO-7 frames co-moments correctly, but the *modified-CVaR estimator* that S412-D3 requires is not registered.
+  - RO-8 is justified for B3 only; the EQ-MAP-3 → RO-8 link is unsupported (EQ-MAP-3's residual ω is benchmark-relative, from Σ).
+  - Omission: portfolios mixing asset-class units and single securities (RQ-07 allocation unit "both") need joint or hierarchical risk across RO-1 and RO-2. R-7 covers only sleeves inside a host class.
+- **Estimators:**
+  - COV-8 and COV-9 are misclassified as transformations. Ledoit–Wolf shrinkage is an estimator: LW 2003's abstract ("an optimally weighted average of two existing estimators") and Lemma 1, p. 10, and LW 2004 Lemma 3.3 estimate the intensity from the raw observations.
+  - COV-10 and COV-11 are conditional on how the intensity is set.
+  - COV-9's RO-1 link contradicts the exclusion in S4_RISK_MODEL_CHOICE §3.
+  - COV-7's RO-1 link has no evidence; it mixes factor-model forms.
+  - COV-22: ABD App. C.1 names Geltner (1991) unsmoothing; the draft wrongly says "method not specified".
+  - COV-23's evidence is overstated (only a note cites Paleologo p. 135).
+  - COV-12's abstract evidence comes from S4_RISK_MODEL_CHOICE, not this review.
+  - COV-16 and COV-21 each mix two things.
+- **Status:**
+  - The 6/32 split is justified under the weakest-link rule, but it hides that the requirement itself (type and object) comes straight from a record in about 28 of the 32 rows.
+  - Four rows rest on inference or an option; only PC-A5 σ* is labelled as such.
+  - Misattributions: S48-D2, S45-D1, S412-D4 (D4 security level) and S45-D4 (D1 V0).
+- **Checker:** see §11.5.
+
+**Correction plan (2026-10-21) — awaiting owner authorisation.** Scope: the two S4.13 files only. No exception is needed; no decision, accepted ADR, method record or S4.12 result changes.
+- **A. F-1:**
+  - a new §6.1 in the inventory giving the exact condition, the normal special case and the two sufficient bounds;
+  - the corrected D1 V0 reasoning (D1 invariant plus S47-D6, not S45-D4);
+  - the downstream basis table, each claim labelled source-supported or inference;
+  - options (a)–(c), with (a) recorded as evidence-supported and pending;
+  - updates to §0, §7, and the PC-D1 V0, PC-D3 and RO-4/RO-5 cells;
+  - the checker's F-1 reproduction rewritten to verify the corrected claims (exact condition, the 16/2.5/2.5 counterexample, the 3% case, fat-tailed scenarios, the D1 V0 LP invariance, the Cauchy–Schwarz bound).
+- **B. Registry:**
+  - add COV-24, modified (Cornish–Fisher) CVaR: input RO-7 (co-moments from COV-20 or COV-21), output CVaR_β and Euler contributions for PC-D3's modified-CVaR variant, formula BCP App. eqs. 21–22, with the BCP-5 caution, not the default (S412-D3);
+  - **taxonomy question:** add a sixth kind, MEASURE (computes a method's risk measure from a risk object and constructs no object), excluded from the constructed-by lists (recommended), or fall back to TRANSFORMATION with an explicit "consumes RO-7, constructs nothing" rule;
+  - reclassify COV-8 and COV-9 as ESTIMATOR;
+  - set COV-10 and COV-11 to "ESTIMATOR / TRANSFORMATION (conditional on how the intensity is set)";
+  - drop RO-1 from COV-9, noting the S4_RISK_MODEL_CHOICE §3 evidence-based exclusion, which is not a decision;
+  - drop RO-8 from EQ-MAP-3 and restate it from the register.
+- **C. Evidence and attribution:**
+  - COV-22: Geltner (1991) via ABD App. C.1;
+  - COV-12: abstract per S4_RISK_MODEL_CHOICE §2;
+  - COV-23: OPEN (page not re-checked);
+  - D4 security-level row: basis is the S4.12b record (allocation domains), stated as an option;
+  - S48-D2 limited to SIG-2; S45-D1 for A5 (MM V0 oracle: the previous month's 22 daily returns); A5's production frequency unresolved;
+  - P-STRAT universe attribution;
+  - the R-7 coupling relabelled as derived;
+  - RO-1's singularity minimum cites 06 §4;
+  - a traceability sweep of every `[established: …]` marker, reporting any further mismatches.
+- **D. Grouping:**
+  - narrow RO-3 to "the short-horizon risk model" (Σ_t, with instrument σ_i and a portfolio's σ̂ as views), since both remaining consumers' records map to "the short-horizon risk problem"; per-universe instances unresolved (S5, S10);
+  - EQ-SIG-4 becomes INTERNAL: its record defines σ by the sources' own estimators (B&SC: 126 uncentred daily returns; DM: GJR-GARCH in-sample, 126-day variance out of sample) and S49-D2 makes it variant-only; production treatment unresolved (S10, S13c);
+  - new finding F-11 plus dependency entries in the EQ-SPLIT-1, AC-5 and S412-D4 rows for mixed asset-class and security portfolios, traced to RQ-07, the allocation domains, EQ-SPLIT-1 and R-7; unresolved (S5, S10). No new object ID and no architecture.
+- **E. Checker:**
+  - required: fail cleanly when S412-D6 cannot be interpreted; verify that cited decision IDs (S4x-Dy, OB-x, ADR numbers) exist in other repository documents;
+  - consequential rule changes for B: the MEASURE kind if approved, and the conditional-kind syntax;
+  - rewrite §9 to list what is and is not checked, including the demonstrated false negatives;
+  - optional, not implemented: input types grounded in each record's Inputs field; comparison signs in eligibility cells.
+- **Verification plan:**
+  1. the S4.13 checker (expect PASS);
+  2. all 30 committed verification scripts plus the S4.13 checker, each PASS or FAIL;
+  3. a scratch mutation suite: the 10 originals expected to fail; the fabricated-ID probe now expected to fail; the S412-D6 rewording expected to fail cleanly; the consistent-remapping, cutoff-with-phrase, evidence-upgrade and wrong-content probes still passing as documented limitations; COV-24 marked as constructing RO-7 expected to fail;
+  4. a git diff check that only the two files differ and ADR-0027 is still PROPOSED.
+- **Cannot be completed without more evidence or a decision:**
+  - the MEASURE kind (owner);
+  - F-1 (owner);
+  - the final kind of COV-10 and COV-11 (needs Elton & Gruber 1973 / LW 2004 *JPM* or an intensity specification);
+  - D2's total basis (pending the Policy Statement drawdown quantity: S1 field 7.2 is a one-year decline, and the MaxDD mapping belongs to S11/S13);
+  - Geltner 1991 (not in hand).
+- **Outside scope; needs separate approval:**
+  - the F-1 annotation of S412-D6 / EQ-SCN-1;
+  - the Hecht fixes (§11.2);
+  - bookkeeping (§6 item 13);
+  - commit and push.
+
+**Acceptance criteria (owner, 2026-10-21).** The corrected deliverable must:
+- trace each material requirement to its source;
+- distinguish risk objects from estimators and other candidate types;
+- avoid unsupported mappings and misattributed evidence;
+- record the mixed-portfolio dependency without resolving it;
+- state F-1's condition correctly, separating the general condition from special cases;
+- keep ADR-0027 PROPOSED;
+- pass the checker and the relevant regression tests, with actual results reported;
+- make no claim that structural validation proves methodological validity.
+
+### 11.5 Checker limitations demonstrated (scratch probes, 2026-10-20)
+
+**Grounded in authoritative text:**
+- coverage, read from the record headings;
+- the S412-D6 location classes, parsed from the decision row;
+- ADR-0027's status, read from its file.
+
+Everything else checks the inventory against itself.
+
+| Probe | Result |
+|---|---|
+| GMV remapped to the short-horizon RO-3, all references consistent | Passes (not detected) |
+| GMV retyped as a factor model on RO-8, consistently | Passes |
+| A cutoff ("eligible only when q_eff ≤ 0.5") added while keeping "No threshold set" | Passes |
+| A fabricated basis `[established: S499-D9]` | Passes (fixed by package E) |
+| An evidence tag upgraded from OPEN to VERIFIED-SOURCE | Passes |
+| B1's minimum data replaced by a false "none required" | Passes |
+| S412-D6 reworded ("do not use μ") | Crash (AttributeError), not a clean failure (fixed by package E) |
+| C5's heading loses its ID | Caught |
+
+### 11.6 Next steps, in order
+
+1. Owner authorises the S4.13 correction plan and chooses MEASURE or the fallback (§6 item 10).
+2. Apply packages A–E. Run the S4.13 checker, the full regression suite and the scratch mutation suite, and report actual results.
+3. Owner decisions: F-1 (recommendation (a)); the Hecht fixes; bookkeeping. Then commit, and push on authorisation.
+4. S4.14 (agentic PC roles: Researcher research lane; Adversarial Diversifier formulation, ANG-16), then S4.15–S4.27 → G4.
+5. Unchanged owner items in parallel (§6 items 0–9), including the S4.2/ADR-0027 review and sandbox key rotation.
+
+### 11.7 Notes for the next assistant
+
+- **Scratch work is not persistent.** The F-1 reproduction and the mutation harnesses lived in the earlier session's scratchpad, `/private/tmp/claude-501/-Users-oliver-Desktop-ENGINE-V1/4750b449-c158-429d-a18a-0899ca2a7b6d/scratchpad/` (folders `s413` and `s413review`), and may be gone. The corrected checker will carry the F-1 reproduction.
+- **numpy 2.0.2 on this Mac:** `@` (matmul) can raise spurious floating-point warnings through Accelerate even though the results are finite. Use `einsum`, or check `isfinite`.
+- **Web reading:** the web-fetch tool fails on expired TLS certificates; reading the page over plain HTTP into the scratchpad worked for the Hecht article. Podcast transcripts that render with JavaScript were read in the built-in browser by extracting `window.__tx`.
+- **Repository state:** branch `stage/s04-method-library`, with this handoff as the latest commit, in sync with origin; the two S4.13 files untracked on the owner's machine; no PR (gate PR at G4).
+- **Assistant memory files** (outside the repository) hold the protocol and feedback rules summarised in §2.1–§2.2. Current owner instructions always win over them.
+- **Security reminders (§2.3):**
+  - no personal financial data in the repository;
+  - no downloads without per-item permission;
+  - no push, PR or merge without explicit authorisation;
+  - ADRs are append-only;
+  - API keys are never printed;
+  - the UI concept prototype stays outside GitHub;
+  - the owner's E-3 decision is recorded only when the owner authorises it (S4.21/G4).
+
+### 11.8 Analyses delivered 2026-10-24 (owner request; no decision taken; nothing binding changed)
+
+1. **A Chief Total Portfolio Agent (CTPA) alongside the CIO?**
+   - **Current architecture:** ADR-0023 makes "CIO combination/selection with explanation" a baseline role. ADR-0026 makes the approved portfolio decision the CIO's, approved by the investor, and makes rebalancing determination deterministic. In S4_ACCOUNTABILITY, the CIO owns the ensemble choice, rationale, invalidation conditions and proposed rebalancing rule; the CRO owns independent risk assessment and whole-portfolio interim limits.
+   - **Where the candidate CTPA functions already sit:** holistic view, imbalance detection, consistency with the Policy Statement, and cross-position interactions are covered by deterministic services (Portfolio Map PM-1, CRO diagnostics, the S412-D4 funding report, R-7 look-through, S16 monitoring, the R3/R4 predicates) plus the CIO. Top-down views are covered by the macro and asset-class/CMA roles and by S9.
+   - **Recommendation (pending owner decision):** no new agent. Make the CIO's total-portfolio responsibility explicit in its Agent Mandate (S4.18/S4.20). At S4.16, require a deterministic total-portfolio evidence packet: the CRO diagnostic contract and the funding report applied to the CIO's final ensemble and to current holdings. F-11 joint risk stays unresolved (S5/S10).
+   - **Revisit if:** several goal portfolios run at once, household scope enters, or process evidence (RQ-55, S15) shows total-portfolio errors the packet misses.
+2. **Historical means combined with momentum as expected returns? (Michaud & Michaud 2008.)**
+   - **Source findings (read 2026-10-24):**
+     - ch. 11 (pp. 101–108) presents a Theil–Goldberger mixed estimate that assumes views independent of the historical data (p. 105) and normal distributions (p. 102 fn. 3);
+     - Table 11.1 reproduces to within 0.1 pp with the standard precision-weighted posterior, using the return covariance (not the variance of the mean) as the historic uncertainty; the matrix order of B as printed in (11.1) does not reproduce the table;
+     - ch. 8 gives James–Stein shrinkage toward the global mean;
+     - ch. 12 (pp. 109–111) says rankings must be scaled by IC × volatility.
+   - **Repository position:** ADR-0012 (no score as μ without an accepted mapping); S4.9 R-1, R-2 and R-7c; EQ-MAP-1 … 4 registered, not accepted; Bayes–Stein (EQ-MVO-E2) handed to S9 as a CMA candidate.
+   - **Derivation:** a momentum window inside the historical sample correlates √(k/T) with the mean (0.22 for 12 of 240 months). Under no predictability its optimal weight is zero. A naive "independent view" combination raises the variance by 4.3% while claiming a 4.8% reduction; under the Table 11.1 convention the variance is about 17 times worse.
+   - **Recommendation (pending owner decision):** no blend of historical means with momentum as μ. Bayesian shrinkage remains a CMA candidate. Momentum reaches μ-consuming methods only through a registered mapping under an explicit predictive model, with an out-of-sample IC and a matched horizon (MOP 2012: persistence for 1–12 months, partial reversal later); μ-free methods use it only through O2/O3/O5/O6. A validation plan was proposed for S7/S9.
