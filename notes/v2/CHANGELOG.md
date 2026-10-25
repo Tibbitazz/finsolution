@@ -1,5 +1,16 @@
 # Changelog — notes/v2
 
+## 2026-10-25 — Corrections against Renshaw et al. (2026) and the iSTOXX methodology guide (branch `stage/s04-method-library`)
+
+- **Owner decisions (2026-10-25):** Renshaw, Gu, Candar & Ang (2026) is the reference specification for the multifactor composite (construction only; FinSol's own universe and datasets; no replication of the paper's results); factor-momentum timing follows the source.
+- **Corrected in place** (the earlier text rested on an owner-reported podcast remark):
+  - RQ-28: cyclical value is book-to-price + earnings yield; the Shiller-type definition is removed (CAPE stays an asset-class input); enhanced value, momentum and quality signals stated from the source; the judgement that economic profit is weak as a value measure removed; positioning signals enter the reference momentum composite and stay separate descriptors;
+  - RQ-31: source attribution and the reference transform (z against the parent universe, ±3 truncation, equal-weighted available signals, re-z);
+  - RQ-32: source attribution; "enhanced and cyclical value are highly correlated" replaced by the source's evidence (active-return correlation 0.13; near-zero cross-exposures).
+- **Recorded:** RQ-11 reference timing specification; S48-D6 annotated (factor-momentum V0 for composite-weight timing).
+- **Source inventory §23:** the July paper, the August whitepaper and the methodology guide §118.
+- HANDOFF: §3.1, §6 items 17–20, §11.9.
+
 ## 2026-10-19 — HANDOFF refreshed for hand-over (branch `stage/s04-method-library`)
 
 - Stale entries corrected: last push date; the `2135803` commit hash (was "(latest)"); RQ-57 in the register range; S4_PLAN amendments 1–20; the S4.12 source issues, equations and oracle script in the file table and §10.7; DR-11 in §6 item 1.

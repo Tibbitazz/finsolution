@@ -1,6 +1,6 @@
 # FinSol — working handoff (single entry point)
 
-**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-24 · **Branch:** `stage/s04-method-library` (this handoff pushed to origin 2026-10-24, owner-authorised; no PR) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
+**Document status:** DRAFT (living; owner-approved location, 2026-10-07) · **State as of:** 2026-10-25 · **Branch:** `stage/s04-method-library` (this handoff pushed to origin 2026-10-24, owner-authorised; no PR) · **Supersedes:** the local files `ENGINE_V1/HANDOFF_2026-10-07.md` and `ENGINE_V1/FINSOL_HANDOFF_2026-10-02.md`.
 
 **Committed versus uncommitted work.** This handoff is committed. §11 records work done after `76068d8`: the methodological review, the Hecht check, the F-1 analysis, the S4.13 inventory (*[2026-10-24]* corrected and committed as a DRAFT awaiting owner acceptance), analyses delivered to the owner, and owner decisions, some still pending. Nothing in §11 is binding; the documents it points to still govern (01 §2). Updates inside §1–§10 are dated *[2026-10-21]* or later.
 
@@ -139,8 +139,9 @@ Principles P1–P13 and rules R1–R8 are in 00 §5 and 05 §1. Exclusions X-01 
 | `5e671fe` | **S4.12b drafted:** `S4_NON_TRADITIONAL.md` Part B (PC-D4 TPA-R record; distinctness test passed against B1, B1 + TE, Roll and Anchored EPO; TPA gap memo); register EQ-NT-4; `verification/s412b_tpa.py` (PASS); TB-1, TPA-1, TPA-2; ANG-06/15/22 annotated; inventory §20; decision S412-D4 open. **pushed 2026-10-19** with the S4.12b decision commit |
 | `a9a2689` | **S4.12b DONE:** owner decision S412-D4 = option (a) (chosen as "B" in the discussion): TPA-R (V1) plus the funding report on every candidate card; Gilmore & Simonian 2025, Elkamhi & Lee 2025 and Cavaglia, Han & Seshadri 2026 read (`S4_NON_TRADITIONAL.md` §9.8; inventory §21; Cavaglia's single-candidate weight verified in `s412b_tpa.py`); ANG-15/22 resolved. Discussion records from the owner's methodological review (2026-10-19): RQ-08 (no text-to-signal capability, three revisit triggers), RQ-28/RQ-30 (two S9c candidates), S4.15b T6/T12 sources located (inventory §22). S4.13 NEXT. **Pushed 2026-10-19 with `e50fed5`, `11c6fd0`, `5e671fe`** (owner authorisation) |
 | `76068d8` | HANDOFF refreshed for hand-over: last push date; `2135803` hash; RQ-57; amendments 1–20; S4.12 issues, equations and scripts; TPA in §4.6, §7 (fit verdicts for the three TPA uploads), §8, §10.7 and §10.8 (funding report rule); DR-11 in §6. **Pushed 2026-10-19** (owner authorisation) |
-| (latest) | *[2026-10-24]* **S4.13 corrected and committed** (owner authorised corrections 1–21, the candidate kind MEASURE, this commit and the push): `research/s4/S4_RISK_DEPENDENCIES.md` (DRAFT; 24 candidates COV-1 … COV-24, with modified CVaR as COV-24 of kind MEASURE; exact F-1 condition in §6.1; F-11 mixed portfolios; RO-3 narrowed; EQ-SIG-4 internal; changes listed in its §10) and `research/s4/verification/s413_risk_dependencies.py` (PASS); S4_PLAN C.2 row; verification README (31 scripts); this handoff (§3, §5, §6 items 10, 13, 15, 16; §10.7, §10.10; §11). S4.13 awaits owner acceptance; F-1 awaits an owner decision. **Pushed 2026-10-24** (owner authorisation) |
 | `61792e4` | **HANDOFF published 2026-10-24** (owner request): §11 adds the work since `76068d8` (methodological review E-1 … E-8, Hecht 2014 check, F-1 analysis, S4.13 draft, review and correction plan, checker limitations, the two 2026-10-24 analyses). Only `notes/v2/HANDOFF.md` changed; the S4.13 drafts remain uncommitted |
+| `0ae42a9` | *[2026-10-24]* **S4.13 corrected and committed** (owner authorised corrections 1–21, the candidate kind MEASURE, this commit and the push): `research/s4/S4_RISK_DEPENDENCIES.md` (DRAFT; 24 candidates COV-1 … COV-24, with modified CVaR as COV-24 of kind MEASURE; exact F-1 condition in §6.1; F-11 mixed portfolios; RO-3 narrowed; EQ-SIG-4 internal; changes listed in its §10) and `research/s4/verification/s413_risk_dependencies.py` (PASS); S4_PLAN C.2 row; verification README (31 scripts); this handoff (§3, §5, §6 items 10, 13, 15, 16; §10.7, §10.10; §11). S4.13 awaits owner acceptance; F-1 awaits an owner decision. **Pushed 2026-10-24** (owner authorisation) |
+| (latest) | *[2026-10-25]* **Corrections against Renshaw et al. (2026)** (owner decisions D1 and D4, 2026-10-25): RQ-28 (cyclical value = book-to-price + earnings yield; Shiller-type definition removed; signals per the source), RQ-31 (reference transform), RQ-32 (source; value sleeves weakly related), RQ-11 (reference timing specification), S48-D6 annotation, source inventory §23, CHANGELOG, this handoff (§6 items 17–20, §11.9). **Pushed 2026-10-25** (owner authorisation) |
 
 ### 3.2 Decisions (ADRs; `decisions/README.md`)
 - 0001–0022 accepted at G0–G3. 0023 (ANG baseline) and 0024 (S4 method governance) ACCEPTED.
@@ -319,6 +320,12 @@ Frontier models make highly correlated errors even across providers (Kim et al.,
 | 14 | *[2026-10-21]* **Admission route for internally discovered signals** (E-3; ADR-0025's "primary source" criterion is undefined for them) | Owner decision at S4.21/G4; not recorded here until then | §11.1 |
 | 15 | *[2026-10-24]* **Chief Total Portfolio Agent alongside the CIO? Decided 2026-10-24: Option D.** No new agent; the CIO's total-portfolio responsibility goes into its Agent Mandate (S4.18/S4.20); S4.16 adds a deterministic total-portfolio evidence packet (the CRO diagnostic contract and the funding report applied to the CIO's final ensemble and current holdings) | Record as dated notes on S4_PLAN S4.16/S4.18 (item 13); already handed forward in `S4_RISK_DEPENDENCIES.md` §8 | §11.8 |
 | 16 | *[2026-10-24]* **Historical means combined with momentum as expected returns? Closed 2026-10-24:** the owner kept the current design; nothing is recorded | — | §11.8 |
+| 17 | *[2026-10-25]* **Scores in the optimiser.** The reference construction maximises exposure to the composite score under a tracking-error budget, which is active mean–variance with alpha proportional to the score; rule R-1 (S4.9) bars unscaled scores from μ-consuming methods | Owner discussion | §11.9 |
+| 18 | *[2026-10-25]* **Renshaw versus Sørensen:** separate reference specifications for single-factor scores and the multifactor composite, or Renshaw replaces Sørensen | Owner discussion | §11.9 |
+| 19 | *[2026-10-25]* **Enabling the timing models** (research lane; shadow mode until S7 evidence) | Owner discussion | §11.9 |
+| 20 | *[2026-10-25]* **Data sources** for analyst revisions, short interest and hedge-fund holdings; public proxy series for the timing models | S6 (owner: internet sources may be used) | §11.9 |
+
+**Resolved on 2026-10-25:** Renshaw et al. (2026) designated the reference specification for the multifactor composite (construction only; FinSol's own universe and datasets); factor-momentum timing follows the source; RQ-28, RQ-31 and RQ-32 corrected; the August whitepaper and the iSTOXX methodology guide downloaded with owner permission.
 
 **Resolved on 2026-10-24:** the S4.13 correction plan (corrections 1–21; candidate kind MEASURE; one commit with the minimum bookkeeping, pushed); Option D for the total-portfolio question (item 15); historical means with momentum closed, current design kept (item 16); the handoff publication (`61792e4`).
 
@@ -593,7 +600,7 @@ If a build step needs a choice no accepted decision covers, raise a spec questio
 
 ---
 
-## 11. Work since `76068d8` (2026-10-19 → 2026-10-24)
+## 11. Work since `76068d8` (2026-10-19 → 2026-10-25)
 
 Nothing in this section is binding. *[2026-10-24]* The two S4.13 files described in §11.4 are now committed as DRAFT (awaiting owner acceptance); every other item is a proposal, an analysis or an owner decision, recorded in a governing document only where this section says so.
 
@@ -825,7 +832,7 @@ Everything else checks the inventory against itself.
 - **Scratch work is not persistent.** The F-1 reproduction and the mutation harnesses lived in the earlier session's scratchpad, `/private/tmp/claude-501/-Users-oliver-Desktop-ENGINE-V1/4750b449-c158-429d-a18a-0899ca2a7b6d/scratchpad/` (folders `s413` and `s413review`), and may be gone. *[2026-10-24]* The F-1 reproduction now lives in the committed checker `s413_risk_dependencies.py`; the 2026-10-24 mutation harness ran in a session scratchpad and is not kept.
 - **numpy 2.0.2 on this Mac:** `@` (matmul) can raise spurious floating-point warnings through Accelerate even though the results are finite. Use `einsum`, or check `isfinite`.
 - **Web reading:** the web-fetch tool fails on expired TLS certificates; reading the page over plain HTTP into the scratchpad worked for the Hecht article. Podcast transcripts that render with JavaScript were read in the built-in browser by extracting `window.__tx`.
-- **Repository state:** *[2026-10-24]* branch `stage/s04-method-library`, with the S4.13 commit as the latest, in sync with origin; no untracked files; no PR (gate PR at G4).
+- **Repository state:** *[2026-10-25]* branch `stage/s04-method-library`, with the 2026-10-25 corrections commit as the latest, in sync with origin; no untracked files; no PR (gate PR at G4).
 - **Assistant memory files** (outside the repository) hold the protocol and feedback rules summarised in §2.1–§2.2. Current owner instructions always win over them.
 - **Security reminders (§2.3):**
   - no personal financial data in the repository;
@@ -854,3 +861,11 @@ Everything else checks the inventory against itself.
    - **Repository position:** ADR-0012 (no score as μ without an accepted mapping); S4.9 R-1, R-2 and R-7c; EQ-MAP-1 … 4 registered, not accepted; Bayes–Stein (EQ-MVO-E2) handed to S9 as a CMA candidate.
    - **Derivation:** a momentum window inside the historical sample correlates √(k/T) with the mean (0.22 for 12 of 240 months). Under no predictability its optimal weight is zero. A naive "independent view" combination raises the variance by 4.3% while claiming a 4.8% reduction; under the Table 11.1 convention the variance is about 17 times worse.
    - **Recommendation (not pursued; the current design stands):** no blend of historical means with momentum as μ. Bayesian shrinkage remains a CMA candidate. Momentum reaches μ-consuming methods only through a registered mapping under an explicit predictive model, with an out-of-sample IC and a matched horizon (MOP 2012: persistence for 1–12 months, partial reversal later); μ-free methods use it only through O2/O3/O5/O6. A validation plan was proposed for S7/S9.
+
+### 11.9 Renshaw et al. (2026): reference specification for the multifactor composite (2026-10-25)
+
+- **Sources** (source inventory §23): the July 2026 paper (40 pp.); the August 2026 STOXX whitepaper (15 pp.; identical results; omits the market-similarity configuration, App. C); the iSTOXX Equity Indices Methodology Guide §118 (version of 13 Oct 2026; rule-level and newest).
+- **Owner decisions 2026-10-25:** the paper is the reference specification for the multifactor composite: signals, factor scores, the 1/3–1/3–1/6–1/6 score, the construction and the three timing models. Only the construction is adopted; FinSol applies it to its own universe and datasets and does not aim to replicate the paper's results. Factor-momentum timing follows the source (S48-D6 annotated; RQ-11).
+- **Corrected in place:** RQ-28 (cyclical value = book-to-price + earnings yield; the Shiller-type definition removed; signals per the source), RQ-31 (reference transform), RQ-32 (source; the two value sleeves are weakly related).
+- **Open for owner discussion (§6 items 17–20):** whether scores may enter the optimiser (rule R-1 against the reference construction); Renshaw versus Sørensen for separate factor scores; how the timing models are enabled; data sources.
+- **Outside the repository:** the owner-facing assessments (`ENGINE_V1/RENSHAW_2026_DIVERSIFICATION_ASSESSMENT.md`, `ENGINE_V1/RENSHAW_2026_IMPLEMENTATION_ASSESSMENT_v2.md`) and a scratch reimplementation of the market-similarity model.

@@ -1,6 +1,6 @@
 # S4.8 Momentum signals — SIG-1 XSMOM, SIG-2 TSMOM, and their variants: construction records
 
-**Document status:** REVIEWED (2026-10-15). Owner decisions S48-D1, D2, D4, D5 and D6 decided 2026-10-15; S48-D3 deferred to S4.9 (§5.1) and decided there as S49-D2 (2026-10-18). · **Basis:**
+**Document status:** REVIEWED (2026-10-15). Owner decisions S48-D1, D2, D4, D5 and D6 decided 2026-10-15; S48-D3 deferred to S4.9 (§5.1) and decided there as S49-D2 (2026-10-18). Annotated 2026-10-25 (S48-D6: factor-momentum V0 for composite-weight timing, owner decision). · **Basis:**
 - S4_PLAN §G (step S4.8; amendment 19, owner decision 2026-10-15) and §F (EQ-SIG-1 … 3);
 - `S4_METHODS_OUTLINE.md` §1 (nine-stage workflow) and §2 (S4.8);
 - `S4_TAXONOMY.md` (M.SIGNAL → A.DESCRIPTOR); ADR-0012 (signals are deterministic descriptors; μ only through an accepted mapping); ADR-0024 §3–§4 (parameter authority, allocation domains); ADR-0025 (admission ≠ evaluation); ADR-0026 §8 (evidence by use); ADR-0027 D3 (one authoritative risk model per problem).
@@ -250,6 +250,7 @@ The draft options are kept in §5.2. The discussion revised D1 and D6 and moved 
     - cross-sectional rotation among factor ETFs.
   - Time-series factor signals are computed on long–short or active factor returns (ETF minus market), never on a long-only ETF's raw return, which mostly tracks the market.
   - V0 = Ehsani & Linnainmaa's sign rule; V1 = Gupta & Kelly's capped z; empty-leg rule (EL-2): hold the non-empty leg.
+  - *[2026-10-25, owner decision]* **For time-varying weights on the composite's factor blend, V0 is the reference specification** (Renshaw et al. 2026 §4.2; iSTOXX methodology guide §118.1.2): the 18-month information ratio of each factor index against the parent; double the top factor if it is at least 0.15 above each of the other three, halve the bottom factor if it is at least 0.15 below each; renormalise; 25% weight in the 50/25/25 timing ensemble (RQ-11). For this use, E&L's sign rule and G&K's capped z become variants; they remain V0 and V1 for factor momentum as a standalone signal (SIG-1/F, SIG-2/F).
   - Confirmed against the *JF* 2022 version when it arrives (EL-1).
   - **The difference from long-only stock XSMOM:** XSMOM decides which stocks; factor momentum decides how much weight each factor gets. The two can disagree (for example, a cheap stock that rose less than an expensive one).
 
