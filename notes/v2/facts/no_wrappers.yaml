@@ -36,8 +36,36 @@ records:
     basis: null
     period: income_year
     effective_from: null
+    superseded_by: no.wrapper.ask.eligible_holdings@2   # link added 2026-10-25; record content unchanged
     claim: "ASK may hold EEA-listed shares and EEA equity funds (>80% shares); no money-market funds; cash earns no interest."
     notes: "'prohibited' lists types not in the permitted set; derivative/bond listed by exclusion (interpretation of the permitted-only rule)."
+
+  - fact_id: no.wrapper.ask.eligible_holdings
+    version: 2
+    scope: {jurisdiction: NO, account_type: ASK}
+    attribute: eligible_instrument_types
+    value:
+      permitted:
+        - {instrument_type: listed_share, condition: "issuer domiciled in EEA"}
+        - {instrument_type: securities_fund_unit, condition: "fund domiciled in EEA; share component > 80% at start of income year"}
+        - {instrument_type: cash, condition: "no interest accrues"}
+      prohibited: [money_market_fund, bond, non_eea_share, derivative]
+    unit: null
+    basis: null
+    period: income_year
+    effective_from: null
+    verified_on: 2026-10-25
+    recorded_at: 2026-10-25
+    reverify_by: 2027-10-25
+    supersedes: no.wrapper.ask.eligible_holdings@1
+    source:
+      citation: "Skatteetaten, Share savings account (ASK)"
+      url: https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/shares-and-securities/about-shares-and-securities/share-savings-account-ask/
+      section: "\"The account can be used to invest in listed shares domiciled in the EEA and units in mutual funds in companies domiciled in the EEA\"; \"several companies listed on Oslo Stock Exchange are not domiciled in the EEA and therefore do not qualify\""
+      retrieved_on: 2026-10-25
+      authority_type: tax_authority
+    claim: "ASK may hold listed shares of companies domiciled in the EEA and units in EEA-domiciled securities funds with a share component above 80% at the start of the income year; listing alone does not qualify (several Oslo-listed companies are not EEA-domiciled); no money-market funds; cash earns no interest."
+    notes: "Version 2 corrects the claim wording only: v1 said 'EEA-listed shares', which the structured condition ('issuer domiciled in EEA') and the source contradict. Value, scope and valid time unchanged; passage re-read on 2026-10-25. Owner approval P5, 2026-10-25."
 
   - fact_id: no.wrapper.ask.dividend_timing
     scope: {jurisdiction: NO, account_type: ASK}

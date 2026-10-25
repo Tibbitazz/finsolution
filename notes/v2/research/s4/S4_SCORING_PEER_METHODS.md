@@ -261,20 +261,27 @@ Power table for D-5:
 ### 9.1 Layout (v0 proposal; nothing adopted)
 One row per security in the declared universe at an as-of date, and one column per descriptor. This follows the Investwiser format (percentiles 0–100 against a stated universe, §1), with our own specifications and without undisclosed totals.
 
+*[2026-10-25, owner decision P1 (follows REN-D2)]* The two Sørensen REFERENCE rows (Value (Sørensen), SCORE-VAL; Momentum 12–1 (Sørensen), SCORE-MOM) are replaced by the four Renshaw factor rows. The Sørensen 12–1 formation remains as a drill-down component (the standalone SIG-1 signal). A trend-state context column (SIG-2) is added, and the Renshaw multifactor score is a labelled aggregation (T-1). The Renshaw IDs (REN-F-*, REN-SCORE) are provisional display IDs until S4.20 registers them. The earlier rows are in the git history (`54ffad9` and before).
+
 | Group | Column | Descriptor ID (§6) | Definition (summary) | Cell | Status badge |
 |---|---|---|---|---|---|
-| Value | Value (Sørensen) | SCORE-VAL (V0; V1 variant) | z(−P/E) + z(−P/B), re-standardised, then percentile | 0–100 | REFERENCE |
-| Value | Earnings yield, EV basis (Greenblatt-type) | DESC-V-EYEV | EBIT / EV | 0–100, raw % on drill-down | CANDIDATE |
+| Value | Cyclical value (Renshaw factor) | REN-F-CV (provisional) | Mean of the available signals 1–2 (book-to-price; earnings yield, trailing leg only until point-in-time consensus exists), re-z against the parent universe, truncated at ±3 (`S4_SCORING_RENSHAW_ANG.md` §2–§3) | 0–100; signals and raw values on drill-down | REFERENCE |
+| Value | Enhanced value (Renshaw factor) | REN-F-EV (provisional) | Mean of the available signals 3–5 (economic-profit yield, intangible-asset ratio, free-cash-flow yield), same transform | 0–100; signals on drill-down | REFERENCE |
+| Value | Earnings yield, EV basis (Greenblatt-type) | DESC-V-EYEV | EBIT / EV (also the Renshaw cyclical-value test variant 2b, REN-D7) | 0–100, raw % on drill-down | CANDIDATE |
 | Value | Value composite (O'Shaughnessy-type) | SCORE-VAL-VC | VC2-type: mean percentile of six metrics, re-ranked | 0–100 | VARIANT |
+| Quality | Quality (Renshaw factor) | REN-F-Q (provisional) | Mean of the available signals 12–18 (ROE, ROA, cash flow to assets, sales to EV, gross profit to assets, sales to assets, operating accruals to assets), same transform | 0–100; signals on drill-down | REFERENCE |
 | Quality | Return on capital (Greenblatt-type) | DESC-Q-ROCG | EBIT / (NWC + NFA) | 0–100, raw % on drill-down | CANDIDATE |
 | Quality | Gross profitability | DESC-Q-GPA | Gross profit / total assets (Novy-Marx) | 0–100 | CANDIDATE |
 | Quality | Operating profitability | DESC-Q-OP | Fama–French (2015) RMW-type | 0–100 | CANDIDATE |
 | Quality | Return on assets | DESC-Q-ROA | Net income / total assets | 0–100 | CANDIDATE |
 | Quality | F-score | DESC-Q-FSCORE | Nine binary criteria (Piotroski) | **raw 0–9**, not a percentile | CANDIDATE |
 | Quality | Accruals | DESC-Q-ACCR | Sloan-type accruals | 0–100 | CANDIDATE |
-| Momentum | Momentum 12–1 (Sørensen) | SCORE-MOM | P(t−1)/P(t−12) − 1 on a total-return index | 0–100 | REFERENCE |
+| Momentum | Momentum (Renshaw factor) | REN-F-M (provisional) | Mean of the available signals 6–11 (price, idiosyncratic, analyst revisions, economic-profit momentum, low short interest, hedge-fund holdings). Missing signals carry a null-reason code (signal 8 is missing under REN-D6) | 0–100; signals on drill-down | REFERENCE |
+| Momentum (drill-down only) | 12–1 return and rank (Sørensen formation; the standalone SIG-1 signal) | SCORE-MOM | P(t−1)/P(t−12) − 1 on a total-return index. A separate column only if it is used as a separate channel with explicit weights (R-7c), never as a second headline momentum score | Raw %, rank | DRILL-DOWN |
 | Momentum | 3 m and 6 m returns | SCORE-MOM variants | No skip month; they overlap the short-term reversal window (§5) | 0–100 | VARIANT |
+| Aggregation (labelled) | Multifactor score (Renshaw) | REN-SCORE (provisional) | Σ w_k·F_k over the four factor scores, re-z, ±3. Shown only with its weights and timing state: static base weights 1/3 momentum, 1/3 quality, 1/6 enhanced value, 1/6 cyclical value; timing models in shadow mode (REN-D5) | 0–100, with weights and timing state in the header | AGGREGATION (T-1) |
 | Aggregation (labelled) | EY–ROC rank composite (Greenblatt-type) | AGG-EYROC | Rank-sum of EY and ROC, shown as a percentile | 0–100 | AGGREGATION VARIANT (RQ-32) |
+| Context (not scores) | Trend state (time-series momentum) | SIG-2 | Sign of the asset's own excess return: 12–1 for single stocks, 12–0 for funds, ETFs and indices (S48-D1). A state, not a peer rank (T-9) | Up / down, or a null-reason code | CONTEXT |
 | Context (not scores) | Sector, country, currency, market cap, liquidity, data as-of | — | Raw values | — | CONTEXT |
 | Deferred | EPS revisions; forward growth | DESC-REV, DESC-GROWTH-FWD | — | — | DEFERRED (point-in-time consensus) |
 
@@ -307,17 +314,18 @@ One row per security in the declared universe at an as-of date, and one column p
 
 | Rule | Content | Reason |
 |---|---|---|
-| T-1 | **No master total by default.** AGG-EYROC, and any QVM-type total, appear only as labelled aggregation variants registered under RQ-32 | ADR-0012 §4; a total hides which leg drives it (§5: Investwiser totals DOES NOT FIT) |
+| T-1 | **No master total by default.** AGG-EYROC, and any QVM-type total, appear only as labelled aggregation variants registered under RQ-32. *[2026-10-25, owner decision P3]* This includes the Renshaw multifactor score (REN-SCORE): it is shown only as a labelled aggregation whose header states its weights and timing state (static / shadow), never as an unexplained "total score". No view has a default "strongest overall" or similar banner that singles out one security | ADR-0012 §4; a total hides which leg drives it (§5: Investwiser totals DOES NOT FIT); a "strongest" banner reads as a recommendation (ADR-0017) |
 | T-2 | **Display ≠ signal.** A column is shown with its status badge. Showing it neither admits it nor makes it a belief or PC input | ADR-0025; §8 |
 | T-3 | **The universe is explicit.** Changing the comparison universe (global, region, sector) creates a different descriptor ID, not a toggle on the same one | O-4; RQ-30 |
 | T-4 | **Agents cite, challenge and never compute.** They cite cell IDs (descriptor, as-of, version). A challenge (e.g. P/E is meaningless for a loss-maker; EV distorted by IFRS 16 leases) is a structured note against the cell, never a changed number | R8; ADR-0012 §5 |
 | T-5 | **Overlap panel.** For the current universe and date, show the cross-sectional Spearman correlation matrix among the displayed columns, with its history | Answers "do Sørensen and Greenblatt measure different things?" with data each period. Highly correlated columns are fewer independent bets (cf. N_eff, `S4_ANG_BASELINE.md` §13.1) |
-| T-6 | **Disagreement view.** List securities where two columns diverge by more than a declared percentile gap (e.g. top quintile on SCORE-VAL, bottom half on DESC-Q-ROCG). The gap is a display parameter, not a signal | Directs review to the cases where the methods differ |
-| T-7 | **Neutral encoding.** Percentiles on a neutral sequential scale; no buy/sell colours or labels | ADR-0017 (analysis-only default) |
+| T-6 | **Disagreement view.** List securities where two columns diverge by more than a declared percentile gap (e.g. top quintile on REN-F-CV, bottom half on DESC-Q-ROCG; the example used SCORE-VAL before P1). The gap is a display parameter, not a signal | Directs review to the cases where the methods differ |
+| T-7 | *[revised 2026-10-25, owner decision P3; the v0 rule read "Neutral encoding: percentiles on a neutral sequential scale; no buy/sell colours or labels"]* **Colour is presentation only.** Red/green (or any directional) colours may be used for visual representation, e.g. price changes, above/below the universe median, trend state up/down. Colour is derived by the view from the stored value at render time. It is never stored in the Score Table artefact, never sent in an evidence packet or agent input, and never a factor in any analysis, signal or decision. Buy/sell labels remain excluded. Every colour has a non-colour equivalent (sign, number or label), so the meaning never depends on colour alone | ADR-0017 (analysis-only default); R8 (agents act on cited values, not on presentation) |
 | T-8 | **One artefact, two consumers.** One deterministic Score Table artefact per (universe, as-of, method versions). The dashboard renders it (S8 view registry, PM-9; S14 report). Agents receive it, or row subsets, inside evidence packets (RQ-34) | Dashboard and agents never see different numbers |
+| T-9 | *[2026-10-25, owner decision P2]* **Vocabulary.** "Momentum" means the cross-sectional factor (SIG-1 family; the Renshaw momentum factor) and nothing else. "Trend" means the time-series state (SIG-2 / SIG-2/T) only. Technical indicators (moving averages, MACD, RSI and the like) are displayed under their own names and are never labelled "momentum" or "trend score" | `S4_MOMENTUM.md` §0 (two objects, one family); ADR-0012 §1 (cross-sectional score ≠ time-series state) |
 
 ### 9.5 How agents use it in review
-- **Security-sleeve reviewers and the CRO:**
+- **Security-sleeve reviewers and the CRO** *[2026-10-25, owner decision P6: the security-sleeve reviewer is the AC/CMA role for the host asset class, under its own mandate; no new agent (`S4_ACCOUNTABILITY.md` §2)]*:
   - cite which descriptors drive a proposal's holdings;
   - flag concentration in one leg (e.g. all cheapness, no profitability);
   - flag holdings with null or stale cells.
@@ -336,7 +344,7 @@ Its type belongs in the S4.3 taxonomy; its content belongs in S4.15.
 - Column set and display order: S9c and S14. Display order is a presentation preference, not a belief.
 - Universe (Nordic, global, other): S5. Open sector classification: §7 item 2.
 - Data: S6. ESEF is annual only, so TTM fields need another source.
-- Visual mock-up: S8/S14. The UI concept prototype stays outside GitHub.
+- Visual mock-up: S8/S14. The UI concept prototype stays outside GitHub. *[2026-10-25]* Page-level layout guidance for the Market, Find Investments and Analysis areas: `research/s8/S8_LEAD_UX_MARKET_FIND_ANALYSIS_2026-10-25.md` (DRAFT; reference under OB-2 as amended 2026-10-25).
 
 ## Appendix — verification script (synthetic; reproduces G-1 … G-3)
 

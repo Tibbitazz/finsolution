@@ -1,6 +1,6 @@
 # S6 lead — data sources, vendors and licences (review of 2026-10-08)
 
-**Document status:** DRAFT (lead for S6; recorded early at the owner's request; extended the same day with Seeking Alpha, S&P Global Market Intelligence and the original sources; extended 2026-10-15 with OpenBB (§4.7; owner decisions OB-1, OB-2)) · **Owner stage:** S6 → G6 (RQ-08), S8 design (CB-19, DR-7) · **Basis:** owner requests of 2026-10-08:
+**Document status:** DRAFT (lead for S6; recorded early at the owner's request; extended the same day with Seeking Alpha, S&P Global Market Intelligence and the original sources; extended 2026-10-15 with OpenBB (§4.7; owner decisions OB-1, OB-2); annotated 2026-10-25 with the owner's statement on §4.2 and the OB-2 amendment (§4.7)) · **Owner stage:** S6 → G6 (RQ-08), S8 design (CB-19, DR-7) · **Basis:** owner requests of 2026-10-08:
 - review data and key alternatives in the researcher materials;
 - review free API sources;
 - identify the data vendors behind Simply Wall St, Investwiser and Seeking Alpha;
@@ -114,6 +114,8 @@ Limits and prices were observed on 2026-10-08. "Personal" means the free or entr
 - Their public methodology on GitHub is a candidate **reading** for S9c and S14, as an example of transparent model documentation. It is not adopted.
 
 ### 4.2 Investwiser → EODHD (EOD Historical Data) for prices, symbols, profiles and fundamentals · `INFERENCE`, high confidence
+
+*[2026-10-25, owner statement]* The owner reports that Investwiser's FAQ previously confirmed EODHD as its data source, so the attribution is no longer treated as an inference (**owner-confirmed**). The site's current terms (§1.7, read 2026-10-25) name only "third-party providers", and the FAQ statement was not re-read in this session. The fingerprints below remain the documentary evidence; the open questions at the end of this section (sole supplier, licence tier) are unchanged.
 
 **Facts about the product:**
 - InvestWiser AS, org.nr. 828 468 642, Horten.
@@ -273,6 +275,18 @@ The owner's link (an advertising URL) was opened **without its tracking paramete
   - self-hosted deployment.
 - The detailed layout patterns are documented at S8 from the released source or the product itself.
 - Reference only: no copying of proprietary assets or branding. The private UI concept study stays outside GitHub.
+
+*[2026-10-25]* **Owner amendment to OB-2: a combined Investwiser / OpenBB Workspace reference.**
+- **Owner's words:** "Investwiser is to be used as UX inspiration, and update the rules to a combined investwiser/openBB workspace reference. Specifically, we want to implement the UX and design/layout choices of Markets, Analysis and Find Investments to the extent it fits our engine. We do not directly copy and implement Investwiser solutions, but analyze the layout and construct it into the engine."
+- **Division of roles:**
+  - **OpenBB Workspace** stays the reference for the workspace shell: dashboards of widgets, apps, the connect-your-own-backend model (local API, MCP) and self-hosting.
+  - **Investwiser** is UX inspiration for the page-level layout and design of three areas: Market, Find Investments and Analysis.
+- **Conditions:**
+  - Only what fits the engine is taken. The engine's rules govern every element, in particular the score-table rules T-1 … T-9 (`S4_SCORING_PEER_METHODS.md` §9.4), R8, ADR-0017 and ADR-0026.
+  - Layouts are analysed and rebuilt in our own design, never copied: no proprietary assets, text, branding, data or scores.
+  - Investwiser's AI assistant is out of scope (owner: "disregard this completely").
+- **Developer document:** `research/s8/S8_LEAD_UX_MARKET_FIND_ANALYSIS_2026-10-25.md` (DRAFT). It describes the layout ideas without naming the inspiring product, as the owner requested.
+- DR-11 and RQ-10 are annotated accordingly.
 
 ## 5. Findings
 

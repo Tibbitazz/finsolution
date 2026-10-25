@@ -1,6 +1,6 @@
 # S4.2b — Accountability layer: role taxonomy, Agent Mandate schema, mandate stubs, responsibility matrix, escalation
 
-**Document status:** DRAFT (S4.2b; candidate fields F20–F21 added 2026-10-07; companion to [ADR-0026](../../decisions/ADR-0026-agent-mandates-and-implementation-authority.md), ACCEPTED 2026-10-08; F20–F21 remain **candidate** fields for S4.20 by owner decision) · **Prepared:** 2026-10-02 · **Basis:** owner decisions D-A … D-E (2026-10-02); ADR-0023; ADR-0024; ADR-0017; 05 R1–R8
+**Document status:** DRAFT (S4.2b; candidate fields F20–F21 added 2026-10-07; companion to [ADR-0026](../../decisions/ADR-0026-agent-mandates-and-implementation-authority.md), ACCEPTED 2026-10-08; F20–F21 remain **candidate** fields for S4.20 by owner decision; security-sleeve review note added 2026-10-25, owner decision P6) · **Prepared:** 2026-10-02 · **Basis:** owner decisions D-A … D-E (2026-10-02); ADR-0023; ADR-0024; ADR-0017; 05 R1–R8
 
 **Scope:**
 - Structure only. No mandate *values* are decided here unless they follow from an accepted ADR.
@@ -63,6 +63,18 @@
 | Meta / Learning | ANG ("learning") | Propose improvements | Change proposals | Apply material changes (incl. mandates) without approval | Attribution records | Hy, H approval | — | S17 |
 
 **Not in roster v0: a standalone Technical Agent** (owner D-B; ADR-0026 §8.7).
+
+*[2026-10-25, owner decision P6]* **Security-sleeve review sits in the AC/CMA mandate; no new agent.**
+- **Gap closed:** where an asset class holds a security sleeve (allocation unit "both", RQ-07; the Renshaw construction as the sleeve's method, R-7a), no role reviewed the security-level evidence.
+- **Who reviews:** the AC/CMA role for the host asset class (e.g. equities) reviews its own sleeve. This passes the decomposition test (ADR-0026 §8.7): the evidence is the same descriptor family that role already holds, so a separate agent would add a role without adding independent evidence.
+- **What the review covers:**
+  - cite the Score Table cells that drive the sleeve's holdings (T-4);
+  - flag concentration in one factor leg;
+  - flag holdings with null or stale cells;
+  - flag eligibility conflicts (e.g. ASK domicile);
+  - record disagreements with the deterministic scores as structured notes.
+- **What it must not do:** never change a score, a weight or the sleeve's construction (R1, R8). It holds no per-stock buy or sell authority.
+- **Deferred:** the mandate fields (F4–F6, F7) are set at S4.18/S4.20. The review output feeds the S4.16 candidate card and CRO packet, and the S4.17 disagreement records.
 
 **Deferred for every row [DEF]:**
 - F7: method lists (S4.20);

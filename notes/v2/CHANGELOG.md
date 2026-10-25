@@ -1,5 +1,20 @@
 # Changelog — notes/v2
 
+## 2026-10-25 (latest) — Momentum and interface review decisions; combined interface reference; S8 UX lead (branch `stage/s04-method-library`)
+
+- **Owner approvals (2026-10-25)** of the read-only momentum and interface review:
+  - **P1:** `research/s4/S4_SCORING_PEER_METHODS.md` §9.1. The Sørensen REFERENCE rows are replaced by the four Renshaw factor rows. A trend-state (SIG-2) context column is added; the multifactor score is a labelled aggregation; the Sørensen 12–1 moves to the drill-down.
+  - **P2:** rule T-9 (vocabulary: "Momentum" = cross-sectional factor; "Trend" = time-series state).
+  - **P3:** T-1 clarified (multifactor score only as a labelled aggregation; no "strongest overall" banner). T-7 revised by the owner: red/green allowed for visual representation only, never stored, never an agent input and never a factor in the analysis.
+  - **P4:** not needed. The owner states that Investwiser's FAQ previously confirmed EODHD; the S6 lead §4.2 is annotated as owner-confirmed.
+  - **P5:** `facts/no_wrappers.yaml` gains `no.wrapper.ask.eligible_holdings@2`, with the claim wording corrected to listed shares of EEA-domiciled companies. Source passage re-read on 2026-10-25; v1 is kept, with a `superseded_by` link. The RQ-07 note is corrected.
+  - **P6:** `research/s4/S4_ACCOUNTABILITY.md` §2. The security-sleeve review sits in the host class's AC/CMA mandate; no new agent.
+  - **P7:** RQ-20. The 13-section CIO report is recorded as the candidate S14 template.
+- **OB-2 amended:** the interface reference is a combined Investwiser / OpenBB Workspace reference. OpenBB Workspace covers the shell; Investwiser is UX inspiration for Market, Find Investments and Analysis, adapted and never copied; its AI assistant is disregarded. Recorded in the S6 lead §4.7, DR-11 (`S4_INPUTS_2026-10-07.md`) and RQ-10.
+- **New:** `research/s8/S8_LEAD_UX_MARKET_FIND_ANALYSIS_2026-10-25.md` (DRAFT developer brief; names no product).
+- **Updated:** HANDOFF (§3.1, §3.3, §5, §6 items 21–23, §10.6, §11.10); OPEN_QUESTIONS status line.
+- **Deliberately unchanged (accepted at G3):** `S3_FINDINGS.md` line 48 and `facts/README.md` (HANDOFF §6 item 22).
+
 ## 2026-10-25 (later) — Renshaw et al. reference specification recorded (branch `stage/s04-method-library`)
 
 - **Owner decisions REN-D1 … REN-D7** (2026-10-25): reference specification for the multifactor composite (construction only, own universe and data); Renshaw replaces the Sørensen definitions (Sørensen kept as display transform, reproduction oracle and standalone SIG-1); R-1 refined and EQ-MAP-5 registered (V0), EQ-MAP-3 the tested V1; factor momentum follows the source; timing models in the research lane in shadow mode, embargo mandatory; analyst revisions missing until a licensable dated source; EBIT/EV a cyclical-value test variant.
