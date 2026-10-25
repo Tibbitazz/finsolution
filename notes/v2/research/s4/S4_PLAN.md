@@ -53,7 +53,7 @@
     - Field candidates for S4.20. Developer requirements DR-1 … DR-8 (§I). G4 criterion 24.
     - Sandbox-specific choices are explicitly not transferred (memo §7).
 16. **Third-party implementation review (owner request, 2026-10-07).** [S4_GITHUB_IMPL_REVIEW.md](S4_GITHUB_IMPL_REVIEW.md) gives a per-component verdict (ADOPT / ADOPT-WITH-FIX / REJECT / OUT OF ROSTER), the IPS-constraint mathematics, invariants I-1 … I-9 for S4.23/S4.24/S8, and port-and-verify code candidates (MIT). No method is adopted by this review; S4.5–S4.14 specify each method from its primary source.
-17. **Sørensen/Storebrand scoring (owner instruction, 2026-10-07).** [S4_SCORING_SORENSEN.md](S4_SCORING_SORENSEN.md) records the method as the **reference specification** for cross-sectional value and momentum scores in the individual-security domain.
+17. **Sørensen/Storebrand scoring (owner instruction, 2026-10-07).** [S4_SCORING_SORENSEN.md](S4_SCORING_SORENSEN.md) records the method as the **reference specification** for cross-sectional value and momentum scores in the individual-security domain. *[2026-10-25: definitions superseded by amendment 21 (REN-D2); kept as display transform, reproduction oracle and standalone SIG-1.]*
     - Value: global z(−P/E), z(−P/B), equal-weight sum, then percentile 0–100. Momentum: 12–1 percentile.
     - Verified properties: P-1 … P-5.
     - Open choices O-1 … O-10 are declared parameters; V0 = exact source (reproduction oracle); V1 = corrected variant proposed.
@@ -81,6 +81,11 @@
     - **S4.12b:** PC-D4 TPA (Treynor & Black, the ABD funding decomposition, the distinctness test against PC-B1, Anchored EPO and factor-MVO, the TPA gap memo, decision S412-D4).
     - **Why:** the four scenario and downside methods share sources and verification (R&U, CUZ, BCP), while TPA needs its own specification work (amendment 14). Each stop ends with the owner's decisions.
     - *[2026-10-18]* S4.12a added a cross-cutting decision, S412-D6 (scenario location rule; finding NT-1).
+21. **Renshaw et al. multifactor composite (owner decisions REN-D1 … REN-D7, 2026-10-25).** [S4_SCORING_RENSHAW_ANG.md](S4_SCORING_RENSHAW_ANG.md) records Renshaw, Gu, Candar & Ang (2026; iSTOXX methodology guide §118) as the **reference specification** for the multifactor composite: 18 signals, four factor scores (cyclical value, enhanced value, momentum, quality), base weights 1/3–1/3–1/6–1/6, maximum exposure under a tracking-error budget, and three timing models.
+    - Construction only: FinSol's own universe and datasets; no replication of the source's results; capital-dependent number of holdings.
+    - Supersedes the Sørensen definitions (amendment 17; REN-D2). R-1 refined and EQ-MAP-5 registered (REN-D3). Factor momentum follows the source (REN-D4; S48-D6). Timing models in the research lane, in shadow mode (REN-D5). Analyst revisions missing until a licensable dated source (REN-D6). EBIT/EV a cyclical-value test variant (REN-D7).
+    - Verification: `verification/s4ren_multifactor_reference.py` (P-R1 … P-R8). No roster change.
+    - Work: S4.15 inventory; S4.16 diversification diagnostics and timing monitoring (Option D packet); S4.20 contracts; S4.24 fixtures; S6 data map; S7 pre-registration (embargo, null calibration, shadow-mode criteria); S9c/S9d, S9a/S13c, S10, S11 → G9/G11.
 
 ---
 

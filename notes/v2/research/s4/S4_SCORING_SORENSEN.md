@@ -1,6 +1,6 @@
 # S4 record — Sørensen/Storebrand cross-sectional scoring (owner-designated reference specification)
 
-**Document status:** DRAFT (S4 record, 2026-10-07). The method work belongs to S9c → G9. · **Basis:**
+**Document status:** DRAFT (S4 record, 2026-10-07; *annotated 2026-10-25: definitions superseded by `S4_SCORING_RENSHAW_ANG.md`, owner decision REN-D2*). The method work belongs to S9c → G9. · **Basis:**
 - owner instruction, 2026-10-07;
 - ADR-0012 (§2–§5);
 - ADR-0024 §4 (allocation domains);
@@ -13,6 +13,8 @@
 **Effect:**
 - The method is the **reference specification** for cross-sectional value and momentum scores in the individual-security allocation domain (S9c).
 - The variant grids of RQ-29, RQ-30 and RQ-31 are built around it. Alternatives are pre-registered **variants**; they do not replace it.
+
+*[2026-10-25, owner decision REN-D2]* **The Renshaw et al. definitions replace this record's value and momentum definitions** in screening and construction (`S4_SCORING_RENSHAW_ANG.md`). This method is kept for three uses: (i) its 0–100 percentile rank (S-5) is the display transform of the Renshaw scores; (ii) the exact method (V0) remains a reproduction oracle of the 2026-10-07 instruction; (iii) SIG-1 12–1 stays the standalone cross-sectional momentum signal (S48-D1), with its channel declared under R-7c when used beside the composite. Its V1 (E/P, B/P, winsorising, issuer de-duplication) converges on Renshaw's cyclical value.
 
 **Not done by this record:**
 - **No mapping to μ/α.** A score is not an expected return without an accepted mapping (ADR-0012 §3; RQ-33). See §3, P-3, for why this matters in the source's own production step.

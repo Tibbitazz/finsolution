@@ -1,5 +1,13 @@
 # Changelog — notes/v2
 
+## 2026-10-25 (later) — Renshaw et al. reference specification recorded (branch `stage/s04-method-library`)
+
+- **Owner decisions REN-D1 … REN-D7** (2026-10-25): reference specification for the multifactor composite (construction only, own universe and data); Renshaw replaces the Sørensen definitions (Sørensen kept as display transform, reproduction oracle and standalone SIG-1); R-1 refined and EQ-MAP-5 registered (V0), EQ-MAP-3 the tested V1; factor momentum follows the source; timing models in the research lane in shadow mode, embargo mandatory; analyst revisions missing until a licensable dated source; EBIT/EV a cyclical-value test variant.
+- **New:** `research/s4/S4_SCORING_RENSHAW_ANG.md`; `research/s4/verification/s4ren_multifactor_reference.py` (P-R1 … P-R8, PASS); EQ-MAP-5 in the equation register.
+- **Annotated:** `S4_SIGNAL_PC_COMPATIBILITY.md` (R-1), `S4_SCORING_SORENSEN.md` (§0), `S4_SCORING_PEER_METHODS.md` (§9), S4_PLAN (amendment 21; amendment 17 note), OPEN_QUESTIONS (RQ-08, RQ-11, RQ-17, RQ-28, RQ-29, RQ-33, RQ-37).
+- **Source inventory §23:** Eisfeldt, Kim & Papanikolaou (NBER WP 28056, downloaded with owner permission); Stewart 2009, Lev & Sougiannis 1996, Sloan 1996 located, for the owner to supply.
+- Verification README (32 scripts); HANDOFF (§3.1, §3.3, §5, §6, §10.7, §11.9).
+
 ## 2026-10-25 — Corrections against Renshaw et al. (2026) and the iSTOXX methodology guide (branch `stage/s04-method-library`)
 
 - **Owner decisions (2026-10-25):** Renshaw, Gu, Candar & Ang (2026) is the reference specification for the multifactor composite (construction only; FinSol's own universe and datasets; no replication of the paper's results); factor-momentum timing follows the source.

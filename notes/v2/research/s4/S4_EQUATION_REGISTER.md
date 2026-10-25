@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; S4.12a entries (EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1) and the S4.12b entry EQ-NT-4 added 2026-10-18; appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; S4.12a entries (EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1) and the S4.12b entry EQ-NT-4 added 2026-10-18; EQ-MAP-5 added 2026-10-25 (owner decision REN-D3); appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -592,6 +592,14 @@ Admissibility conditions for every mapping (R-1, R-2): output in return units pe
 
 - **Source:** BL 1992; PBL 2021 Prop. 3 (EPO ≡ BL with Π = γΣa, Q = s, P = I, Ω = Λ).
 - **Canonical:** Q from EQ-MAP-1/2/3; P = I (absolute views) or relative (long–short) view portfolios; Ω from confidence (He–Litterman τ·diag(PΣP′); Idzorek, IDZ-1).
+
+## EQ-MAP-5 Characteristic-premium mapping for budget-neutral exposure maximisation (added 2026-10-25; owner decision REN-D3)
+
+- **Source:** Renshaw, Gu, Candar & Ang (2026) and the iSTOXX methodology guide §118.1.3 (maximise exposure to the score under a tracking-error budget); `S4_SCORING_RENSHAW_ANG.md`.
+- **Canonical:** α_i = λ·z_i with λ > 0 arbitrary. Within max (w − b)′z subject to (w − b)′Σ(w − b) ≤ TE², 1′w = 1 and linear constraints, the solution without binding bounds is w − b ∝ Σ⁻¹(z − z̄1), z̄ = 1′Σ⁻¹z / 1′Σ⁻¹1: the characteristic portfolio of z, i.e. active mean–variance with α ∝ z.
+- **Admissibility (R-1 as refined):** only in budget-neutral, TE-constrained exposure maximisation, where the centring and scale of z do not affect the solution. Not admissible where the level or scale of μ matters (EQ-MAP-1 … 4 there).
+- **Properties (verified, `s4ren_multifactor_reference.py`):** equals the closed form (P-R4); invariant to positive scaling and shifts of z, not to monotone non-linear transforms (P-R4); with diagonal residual risk positions scale as z/ω², against z/ω under EQ-MAP-3 (P-R5).
+- **Use:** V0 for the reference multifactor composite; EQ-MAP-3 is the tested V1 (S7).
 
 ## EQ-TC-1 Transfer coefficient and the generalised fundamental law (diagnostic; added 2026-10-18)
 

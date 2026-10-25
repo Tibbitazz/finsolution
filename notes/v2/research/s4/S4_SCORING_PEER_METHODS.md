@@ -1,6 +1,6 @@
 # S4 record — peer scoring methods: Investwiser (Greenblatt, O'Shaughnessy, quality), Seeking Alpha factor grades
 
-**Document status:** DRAFT (S4 record, 2026-10-08). The method work belongs to S9c → G9. · **Companion to:** `S4_SCORING_SORENSEN.md` (the reference specification) · **Basis:**
+**Document status:** DRAFT (S4 record, 2026-10-08). The method work belongs to S9c → G9. · **Companion to:** `S4_SCORING_SORENSEN.md` (the reference specification until 2026-10-25; superseded for definitions by `S4_SCORING_RENSHAW_ANG.md`, owner decision REN-D2) · **Basis:**
 - owner request 2026-10-08: "identify the true source of the O'Shaughnessy and Magic Formula used in InvestWiser; how they compute profitability and quality; go through Seeking Alpha's factor methods; can we use them alongside the Sørensen metrics?";
 - ADR-0012 (§1–§4);
 - ADR-0025 (admission criteria);
@@ -240,6 +240,8 @@ Power table for D-5:
 - Expected outcome under low power: decomposition plus combination (cheapness on an enterprise basis plus a separate profitability descriptor), not a winner-takes-all choice.
 
 ## 9. Score table: separate scores for the dashboard and for agent review (owner request, 2026-10-08)
+
+*[2026-10-25, owner decision REN-D2]* The value and momentum columns now show the Renshaw et al. factor scores (cyclical value, enhanced value, momentum, quality; `S4_SCORING_RENSHAW_ANG.md`) as 0–100 percentile ranks (the Sørensen display transform). The Greenblatt-type legs and the other variants keep their columns; no default total.
 
 **Owner request:** "perhaps the Sørensen and Greenblatt may show two different scores instead of combining them, since they show two different things. We want to construct a similar scoring table as Investwiser has shown. This will be useful for the dashboard for our visual analysis, and the agents when they are doing their review."
 
