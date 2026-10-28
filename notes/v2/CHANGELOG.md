@@ -1,5 +1,12 @@
 # Changelog — notes/v2
 
+## 2026-10-28 (later) — Hecht (2014) record fixes (branch `stage/s04-method-library`)
+
+- **Owner approval:**
+  - `S4_NON_TRADITIONAL.md` §9.8 Cavaglia row corrected: Hecht (2014) and Kepos (2018) are cited for treating the candidate as any mixture of assets, factors or return drivers. The base-to-reference analogy is Cavaglia et al.'s own (p. 76).
+  - Citation issue CHS-1 (Hecht 2014 listed as an AQR working paper; the article is from hedgefundinsight.org, 2014) recorded in `ANG_ISSUES_REGISTER.md`.
+  - Source-inventory cross-references; HANDOFF (§3.1, §5, §6 item 12, §11.2, §11.6, §11.11).
+
 ## 2026-10-28 — S4.13 accepted; Renshaw alignment; F-1 decided (branch `stage/s04-method-library`)
 
 - **S4.13, the risk and covariance dependency inventory, accepted by the owner** (2026-10-28).
