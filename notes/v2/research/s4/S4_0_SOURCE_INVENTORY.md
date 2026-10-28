@@ -1,6 +1,6 @@
 # S4.0 — Source and artefact inventory
 
-**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources; §19: the S4.12a sources read from the existing library; §20: the S4.12b TPA sources); 2026-10-19 (§21: the three TPA papers, owner uploads; §22: sources located for S4.15b families T6 and T12 and two S9c candidates); 2026-10-25 (§23: Renshaw et al. 2026, the STOXX whitepaper and the iSTOXX methodology guide §118) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
+**Document status:** DRAFT (S4.0 output, for owner review before S4.1) · **Prepared:** 2026-10-02 · **Amended:** 2026-10-07 (ABD 2014 obtained and identity verified; owner decision D-5 on AQR as TPA specification source); 2026-10-15 (§16: Paleologo 2025, the S4.8 momentum and trend set, the Michaud monitoring application); 2026-10-18 (§17: the S4.9 alpha and transfer-coefficient sources; §18: the S4.10 benchmark sources; §19: the S4.12a sources read from the existing library; §20: the S4.12b TPA sources); 2026-10-19 (§21: the three TPA papers, owner uploads; §22: sources located for S4.15b families T6 and T12 and two S9c candidates); 2026-10-25 (§23: Renshaw et al. 2026, the STOXX whitepaper and the iSTOXX methodology guide §118); 2026-10-28 (§24: Wang, Chen & Wu 2025; Hecht 2014) · **Plan:** [S4_PLAN.md](S4_PLAN.md)
 
 **Scope of S4.0:**
 - Locate, identify and classify every source and prior artefact S4 needs.
@@ -389,3 +389,12 @@ The July paper arrived as a zip and was extracted into its own empty scratch dir
 | Stewart (2009), "EVA Momentum: The One Ratio That Tells the Whole Story", *J. Applied Corporate Finance* 21(2):74–86 | MISSING — LOCATED (no legitimate open copy; owner to supply) | RePEc record | Signal 9; O-R4 |
 | Lev & Sougiannis (1996), "The Capitalization, Amortization, and Value-Relevance of R&D", *J. Accounting and Economics* 21:107–138 | MISSING — LOCATED (owner to supply) | RePEc record | O-R5 |
 | Sloan (1996), "Do Stock Prices Fully Reflect Information in Accruals and Cash Flows About Future Earnings?", *Accounting Review* 71(3):289–315 | MISSING — LOCATED (only a re-hosted JSTOR copy found, not used; owner to supply) | Index record | Signal 18; O-R6 |
+
+## 24. Sources recorded 2026-10-28 (existing library and a web article; bookkeeping after S4.13)
+
+Both were used before this date but had not been entered here.
+
+| Source | Status | Location / identity (md5 pdf) | Maps to |
+|---|---|---|---|
+| Wang, Chen & Wu (2025), "Shrinkage estimation of higher-order comoment matrices: Is complexity always better than simplicity?", *Finance Research Letters* 85, 107978 | AVAILABLE (published) · identity and abstract checked during the S4.13 work; identity re-confirmed 2026-10-28; body not read | Owner's library, `~/Desktop/Research Papers Thesis/Correlation Shrinkage/`, 9 pp., `c0e914be54ce` | COV-21 (`S4_RISK_DEPENDENCIES.md` §5); RO-7; PC-D3's modified-CVaR variant |
+| Hecht (2014), "Evaluating Hedge Funds – Alphas, Sharpe Ratios & the Underappreciated Appraisal Ratio", hedgefundinsight.org, 18 December 2014 (written at Evanston Capital Management) | AVAILABLE (web article) · read in full 2026-10-20 over plain HTTP (the site's HTTPS certificate had expired) · secondary practitioner source, FITS; no new mathematics | Web page; not downloaded | The S412-D4 funding-report lens (`S4_NON_TRADITIONAL.md` §9.8); cited by Cavaglia, Han & Seshadri (2026), whose AQR attribution is a pending citation issue (HANDOFF §6 item 12) |

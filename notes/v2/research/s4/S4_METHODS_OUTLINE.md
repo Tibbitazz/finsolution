@@ -268,8 +268,8 @@ Each step goes through the same nine stages. The PC-method ladder (S4_PLAN §C.1
 | S4.10 | Anchors, benchmarks | **Done** | 2026-10-18 | `S4_ANCHOR_BENCHMARK.md`; owner reminded of S47-D3 first; owner accepted S410-D1 … D6 |
 | S4.11 | C1–C5 | **Done** | 2026-10-18 | `S4_RISK_STRUCTURED.md`; owner accepted S411-D1 … D5 |
 | S4.12a | D1–D3, B5 | **Done** | 2026-10-18 | `S4_NON_TRADITIONAL.md`; owner accepted S412-D1, D2, D3, D5, D6 |
-| S4.12b | D4 TPA | **Drafted; decision open** | 2026-10-18 | `S4_NON_TRADITIONAL.md` Part B; S412-D4 |
-| S4.13 | Risk dependencies | Not started | — | — |
+| S4.12b | D4 TPA | **Done** | 2026-10-19 | `S4_NON_TRADITIONAL.md` Part B; owner decided S412-D4, option (a) |
+| S4.13 | Risk dependencies | **Done** | 2026-10-28 | `S4_RISK_DEPENDENCIES.md`; corrected 2026-10-24; aligned with the Renshaw record 2026-10-26; F-1 decided, option (a); owner accepted 2026-10-28 |
 | S4.14 | E1 role, E2 | Not started | — | — |
 
 **After Section 2:** S4.15 upstream CMA and signal inventory (ANG's seven CMA candidates, judge, regime) · S4.16 CRO diagnostics and candidate card · S4.17 deliberation requirements · S4.18 CIO ensembles · S4.19–S4.24 consolidation · S4.25–S4.27 → **G4**.

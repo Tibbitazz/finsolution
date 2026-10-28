@@ -1,5 +1,28 @@
 # Changelog — notes/v2
 
+## 2026-10-28 — S4.13 accepted; Renshaw alignment; F-1 decided (branch `stage/s04-method-library`)
+
+- **S4.13, the risk and covariance dependency inventory, accepted by the owner** (2026-10-28).
+  - Scope: the inventory only. ADR-0027 stays PROPOSED, and the items handed forward stay open.
+  - The corrected inventory was committed on 2026-10-24 (`0ae42a9`: corrections 1–21, the candidate kind MEASURE, finding F-11). That commit had no entry here.
+- **Renshaw alignment and source corrections** (2026-10-26, `828e0e7`):
+  - a SIG-1/R row for idiosyncratic momentum on RO-8;
+  - cross-cutting rows for the construction (EQ-MAP-5 on RO-2) and the timing models;
+  - findings F-12 and F-13;
+  - the checker accepts REN-Dx;
+  - evidence sweep: 119 markers checked, five misattributions corrected.
+- **F-1 decided, option (a)** (2026-10-28, `22b384c`):
+  - "demeaned" means each asset's excess return minus its own mean, centred on zero, with the cash rate not added back (D1 V0, D3);
+  - μ-consuming methods declare their basis at S4.20;
+  - dated notes on S412-D6, EQ-SCN-1 and R-3;
+  - the return basis is proposed for ADR-0027 D5.
+- **Bookkeeping:**
+  - S4_PLAN C.2: S4.13 DONE; Option D notes on S4.16 and S4.18;
+  - outline tracker (S4.12b, S4.13); RQ-14 note;
+  - source inventory §24 (Wang, Chen & Wu 2025; Hecht 2014);
+  - verification README;
+  - HANDOFF (§3.1, §3.3, §5, §6 items 0, 10–13 and 15, §10, §11.3, §11.4, §11.11).
+
 ## 2026-10-25 (latest) — Momentum and interface review decisions; combined interface reference; S8 UX lead (branch `stage/s04-method-library`)
 
 - **Owner approvals (2026-10-25)** of the read-only momentum and interface review:

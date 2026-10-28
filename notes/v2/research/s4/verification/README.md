@@ -91,7 +91,7 @@
   | Script | Proves | Use |
   |---|---|---|
   | `s412b_tpa.py` | Treynor & Black eqs. (10)–(17) = Markowitz, (19) squared ratios add (TB-1), (20), (25), (28)–(32), p. 78 halving; AQR fns. 11–12; ABD eq. (4) and constrained OLS (A.3); TPA-1, TPA-2; TPA-R unconstrained closed form; TPA-R = Roll + exposure neutrality (TPA-3); distinctness against B1, B1 + TE, Roll and Anchored EPO; tangency coincidence (TPA-4); *[2026-10-19]* Cavaglia, Han & Seshadri (2026) p. 76 single-candidate weight = T&B's one-asset case (SR² additivity and optimality, 453 random cases) | PC-D4; EQ-NT-4 |
-- *[2026-10-24, S4.13]* **Risk and covariance dependency inventory** (`S4_RISK_DEPENDENCIES.md`; DRAFT, awaiting owner acceptance):
+- *[2026-10-24, S4.13]* **Risk and covariance dependency inventory** (`S4_RISK_DEPENDENCIES.md`; DONE, accepted by the owner 2026-10-28):
 
   | Script | Proves | Use |
   |---|---|---|
