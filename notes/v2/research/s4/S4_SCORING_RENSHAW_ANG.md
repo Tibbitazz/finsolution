@@ -1,6 +1,6 @@
 # S4 record — Renshaw, Gu, Candar & Ang: multifactor composite (owner-designated reference specification)
 
-**Document status:** DRAFT (S4 record, 2026-10-25). The method work belongs to S9c/S9d (signals, scores, aggregation), S9a/S13c (timing), S10 (security risk model) and S11 (construction) → G9/G11. · **Basis:**
+**Document status:** DRAFT (S4 record, 2026-10-25; annotated 2026-10-26: risk dependencies cross-referenced to S4.13, §4). The method work belongs to S9c/S9d (signals, scores, aggregation), S9a/S13c (timing), S10 (security risk model) and S11 (construction) → G9/G11. · **Basis:**
 - owner decisions REN-D1 … REN-D7, 2026-10-25 (§0);
 - ADR-0012 (§2–§5); ADR-0024 §1, §3, §4, §8; ADR-0025 (admission ≠ evaluation); ADR-0026 (agents interpret, never compute);
 - `S4_SCORING_SORENSEN.md` (precedent and predecessor); `S4_SIGNAL_PC_COMPATIBILITY.md` (R-1, R-7); `S4_MOMENTUM.md` (S48-D6); RQ-11, RQ-17, RQ-28 … RQ-33, RQ-37.
@@ -90,7 +90,7 @@ Quality in the guide is "based on Axioma's Profit Quality Factor", a vendor comp
 | One-way turnover ≤ 5% per quarter; quarterly review | Adopted (method-determined rebalancing, RQ-44) |
 | Infeasibility: relax tracking error first, then turnover | Adopted (fail small, P11) |
 | Minimum holding 10 bp new / 2 bp existing; issuer ≤ 22.5%; sum of issuers > 4.5% ≤ 47.5%; liquidity S = 20, p = 10th percentile; do-not-trade at zero 60-day volume | **Index-product rules, replaced** by Policy Statement concentration limits and account-size feasibility (06 rule 8) |
-| Axioma optimizer and risk model | Replaced: S10 security risk model (RO-2/RO-8, `S4_RISK_DEPENDENCIES.md`); solver is the developer's choice |
+| Axioma optimizer and risk model | Replaced: S10 security risk model (RO-2/RO-8, `S4_RISK_DEPENDENCIES.md`); solver is the developer's choice. *[2026-10-26]* In S4.13 terms: RO-2 (Σ) for the tracking error, the beta band and the total-risk constraint (§4 row EQ-MAP-5); RO-8 for signal 7's specific returns (§3 row SIG-1/R); the timing models' statistics are internal (§4); findings F-12 and F-13 |
 
 **FinSol adaptations:**
 - **Number of holdings:** about 270 names is not realistic. A capital-dependent cardinality limit K, from per-trade minimum commissions (RQ-07 D1–D3; 06 rule 8), turns the problem into a mixed-integer variant.

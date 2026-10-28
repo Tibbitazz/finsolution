@@ -11,7 +11,7 @@ Checks registry completeness and internal consistency, not econometric validity:
    name the objects they build; constructed-by and consumer lists agree; MEASURE candidates only read an object;
 6. Binding = weakest status of a row's markers and objects; ADR-0027 is never an established basis and is still
    PROPOSED; ASSUMED/OPEN rows are not established;
-7. every decision ID cited in the document (S4x-Dy, OB-x, ADR-nnnn) occurs in another notes/v2 document (HANDOFF.md
+7. every decision ID cited in the document (S4x-Dy, OB-x, REN-Dx, ADR-nnnn) occurs in another notes/v2 document (HANDOFF.md
    excluded), and every cited ADR has a file;
 8. no candidate selection: status 'candidate', no threshold set, method rows never name a candidate, no selection
    wording ("not the default" allowed);
@@ -58,7 +58,7 @@ UNR = re.compile(r'\[unresolved → ([^\]]*)\]'); OBJ = re.compile(r'\[object: (
 BAD = re.compile(r'\[(established|provisional|unresolved|object)(?!: | →)')
 RANK = {'unresolved': 0, 'provisional': 1, 'established': 2}
 ALLOWED_BASIS = re.compile(r'S4\d{1,2}-D\d+|S4\.\d+[ab]? record|ADR-00(0[1-9]|1\d|2[0-6])\b|\b0\d §\d+|EQ-[A-Z]+-\d+|'
-                           r'\bI-\d\b|\bR-\d\b|\bAC-\d\b|\bOB-\d\b|VERIFIED-DERIVATION|RQ-07 owner instruction')
+                           r'\bI-\d\b|\bR-\d\b|\bAC-\d\b|\bOB-\d\b|\bREN-D\d\b|VERIFIED-DERIVATION|RQ-07 owner instruction')
 TAGS = ['VERIFIED-SOURCE', 'VERIFIED-DERIVATION', 'VERIFIED-SECONDARY', 'ESTABLISHED', 'ASSUMED', 'OPEN']
 TYPES = {'COV', 'VOL', 'SCN', 'PATH', 'COMOM', 'FACTOR', 'INTERNAL', 'NONE'}
 VIEW = {'VOL': {'COV', 'VOL', 'FACTOR'}, 'COV': {'COV'}, 'SCN': {'SCN'}, 'PATH': {'PATH'}, 'COMOM': {'COMOM'}, 'FACTOR': {'FACTOR'}}
@@ -215,7 +215,7 @@ if '**Status:** PROPOSED' not in ADR27: err('ADR-0027 is no longer PROPOSED: rev
 
 # ---------------------------------------------------------------- decision IDs exist elsewhere in the repository
 CORPUS = ' '.join(p.read_text() for p in V2.rglob('*.md') if p.name not in ('S4_RISK_DEPENDENCIES.md', 'HANDOFF.md'))
-cited = sorted(set(re.findall(r'\bS4\d{1,2}-D\d+\b|\bOB-\d+\b|\bADR-\d{4}\b', DOC)))
+cited = sorted(set(re.findall(r'\bS4\d{1,2}-D\d+\b|\bOB-\d+\b|\bREN-D\d+\b|\bADR-\d{4}\b', DOC)))
 for d in cited:
     if not re.search(rf'\b{d}\b', CORPUS): err(f'decision ID {d} occurs in no other notes/v2 document')
     if d.startswith('ADR-') and not list((V2 / 'decisions').glob(f'{d}-*.md')): err(f'{d} has no file in decisions/')
