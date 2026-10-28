@@ -1,6 +1,6 @@
 # S4 Equation Register
 
-**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; S4.12a entries (EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1) and the S4.12b entry EQ-NT-4 added 2026-10-18; EQ-MAP-5 added 2026-10-25 (owner decision REN-D3); appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
+**Document status:** LIVING (created at S4.5, 2026-10-08; S4.6 and S4.7 entries added 2026-10-08; S4.8 and S4.9 entries added 2026-10-15; S4.9 entries revised and EQ-TC-1 added 2026-10-18; S4.10 and S4.11 entries added 2026-10-18; S4.12a entries (EQ-NT-1 … 3, EQ-DS-1, 2, EQ-SCN-1) and the S4.12b entry EQ-NT-4 added 2026-10-18; EQ-MAP-5 added 2026-10-25 (owner decision REN-D3); EQ-SCN-1 annotated 2026-10-28 (owner decision F-1); appended at every Section 2 step; reconciled at S4.19) · **Basis:** S4_PLAN §F (equation checklist), `S4_METHODS_OUTLINE.md` §1 stage 2 · **Verification:** `verification/s45_*.py` (and later steps' scripts)
 
 **What this register is:**
 - One entry per equation a roster method needs, with the fields set in the outline: source equation and page, source notation, canonical notation, dimensions, units, assumptions, constraints, parameter authority, limiting cases, numerical tests.
@@ -748,6 +748,7 @@ Specification choices decided by the owner 2026-10-18, option (a) in each: S412-
   - z is the standardised history (dependence and higher moments); σ from S10; μ = 0 for μ-free uses (demeaned), S9's μ for μ-consuming uses. Raw historical location is never used (S412-D6).
   - Recency weights π_{S−j} = φ^j π_S, 0 < φ < 1.
 - **Properties (verified, `s412_cvar_ru.py`):** the recentred set has exactly the target means and SDs and the historical correlations.
+- *[2026-10-28, owner decision F-1, clarifying S412-D6]* **For μ-free uses the scenario is r_{n,s} = σ_n z_{n,s}√Δt:** "Demeaned" means each asset's excess return minus its own mean (deviations from the mean), so the scenarios are centred on zero; the cash rate is not added back. Methods that consume μ use μ_nΔt + σ_n z_{n,s}√Δt, plus r_F only when they declare a total basis (default for D2; B5 either basis). The total-return form above is Grinold's because his objective is expected utility of total return (PDF pp. 669–671); it is kept for objectives that concern wealth. The verification scripts (`s412_cvar_ru.py`, `s412_drawdown_tail.py`) already use this convention.
 
 ## S4.12b entry — Total Portfolio Approach (`S4_NON_TRADITIONAL.md` §9; decision S412-D4 open)
 
